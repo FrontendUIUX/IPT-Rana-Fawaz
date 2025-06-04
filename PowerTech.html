@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+    <head>    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1">
+        <title>PowerTech website Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="PowerTech/PowerTech.css">
+    </head>
+    <body>
+    <!--Heading-->
+    <!--topbar-->
+<div id="top-bar" class="d-flex justify-content-between align-items-center px-0 py-1 shadow">
+  <!-- Left: Dashboard Icon -->
+  <div id="dashboard">
+    <a href="#" class="nav-link p-1">
+      <img src="PowerTech/assets/media/dashboard.svg" width="0.5rem" height="0.5rem" alt="Dashboard Icon">
+    </a>
+  </div>
+
+  <!-- Right: User Info -->
+<div id="user" class="dropdown">
+  <!-- Trigger -->
+  <div id="userDropdownTrigger" class="d-flex align-items-center cursor-pointer">
+    <img src="PowerTech/assets/media/user.png" alt="User" class="user-img" id="currentUserImg">
+    <span class="user-name ml-2 mr-2" id="currentUserName">Ahmad Abdullah</span>
+    <img src="PowerTech/assets/media/chevron.svg" alt="Dropdown" class="chevron-icon">
+  </div>
+
+  <!-- Dropdown -->
+  <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu">
+    <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jalal Fadlallah" data-img="PowerTech/assets/media/member1.png">
+      <img src="PowerTech/assets/media/member1.png" alt="User 1" class="user-img-sm mr-2">
+      <span>Jalal Fadlallah</span>
+    </a>
+    <a class="dropdown-item d-flex align-items-center" href="#" data-name="Christian Dagher" data-img="PowerTech/assets/media/member2.png">
+      <img src="PowerTech/assets/media/member2.png" alt="User 2" class="user-img-sm mr-2">
+      <span>Christian Dagher</span>
+    </a>
+    <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jinan Sarkis" data-img="PowerTech/assets/media/member3.png">
+      <img src="PowerTech/assets/media/member3.png" alt="User 3" class="user-img-sm mr-2">
+      <span>Jinan Sarkis</span>
+    </a>
+  </div>
+</div>
+
+        </div>
+
+    <div class= "d-flex">
+    <!-- Sidebar -->
+<aside id="sidebar" class="bg-light">
+  <ul class="nav nav-pills nav-flush flex-column flex-nowrap text-center align-items-center py-3 mb-auto">
+    <li class="nav-item mb-3">
+      <a href="#" class="nav-link p-0">
+        <img src="PowerTech/assets/media/active%20directory.svg" alt="Directory" width="1.5rem">
+      </a>
+    </li>
+    <li class="nav-item mb-3">
+      <a href="#" class="nav-link p-0">
+        <img src="PowerTech/assets/media/upcoming%20events.svg" alt="Calendar" width="1.5rem">
+      </a>
+    </li>
+    <li class="nav-item mb-3">
+      <a href="#" class="nav-link p-0">
+        <img src="PowerTech/assets/media/social.svg" alt="Social" width="1.5rem">
+      </a>
+    </li>
+    <li class="nav-item mb-3">
+      <a href="#" class="nav-link p-0">
+        <img src="PowerTech/assets/media/chart.svg" alt="Chart" width="1.5rem">
+      </a>
+    </li>
+  </ul>
+</aside>
+
+    <!--carousell-->
+<!-- Carousel Container -->
+<div class="position-relative"style="flex:1">
+
+  <!-- Navigation bar over carousel -->
+<nav class="navbar navbar-expand-lg navbar-dark position-absolute top-0 start-0 w-100 px-3" style="z-index: 10; background: rgba(0,0,0,0.1);">
+
+    <a class="navbar-brand" href="#">
+      <img src="PowerTech/assets/media/logo.png" alt="Company Logo" height="40">
+    </a>
+    <div class="d-flex align-items-center ml-auto">
+  <!-- Navigation Links -->
+  <ul class="navbar-nav flex-row">
+    <li class="nav-item px-2">
+      <a class="nav-link text-light" href="#">Home</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link text-light" href="#">Media Gallery</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link text-light" href="#">Policies & Procedures</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link text-light" href="#">Documented Templates</a>
+    </li>
+       <li class="nav-item px-2">
+      <a class="nav-link text-light" href="#">Vacancies</a>
+    </li>
+  </ul>
+
+  <!-- Search Icon -->
+<div class="position-relative">
+  <img src="PowerTech/assets/media/searchbar-icon.svg" id="searchToggle" style="cursor: pointer;" alt="Search Icon">
+
+  <!-- Floating Search Box -->
+  <div id="searchBox" class="floating-search-box">
+    <input type="text" class="form-control" placeholder="Search...">
+  </div>
+</div>
+</div>
+  </nav>
+
+  <!-- Bootstrap Carousel -->
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Bell icon -->
+  <div class="notification-bell">
+    <img src="PowerTech/assets/media/alert.svg" alt="Notification Bell" />
+  </div>
+  <div class="carousel-inner">
+
+    <div class="carousel-item active" style="background-image: url('PowerTech/assets/media/banner1.png'); background-size: cover; background-position: center; height: 25rem;">
+      <div class="carousel-caption text-start" style="bottom: 1.25rem; background: none; ">
+        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-image: url('PowerTech/assets/media/banner2.jpg'); background-size: cover; background-position: center; height: 25rem;">
+      <div class="carousel-caption text-start" style="bottom: 1.25rem;background: none">
+        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-image: url('PowerTech/assets/media/banner3.jpg'); background-size: cover; background-position: center; height: 25rem;">
+      <div class="carousel-caption text-start" style="bottom: 1.25rem;background:none;">
+        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Carousel controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+    <!-- Custom Carousel Progress & Slide Indicator -->
+<div class="carousel-indicator-wrapper">
+  <div class="slide-numbers" id="slideIndicatorBar">
+    <span class="slide-num" data-index="0">01</span>
+    <span class="slide-num active" data-index="1">02</span>
+    <span class="slide-num" data-index="2">03</span>
+    <div class="progress-bar-track">
+    <div class="progress-bar-fill"></div>
+  </div>
+  </div>
+</div>
+</div>
+
+</div>
+        </div>
+    <!--containers-->
+    <!--Section-->
+<div class="homepage-sections ">
+  <!-- News Section -->
+  <section id="news-section">
+    <!-- Top row: Title left, All News right -->
+    <div class="header-bar ">
+      <h2 class="mb-0">Latest <span style="color: #dc143c;">News</span></h2>
+      <a href="#" class="text-decoration-none fw-semibold" style="color:#dc143c;">All News</a>
+    </div>
+
+    <!-- News Items list -->
+    <div class="row gy-3">
+      <!-- News Item 1 -->
+      <div class="col-12">
+        <div class="news-item d-flex align-items-center">
+          <div style="flex: 0 0 4.375rem;">
+            <img src="PowerTech/assets/media/consumption%20based%20model.jpg" alt="News 1" style="width: 4.375rem; height: 4.375rem; object-fit: cover; border-radius: 0.25rem;">
+          </div>
+          <div style="flex: 1; min-width: 0; margin-left: 0.9375rem;">
+            <div class="d-flex align-items-center mb-1" style="gap: 0.375rem;">
+              <img src="PowerTech/assets/media/date.svg" alt="Calendar" style="width: 1rem; height: 1rem;">
+              <small class="text-muted">JUNE 11, 2024</small>
+            </div>
+            <p class="mb-0">Subsidiary Delivers Solutions for Lebanon's Mobile Network</p>
+          </div>
+          <div style="flex: 0 0 2.5rem; text-align: center; margin-left: 0.9375rem;">
+            <a href="#">
+              <img src="PowerTech/assets/media/news-cta.svg" alt="Read More" style="width: 1.5rem; height: 1.5rem;">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Item 2 -->
+      <div class="col-12">
+        <div class="news-item d-flex align-items-center">
+          <div style="flex: 0 0 4.375rem; margin-right: 0.9375rem;">
+            <img src="PowerTech/assets/media/banner2.jpg" alt="News 2" style="width: 4.375rem; height: 4.375rem; object-fit: cover; border-radius: 0.25rem;">
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="d-flex align-items-center mb-1" style="gap: 0.375rem;">
+              <img src="PowerTech/assets/media/date.svg" alt="Calendar" style="width: 1rem; height: 1rem;">
+              <small class="text-muted">JUNE 5, 2024</small>
+            </div>
+            <p class="mb-0">Prefabricated Telecom Data Center Modules Tested in Croatia</p>
+          </div>
+          <div style="flex: 0 0 2.5rem; text-align: center; margin-left: 0.9375rem;">
+            <a href="#">
+              <img src="PowerTech/assets/media/news-cta-active.svg" alt="Read More" style="width: 1.5rem; height: 1.5rem;">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Item 3 -->
+      <div class="col-12">
+        <div class="news-item d-flex align-items-center">
+          <div style="flex: 0 0 4.375rem; margin-right: 0.9375rem;">
+            <img src="PowerTech/assets/media/banner3.jpg" alt="News 3" style="width: 4.375rem; height: 4.375rem; object-fit: cover; border-radius: 0.25rem;">
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="d-flex align-items-center mb-1" style="gap: 0.375rem;">
+              <img src="PowerTech/assets/media/date.svg" alt="Calendar" style="width: 1rem; height: 1rem;">
+              <small class="text-muted">MAY 25, 2024</small>
+            </div>
+            <p class="mb-0">Showcasing Hybrid Solutions for MNOs and TowerCos in Kenya</p>
+          </div>
+          <div style="flex: 0 0 2.5rem; text-align: center; margin-left: 0.9375rem;">
+            <a href="#">
+              <img src="PowerTech/assets/media/news-cta.svg" alt="Read More" style="width: 1.5rem; height: 1.5rem;">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Carousel -->
+ 
+    <div id="userCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+      <!-- Indicators -->
+      <div class="carousel-indicators custom-indicators ">
+        <button type="button" data-bs-target="#userCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#userCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#userCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <!-- Carousel Item 1 -->
+        <div class="carousel-item active text-center p-4">
+          <div class="mb-3">
+            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+              <img src="PowerTech/assets/media/ellipse%20278.png" class="img-fluid" alt="User 1">
+            </div>
+          </div>
+          <h5>Welcome</h5>
+          <div class="fw-bold">NIJAD NASR</div>
+          <div>Operations Director</div>
+          <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
+          <div class="mt-3">
+            <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
+          </div>
+        </div>
+
+        <!-- Carousel Item 2 -->
+        <div class="carousel-item text-center p-4">
+          <div class="mb-3">
+            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+              <img src="PowerTech/assets/media/ellipse%2020.png" class="img-fluid" alt="User 2">
+            </div>
+          </div>
+          <h5>Welcome</h5>
+          <div class="fw-bold">MOHAMMAD ZAIN</div>
+          <div>Frontend Engineer</div>
+          <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
+          <div class="mt-3">
+            <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
+          </div>
+        </div>
+
+        <!-- Carousel Item 3 -->
+        <div class="carousel-item text-center p-4">
+          <div class="mb-3">
+            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+              <img src="PowerTech/assets/media/ellipse%2021.png" class="img-fluid" alt="User 3">
+            </div>
+          </div>
+          <h5>Welcome</h5>
+          <div class="fw-bold">BATOUL MAHFOUZ</div>
+          <div>UI/UX Designer</div>
+          <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
+          <div class="mt-3">
+            <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#userCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#userCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>
+
+    <!--media-->
+  <section class="energy-section">
+  <div class="energy-header">
+    <div class="energy-title">
+      <h2>
+        Capturing Our Energy<br>
+        Story With <span>Excellence <img src="PowerTech/assets/media/deco.svg" alt="decor" class="quote-img"></span>
+      </h2>
+    </div>
+    <div class="energy-description">
+      <p>
+        At the heart of our journey is a commitment to excellence.<br>
+        We continuously evolve, leveraging advanced technologies<br>
+        and creative solutions to shape our unique energy story<br>
+        through forward-thinking strategies.
+      </p>
+    </div>
+  </div>
+
+<div class="energy-gallery">
+  <div class="energy-card">
+    <img src="PowerTech/assets/media/banner1.png" alt="Energy in Action">
+      <span class="photo-count"><img src="PowerTech/assets/media/album.svg" alt="icon">10</span>
+    <div class="card-info">
+      <h3>Energy in Action</h3>
+      <p>June 13, 2024</p>
+    </div>
+  </div>
+  <div class="energy-card">
+    <img src="PowerTech/assets/media/87100.jpg" alt="Empower Together">
+      <span class="photo-count"><img src="PowerTech/assets/media/album.svg" alt="icon">18</span>
+    <div class="card-info">
+      <h3>Empower Together</h3>
+      <p>June 9, 2024</p>
+    </div>
+  </div>
+  
+  <div class="energy-card">
+    <img src="PowerTech/assets/media/all%20ipt%20services%20in%201%20picture%202.png" alt="Power Moments">
+      <span class="photo-count"><img src="PowerTech/assets/media/album.svg" alt="icon">5</span>
+    <div class="card-info">
+      <h3>Power Moments</h3>
+      <p>May 5, 2024</p>
+    </div>
+  </div>
+</div>
+
+
+  <div class="energy-viewall">
+    <button>View All</button>
+  </div>
+</section>
+
+
+        
+    <!--footer-->
+    <div class="footer">
+    <div class="footer-content">
+     <!--rights-->
+  <p class="footer-text">
+    Copyright &copy; 2023 <a href="/">PowerTech</a> All rights reserved
+  </p>
+    <!--socials-->
+    <div class="socials">
+    <a href="#"><img src="PowerTech/assets/media/youtube.svg" alt="Youtube" /></a>
+    <a href="#"><img src="PowerTech/assets/media/web.svg" alt="Web" /></a>
+    <a href="#"><img src="PowerTech/assets/media/insta.svg" alt="Instagram" /></a>
+    <a href="#"><img src="PowerTech/assets/media/linkedin.svg" alt="LinkedIn" /></a>
+  </div>
+ </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function () {
+  
+    $('#userDropdownTrigger').on('click', function (e) {
+      e.stopPropagation();
+      $('#userDropdownMenu').toggleClass('show');
+    });
+
+   
+    $(document).on('click', function () {
+      $('#userDropdownMenu').removeClass('show');
+    });
+
+   
+    $('#userDropdownMenu .dropdown-item').on('click', function (e) {
+      e.preventDefault();
+
+   
+      const selectedName = $(this).data('name');
+      const selectedImg = $(this).data('img');
+
+     
+      const currentName = $('#currentUserName').text();
+      const currentImg = $('#currentUserImg').attr('src');
+
+     
+      $('#currentUserName').text(selectedName);
+      $('#currentUserImg').attr('src', selectedImg);
+
+      
+      $(this).data('name', currentName);
+      $(this).data('img', currentImg);
+      $(this).find('span').text(currentName);
+      $(this).find('img').attr('src', currentImg);
+
+      
+      $('#userDropdownMenu').removeClass('show');
+    });
+  });
+    const toggle = document.getElementById('searchToggle');
+  const box = document.getElementById('searchBox');
+
+  toggle.addEventListener('click', () => {
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target) && !box.contains(e.target)) {
+      box.style.display = 'none';
+    }
+  });
+    
+document.addEventListener("DOMContentLoaded", function () {
+  const slideCount = 3;
+  const carousel = document.querySelector('#mainCarousel');
+  const indicatorContainer = document.getElementById('slideIndicatorBar');
+
+  const progressBar = document.createElement('div');
+  progressBar.className = 'progress-bar-track';
+  progressBar.innerHTML = '<div class="progress-bar-fill"></div>';
+
+  let currentIndex = 0;
+  const slideInterval = 5000;
+
+  function buildIndicators(activeIndex) {
+    indicatorContainer.innerHTML = '';
+
+    for (let i = 0; i < slideCount; i++) {
+      const span = document.createElement('span');
+      span.className = 'slide-num';
+      span.textContent = `0${i + 1}`;
+      if (i === activeIndex) span.classList.add('active');
+
+      indicatorContainer.appendChild(span);
+
+      if (i === activeIndex) {
+        indicatorContainer.appendChild(progressBar);
+        startProgressBar();
+      }
+    }
+  }
+
+  function startProgressBar() {
+    const fill = progressBar.querySelector('.progress-bar-fill');
+    fill.style.transition = 'none';
+    fill.style.width = '0%';
+
+    setTimeout(() => {
+      fill.style.transition = `width ${slideInterval}ms linear`;
+      fill.style.width = '100%';
+    }, 50);
+  }
+
+  carousel.addEventListener('slide.bs.carousel', function (e) {
+    currentIndex = e.to;
+    buildIndicators(currentIndex);
+  });
+
+  buildIndicators(currentIndex);
+});
+</script>
+    </body>
+</html>
