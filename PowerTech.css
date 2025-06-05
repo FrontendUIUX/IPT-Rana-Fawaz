@@ -2,7 +2,7 @@ html, body {
    height: auto;
   margin: 0;
   padding: 0;
-  background-image: url("assets/media/bg%202.jpg");
+  background-image: url("./assets/media/bg%202.jpg");
   overflow-x: auto;
   overflow-y: auto;
 }
@@ -15,7 +15,7 @@ html {
 
 #top-bar {
   height: 2.5rem;
-  background-image: url("assets/media/top-bar-pattern.jpg");
+  background-image: url("./assets/media/top-bar-pattern.jpg");
   z-index: 1050;
   position: relative;
   display: flex;
@@ -355,7 +355,7 @@ html {
   position: relative;
   display: block;
   height: 100%;
-  background-image: url("assets/media/employee-corner-bg.jpg");
+  background-image: url("./assets/media/employee-corner-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -441,7 +441,7 @@ html {
 }
 
 .energy-section {
-  background-image: url(assets/media/media-sectionbg.jpg);
+  background-image: url(./assets/media/media-sectionbg.jpg);
   background-size: cover;             
   background-repeat: no-repeat;     
   background-position: center;       
