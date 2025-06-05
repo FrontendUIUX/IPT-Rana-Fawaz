@@ -14,7 +14,7 @@ html {
 
 
 #top-bar {
-  height: 2.5rem;
+  height:3rem;
   background-image: url("./media/top-bar-pattern.jpg");
   z-index: 1050;
   position: relative;
@@ -74,8 +74,8 @@ html {
 
 #dashboard{
     background-color:#046479;
-    width: 2.125rem;
-    height: 2.5rem;
+    width: 2.5rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     border: none;
@@ -83,10 +83,10 @@ html {
 
 #sidebar {
   position:sticky;
-  top: 2.5rem;
+  top: 3rem;
   left: 0;
   height: calc(80vh - 2.5rem); 
-  width: 2.5vw; 
+  width: 3vw; 
   min-width: 1.25rem; 
   background-color: white;
   display: flex;
@@ -616,33 +616,31 @@ html {
 }
 
 
+
 .footer {
-  height:3.125rem;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  background-color:#013541;
+  background-color: #3F7B94; 
+  padding-top: 1rem;        
+  padding-bottom: 1rem;
   flex-wrap: wrap;
 }
 
 .footer-content {
-  height: 2.625rem;
-  position: fixed;
-  left: 0;
   width: 100%;
-  background-color:#014250;
+  height: 100%;
+  padding-left: 3rem; 
+  background-color: #3F7B94;
   color: gainsboro;
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   font-size: 0.875rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border-top: 0.0625rem solid #444;
-  padding-left: 1.875rem;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  display: flex; 
-justify-content: space-between;
+}
+
+.footer-text {
+  margin: 0; 
 }
 
 .footer a {
@@ -657,16 +655,17 @@ justify-content: space-between;
 }
 
 .socials {
-padding-right: 3.125rem;
-flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  padding-right: 3rem;
+  flex-wrap: wrap;
 }
 
 .socials a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 0.3125rem;
-  background-color:#013541; 
+  background-color: #1E627E; 
   border-radius: 50%;
   width: 1.75rem;
   height: 1.75rem;
@@ -674,12 +673,18 @@ flex-wrap: wrap;
 }
 
 .socials a:hover {
-  background-color: #004080; 
+  background-color: #004080;
 }
 
 .socials img {
   width: 1rem;
   height: 1rem;
+}
+
+.post-footer-section {
+  background-color: #1E627E;
+  padding-top: 0.1rem;        
+  padding-bottom: 0.7rem;
 }
 
 @media (max-height: 25rem) {
