@@ -332,10 +332,11 @@ html {
 }
 
 #news-section .news-cta {
-  flex: 0 0 2rem;
+  flex: 0 0 2.5rem;
   margin-left: 0.5rem;
   text-align: center;
 }
+
 
 #userCarousel {
   width: 23rem;
