@@ -124,16 +124,24 @@ html {
   filter: grayscale(100%);
 }
 
-
+.position-relative {
+  background-color: green;
+  height: 100vh;
+}
 .navbar {
   position: relative;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .navbar-brand {
+  margin-top: 1.2rem;
   padding-left: 1.875rem;
+  padding-bottom: 1.2rem;
 }
-
+.navbar-nav{
+    margin-right: 1rem;
+}
 .floating-search-box {
   position: absolute;
   top: 1.875rem; 
@@ -154,11 +162,15 @@ html {
 #mainCarousel {
   position: relative;
 }
-
+#mainCarousel,
+#mainCarousel .carousel-inner,
+#mainCarousel .carousel-item {
+  min-height:100vh;
+}
 .notification-bell {
   position: absolute;
-  top: 30%; 
-  right: 3rem; 
+  top: 25%; 
+  right: 2rem; 
   transform: translateY(-50%);
   z-index: 20; 
   cursor: pointer;
@@ -178,6 +190,8 @@ html {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+
+
 #mainCarousel .carousel-item {
   position: relative;
   height: 25rem;
@@ -186,6 +200,17 @@ html {
   width: 100%;
   transition: transform 0.5s ease;
 }
+
+#mainCarousel .carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
 
 #mainCarousel .carousel-caption {
   width: 31.25rem;
@@ -198,12 +223,13 @@ html {
   display: flex;
   flex-wrap: wrap;
   border-radius: 0.3125rem;
+  z-index: 2;
   position: absolute;
 }
 
 .carousel-indicator-wrapper {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   right: 5rem;
   z-index: 10;
 }
@@ -253,8 +279,8 @@ html {
 
 #news-section {
   background-color: #fff;
-  width: 48rem;
-  height: 21.875rem;
+  width: 68rem;
+  height: 21.875rem; 
   border-radius: 1.5625rem;
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.06);
   display: flex;
@@ -749,7 +775,13 @@ html {
     display: none; 
   }
 }
-
+@media (max-width: 991.98px) {
+  #mainCarousel,
+  #mainCarousel .carousel-inner,
+  #mainCarousel .carousel-item {
+    height: 25rem; /* or something smaller for mobile */
+  }
+}
  @media (max-width: 48rem) {
   .footer-content {
     flex-direction: column;
