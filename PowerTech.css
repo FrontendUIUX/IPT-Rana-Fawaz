@@ -229,7 +229,6 @@ html {
   bottom: 1.25rem;
   left: 1.875rem;
   padding: 0.625rem;
-  background: rgba(0, 0, 0, 0.4);
   text-align: left;
   color: #fff;
   display: flex;
@@ -283,29 +282,32 @@ html {
 .homepage-sections {
   position: relative;
   background-color: black;
-  display: flex;
+  display: flex; 
   flex-wrap: wrap; 
 }
 
 #news-section {
   background-color: #fff;
-  width: 68rem;
-  height: 21.875rem; 
+  min-width: 45rem;
+  max-height: 33rem; 
   border-radius: 1.5625rem;
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.5rem;
 }
 
-#news-section .header-bar {
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 3rem;
-  padding: 0 1rem;
-  border-radius: 1rem 1rem 0 0;
+.card-header {
+  background-color: #f1f1f1 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 3rem !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+#news-section > * {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 #news-section h2 {
@@ -322,13 +324,12 @@ html {
 }
 
 #news-section .row {
+ background-color: green;
   margin: 0;
-  padding: 0.75rem 0;
   gap: 0.5rem;
   overflow-y: auto;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
 }
 
 #news-section .news-item {
@@ -337,6 +338,7 @@ html {
   padding: 0.5rem 0;
   background-color: #fff;
 }
+
 
 #news-section .news-image {
   flex: 0 0 4.375rem;
@@ -353,6 +355,9 @@ html {
 #news-section .news-text {
   flex: 1;
   min-width: 0;
+}
+.news-desc{
+  font-size: 1.30rem; 
 }
 
 #news-section .news-date {
@@ -375,15 +380,15 @@ html {
 
 
 #userCarousel {
-  width: 23rem;
-  height: 28rem;
+  top:0.6rem;
+  width: 26rem;
+  height: 32rem;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
   color: white;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
 }
 
@@ -400,6 +405,8 @@ html {
   box-sizing: border-box;
 }
 .custom-indicators {
+  width: 21rem;
+  height: 0.6875rem;
   position: absolute;
   top: 0.625rem;
   right: 1rem;
@@ -426,19 +433,21 @@ html {
 }
 
 #userCarousel .carousel-item {
+  align-content: flex-end;
   text-align: center;
-  padding: 0 1rem;
-  margin-top: 3.125rem; 
+  margin-top: 2rem;
+  min-height: 30rem;
 }
 
 #userCarousel h5 {
   color: rgba(255, 255, 255, 0.7);
+    font-size: 2rem;
   font-weight: normal;
   margin-bottom: 0.5rem;
 }
 
 #userCarousel .fw-bold {
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   color: white;
   margin-bottom: 0.25rem;
 }
@@ -481,13 +490,9 @@ html {
   background-size: cover;             
   background-repeat: no-repeat;     
   background-position: center;       
-  padding-top: 3.75rem; 
-  padding-left:2.5rem;
   font-family: 'Segoe UI', sans-serif;
 }
-.energy-header {
-  padding-left: 0.625rem;  
-}
+
 
 .energy-header {
   display: flex;
@@ -626,7 +631,7 @@ html {
   font-size: 0.875rem;
   border-radius: 1.5625rem;
   cursor: pointer;
-  transform: translate(-4.5rem, -3rem);
+  transform: translate(0rem, -3rem);
   transition: background 0.3s ease;
 }
 

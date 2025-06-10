@@ -123,30 +123,33 @@
   <div class="notification-bell">
     <img src="./media/alert.svg" alt="Notification Bell" />
   </div>
-  <div class="carousel-inner">
+<div class="carousel-inner">
 
-    <div class="carousel-item active" style="background-image: url('./media/banner1.png'); background-size: cover; background-position: center;">
-          <div class="carousel-overlay"></div> 
-      <div class="carousel-caption text-start" style="bottom: 1.25rem; background: none; ">
-        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
-      </div>
+  <div class="carousel-item active position-relative">
+    <img src="./media/banner1.png" class="d-block w-100" alt="Slide 1">
+    <div class="carousel-overlay"></div>
+    <div class="carousel-caption text-start">
+      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better future</h4>
     </div>
-
-    <div class="carousel-item" style="background-image: url('./media/banner2.jpg'); background-size: cover; background-position: center;">
-          <div class="carousel-overlay"></div> 
-      <div class="carousel-caption text-start" style="bottom: 1.25rem;background: none">
-        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
-      </div>
-    </div>
-
-    <div class="carousel-item" style="background-image: url('./media/banner3.jpg'); background-size: cover; background-position: center;">
-          <div class="carousel-overlay"></div> 
-      <div class="carousel-caption text-start" style="bottom: 1.25rem;background:none;">
-        <h4>Pioneering Telecom,Power,and Automotive Innovations for a better future</h4>
-      </div>
-    </div>
-
   </div>
+
+  <div class="carousel-item position-relative">
+    <img src="./media/banner2.jpg" class="d-block w-100" alt="Slide 2">
+    <div class="carousel-overlay"></div>
+    <div class="carousel-caption text-start">
+      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better future</h4>
+    </div>
+  </div>
+
+  <div class="carousel-item position-relative">
+    <img src="./media/banner3.jpg" class="d-block w-100" alt="Slide 3">
+    <div class="carousel-overlay"></div>
+    <div class="carousel-caption text-start">
+      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better future</h4>
+    </div>
+  </div>
+
+</div>
 
   <!-- Carousel controls -->
   <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
@@ -175,77 +178,89 @@
     <!--containers-->
     <!--Section-->
 <section class="homepage-sections ">
+    <div class="container">
+     <div class="row g-4">
   <!-- News Section -->
- <div id="news-section">
-  <!-- Top row: Title left, All News right -->
-  <div class="header-bar">
-    <h2 class="mb-0">Latest <span style="color: #dc143c;">News</span></h2>
-    <a href="#" class="text-decoration-none fw-semibold">All News</a>
-  </div>
-
+      <div id="news-section" class="card col-lg-8">
+    <div class="card-header">
+      <h2 class="mb-0">Latest <span style="color: #dc143c;">News</span></h2>
+      <a href="#" class="text-decoration-none fw-semibold">All News</a>
+    </div>
   <!-- News Items list -->
-  <div class="row gy-3">
-    <!-- News Item 1 -->
-    <div class="col-12">
-      <div class="news-item">
+<div class="row">
+  <!-- News Item 1 -->
+  <div class="col-12 mb-4">
+    <div class="row news-item align-items-center justify-content-start">
+      <div class="col-lg-2 col-md-3 col-4">
         <div class="news-image">
-          <img src="./media/consumption%20based%20model.jpg" alt="News 1">
+          <img src="./media/consumption%20based%20model.jpg" alt="News 1" class="img-fluid w-100 rounded">
         </div>
-        <div class="news-text">
-          <div class="news-date">
+      </div>
+      <div class="news-text col-lg-8 col-md-9 col-8 d-flex align-items-center justify-content-between">
+        <div>
+          <div class="news-date mb-2 d-flex gap-2 align-items-center">
             <img src="./media/date.svg" alt="Calendar">
             <small class="text-muted">JUNE 11, 2024</small>
           </div>
-          <p class="mb-0">Subsidiary Delivers Solutions for Lebanon's Mobile Network</p>
+          <p class="news-desc mb-0 fw-semibold">Subsidiary Delivers Solutions for Lebanon's Mobile Network</p>
         </div>
-        <div class="news-cta">
+        <div class="news-cta ms-3">
           <a href="#"><img src="./media/news-cta.svg" alt="Read More" width="24" height="24"></a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- News Item 2 -->
-    <div class="col-12">
-      <div class="news-item">
+  <!-- News Item 2 -->
+  <div class="col-12 mb-4">
+    <div class="row news-item align-items-center justify-content-start">
+      <div class="col-lg-2 col-md-3 col-4">
         <div class="news-image">
-          <img src="./media/banner2.jpg" alt="News 2">
+          <img src="./media/banner2.jpg" alt="News 2" class="img-fluid w-100 rounded">
         </div>
-        <div class="news-text">
-          <div class="news-date">
+      </div>
+      <div class="news-text col-lg-8 col-md-9 col-8 d-flex align-items-center justify-content-between">
+        <div>
+          <div class="news-date mb-2 d-flex gap-2 align-items-center">
             <img src="./media/date.svg" alt="Calendar">
             <small class="text-muted">JUNE 5, 2024</small>
           </div>
-          <p class="mb-0">Prefabricated Telecom Data Center Modules Tested in Croatia</p>
+          <p class="news-desc mb-0 fw-semibold">Prefabricated Telecom Data Center Modules Tested in Croatia</p>
         </div>
-        <div class="news-cta">
+        <div class="news-cta ms-3">
           <a href="#"><img src="./media/news-cta-active.svg" alt="Read More" width="24" height="24"></a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- News Item 3 -->
-    <div class="col-12">
-      <div class="news-item">
+  <!-- News Item 3 -->
+  <div class="col-12 mb-4">
+    <div class="row news-item align-items-center justify-content-start">
+      <div class="col-lg-2 col-md-3 col-4">
         <div class="news-image">
-          <img src="./media/banner3.jpg" alt="News 3">
+          <img src="./media/banner3.jpg" alt="News 3" class="img-fluid w-100 rounded">
         </div>
-        <div class="news-text">
-          <div class="news-date">
+      </div>
+      <div class="news-text col-lg-8 col-md-9 col-8 d-flex align-items-center justify-content-between">
+        <div>
+          <div class="news-date mb-2 d-flex gap-2 align-items-center">
             <img src="./media/date.svg" alt="Calendar">
             <small class="text-muted">MAY 25, 2024</small>
           </div>
-          <p class="mb-0">Showcasing Hybrid Solutions for MNOs and TowerCos in Kenya</p>
+          <p class="news-desc mb-0 fw-semibold">Showcasing Hybrid Solutions for MNOs and TowerCos in Kenya</p>
         </div>
-        <div class="news-cta">
+        <div class="news-cta ms-3">
           <a href="#"><img src="./media/news-cta.svg" alt="Read More" width="24" height="24"></a>
         </div>
       </div>
     </div>
   </div>
+</div>
     </div>
 
   <!-- User Carousel -->
- 
+   <div class="col-lg-4">
     <div id="userCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
       <!-- Indicators -->
       <div class="carousel-indicators custom-indicators ">
@@ -258,13 +273,13 @@
         <!-- Carousel Item 1 -->
         <div class="carousel-item active text-center p-4">
           <div class="mb-3">
-            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+            <div style="width: 10.25rem; height: 10.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
               <img src="./media/ellipse%20278.png" class="img-fluid" alt="User 1">
             </div>
           </div>
           <h5>Welcome</h5>
           <div class="fw-bold">NIJAD NASR</div>
-          <div>Operations Director</div>
+          <div style="font-size: 1.2rem">Operations Director</div>
           <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
           <div class="mt-3">
             <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
@@ -274,13 +289,13 @@
         <!-- Carousel Item 2 -->
         <div class="carousel-item text-center p-4">
           <div class="mb-3">
-            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+            <div style="width: 10.25rem; height: 10.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
               <img src="./media/ellipse%2020.png" class="img-fluid" alt="User 2">
             </div>
           </div>
           <h5>Welcome</h5>
-          <div class="fw-bold">MOHAMMAD ZAIN</div>
-          <div>Frontend Engineer</div>
+          <div class="fw-bold">MOHAMAD ZAIN</div>
+          <div style="font-size: 1.2rem">Frontend Engineer</div>
           <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
           <div class="mt-3">
             <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
@@ -290,13 +305,13 @@
         <!-- Carousel Item 3 -->
         <div class="carousel-item text-center p-4">
           <div class="mb-3">
-            <div style="width: 6.25rem; height: 6.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+            <div style="width: 10.25rem; height: 10.25rem; margin: 0 auto; border-radius: 50%; overflow: hidden;">
               <img src="./media/ellipse%2021.png" class="img-fluid" alt="User 3">
             </div>
           </div>
           <h5>Welcome</h5>
           <div class="fw-bold">BATOUL MAHFOUZ</div>
-          <div>UI/UX Designer</div>
+          <div style="font-size: 1.2rem">UI/UX Designer</div>
           <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
           <div class="mt-3">
             <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
@@ -313,11 +328,15 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+       </div>
+    </div>
+    </div>
     </div>
 </section>
 
     <!--media-->
   <section class="energy-section">
+ <div class="container">
   <div class="energy-header">
     <div class="energy-title">
       <h2>
@@ -367,6 +386,7 @@
   <div class="energy-viewall">
     <button>View All</button>
   </div>
+      </div>
 </section>
 
 
