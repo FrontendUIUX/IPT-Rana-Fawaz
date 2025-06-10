@@ -5,6 +5,7 @@ html, body {
   background-image: url("./media/bg%202.jpg");
   overflow-x: auto;
   overflow-y: auto;
+  display: grid;
 }
 
 html {
@@ -227,7 +228,7 @@ html {
 
 
 #mainCarousel .carousel-caption {
-  width: 31.25rem;
+  width: 45rem;
   bottom: 1.25rem;
   left: 4rem;
   padding: 0.625rem;
@@ -239,6 +240,7 @@ html {
   z-index: 2;
   position: absolute;
 }
+
 
 .carousel-indicator-wrapper {
   position: absolute;
@@ -719,6 +721,7 @@ html {
   background-color: #1E627E;
   padding-top: 0.1rem;        
   padding-bottom: 0.7rem;
+  z-index: 1020 !important;
 }
 
 @media (max-height: 25rem) {
