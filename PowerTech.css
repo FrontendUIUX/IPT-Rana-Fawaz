@@ -281,8 +281,6 @@ html {
   transition: width linear;
 }
 
-
-
 .homepage-sections {
   margin-top: 2rem;
   position: relative;
@@ -931,8 +929,6 @@ html {
 
 #news-section {
   background-color: #fff;
-  width: 100%;
-  max-width: 31.25rem;
   height: auto;
   padding: 1rem;
   border-radius: 1.25rem;
