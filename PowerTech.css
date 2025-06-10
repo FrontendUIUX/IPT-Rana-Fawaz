@@ -1,5 +1,5 @@
 html, body {
-   height: auto;
+  height:100%;
   margin: 0;
   padding: 0;
   background-image: url("./media/bg%202.jpg");
@@ -15,9 +15,10 @@ html {
 
 #top-bar {
   height:3rem;
+    width: 100%;
   background-image: url("./media/top-bar-pattern.jpg");
   z-index: 1050;
-  position: relative;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: flex-end; 
@@ -82,7 +83,7 @@ html {
 }
 
 #sidebar {
-  position:sticky;
+  position:fixed;
   top: 3rem;
   left: 0;
   height: calc(80vh - 2.5rem); 
@@ -142,6 +143,7 @@ html {
 }
 .navbar {
   position: relative;
+  margin-top: 3rem;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
@@ -181,7 +183,7 @@ html {
 }
 .notification-bell {
   position: absolute;
-  top: 25%; 
+  top: 30%; 
   right: 2rem; 
   transform: translateY(-50%);
   z-index: 20; 
