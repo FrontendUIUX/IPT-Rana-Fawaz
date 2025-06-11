@@ -119,8 +119,8 @@ html {
   flex: 0 0 auto;  
 }
 .nav-link-1{
-  width:0.5 rem;
-  height:0.5 rem;
+  width:2.5rem;
+  height:2.5rem;
   max-width: 100%;
   transition: filter 0.3s ease;
   object-fit: contain; 
@@ -256,7 +256,7 @@ html {
 }
 
 .slide-num {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.6);
   transition: color 0.3s ease;
 }
@@ -293,7 +293,8 @@ html {
   padding: 0 !important;
   background-color: #fff;
   min-width: 45rem;
-  max-height: 33rem; 
+  min-height: 32rem;
+  max-height: 32rem;
   border-radius: 1.5625rem;
   display: flex;
   flex-direction: column;
@@ -379,8 +380,8 @@ html {
 
 #userCarousel {
   top:0.6rem;
-  width: 23rem;
-  height: 30.8rem;
+  width: 26rem;
+  height: 32rem;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -482,6 +483,7 @@ html {
 }
 
 .energy-section {
+  padding-top: 3rem;
   background-image: url(./media/media-sectionbg.jpg);
   background-size: cover;             
   background-repeat: no-repeat;     
@@ -543,6 +545,7 @@ html {
   gap: 1.25rem;
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-content: center;
 }
 
 
@@ -606,7 +609,8 @@ html {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  border-radius: 0;
+  border-bottom-left-radius: 0.3rem;
+  border-top-left-radius: 0.3rem;
 }
 
 .photo-count img {
@@ -629,7 +633,7 @@ html {
   font-size: 0.875rem;
   border-radius: 1.5625rem;
   cursor: pointer;
-  transform: translate(3.2rem, -3rem);
+  transform: translate(3.2rem, -4rem);
   transition: background 0.3s ease;
 }
 
@@ -639,17 +643,14 @@ html {
 
 .energy-card:nth-child(1) {
   height: 30rem;
-  margin-top: 0;
 }
 
 .energy-card:nth-child(2) {
   height: 22rem;
-  margin-top: 2.5rem;
 }
 
 .energy-card:nth-child(3) {
   height: 25rem;
-  margin-top: 1.25rem;
 }
 
 
