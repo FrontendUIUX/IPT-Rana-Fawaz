@@ -528,11 +528,6 @@ html {
   left: 13.75rem;
 }
 
-.energy-description {
-  max-width: 60rem;
-  flex: 1;
-}
-
 .energy-description p {
   margin-left: 10rem;
   font-size: 1rem;
