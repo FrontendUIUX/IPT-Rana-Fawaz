@@ -1070,7 +1070,6 @@ width: 6vw;
     margin-top: 4rem;
     text-align: center;
       padding: 0;
-      height:0;
   }
 
   .energy-viewall button {
@@ -1114,6 +1113,395 @@ width: 6vw;
     padding-bottom: 0.5rem;
     font-size: 0.7rem;
   }
+}
+
+@media only screen and (min-width:601px) and (max-width:768px){
+   #user { 
+  width: 12rem;
+  font-size: 0.975rem;
+  margin-right: 2.5rem;
+}
+#userDropdownMenu {
+  background: transparent; 
+  border: none;
+  box-shadow: none; 
+}
+#userDropdownMenu span{
+        color:ghostwhite;
+}
+
+#dashboard{
+    width: 6vw;
+}
+#dashboard img {
+  width: 90%;
+} 
+#sidebar {
+width: 6vw;
+ height: calc(100vh - 3rem);
+}
+ .position-relative {
+     max-width: 100vw;
+    max-height: 78vh;
+  }   
+    .notification-bell {
+    top: 35%;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+    .navbar{
+        flex-direction: row;
+        align-items: center;
+    }
+    .navbar-brand{
+        margin :0;
+        width:30vw;
+    }
+     .navbar-brand img{
+        width:30vw;
+    }
+    .navbar-toggler{
+       margin-left: 4rem;
+    }
+  #mainCarousel,
+  #mainCarousel .carousel-inner,
+  #mainCarousel .carousel-item {
+    min-height: 78vh;
+    height: 78vh;
+    width: 100vw;
+  }
+    #mainCarousel .carousel-item img{
+     height: 78vh; 
+      width: 80vw;
+    }
+
+
+  #mainCarousel .carousel-caption {
+    width:75vw;
+    left: 5%;
+    padding: 1rem;
+    bottom: 1rem;
+  }
+    #mainCarousel .carousel-caption h4{
+         font-size: 1.4rem !important; 
+    }
+
+  .carousel-indicator-wrapper {
+    bottom: 1rem;
+    right: 4rem;
+    width: auto;
+  }
+
+  .slide-num {
+    font-size: 1rem;
+  }
+
+  .progress-bar-track {
+    width: 4rem;
+  }
+
+  
+  .floating-search-box {
+    width: 45%;
+    right: 5%;
+    top: 1rem;
+    font-size: 0.9rem;
+  }
+
+    .homepage-sections {
+         max-height: auto !important;
+        margin:0 ;
+        width:100%;
+}
+    .homepage-sections .container{
+          width: 90% !important; 
+        height: 100%;
+    }
+    
+    #news-section {
+  margin-left: 1rem !important;
+  padding-left: 0.5rem;
+  min-width: auto;
+  width: 92%;
+  max-width: 100%;
+  min-height: auto;
+  max-height: 30rem;
+  border-radius: 1rem;
+}
+
+.card-header {
+  background-color: #f1f1f1 !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  font-size: 0.9rem;
+}
+
+#news-section > * {
+  margin: 0;
+  padding: 0;
+}
+
+#news-section a {
+  color: #dc143c;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+#news-section .row {
+  gap: 0.25rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 0.25rem 0.5rem;
+}
+
+#news-section .news-item {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0;
+  background-color: #fff;
+}
+
+#news-section .col-12 {
+  border-bottom: 1px solid lightgray;
+}
+.col-lg-2{
+    width: 2.5rem !important;
+    }
+#news-section .news-image {
+  margin-right: 2rem;
+     width: 2.5rem !important;
+}
+
+#news-section .news-image img {
+  width: 2.5rem !important;
+  height: 2.5rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+#news-section .news-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-desc {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+#news-section .news-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.2rem;
+}
+
+#news-section .news-date img {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+#news-section .news-cta {
+  flex: 0 0 1.5rem;
+  margin-left: 0.25rem;
+  text-align: center;
+}
+     #userCarousel{
+        width: 100%;
+        height: 100%;
+    }
+
+  #userCarousel .carousel-item {
+    min-height: 100%;
+    padding: 0.75rem;
+  }
+    #userCarousel .carousel-item .mb-3{
+          height:5rem;
+    }
+    #userCarousel .carousel-item img{
+        width:5rem;
+        height:5rem;
+    }
+  #userCarousel h5 {
+    font-size: 1rem;
+  }
+
+  #userCarousel .fw-bold {
+    font-size: 1.3rem;
+  }
+    #userCarousel #position{
+        font-size: 1rem;
+    }
+
+  #userCarousel .custom-muted {
+    font-size: 0.6rem;
+  }
+
+  .custom-indicators {
+    top: 0.5rem;
+    height: 0.5rem;
+  }
+
+.custom-indicators {
+  margin:0;
+  width: 90%;
+  height: 0.7rem;
+  position: absolute;
+  justify-content: flex-end;
+  top: 2rem;
+  display: flex;
+  gap: 0.25rem;
+  z-index: 20;
+}
+.btn-skyblue {
+  padding: 0.65rem 2.3rem;
+
+}
+    
+  .energy-section {
+      height:100%;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    background-position: top;
+  }
+
+  .energy-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width:100%;
+  }
+    .energy-title{
+        width:100%;
+    }
+  .energy-title h2 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  .energy-title h2 span .quote-img {
+    width: 2rem;
+    height: 1rem;
+    top: -0.1rem;
+    left: 7.8rem;
+  }
+    .energy-description{
+        width:100%
+    }
+  .energy-description p {
+    margin-left: 0;
+    font-size: 0.8rem;
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  .energy-gallery {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+
+  }
+
+  .energy-card {
+    width: 80%;
+    height: 100%;
+    min-height: 50vw;
+  }
+
+  .energy-card img {
+    height: 100%;
+    min-height: 50vw;
+    max-height: 50vw;
+  }
+
+  .card-info {
+    padding-bottom: 1rem;
+  }
+
+  .card-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .card-info p {
+    margin-left: 1rem;
+    font-size: 0.8m;
+  }
+
+  .photo-count {
+    top: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+     max-height:15%;
+     max-width: 20%;
+
+  }
+
+  .photo-count img {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .energy-viewall {
+    margin-top: 4rem;
+    text-align: center;
+      padding: 0;
+  }
+
+  .energy-viewall button {
+    transform:none;
+    font-size: 0.85rem;
+  }
+ 
+
+  .footer-content {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.7rem;
+    gap: 0.2rem;
+    text-align: left;
+  }
+
+  .footer-text {
+    width: 60%;
+    margin-bottom: 0.5rem;
+  }
+
+  .socials {
+    padding-right: 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .socials a {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .socials img {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  .post-footer-section {
+    padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.7rem;
+  } 
 }
 
 
