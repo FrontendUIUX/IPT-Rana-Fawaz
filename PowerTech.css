@@ -732,7 +732,7 @@ border-bottom-color: lightgray;
 
 /*MOBILE VERSION*/
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:600px) {
      
 #user { 
   width: 12rem;
