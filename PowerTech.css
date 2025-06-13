@@ -732,6 +732,7 @@ border-bottom-color: lightgray;
 
 /*MOBILE VERSION*/
 
+/*
 @media only screen and (max-width:600px) {
     
 #user { 
@@ -989,6 +990,7 @@ width: 6vw;
   padding: 0.65rem 2.3rem;
 
 }
+*/
 
 }
 
