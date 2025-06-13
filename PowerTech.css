@@ -743,8 +743,7 @@ border-bottom-color: lightgray;
 }
 #dashboard img {
   width: 90%;
-}
-    
+} 
 #sidebar {
 width: 6vw;
  height: calc(100vh - 3rem);
