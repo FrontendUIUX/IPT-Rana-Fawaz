@@ -732,8 +732,8 @@ border-bottom-color: lightgray;
 
 /*MOBILE VERSION*/
 
-@media only screen and (max-width:800px) {
-    
+@media only screen and (max-width:768px) {
+     
 #user { 
   width: 12rem;
   font-size: 0.975rem;
