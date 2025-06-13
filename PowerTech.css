@@ -989,7 +989,140 @@ width: 6vw;
   padding: 0.65rem 2.3rem;
 
 }
+    
+  .energy-section {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    background-position: top;
+  }
 
+  .energy-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width:100%;
+  }
+    .energy-title{
+        width:100%;
+    }
+  .energy-title h2 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  .energy-title h2 span .quote-img {
+    width: 2rem;
+    height: 1rem;
+    top: -0.1rem;
+    left: 7.8rem;
+  }
+    .energy-description{
+        width:100%
+    }
+  .energy-description p {
+    margin-left: 0;
+    font-size: 0.8rem;
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  .energy-gallery {
+    flex-direction: column;
+      align-items: center;
+    gap: 1rem;
+  }
+
+  .energy-card {
+    width: 80%;
+    height: 100%;
+    min-height: 50vw;
+  }
+
+  .energy-card img {
+    height: 100%;
+    min-height: 50vw;
+    max-height: 50vw;
+  }
+
+  .card-info {
+    padding-bottom: 1rem;
+  }
+
+  .card-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .card-info p {
+    margin-left: 1rem;
+    font-size: 0.8m;
+  }
+
+  .photo-count {
+    top: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+     max-height:15%;
+     max-width: 20%;
+
+  }
+
+  .photo-count img {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .energy-viewall {
+    text-align: center;
+    margin-bottom: 1rem;
+      margin-top: 0;
+  }
+
+  .energy-viewall button {
+    transform: none;
+    font-size: 0.85rem;
+  }
+  .footer {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-content {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.7rem;
+    gap: 0.2rem;
+    text-align: left;
+  }
+
+  .footer-text {
+    width: 60%;
+    margin-bottom: 0.5rem;
+  }
+
+  .socials {
+    padding-right: 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .socials a {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .socials img {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .post-footer-section {
+    padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.7rem;
+  }
 }
 
 
