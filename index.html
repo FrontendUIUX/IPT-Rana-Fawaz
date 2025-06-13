@@ -434,14 +434,12 @@ masterTL.from(navItems, {
   ease: "power4.out"
 });
 
-
 masterTL.from(".navbar-brand img", {
   scale: 1.4,
   opacity: 0,
   duration: 0.8,
   ease: "elastic.out(1, 0.5)"
 }, "-=0.3");
-
 
 masterTL.from(".notification-bell img", {
   y: -30,
@@ -450,17 +448,16 @@ masterTL.from(".notification-bell img", {
   ease: "bounce.out"
 }, "-=0.2");
 
-
 masterTL.from(".carousel-caption h4", {
   opacity: 0,
   y: 20,
   duration: 0.8,
   ease: "power2.out"
 }, "-=0.3");
-    
+
 masterTL.timeScale(0.5);
 masterTL.play();
-    
+
 ScrollTrigger.create({
   trigger: "#mainCarousel",
   start: "top bottom",
@@ -468,12 +465,8 @@ ScrollTrigger.create({
   onEnter: () => {
     masterTL.restart();
   },
-  onEnterBack: () => {
-    masterTL.restart();
-  }
+  once: true
 });
-
-
 
 gsap.from("#news-section", {
   opacity: 0,
@@ -482,9 +475,9 @@ gsap.from("#news-section", {
   ease: "power2.out",
   scrollTrigger: {
     trigger: "#news-section",
-    start: "top 60%",     
-    end: "bottom 40%",   
-    toggleActions: "play reverse play reverse",
+    start: "top 60%",
+    end: "bottom 40%",
+    once: true
   }
 });
 
@@ -498,7 +491,7 @@ gsap.from(".news-item", {
     trigger: "#news-section",
     start: "top 55%",
     end: "bottom 40%",
-    toggleActions: "play reverse play reverse",
+    once: true
   }
 });
 
@@ -511,7 +504,7 @@ gsap.from("#userCarousel", {
     trigger: "#userCarousel",
     start: "top 60%",
     end: "bottom 40%",
-    toggleActions: "play reverse play reverse",
+    once: true
   }
 });
 
@@ -525,7 +518,7 @@ gsap.from(".card-header h2, .card-header a", {
     trigger: ".card-header",
     start: "top 65%",
     end: "bottom 20%",
-    toggleActions: "play reverse play reverse",
+    once: true
   }
 });
 
@@ -539,11 +532,9 @@ gsap.from("#userCarousel img", {
     trigger: "#userCarousel",
     start: "top 60%",
     end: "bottom 40%",
-    toggleActions: "play reverse play reverse",
-
+    once: true
   }
 });
-
 
 gsap.from(".energy-title span .quote-img", {
   scale: 0,
@@ -553,21 +544,20 @@ gsap.from(".energy-title span .quote-img", {
   scrollTrigger: {
     trigger: ".energy-header",
     start: "top 75%",
-    toggleActions: "play reverse play reverse",
+    once: true
   }
 });
-
 
 gsap.from(".energy-card", {
   y: 60,
   opacity: 0,
   duration: 0.8,
   ease: "power4.out",
-  stagger: 0.2, 
+  stagger: 0.2,
   scrollTrigger: {
     trigger: ".energy-gallery",
     start: "top 80%",
-    toggleActions: "play reverse play reverse",
+    once: true
   }
 });
 
@@ -579,10 +569,9 @@ gsap.from(".energy-viewall button", {
   scrollTrigger: {
     trigger: ".energy-viewall",
     start: "top 90%",
-    toggleActions: "play reverse play reverse"
+    once: true
   }
 });
-
 
   $(document).ready(function () {
   
