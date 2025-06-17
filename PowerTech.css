@@ -2066,11 +2066,14 @@ margin-top: 1.5rem;
     top: 1.5rem;
     width: 20rem;
   }
-    
+   
+    .position-relative{
+        height: 78vh;
+    }
 #mainCarousel,
 #mainCarousel .carousel-inner,
 #mainCarousel .carousel-item {
-  min-height:100vh;
+  min-height:78vh;
 }
     
 #mainCarousel .carousel-item  img{
@@ -2097,6 +2100,7 @@ margin-top: 1.5rem;
   .slide-num {
     font-size: 1.5rem;
   }
+    
 
   .homepage-sections .container {
     width: 90% !important;
