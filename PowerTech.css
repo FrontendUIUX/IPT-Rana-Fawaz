@@ -1,4 +1,6 @@
-
+body , html{
+    overflow-x:hidden;
+}
 #top-bar {
   height:3rem;
   width: 100vw;
@@ -394,7 +396,6 @@ border-bottom-color: lightgray;
   height: 32rem;
   position: relative;
   border-radius: 1rem;
-  overflow: hidden;
   color: white;
   box-sizing: border-box; 
 }
@@ -633,7 +634,6 @@ border-bottom-color: lightgray;
   font-size: 0.875rem;
   border-radius: 1.5625rem;
   cursor: pointer;
-  transform: translate(0.7rem, -4.5rem);
   transition: background 0.3s ease;
 }
 
@@ -2045,8 +2045,11 @@ margin-top: 1.5rem;
   #sidebar {
     width: 3vw;
     min-width: 1.5rem;
+     
   }
-
+    .position-relative{
+        height:78vh;
+    }
   .nav-link img,
   .nav-link-1 {
     width: 2rem;
@@ -2066,10 +2069,7 @@ margin-top: 1.5rem;
     top: 1.5rem;
     width: 20rem;
   }
-   
-    .position-relative{
-        height: 78vh;
-    }
+    
 #mainCarousel,
 #mainCarousel .carousel-inner,
 #mainCarousel .carousel-item {
@@ -2100,7 +2100,6 @@ margin-top: 1.5rem;
   .slide-num {
     font-size: 1.5rem;
   }
-    
 
   .homepage-sections .container {
     width: 90% !important;
