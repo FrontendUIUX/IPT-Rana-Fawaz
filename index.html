@@ -92,27 +92,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-    <!-- Collapsible Menu -->
-    <div class="collapse navbar-collapse" id="navbarMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item px-2"><a class="nav-link text-light" href="#">Home</a></li>
-        <li class="nav-item px-2"><a class="nav-link text-light" href="#">Media Gallery</a></li>
-        <li class="nav-item px-2"><a class="nav-link text-light" href="#">Policies & Procedures</a></li>
-        <li class="nav-item px-2"><a class="nav-link text-light" href="#">Documented Templates</a></li>
-        <li class="nav-item px-2"><a class="nav-link text-light" href="#">Vacancies</a></li>
-      </ul>
+ <!--search icon -->
+  <div class=" position-relative-1 d-flex align-items-center ms-auto order-lg-2">
+    <img src="./media/search-normal.svg" id="searchToggle"
+         style="cursor: pointer; width: 1.625rem; height: 1.625rem;" alt="Search Icon">
+    <div id="searchBox" class="floating-search-box">
+      <input name="Search" type="text" class="form-control" placeholder="Search...">
     </div>
+  </div>
 
-    <div class="position-relative-1 ms-3 d-flex">
-      <img src="./media/search-normal.svg" id="searchToggle"
-           style="cursor: pointer; width: 1.625rem; height: 1.625rem;" alt="Search Icon">
-      <div id="searchBox" class="floating-search-box">
-        <input name="Search"type="text" class="form-control" placeholder="Search...">
-      </div>
+  <!-- Collapsible Menu -->
+  <div class="collapse navbar-collapse order-lg-1" id="navbarMenu">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item px-2"><a class="nav-link text-light" href="#">Home</a></li>
+      <li class="nav-item px-2"><a class="nav-link text-light" href="#">Media Gallery</a></li>
+      <li class="nav-item px-2"><a class="nav-link text-light" href="#">Policies & Procedures</a></li>
+      <li class="nav-item px-2"><a class="nav-link text-light" href="#">Documented Templates</a></li>
+      <li class="nav-item px-2"><a class="nav-link text-light" href="#">Vacancies</a></li>
+    </ul>
   </div>
 </nav>
-
-
 
     
   <!-- Bootstrap Carousel -->
