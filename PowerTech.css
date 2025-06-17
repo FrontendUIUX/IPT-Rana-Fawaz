@@ -727,7 +727,7 @@ border-bottom-color: lightgray;
   z-index: 1020 !important;
 }
 
-/*MOBILE VERSION*/
+/*----------------------------------MOBILE VERSION-----------------------------------------------------------------------------*/
 
 @media only screen and (max-width:600px) {
      
@@ -2769,7 +2769,7 @@ margin-top: 1.5rem;
 
   .navbar-nav {
       width:60vw;
-      font-size:1.5rem;
+      font-size:1.3rem;
   }
     #searchToggle{
         margin-right: 2rem;
