@@ -112,22 +112,21 @@ body , html{
 .nav-link-1 {
   display: flex;
   justify-content: center;
-  width: 100%;
   flex: 0 0 auto;  
 }
 .nav-link-1{
-  width:2rem;
-  height:2rem;
-  max-width: 100%;
   transition: filter 0.3s ease;
   object-fit: contain;
   align-content: center;
 }
-
-.nav-link img {
-  width: 2rem;
+#dashboard .nav-link-1 img{
+  width:2rem;
   height: auto;
-  max-width: 100%;
+  max-width: 90%;
+}
+.nav-link img {
+  width: 1rem;
+  max-width: 90%;
   transition: filter 0.3s ease;
   object-fit: contain;
 }
@@ -543,11 +542,7 @@ border-bottom-color: lightgray;
 }
 
 .energy-gallery {
-  display: flex;
   gap:1.25rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
 }
 
 
@@ -727,6 +722,27 @@ border-bottom-color: lightgray;
   z-index: 1020 !important;
 }
 
+
+
+#Media-Gallery-banner{
+    width:100%;
+    height: 100vh;
+}
+.banner-caption{
+  width: 60vw;
+  bottom: 1.25rem;
+  left: 4rem;
+  padding: 0.625rem;
+  text-align: left;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+  position: absolute;
+}
+.banner-caption h1{
+    font-size:3rem;  
+}
 /*----------------------------------MOBILE VERSION-----------------------------------------------------------------------------*/
 
 @media only screen and (max-width:600px) {
@@ -1118,6 +1134,8 @@ width: 6vw;
     font-size: 0.7rem;
   }
 }
+
+/*----------------------------------TABLET-1 VERSION---------------------------------------------------------------------------*/
 
 @media only screen and (min-width:601px) and (max-width:768px){
     #top-bar{
@@ -1560,6 +1578,8 @@ margin-top: 0.6rem;
     font-size: 0.7rem;
   } 
 }
+
+/*----------------------------------TABLET-2 VERSION---------------------------------------------------------------------------*/
 
 @media only screen and (min-width:769px) and (max-width:992px){
    #top-bar{
@@ -2011,6 +2031,8 @@ margin-top: 1.5rem;
   } 
 }
 
+/*----------------------------------TABLET-3 VERSION---------------------------------------------------------------------------*/
+
 @media only screen and (min-width:993px) and (max-width:1024px){
     #top-bar {
     height: 3rem;
@@ -2251,6 +2273,8 @@ margin-top: 1.5rem;
     height: 1.2rem;
   }
 }
+
+/*----------------------------------DESKTOP-1 VERSION--------------------------------------------------------------------------*/
 
 @media only screen and (min-width:1025px) and (max-width:1200px){
    
@@ -2501,6 +2525,8 @@ margin-top: 1.5rem;
   } 
 }
 
+/*----------------------------------DESKTOP-2 VERSION--------------------------------------------------------------------------*/
+
 @media only screen and (min-width:1201px) and (max-width:1400px){
     #top-bar {
     height: 3rem;
@@ -2555,7 +2581,7 @@ margin-top: 1.5rem;
 
   .navbar-nav {
     margin-right: 0.5rem;
-      font-size:1.3rem;
+    font-size:1.3rem;
   }
     #searchToggle{
         margin-right: 1rem;
@@ -2670,7 +2696,7 @@ margin-top: 1.5rem;
   }
 
   .energy-viewall button {
-   transform: translate(0.4rem, -3.5rem);
+    transform: translate(0.4rem, -3.5rem);
     font-size: 1.2rem;
   }
 
@@ -2712,6 +2738,8 @@ margin-top: 1.5rem;
       width:100vw;   
     }
 }
+
+/*----------------------------------DESKTOP-3 VERSION--------------------------------------------------------------------------*/
 
 @media only screen and (min-width:1401px) and (max-width:1600px){
      #top-bar {
@@ -2929,7 +2957,7 @@ margin-top: 1.5rem;
   left: 16rem;
 }
     .energy-gallery{
-        width:82vw !important;
+        width:86vw !important;
     }
   .energy-card:nth-child(1) {
     height: 34rem;
