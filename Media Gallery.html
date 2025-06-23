@@ -160,11 +160,24 @@ vertical-align: top;
   }
 }
             
-@media only screen and (min-width: 601px) and (max-width: 768px) {
-     #userDropdownMenu span{
-        color:black;
+@media (min-width: 600px) {
+  #userDropdownMenu span {
+    color: black;
+  }
+.navbar-toggler {
+  border-color: dimgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem; 
 }
-   .energy-gallery {
+
+.navbar-toggler-icon {
+  background-image: url('./media/hamburger-dimgray.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+  .energy-gallery {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -199,22 +212,167 @@ vertical-align: top;
     font-size: 1rem !important;
   }
 
-.photo-count {
-  align-items: center;
-  justify-content: center;
-  top: 2vh;
-  right: 0;
-  font-size: 1.5rem; 
-  padding: 0.75rem 1.1rem; 
-  max-height: 18%;
-  max-width: 24%; 
+  .photo-count {
+    align-items: center;
+    justify-content: center;
+    top: 2vh;
+    right: 0;
+    font-size: 1.5rem;
+    padding: 0.75rem 1.1rem;
+    max-height: 18%;
+    max-width: 24%;
+  }
+
+  .photo-count img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
-.photo-count img {
-  width: 2.5rem ;  
-  height: 2.5rem ;
+@media (min-width: 992px) {
+
+  .navbar {
+    background-color: white !important;
+  }
+
+  .nav-link {
+    color: dimgray !important;
+    cursor: pointer !important;
+  }
+
+  .nav-link:hover {
+    color: black !important;
+  }
+
+  .navbar-toggler {
+    border-color: dimgray !important;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url('./media/hamburger-dimgray.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+  }
+
+
+  .energy-section {
+    margin-bottom: 4rem !important;
+    background-image: none !important;
+  }
+
+
+  .energy-gallery {
+    display: block !important; 
+    width: 100% !important;
+    gap: 0 !important;
+    align-items: unset !important;
+    justify-content: unset !important;
+    flex-direction: unset !important;
+  }
+
+
+  .energy-card {
+    width: 30% !important;
+    margin-left: 0 !important; 
+    margin-bottom: 1.5rem !important;
+    border-radius: 0.5rem !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    height: auto !important;
+  }
+
+  .energy-card.alt-style .card-info {
+    position: static !important;
+    background: none !important;
+    color: black !important;
+    padding: 0.75rem 0 0 !important;
+  }
+
+  .energy-card.alt-style .card-info h3 {
+    margin: 0 0 0.3125rem !important;
+    font-size: 1.125rem !important;
+    color: #000 !important;
+    font-weight: bold !important;
+  }
+
+  .energy-card.alt-style img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .energy-card.alt-style .card-info h3::before {
+    content: none !important;
+  }
+
+  .energy-card.alt-style .card-info p {
+    margin: 0 !important;
+    font-size: 0.875rem !important;
+    color: #444 !important;
+  }
+
+
+  .photo-count {
+    position: absolute !important;
+    top: 0.5rem !important;
+    font-size: 1rem !important;
+    padding: 0.25rem 0.5rem !important;
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+  }
+
+  .photo-count img {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    margin-right: 0.25rem !important;
+    vertical-align: middle !important;
+  } 
 }
 
+@media (min-width: 1024px) {
+  .position-relative {
+    position: relative;
+  }
+
+  #Media-Gallery-banner {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover; 
+  }
+ .banner-caption h1 {
+    font-size: 2.75rem;
+  }
+  .energy-card.alt-style .card-info h3 {
+    font-size: 1.4rem;
+  }
+  .energy-card.alt-style .card-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .banner-caption h1 {
+    font-size: 3.75rem !important;
+  }
+   .energy-card.alt-style .card-info h3 {
+    font-size: 1.8rem !important;
+  }
+   .energy-card.alt-style .card-info p {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .banner-caption h1 {
+    font-size: 4.5rem !important;
+  }
+   .energy-card.alt-style .card-info h3 {
+    font-size: 2rem !important;
+  }
+   .energy-card.alt-style .card-info p {
+    font-size: 1.4rem !important;
+  }
 }
 
         </style>
@@ -242,15 +400,15 @@ vertical-align: top;
   <!-- Dropdown -->
   <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu">
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jalal Fadlallah" data-img="./media/member1.png">
-      <img src="./media/member1.png" alt="User 1" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member1.png" alt="User 1" class="user-img-sm mr-2">
       <span>Jalal Fadlallah</span>
     </a>
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Christian Dagher" data-img="./media/member2.png">
-      <img src="./media/member2.png" alt="User 2" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member2.png" alt="User 2" class="user-img-sm mr-2" >
       <span>Christian Dagher</span>
     </a>
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jinan Sarkis" data-img="./media/member3.png">
-      <img src="./media/member3.png" alt="User 3" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member3.png" alt="User 3" class="user-img-sm mr-2">
       <span>Jinan Sarkis</span>
     </a>
   </div>
@@ -284,8 +442,8 @@ vertical-align: top;
     </li>
   </ul>
 </aside>
-<!Top Page>
-        <div class="position-relative"style="flex:1">
+<!--Top Page-->
+        <div class="position-relative">
 
   <!-- Navigation bar over image -->
 <nav class="navbar navbar-expand-lg navbar-dark px-3 position-absolute top-0 start-0 w-100" style="z-index: 10;">

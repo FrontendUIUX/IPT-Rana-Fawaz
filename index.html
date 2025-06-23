@@ -188,49 +188,65 @@
         
 <!-- Announcements Offcanvas -->
 <div class="offcanvas offcanvas-top announcements-canvas" tabindex="-1" id="announcementsCanvas">
-  <div class="offcanvas-body d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="bg-light shadow rounded-4" style="max-width: 600px; width: 100%; padding-bottom: 4px;">
-        <!-- Header -->
-      <div class="d-flex justify-content-between align-items-center px-4 py-4" style="background-color: white;border-top-right-radius:1rem;border-top-left-radius: 4px;">
+  <div class="offcanvas-body d-flex justify-content-center align-items-center announcements-body">
+    <div class="announcements-container shadow rounded-4">
+
+      <!-- Header -->
+      <div class="announcements-header d-flex justify-content-between align-items-center">
         <h4 class="fw-bold mb-0">Announcements</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
 
-      <!-- Promotion Card -->
-      <div class="d-flex align-items-start gap-3 p-3 rounded mb-3" style="background-color: #f9f9f9;">
-        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #e0eff9;">
-          <img src="./media/promotion-icon.svg" alt="Promotion" width="20" />
-        </div>
-        <div>
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-semibold">Promotion</span>
-            <small class="text-muted text-uppercase">June 11, 2024</small>
-          </div>
-          <p class="mb-0 mt-1 small">
-            We are thrilled to announce that <strong>Nadia Khalil</strong> has been promoted to <strong>Sustainability Manager</strong>. In her new role, she will spearhead our sustainability initiative, aimed at promoting energy efficiency across all operations.
-          </p>
-        </div>
-      </div>
+      <div class="announcements-content">
 
-      <!-- New Born Card -->
-      <div class="d-flex align-items-start gap-3 p-3 rounded mb-1" style="background-color: #f9f9f9;">
-        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #fce1e4;">
-          <img src="./media/baby-icon.svg" alt="New Born" width="20" />
-        </div>
-        <div>
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-semibold text-danger">New Born</span>
+        <!-- Promotion Card -->
+        <div class="announcement-card rounded-4 mb-4 overflow-hidden border">
+          <!-- Header Section -->
+          <div class="announcement-card-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <div class="announcement-icon" style="background-color: cadetblue;">
+                <img src="./media/vector%207.svg" alt="Promotion" />
+              </div>
+              <span class="fw-semibold">Promotion</span>
+            </div>
             <small class="text-muted text-uppercase">June 11, 2024</small>
           </div>
-          <p class="mb-1 mt-1 small">
-            We are delighted to share some wonderful news! Our colleague, <strong>Jad El-Khoury</strong>, has welcomed a new baby into their family. Join us in congratulating him on the arrival of their beautiful newborn, <strong>Ahmad El-Khoury</strong>, born on September 29, 2024.
-          </p>
-          <a href="#" class="small text-danger text-decoration-none">More details</a>
+          <!-- Body Section -->
+          <div class="announcement-card-body">
+            <p class="mb-0 small">
+              We are thrilled to announce that <strong>Nadia Khalil</strong> has been promoted to <strong>Sustainability Manager</strong>. In her new role, she will spearhead our sustainability initiative, aimed at promoting energy efficiency across all operations.
+            </p>
+          </div>
         </div>
+
+        <!-- New Born Card -->
+        <div class="announcement-card rounded-4 mb-4 overflow-hidden border">
+          <!-- Header Section -->
+          <div class="announcement-card-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <div class="announcement-icon" style="background-color: crimson;">
+                <img src="./media/newborn.png" alt="New Born"/>
+              </div>
+              <span class="fw-semibold text-danger">New Born</span>
+            </div>
+            <small class="text-muted text-uppercase">June 11, 2024</small>
+          </div>
+          <!-- Body Section -->
+          <div class="announcement-card-body">
+            <p class="mb-1 small">
+              We are delighted to share some wonderful news! Our colleague, <strong>Jad El-Khoury</strong>, has welcomed a new baby into their family. Join us in congratulating him on the arrival of their beautiful newborn, <strong>Ahmad El-Khoury</strong>, born on September 29, 2024.
+            </p>
+            <a href="#" class="small text-danger text-decoration-underline">More details</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
+
+
     <!--containers-->
     <!--Section-->
 <section class="homepage-sections ">

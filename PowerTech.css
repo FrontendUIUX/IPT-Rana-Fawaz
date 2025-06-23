@@ -427,9 +427,50 @@ background-image: url("./media/bg%202.jpg");
   background-color:transparent; 
 
 }
+.announcements-body {
+  min-height: 100vh;
+  margin-top: 2rem;
+}
 
-.announcements-canvas .offcanvas-body {
-  padding: 0;
+.announcements-container {
+  max-width:37.5rem;
+  width: 100%;
+  background-color: #f8f9fa; 
+}
+
+.announcements-header {
+  padding: 1.5rem 1.5rem;
+  background-color: white;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.announcements-content {
+  padding: 1.5rem;
+}
+
+.announcement-card-header {
+  padding: 0.75rem;
+  background-color: whitesmoke;
+}
+
+.announcement-card-body {
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+.announcement-icon {
+ width: 2.5rem; 
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-icon img {
+  width: 1.25rem;  
+  height: 1.25rem; 
 }
 
 #mainCarousel .carousel-item {
