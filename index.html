@@ -50,30 +50,43 @@
 
     <div class= "d-flex">
     <!-- Sidebar -->
+<!-- Sidebar -->
 <aside id="sidebar" class="bg-light">
   <ul class="nav nav-pills nav-flush flex-column flex-nowrap text-center align-items-center py-3 mb-auto">
-    <li class="nav-item mb-3">
-      <a href="#" class="nav-link p-0">
+    <li class="nav-item-1 mb-3">
+      <a href="#" class="nav-link p-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel" data-section="directory">
         <img src="./media/active%20directory.svg" alt="Directory" width="1.5rem">
       </a>
     </li>
-    <li class="nav-item mb-3">
-      <a href="#" class="nav-link p-0">
+    <li class="nav-item-1 mb-3">
+      <a href="#" class="nav-link p-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel" data-section="events">
         <img src="./media/upcoming%20events.svg" alt="Calendar" width="1.5rem">
       </a>
     </li>
-    <li class="nav-item mb-3">
-      <a href="#" class="nav-link p-0">
+    <li class="nav-item-1 mb-3">
+      <a href="#" class="nav-link p-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel" data-section="social">
         <img src="./media/social.svg" alt="Social" width="1.5rem">
       </a>
     </li>
-    <li class="nav-item mb-3">
-      <a href="#" class="nav-link p-0">
+    <li class="nav-item-1 mb-3">
+      <a href="#" class="nav-link p-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel" data-section="charts">
         <img src="./media/chart.svg" alt="Chart" width="1.5rem">
       </a>
     </li>
   </ul>
 </aside>
+
+
+<div class="offcanvas offcanvas-start text-bg-light" tabindex="-1" id="sidebarPanel">
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title" id="offcanvasTitle">Section Title</h4>
+  </div>
+  <div class="offcanvas-body" id="offcanvasContent">
+  </div>
+<button type="button" class="btn-close d-none" id="internalCloseBtn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<button id="outsideCloseBtn" class="btn btn-close-custom d-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
 
     <!--carousell-->
 <!-- Carousel Container -->
@@ -117,9 +130,9 @@
   <!-- Bootstrap Carousel -->
   <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
       <!-- Bell icon -->
-  <div class="notification-bell">
-    <img src="./media/alert.svg" alt="Notification Bell" />
-  </div>
+<div class="notification-bell" data-bs-toggle="offcanvas" data-bs-target="#announcementsCanvas">
+  <img src="./media/alert.svg" alt="Notification Bell" />
+</div>
 <div class="carousel-inner">
 
   <div class="carousel-item active position-relative">
@@ -172,6 +185,52 @@
 
 </div>
         </div>
+        
+<!-- Announcements Offcanvas -->
+<div class="offcanvas offcanvas-top announcements-canvas" tabindex="-1" id="announcementsCanvas">
+  <div class="offcanvas-body d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="bg-light shadow rounded-4" style="max-width: 600px; width: 100%; padding-bottom: 4px;">
+        <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center px-4 py-4" style="background-color: white;border-top-right-radius:1rem;border-top-left-radius: 4px;">
+        <h4 class="fw-bold mb-0">Announcements</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <!-- Promotion Card -->
+      <div class="d-flex align-items-start gap-3 p-3 rounded mb-3" style="background-color: #f9f9f9;">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #e0eff9;">
+          <img src="./media/promotion-icon.svg" alt="Promotion" width="20" />
+        </div>
+        <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Promotion</span>
+            <small class="text-muted text-uppercase">June 11, 2024</small>
+          </div>
+          <p class="mb-0 mt-1 small">
+            We are thrilled to announce that <strong>Nadia Khalil</strong> has been promoted to <strong>Sustainability Manager</strong>. In her new role, she will spearhead our sustainability initiative, aimed at promoting energy efficiency across all operations.
+          </p>
+        </div>
+      </div>
+
+      <!-- New Born Card -->
+      <div class="d-flex align-items-start gap-3 p-3 rounded mb-1" style="background-color: #f9f9f9;">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #fce1e4;">
+          <img src="./media/baby-icon.svg" alt="New Born" width="20" />
+        </div>
+        <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold text-danger">New Born</span>
+            <small class="text-muted text-uppercase">June 11, 2024</small>
+          </div>
+          <p class="mb-1 mt-1 small">
+            We are delighted to share some wonderful news! Our colleague, <strong>Jad El-Khoury</strong>, has welcomed a new baby into their family. Join us in congratulating him on the arrival of their beautiful newborn, <strong>Ahmad El-Khoury</strong>, born on September 29, 2024.
+          </p>
+          <a href="#" class="small text-danger text-decoration-none">More details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <!--containers-->
     <!--Section-->
 <section class="homepage-sections ">
@@ -291,8 +350,8 @@
             </div>
           </div>
           <h5>Welcome</h5>
-          <div class="fw-bold">JAD ZAIN</div>
-          <div id="position" style="font-size: 1.2rem">Frontend Engineer</div>
+          <div class="fw-bold">JAD EL-KHOURY</div>
+          <div id="position" style="font-size: 1.2rem">Chief Operations Officer (COO)</div>
           <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
           <div class="mt-3">
             <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
@@ -307,8 +366,8 @@
             </div>
           </div>
           <h5>Welcome</h5>
-          <div class="fw-bold">BATOUL NAWR</div>
-          <div id="position" style="font-size: 1.2rem">UI/UX Designer</div>
+          <div class="fw-bold">Maya Saad</div>
+          <div id="position" style="font-size: 1.2rem">Head of Marketing</div>
           <div class="mt-2 custom-muted">–––At IPT PowerTech–––</div>
           <div class="mt-3">
             <a href="#" class="btn btn-skyblue btn-sm">Read More</a>
@@ -631,24 +690,23 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentIndex = 0;
   const slideInterval = 5000;
 
-  function buildIndicators(activeIndex) {
-    indicatorContainer.innerHTML = '';
+function buildIndicators(activeIndex) {
+  indicatorContainer.innerHTML = '';
 
-    for (let i = 0; i < slideCount; i++) {
-      const span = document.createElement('span');
-      span.className = 'slide-num';
-      span.textContent = `0${i + 1}`;
-      if (i === activeIndex) span.classList.add('active');
+  const leftNum = document.createElement('span');
+  leftNum.className = 'slide-num';
+  leftNum.textContent = `0${activeIndex + 1}`; 
+  indicatorContainer.appendChild(leftNum);
 
-      indicatorContainer.appendChild(span);
+  indicatorContainer.appendChild(progressBar);
+  startProgressBar();
 
-      if (i === activeIndex) {
-        indicatorContainer.appendChild(progressBar);
-        startProgressBar();
-      }
-    }
-  }
-
+  const rightNum = document.createElement('span');
+  rightNum.className = 'slide-num';
+  const nextNum = activeIndex + 1 < slideCount ? activeIndex + 2 : activeIndex + 1;
+  rightNum.textContent = `0${nextNum}`;
+  indicatorContainer.appendChild(rightNum);
+}
   function startProgressBar() {
     const fill = progressBar.querySelector('.progress-bar-fill');
     fill.style.transition = 'none';
@@ -667,7 +725,376 @@ document.addEventListener("DOMContentLoaded", function () {
 
   buildIndicators(currentIndex);
 });
+    
+const offcanvasTitle = document.getElementById('offcanvasTitle');
+const offcanvasContent = document.getElementById('offcanvasContent');
+
+  const contentMap = {
+directory: {
+  title: 'Group Directory Search',
+  content: `
+
+  <div class="input-group" style="background-color: #fafafa; border-radius: 0;">
+    <span class="input-group-text bg-transparent border-0" style="padding-left: 2rem; padding-right: 0.5rem;">
+      <img src="./media/searchbar-icon.svg" alt="Search" width="30rem" height="30rem" />
+    </span>
+    <input
+      type="search"
+      class="form-control border-0 bg-transparent"
+      placeholder="Search Users"
+      aria-label="Search Users"
+      style="box-shadow: none;"
+    />
+  </div>
+
+    <div class="accordion" id="userAccordion">
+
+      <div class="accordion-item border-0 mb-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userOne">
+            <img src="./media/ellipse%2020.png" alt="Jad" class="rounded-circle me-3" width="55rem" height="55rem">
+            <div class="text-start">
+              <h6 class="mb-0 fw-bold">Jad El-Khoury</h6>
+              <small class="text-muted">Chief Operations Officer (COO)</small>
+            </div>
+          </button>
+        </h2>
+        <div id="userOne" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+          <div class="accordion-body bg-light rounded shadow-sm">
+            <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong>+961 01 234 567</p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong><a href="#">JadKhoury@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userTwo">
+            <img src="./media/ellipse%2021.png" alt="Maya" class="rounded-circle me-3" width="55rem" height="55rem">
+            <div class="text-start">
+              <h6 class="mb-0 fw-bold">Maya Saad</h6>
+              <small class="text-muted">Head of Marketing</small>
+            </div>
+          </button>
+        </h2>
+        <div id="userTwo" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+          <div class="accordion-body bg-light rounded shadow-sm">
+            <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong> +961 03 456 789</p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#">MayaSaad@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userThree">
+            <img src="./media/ellipse%2022.png" alt="Ziad" class="rounded-circle me-3" width="55rem" height="55rem">
+            <div class="text-start">
+              <h6 class="mb-0 fw-bold">Ziad Haddad</h6>
+              <small class="text-muted">Senior Project Manager</small>
+            </div>
+          </button>
+        </h2>
+        <div id="userThree" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+          <div class="accordion-body bg-light rounded shadow-sm">
+            <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong>+961 70 987 654</p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#">ZiadHaddad@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `
+},
+    events: {
+      title: 'Upcoming Events',
+      content: `
+        <div class="container" >
+<!-- June 11 -->
+<p class="event-date text-uppercase text-secondary small mb-2">June 11, 2024</p>
+
+<div class="events-wrapper">
+
+  <div class="event-card">
+    <div class="left-line"></div>
+    <div class="p-3 flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center">
+         <div style="display:flex; flex-direction:column">
+        <strong>Annual Innovation Summit</strong>
+        <span class="text-primary small">Event</span>
+        </div>
+        <div class="text-end small text-muted">
+          <div class="fw-bold"  style="color:black">09:30</div>
+          <div>10:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="event-card">
+    <div class="left-line"></div>
+    <div class="p-3 flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center">
+       <div style="display:flex; flex-direction:column">
+        <strong>Wellness and Health Fair</strong>
+        <span class="text-primary small">Event</span>
+        </div>
+        <div class="text-end small text-muted">
+          <div class="fw-bold" style="color:black">14:10</div>
+          <div>16:20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="event-card mb-0">
+    <div class="left-line"></div>
+    <div class="p-3 flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center">
+       <div style="display:flex; flex-direction:column">
+        <strong>Monthly Lunch</strong>
+         <span class="text-primary small">Event</span>
+        </div>
+        <div class="text-end small text-muted">
+          <div class="fw-bold" style="color:black">18:00</div>
+          <div>19:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- June 6 -->
+<p class="event-date text-uppercase text-secondary small mb-2">June 6, 2024</p>
+<div class="events-wrapper">
+
+  <div class="event-card">
+    <div class="left-line-red"></div>
+    <div class="p-3 flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center">
+        <div style="display:flex; flex-direction: column;">
+          <strong>The Prophet’s Birthday</strong>
+          <span class="label-holiday">Holiday</span>
+        </div>
+        <div class="text-end small fw-bold">All day</div>
+      </div>
+    </div>
+  </div>
+        </div>
+`
+    },
+    social: {
+      title: 'Social Feed',
+      content: `<p>📢 Company announcements or posts here...</p>`
+    },
+    charts: {
+      title: 'Polls',
+      content: `
+<p class="mb-3" style=" margin:2rem;">How important is the company's focus on renewable energy and sustainability to you?</p>
+
+<div id="poll-options">
+
+  <div class="poll-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" data-percent="30">
+    <div class="poll-fill bg-info bg-opacity-25 rounded-start"></div>
+    <span class="option-text">Extremely Important</span>
+    <span class="percentage text-muted"></span>
+  </div>
+
+  <div class="poll-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" data-percent="52">
+    <div class="poll-fill bg-info bg-opacity-25 rounded-start"></div>
+    <span class="option-text">Very Important</span>
+    <span class="percentage text-muted"></span>
+  </div>
+
+  <div class="poll-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center"  data-percent="10">
+    <div class="poll-fill bg-info bg-opacity-25 rounded-start"></div>
+    <span class="option-text">Moderately Important</span>
+    <span class="percentage text-muted"></span>
+  </div>
+
+  <div class="poll-option border rounded p-3 mb-3 d-flex justify-content-between align-items-center" data-percent="18">
+    <div class="poll-fill bg-info bg-opacity-25 rounded-start"></div>
+    <span class="option-text">Not Important</span>
+    <span class="percentage text-muted"></span>
+  </div>
+
+</div>`
+    }
+  };
+
+  document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const section = item.getAttribute('data-section');
+      if (contentMap[section]) {
+        offcanvasTitle.textContent = contentMap[section].title;
+        offcanvasContent.innerHTML = contentMap[section].content;
+      }
+    });
+  });
  
+      const closeBtn = document.getElementById('outsideCloseBtn');
+  const sidebarPanel = document.getElementById('sidebarPanel');
+
+  sidebarPanel.addEventListener('shown.bs.offcanvas', () => {
+    closeBtn.classList.remove('d-none');
+  });
+
+  sidebarPanel.addEventListener('hidden.bs.offcanvas', () => {
+    closeBtn.classList.add('d-none');
+  });
+    
+const outsideBtn = document.getElementById('outsideCloseBtn');
+const internalBtn = document.getElementById('internalCloseBtn');
+
+outsideBtn.addEventListener('click', () => {
+  internalBtn.click(); 
+});
+    
+const sidebarLinks = document.querySelectorAll('#sidebar .nav-link');
+
+document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(link => {
+  link.addEventListener('click', function () {
+    const section = this.getAttribute('data-section');
+
+    sidebarLinks.forEach(l => l.classList.remove('active-section'));
+
+
+    sidebarLinks.forEach(l => {
+      if (l.getAttribute('data-section') === section) {
+        l.classList.add('active-section');
+      }
+    });
+  });
+});
+    
+sidebarPanel.addEventListener('hidden.bs.offcanvas', () => {
+  sidebarLinks.forEach(l => l.classList.remove('active-section'));
+});
+    
+const offcanvas = document.getElementById('sidebarPanel');
+
+offcanvas.addEventListener('shown.bs.offcanvas', () => {
+  const pollOptions = offcanvas.querySelectorAll('.poll-option');
+
+  function resetPolls() {
+    pollOptions.forEach(opt => {
+      const fill = opt.querySelector('.poll-fill');
+      const percentText = opt.querySelector('.percentage');
+      const optionText = opt.querySelector('.option-text');
+
+      if (fill) {
+        fill.style.transition = 'none'; 
+        fill.style.width = '0%';
+        fill.style.minWidth = '0';
+        fill.offsetHeight;
+        fill.style.transition = '';      
+      }
+      if (percentText) {
+        percentText.textContent = '0%';
+        percentText.classList.remove('text-primary', 'fw-bold');
+        percentText.classList.add('text-muted');
+        percentText.style.opacity = '0'; 
+      }
+      if (optionText) {
+        optionText.classList.remove('text-primary', 'fw-bold');
+        optionText.classList.add('text-dark');
+      }
+      opt.style.borderColor = '';
+      opt.classList.remove('selected');
+    });
+  }
+
+  pollOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+
+      pollOptions.forEach(opt => {
+        const fill = opt.querySelector('.poll-fill');
+        const percentText = opt.querySelector('.percentage');
+        const optionText = opt.querySelector('.option-text');
+
+        if (fill) {
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          fill.style.minWidth = '0';
+          fill.offsetHeight;
+          fill.style.transition = '';
+        }
+        if (percentText) {
+          percentText.textContent = '0%';
+          percentText.classList.remove('text-primary', 'fw-bold');
+          percentText.classList.add('text-muted');
+          percentText.style.opacity = '0';
+        }
+        if (optionText) {
+          optionText.classList.remove('text-primary', 'fw-bold');
+          optionText.classList.add('text-dark');
+        }
+        opt.style.borderColor = '';
+        opt.classList.remove('selected');
+      });
+
+    
+      setTimeout(() => {
+        pollOptions.forEach(opt => {
+          const percent = opt.dataset.percent;
+          const fill = opt.querySelector('.poll-fill');
+          const percentText = opt.querySelector('.percentage');
+          const optionText = opt.querySelector('.option-text');
+
+          if (fill) {
+            fill.style.width = percent + '%';
+            fill.style.minWidth = '20px';
+          }
+          if (percentText) {
+            percentText.textContent = percent + '%';
+            percentText.style.opacity = '1'; 
+            percentText.classList.remove('text-muted');
+            percentText.classList.add('text-muted'); 
+          }
+          if (optionText) {
+            optionText.classList.remove('text-primary', 'fw-bold', 'text-dark');
+            optionText.classList.add('text-dark');
+          }
+          opt.style.borderColor = '';
+          opt.classList.remove('selected');
+        });
+
+        option.classList.add('selected');
+        option.style.borderColor = '#66b0ff';
+
+        const clickedPercentText = option.querySelector('.percentage');
+        const clickedOptionText = option.querySelector('.option-text');
+
+        if (clickedPercentText) {
+          clickedPercentText.classList.remove('text-muted');
+          clickedPercentText.classList.add('text-primary', 'fw-bold');
+          clickedPercentText.style.opacity = '1';
+        }
+        if (clickedOptionText) {
+          clickedOptionText.classList.remove('text-dark');
+          clickedOptionText.classList.add('text-primary', 'fw-bold');
+        }
+      }, 50); 
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.poll-option')) {
+      resetPolls();
+    }
+  });
+  resetPolls();
+});
+
+
+
 </script>
     </body>
 </html>
