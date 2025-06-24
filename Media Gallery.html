@@ -103,6 +103,112 @@ vertical-align: top;
 .energy-card:nth-child(8) {
     height: auto; 
 }
+
+.media-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  z-index: 9999; 
+  display: none; 
+  padding: 2rem;
+  text-align: center;
+}
+
+.media-close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#mediaTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.media-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-preview {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26%;
+  height: 55vh;
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px) brightness(0.9);
+  opacity: 0.2;
+  border-radius: 0.5rem;
+  pointer-events: none;
+  z-index: 1;
+  margin:-1.3rem;
+}
+
+.prev-preview {
+  left: 0.01rem;
+}
+
+.next-preview {
+  right: 0.01rem;
+}
+
+
+.media-slide-wrapper {
+  position: relative;
+  width: 60%;
+  max-width: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.media-slide-wrapper img {
+  width:100%;      
+  height: 70vh;   
+  object-fit:fill;
+  display: block;
+  margin: 0 auto;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+} 
+.navigation {
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.navigation img {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+
+.navigation.prev img {
+  transform: scaleX(-1);
+}
+             
+
 @media (max-width: 600px) {
  #userDropdownMenu span{
         color:black;
@@ -473,7 +579,7 @@ vertical-align: top;
       <li class="nav-item px-2"><a class="nav-link" href="index.html">Home</a></li>
       <li class="nav-item px-2"><a class="nav-link" href="Media%20Gallery.html">Media Gallery</a></li>
       <li class="nav-item px-2"><a class="nav-link" href="#">Policies & Procedures</a></li>
-      <li class="nav-item px-2"><a class="nav-link " href="#">Documented Templates</a></li>
+      <li class="nav-item px-2"><a class="nav-link " href="Document%20Templates.html">Document Templates</a></li>
       <li class="nav-item px-2"><a class="nav-link" href="#">Vacancies</a></li>
     </ul>
   </div>
@@ -568,7 +674,26 @@ vertical-align: top;
   </div>
 </div>
 </section>
+        
+<div id="mediaOverlay" class="media-overlay">
+  <span class="media-close">&times;</span>
+  <h2 id="mediaTitle">Empower Together</h2>
+<div class="media-slider">
+  <div class="side-preview prev-preview"></div>
+  <div class="side-preview next-preview"></div>
 
+  <button class="navigation prev">
+    <img src="./media/next.svg" alt="Previous arrow" />
+  </button>
+
+  <div class="media-slide-wrapper"></div>
+
+  <button class="navigation next">
+    <img src="./media/next.svg" alt="Next arrow" />
+  </button>
+</div>
+</div>
+        
 <script src="./gsap.min.js"></script>
 <script src="./ScrollTrigger.min.js"></script>        
 <script src="./jquery-3.7.1.min.js"></script>
@@ -676,6 +801,64 @@ masterTL.play();
       box.style.display = 'none';
     }
   });
+    
+const energyCards = document.querySelectorAll('.energy-card');
+const overlay = document.getElementById('mediaOverlay');
+const closeBtn = document.querySelector('.media-close');
+const slideWrapper = document.querySelector('.media-slide-wrapper');
+const mediaTitle = document.getElementById('mediaTitle');
+
+let slideImages = [];
+let currentIndex = 0;
+
+const originalImages = [...energyCards].map(card => ({
+  src: card.querySelector('img').src,
+  title: card.querySelector('h3').textContent
+}));
+
+energyCards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+    const before = originalImages.slice(index);
+    const after = originalImages.slice(0, index);
+    slideImages = [...before, ...after]; 
+
+    currentIndex = 0;
+    updateSlide();
+    overlay.style.display = 'block';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  overlay.style.display = 'none';
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
+  updateSlide();
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slideImages.length;
+  updateSlide();
+});
+
+function updateSlide() {
+  const { src, title } = slideImages[currentIndex];
+  const prevIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
+  const nextIndex = (currentIndex + 1) % slideImages.length;
+
+  slideWrapper.innerHTML = `
+    <img src="${src}" alt="${title}">
+    <div class="slide-number">0${currentIndex + 1}</div>
+  `;
+  mediaTitle.textContent = title;
+
+  document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
+  document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+}
+
+
+
 
 </script>
     </body>
