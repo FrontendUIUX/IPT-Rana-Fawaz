@@ -121,13 +121,13 @@ vertical-align: top;
   cursor: pointer;
 }
 .media-close img {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
 }
 #mediaTitle {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 2rem;
-  font-weight: bold;
+  font-weight:600;
   color: #000;
 }
 
@@ -142,7 +142,7 @@ vertical-align: top;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 26%;
+  width: 28%;
   height: 55vh;
   background-size: cover;
   background-position: center;
@@ -166,8 +166,7 @@ vertical-align: top;
 .media-slide-wrapper {
   position: relative;
   width: 60%;
-  max-width: 600px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -188,12 +187,34 @@ vertical-align: top;
   color: white;
   font-weight: bold;
 } 
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6); 
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.play-overlay img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .navigation {
   z-index: 2;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 3rem;
+  padding: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,8 +223,8 @@ vertical-align: top;
 
 .navigation img {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
 }
 
 .navigation.prev img {
@@ -690,7 +711,8 @@ vertical-align: top;
     <img src="./media/next.svg" alt="Previous arrow" />
   </button>
 
-  <div class="media-slide-wrapper"></div>
+  <div class="media-slide-wrapper">   
+    </div>
 
   <button class="navigation next">
     <img src="./media/next.svg" alt="Next arrow" />
@@ -853,13 +875,18 @@ function updateSlide() {
 
   slideWrapper.innerHTML = `
     <img src="${src}" alt="${title}">
+    <div class="play-overlay">
+      <img src="./media/Assets/Vector.svg" alt="Play">
+    </div>
     <div class="slide-number">0${currentIndex + 1}</div>
   `;
+
   mediaTitle.textContent = title;
 
   document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
   document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
 }
+
 
 
 
