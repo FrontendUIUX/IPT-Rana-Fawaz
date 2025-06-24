@@ -287,6 +287,90 @@ vertical-align: top;
     width: 0.75rem;
     height: 0.75rem;
   }
+    
+.media-overlay {
+  padding: 1rem;
+}
+
+#mediaTitle {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.media-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+
+.media-close img {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.media-slider {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image"
+    "buttons";
+  gap: 0rem 0;
+  width: 100%;
+}
+
+.media-slide-wrapper {
+  grid-area: image;
+  width: 70%;
+justify-self: center;
+    margin-top: 1rem;
+}
+
+.navigation.prev,
+.navigation.next {
+  grid-area: buttons;
+  display: inline-flex;
+  vertical-align: middle;
+  justify-self: flex-end;
+  align-items: center;
+    top:-8rem;
+}
+
+.navigation.prev {
+  margin-right: 5rem;
+}
+
+.navigation img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.side-preview {
+  display: none;
+}
+
+
+.media-slide-wrapper img {
+  height: 70vh;
+  object-fit: cover;
+}
+
+.play-overlay {
+  width: 3rem;
+  height: 3rem;
+}
+
+.play-overlay img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.slide-number {
+  font-size: 1.3rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
 }
             
 @media (min-width: 600px) {
