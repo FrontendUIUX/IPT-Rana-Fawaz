@@ -338,6 +338,7 @@ justify-self: center;
 
 .navigation.prev {
   margin-right: 5rem;
+  justify-self: flex-start;
 }
 
 .navigation img {
@@ -351,7 +352,7 @@ justify-self: center;
 
 
 .media-slide-wrapper img {
-  height: 60vh;
+  height: 70vh;
   object-fit: cover;
 }
 
@@ -440,6 +441,90 @@ justify-self: center;
     width: 2.5rem;
     height: 2.5rem;
   }
+.media-overlay {
+  padding: 1rem;
+}
+
+#mediaTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.media-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+
+.media-close img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.media-slider {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image"
+    "buttons";
+  gap: 0rem 0;
+  width: 100%;
+}
+
+.media-slide-wrapper {
+  grid-area: image;
+  width: 70%;
+justify-self: center;
+    margin-top: 1rem;
+}
+
+.navigation.prev,
+.navigation.next {
+  grid-area: buttons;
+  display: inline-flex;
+  vertical-align: middle;
+  justify-self: flex-end;
+  align-items: center;
+    top:-8rem;
+}
+
+.navigation.prev {
+  margin-right: 5rem;
+ justify-self: flex-start;
+}
+
+.navigation img {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.side-preview {
+  display: none;
+}
+
+
+.media-slide-wrapper img {
+  height: 70vh;
+  object-fit: cover;
+}
+
+.play-overlay {
+  width: 3rem;
+  height: 3rem;
+}
+
+.play-overlay img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.slide-number {
+  font-size: 2rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
 }
 
 @media (min-width: 992px) {
@@ -540,7 +625,25 @@ justify-self: center;
     height: 1.25rem !important;
     margin-right: 0.25rem !important;
     vertical-align: middle !important;
-  } 
+  }
+.media-close img {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+    #mediaTitle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+    .navigation img {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+    .slide-number {
+  font-size: 2rem;
+
+}
+
 }
 
 @media (min-width: 1024px) {
@@ -562,6 +665,150 @@ justify-self: center;
   .energy-card.alt-style .card-info p {
     font-size: 1rem;
   }
+  .media-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    z-index: 9999;
+    display: none;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  #mediaTitle {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .media-close {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+
+  .media-close img {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .media-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    grid-template-areas: none;
+  }
+
+  .side-preview {
+    position: absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28%;
+    height: 55vh;
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px) brightness(0.9);
+    opacity: 0.2;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    z-index: 1;
+    margin: -1.3rem;
+  }
+
+  .prev-preview {
+    left: 0.01rem;
+  }
+
+  .next-preview {
+    right: 0.01rem;
+  }
+
+  .media-slide-wrapper {
+    position: relative;
+    width: 60%;
+    min-width: 40%;
+    margin: 0;
+    justify-self: auto;
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .media-slide-wrapper img {
+    width: 100%;
+    height: 70vh;
+    object-fit: fill;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .slide-number {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  .play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .play-overlay img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .navigation {
+    z-index: 2;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    grid-area: auto;
+    top: auto;
+    margin: 0;
+  }
+
+  .navigation img {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+  }
+
+
+  .navigation.prev,
+  .navigation.next {
+    top:0;
+    display: flex;
+    justify-self: auto;
+    align-items: center;
+    margin: 0;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -573,6 +820,10 @@ justify-self: center;
   }
    .energy-card.alt-style .card-info p {
     font-size: 1.25rem !important;
+  }
+      .side-preview {
+    width: 25%;
+    margin: -1.7rem;
   }
 }
 
