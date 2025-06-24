@@ -64,7 +64,7 @@ body , html{
 
 #dashboard{
     background-color:#046479;
-    width: 3vw;
+    width: 3.5vw;
     height: 3rem;
     display: flex;
     align-items: center;
@@ -85,8 +85,7 @@ body , html{
   top: 3rem;
   left: 0;
  height: calc(100vh - 3rem); 
-  width: 3vw; 
-  min-width: 1.25rem; 
+  width: 3.5vw;  
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -362,6 +361,8 @@ background-image: url("./media/bg%202.jpg");
   margin-top: 3rem;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-left: 2rem;
+  padding-right:2rem;
 }
 
 .navbar-brand {
@@ -990,7 +991,6 @@ border-bottom-color: lightgray;
 }
 
 
-
 #Media-Gallery-banner{
     width:100%;
     height: 100vh;
@@ -1060,6 +1060,8 @@ width: 3rem !important;
     .navbar{
         flex-direction: row;
         align-items: center;
+        padding-left: 1rem !important;
+        padding-right:1rem !important;
     }
     .navbar-brand{
         margin-left :0;
@@ -1434,11 +1436,6 @@ width: 3rem !important;
     #top-bar{
         height: 3rem;
     }
-    #dashboard{
-    width: 3rem;
-    height: 3rem;
- 
-}
    #user { 
   width: 20rem;
   font-size: 1.5rem;
@@ -1468,14 +1465,13 @@ width: 3rem !important;
 }
  
 #sidebar {
-width: 3rem;
  height: calc(100vh - 3rem);
  display:none;
 }
 
 .nav-link-1{
-  width:2rem;
-  height:2rem;
+  width:2.5vw;
+  height:2.5vw;
 }
 
 .nav-link img {
@@ -1497,6 +1493,8 @@ margin-top: 0.6rem;
     .navbar{
         flex-direction: row;
         align-items: center;
+        padding-left: 1rem !important;
+        padding-right:1rem !important;
     }
     .navbar-brand{
         margin:0;
@@ -2021,11 +2019,10 @@ margin-top: 0.6rem;
 @media only screen and (min-width: 992px) {
     
 .navbar-brand {
-height:12vh;
-width: 20vw;
+width: 11rem;
   }
 .navbar-brand img{
-width: 20vw;  
+width: 11rem;  
     }
 .navbar-nav {
     margin-right: 1rem;
@@ -2231,13 +2228,7 @@ width: 20vw;
     margin-left: 1rem;
     padding-left: 1rem;
   }
-    
- .navbar-brand img{
-        height:8vh;
-    }
-    .navbar-nav{
-    margin-right: 0.5rem;
-  }
+
 #searchToggle{
         width:2.2rem !important;
         height:2.2rem !important;
@@ -2297,6 +2288,15 @@ width: 20vw;
 .position-relative-1{
         margin-right:2rem;
     }
+    .navbar{
+        padding-left:3rem !important;
+        padding-right:3rem !important;
+    }
+      .navbar-nav {
+      justify-content: space-evenly;
+      width:60vw;
+      font-size:1rem;
+  }
  .navbar-brand img{
         height:10vh;
     }
@@ -2368,11 +2368,6 @@ width: 20vw;
 
 @media only screen and (min-width:1400px){
 
-  .navbar-nav {
-      justify-content: space-evenly;
-      width:60vw;
-      font-size:1rem;
-  }
   .floating-search-box {
     right: 2rem;
     top: 1.5rem;
