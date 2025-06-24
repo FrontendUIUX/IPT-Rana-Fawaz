@@ -431,6 +431,7 @@ background-image: url("./media/bg%202.jpg");
 .announcements-body {
   min-height: 100vh;
   margin-top: 2rem;
+  align-items: center;
 }
 
 .announcements-container {
@@ -1427,6 +1428,9 @@ width: 3rem !important;
     }
 .banner-caption h1{
     font-size:2rem;  
+}
+.announcements-container {
+ width: 80%;
 }
 }
 
