@@ -2,7 +2,7 @@ body , html{
     overflow-x:hidden;
 }
 #top-bar {
-  height:3rem;
+  height:3.5rem;
   width: 100vw;
   background-image: url("./media/top-bar-pattern.jpg");
   z-index: 1050;
@@ -65,7 +65,7 @@ body , html{
 #dashboard{
     background-color:#046479;
     width: 3.5vw;
-    height: 3rem;
+    height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,9 +82,9 @@ body , html{
 
 #sidebar {
   position:fixed;
-  top: 3rem;
+  top: 3.5rem;
   left: 0;
- height: calc(100vh - 3rem); 
+ height: calc(100vh - 3.5rem); 
   width: 3.5vw;  
   background-color: white;
   display: flex;
@@ -141,7 +141,7 @@ body , html{
 }
 
 #sidebarPanel.offcanvas-start {
-  top:3rem;
+  top:3.5rem;
   left: 3rem;
   border-top-right-radius: 1rem;
   height: calc(100vh - 3rem);
@@ -358,18 +358,15 @@ margin-top:0;
 background-image: url("./media/bg%202.jpg");
 }
 .navbar {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  padding-left: 2rem;
-  padding-right:2rem;
+  padding: 1.5rem;
 }
 
-.navbar-brand {
-  margin-top: 1.2rem;
-  margin-left: 2rem;
-  padding-left: 1.875rem;
-  padding-bottom: 1.2rem;
+.navbar-brand img{
+ object-fit: contain;
+   width: 11rem;
 }
 .navbar-nav{
     margin-right: 1rem;
@@ -500,19 +497,20 @@ align-items: center !important;
   z-index: 1;
 }
 
-
+@font-face {
+  font-family: 'DIN Medium';
+  src: url('./fonts/din medium.otf') format('opentype');
+  font-weight:normal;
+  font-style: normal;
+}
 #mainCarousel .carousel-caption {
-  width: 45rem;
-  bottom: 1.25rem;
-  left: 4rem;
-  padding: 0.625rem;
   text-align: left;
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  border-radius: 0.3125rem;
   z-index: 2;
   position: absolute;
+  font-family: 'DIN Medium';
 }
 
 
@@ -530,11 +528,14 @@ align-items: center !important;
 }
 
 .slide-num {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #fff;;
-
+  font-family: 'DIN Medium';
 }
-
+.carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
 .progress-bar-track {
   width: 5rem;
   height: 0.25rem;
@@ -1033,7 +1034,6 @@ border-bottom-color: lightgray;
 }
 #sidebar {
 width: 3rem !important;
- height: calc(100vh - 3rem);
     display:none;
 }
 
@@ -1053,28 +1053,19 @@ width: 3rem !important;
     max-height: 78vh;
   }   
     .notification-bell {
-    top: 35%;
+    top: 40%;
     right: 2rem;
     width: 3.5rem;
     height: 3.5rem;
   }
-
-    .navbar{
-        flex-direction: row;
-        align-items: center;
-        padding-left: 1rem !important;
-        padding-right:1rem !important;
-    }
-    .navbar-brand{
+    
+.navbar-brand{
         margin-left :0;
         padding-left: 0;
-        width:30vw;
-    }
-     .navbar-brand img{
-        width:30vw;
-    }
+ }
+
     .navbar-toggler{
-       margin-left: 28%;
+       margin-left: 15%;
     }
     .navbar-nav{
         font-size:1rem;
@@ -1093,18 +1084,17 @@ width: 3rem !important;
 
 
   #mainCarousel .carousel-caption {
-    width:75vw;
-    left: 5%;
+    left: 2%;
     padding: 1rem;
     bottom: 1rem;
   }
     #mainCarousel .carousel-caption h4{
-         font-size: 1.4rem !important; 
+         font-size: 1.2rem !important; 
     }
 
   .carousel-indicator-wrapper {
     bottom: 1rem;
-    right: 4rem;
+    right: 2rem;
     width: auto;
   }
 
@@ -1500,9 +1490,7 @@ width: 3rem !important;
 /*----------------------------------TABLET-1 VERSION---------------------------------------------------------------------------*/
 
 @media only screen and (min-width:600px) {
-    #top-bar{
-        height: 3rem;
-    }
+
    #user { 
   width: 20rem;
   font-size: 1.5rem;
@@ -1532,7 +1520,6 @@ width: 3rem !important;
 }
  
 #sidebar {
- height: calc(100vh - 3rem);
  display:none;
 }
 
@@ -1557,21 +1544,10 @@ margin-top: 0.6rem;
     height: 4.5rem;
   }
 
-    .navbar{
-        flex-direction: row;
-        align-items: center;
-        padding-left: 1rem !important;
-        padding-right:1rem !important;
-    }
     .navbar-brand{
         margin:0;
         margin-left:0rem;
         padding-left:0;
-        width:30vw;
-    }
-     .navbar-brand img{
-        width:35vw;
-         height: 10vh;
     }
     .navbar-toggler{
        margin-left: 50vw;
@@ -1611,10 +1587,6 @@ margin-top: 0.6rem;
     bottom: 1rem;
     right: 4rem;
     width: auto;
-  }
-
-  .slide-num {
-    font-size: 1.5rem;
   }
 
   .progress-bar-track {
@@ -2085,12 +2057,6 @@ margin-top: 0.6rem;
 
 @media only screen and (min-width: 992px) {
     
-.navbar-brand {
-width: 11rem;
-  }
-.navbar-brand img{
-width: 11rem;  
-    }
 .navbar-nav {
     margin-right: 1rem;
   }
@@ -2321,7 +2287,7 @@ width: 11rem;
 }
 
  #mainCarousel .carousel-caption {
-    left: 4rem;
+    left: 5rem;
   }
 
 .carousel-indicator-wrapper {
@@ -2364,10 +2330,6 @@ width: 11rem;
       width:60vw;
       font-size:1rem;
   }
- .navbar-brand img{
-        height:10vh;
-    }
-  
   .floating-search-box {
     width: 40rem;
   }
@@ -2382,10 +2344,10 @@ width: 11rem;
     width: auto;
   }
     #mainCarousel .carousel-caption {
-        width:60vw;
+        width:50vw;
     }
     #mainCarousel .carousel-caption h4{
-      font-size: 2rem !important;  
+      font-size: 1.8rem !important;  
     }
     
    #news-section .card-header a{
@@ -2535,7 +2497,6 @@ font-size: 1.4rem;
 }
 
 .navbar-brand{
-height:13vh;
 left:3.5vw;
 }
 .navbar-nav {
