@@ -368,9 +368,16 @@ background-image: url("./media/bg%202.jpg");
  object-fit: contain;
    width: 11rem;
 }
+@font-face {
+  font-family: 'DIN';
+  src: url('./fonts/din regular.ttf') format('truetype');
+  font-weight:normal;
+  font-style: normal;
+}
 .navbar-nav{
     margin-right: 1rem;
     width:75%;
+    font-family: 'DIN';
 }
 .floating-search-box {
   position: absolute;
@@ -624,8 +631,8 @@ border-bottom-color: lightgray;
 }
 
 #news-section .news-image img {
-  width: 4.375rem;
-  height: 4.375rem;
+  width: 5rem;
+  height: 5rem;
   object-fit: cover;
   border-radius: 0.25rem;
 }
@@ -635,7 +642,8 @@ border-bottom-color: lightgray;
   min-width: 0;
 }
 .news-desc{
-  font-size: 1.30rem; 
+  font-size: 1.30rem;
+    font-family: 'DIN';
 }
 
 #news-section .news-date {
@@ -1182,12 +1190,12 @@ width: 3rem !important;
     }
 #news-section .news-image {
   margin-right: 2rem;
-     width: 2.5rem !important;
+     width: 3rem !important;
 }
 
 #news-section .news-image img {
-  width: 2.5rem !important;
-  height: 2.5rem;
+  width: 3rem !important;
+  height: 3rem;
   object-fit: cover;
   border-radius: 0.25rem;
 }
@@ -1198,14 +1206,16 @@ width: 3rem !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
+    margin-left: 1rem;
 }
 
 .news-desc {
-  font-size: 0.85rem;
+  font-size: 0.5rem;
   margin-bottom: 0;
 }
 
 #news-section .news-date {
+font-size: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -1222,6 +1232,10 @@ width: 3rem !important;
   margin-left: 0.25rem;
   text-align: center;
 }
+    #news-section .news-cta img {
+        width:1rem;
+        height:1rem;
+    }
      #userCarousel{
         width: 100%;
         height: 100%;
@@ -2071,7 +2085,6 @@ margin-top: 0.6rem;
     min-height: 28rem;
     max-height: 35rem;
   }
-
   #news-section .card-header h2 {
     font-size: 2rem !important;
   }
@@ -2079,24 +2092,36 @@ margin-top: 0.6rem;
   #news-section .card-header a {
     font-size: 1.2rem;
   }
-
+    
+#news-section .news-text {
+  flex: 1;
+  min-width: 0;
+  margin-left: 5rem;
+  padding-right: 2rem;
+    padding-top: 0.5rem;
+}
  #news-section .news-desc {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
 #news-section  .news-date .text-muted {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
  #news-section .news-image {
-    width: 5rem;
+    width: 6rem !important;
     padding: 0;
+
   }
 
   #news-section .news-image img {
-    width: 5rem !important;
-    height: 5rem !important;
+    width: 6rem !important;
+    height: 6rem !important;
   }
+    
+    #news-section .news-cta{
+        padding-left:3rem;
+    }
   #userCarousel {
     width: 38vw;
     height: 35rem;
