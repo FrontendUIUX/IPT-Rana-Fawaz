@@ -293,12 +293,12 @@ margin-top:0;
   }
 
   .poll-option.selected {
-    border-color: #7cbfff !important;
+    border-color: #1D75A8 !important;
   }
 
   .poll-option.selected .option-text,
   .poll-option.selected .percentage {
-    color: #3399ff;
+    color: #1D75A8 !important;
     font-weight: 600;
   }
 
@@ -399,7 +399,11 @@ background-image: url("./media/bg%202.jpg");
   display: none;
   width: 12.5rem;
 }
-
+#searchToggle{
+ cursor: pointer; 
+ width: 1rem; 
+ height: 1rem;   
+}
 .ml-auto {
   padding-right: 1.875rem;
 }
@@ -1453,7 +1457,7 @@ font-size: 0.5rem;
         
     }
 .banner-caption h1{
-    font-size:2rem;  
+    font-size:1.5rem;  
 }
     
 .announcements-canvas {
@@ -1557,10 +1561,13 @@ font-size: 0.5rem;
 #sidebar {
  display:none;
 }
-
+    
+#dashboard{
+    width: 3rem !important;
+}
 .nav-link-1{
-  width:2.5vw;
-  height:2.5vw;
+  width:2.5rem;
+  height:2.5rem;
 }
 
 .nav-link img {
@@ -1617,7 +1624,7 @@ margin-top: 0.6rem;
     bottom: 1rem;
   }
     #mainCarousel .carousel-caption h4{
-         font-size: 2.2rem !important; 
+         font-size: 1.5rem !important; 
     }
 
   .carousel-indicator-wrapper {
@@ -1629,16 +1636,18 @@ margin-top: 0.6rem;
   .progress-bar-track {
     width: 5rem;
   }
-
+.slide-num {
+  font-size: 1.3rem;
+}
   
   .floating-search-box {
     width: 45%;
-      height: 40%;
+    height: 50%;
     right: 5%;
     top: 1rem;
     font-size: 0.9rem;
+        padding: 0.5rem;
   }
-
     .homepage-sections {
          max-height: auto !important;
         margin:0 ;
@@ -1674,10 +1683,7 @@ margin-top: 0.6rem;
 }
 
 #news-section a {
-  color: #dc143c;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
     #news-section .row {
@@ -1709,7 +1715,8 @@ margin-top: 0.6rem;
 }
 
 #news-section .news-text {
-  margin-left:3rem;
+  margin-left:4rem;
+  padding-right: 2rem;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -1718,7 +1725,7 @@ margin-top: 0.6rem;
 }
 
 #news-section .news-desc {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 0;
 }
 
@@ -1729,16 +1736,17 @@ margin-top: 0.6rem;
   margin-bottom: 0.2rem;
 }
  #news-section .news-date .text-muted{
-        font-size: 1.2rem
+        font-size: 1rem
     }
 #news-section .news-date img {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 #news-section .news-cta {
   flex: 0 0 1.5rem;
   margin-left: 0.25rem;
+  padding-left: 1rem;
   text-align: center;
 }
 #userCarousel{
@@ -1751,21 +1759,21 @@ margin-top: 0.6rem;
     padding: 0.75rem;
   }
     #userCarousel .carousel-item .mb-3{
-          height:7rem;
+          height:13rem;
     }
     #userCarousel .carousel-item img{
-        width:7rem;
-        height:7rem;
+        width:13rem;
+        height:13rem;
     }
   #userCarousel h5 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   #userCarousel .fw-bold {
-    font-size: 2.3rem;
+    font-size: 3.5rem;
   }
     #userCarousel #position{
-        font-size: 2rem !important;
+        font-size: 1.8rem !important;
     }
 
   #userCarousel .custom-muted {
@@ -1793,7 +1801,7 @@ margin-top: 0.6rem;
         height: 1.2rem !important;
     }
 #userCarousel .btn-skyblue {
-  padding: 1rem 3.3rem;
+  padding: 0.9rem 2.4rem;
   font-size: 1.2rem;
 }
     
@@ -1816,24 +1824,24 @@ margin-top: 0.6rem;
         width:100%;
     }
   .energy-title h2 {
-    font-size: 3rem;
+    font-size: 3.2rem;
     line-height: 1.5;
   }
 
   .energy-title h2 span .quote-img {
     width: 2rem;
-    height: 2rem;
+    height: 3rem;
     top: -0.1rem;
-    left: 14rem;
+    left: 15.5rem;
   }
     .energy-description{
         width:100%
     }
   .energy-description p {
     margin-left: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-align: left;
-    line-height: 1.2;
+    line-height: 1.4;
   }
   .energy-gallery {
     flex-direction:column;
@@ -1860,12 +1868,12 @@ margin-top: 0.6rem;
   }
 
   .card-info h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .card-info p {
     margin-left: 3.6rem;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 
   .photo-count {
@@ -1955,15 +1963,17 @@ margin-top: 0.6rem;
   margin-right: 3rem;
 }
 .navbar-toggler{
-        width:6vw !important;
+        width:7vw !important;
         height: 6vh;
+    align-items: center;
+    justify-content: center;
     }
     
   #mainCarousel .carousel-caption {
-    width:85vw;
+    width:75vw;
   }
     #mainCarousel .carousel-caption h4{
-         font-size: 2rem !important; 
+         font-size: 1.6rem !important; 
     }
   
   .floating-search-box {
@@ -1975,7 +1985,9 @@ margin-top: 0.6rem;
       height: 95%;
       font-size: 1rem;
     }
- 
+ .slide-num {
+  font-size: 1.5rem;
+}
  #news-section {
   max-height: 36rem;
 }
@@ -1999,22 +2011,23 @@ margin-top: 0.6rem;
   width: 1rem;
   height: 1rem;
 }
-    #userCarousel .carousel-item .mb-3{
-          height:10rem;
-    }
-    #userCarousel .carousel-item img{
-        width:10rem !important;
-        height:10rem !important;
-    }
+    
+ #userCarousel .carousel-item .mb-3{
+          height:15rem;
+}
+#userCarousel .carousel-item img{
+        width:15rem !important;
+        height:15rem !important;
+}
   #userCarousel h5 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   #userCarousel .fw-bold {
-    font-size: 2.8rem;
+    font-size: 4.5rem;
   }
     #userCarousel #position{
-        font-size: 2.5rem !important;
+        font-size: 2.3rem !important;
     }
 
   #userCarousel .custom-muted {
@@ -2025,57 +2038,65 @@ margin-top: 0.6rem;
 }
 
 #userCarousel .btn-skyblue {
-  padding: 1rem 2rem;
+  padding: 0.9rem 2.5rem;
     height: auto;
 }
- 
-  .energy-title h2 span .quote-img {
-    width: 3rem;
-    height: 1.8rem;
-    top: 0.5rem;
-    left: 13.5rem;
+   .energy-title h2 {
+    font-size: 4rem;
+    line-height: 1.5;
   }
 
+  .energy-title h2 span .quote-img {
+    width: 3rem;
+    height: 2.8rem;
+    top: 0.5rem;
+    left: 19rem;
+  }
+  .energy-description p {
+    margin-left: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    line-height: 1.4;
+  }
+    
   .photo-count {
-    top: 1rem;
-    font-size: 1rem;
-    padding: 0.2rem 0.5rem;
-     max-height:12%;
-      min-height: 10%;
-     max-width: 10%;
-     min-width: 10%;
+      top:2rem;
+    font-size: 1.4rem;
 
   }
 
   .photo-count img {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .energy-viewall button {
-    font-size: 1rem;
+    font-size: 1.3rem;
     height:auto;
     width:auto;
   } 
     
   .footer-content {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   
   .socials a {
-    width: 2rem;
-    height: 2rem;
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
   .socials img {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
   .post-footer-section {
     padding-top: 0.2rem;
     padding-bottom: 0.6rem;
   } 
-
+    
+ .banner-caption h1 {
+    font-size: 3rem ;
+  }
 }
 
 /*----------------------------------TABLET-3 VERSION---------------------------------------------------------------------------*/
@@ -2315,8 +2336,8 @@ margin-top: 0.6rem;
   }
 
 #searchToggle{
-        width:2.2rem !important;
-        height:2.2rem !important;
+        width:1.8rem !important;
+        height:1.8rem !important;
  }
 
 .floating-search-box {
@@ -2454,18 +2475,18 @@ margin-top: 0.6rem;
     height: 0.9rem !important;
   }
 #userCarousel .carousel-item .mb-3 {
-    height: 13rem;
+    height: 10rem;
 }
     #userCarousel .carousel-item img{
-    width: 13rem !important;
-    height: 13rem !important; 
+    width: 10rem !important;
+    height: 10rem !important; 
 }
   #userCarousel h5 {
     font-size: 2.5rem;
   }
 
   #userCarousel #position {
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
   }
 
   #userCarousel .custom-muted {
@@ -2473,7 +2494,7 @@ margin-top: 0.6rem;
   }
     
   #userCarousel .fw-bold {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
     
   #userCarousel .btn-skyblue {
@@ -2483,7 +2504,7 @@ margin-top: 0.6rem;
 }
 
   .energy-title h2 {
-    font-size: 3.5rem;
+    font-size: 3rem;
       width: 100%;
 
   }
@@ -2491,7 +2512,7 @@ margin-top: 0.6rem;
     width: 3rem;
     height: 1.8rem;
     top: 0.5rem;
-    left: 16rem;
+    left: 14rem;
   }  
 .energy-description p {
     line-height: 1.8;
@@ -2510,9 +2531,7 @@ margin-top: 0.6rem;
   }
     
 .energy-viewall button {
-    position: relative;
-    right: 0.7rem;
-    bottom: 3.5rem;
+    font-size: 1rem;
   }
 
   .card-info h3 {
@@ -2855,6 +2874,7 @@ left:3.5vw;
     width: 1.5rem;
     height: 1.5rem;
   }
+    
 }
 
 
