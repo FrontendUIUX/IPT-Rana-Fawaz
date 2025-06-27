@@ -293,12 +293,12 @@ margin-top:0;
   }
 
   .poll-option.selected {
-    border-color: #1D75A8 !important;
+    border-color: #3F7B94 !important;
   }
 
   .poll-option.selected .option-text,
   .poll-option.selected .percentage {
-    color: #1D75A8 !important;
+    color: #3F7B94 !important;
     font-weight: 600;
   }
 
@@ -2724,6 +2724,28 @@ font-size: 1.2rem;
     width: 1.4rem;
     height: 1.4rem;
   } 
+.announcement-card-header span{
+        font-size:1.3rem;
+    }
+.announcement-card-header small{
+        font-size:1rem;
+    }
+
+ .announcement-card-body p{
+        font-size:1.1rem;
+    }
+ .announcement-card-body a{
+        font-size:1.1rem;
+    }
+.announcement-icon {
+ width: 3rem; 
+  height: 3rem;
+}
+
+.announcement-icon img {
+  width: 1.75rem;  
+  height: 1.75rem; 
+}
 }
 
 /*----------------------------------DESKTOP-3 VERSION--------------------------------------------------------------------------*/
@@ -2874,7 +2896,29 @@ left:3.5vw;
     width: 1.5rem;
     height: 1.5rem;
   }
-    
+
+.announcement-card-header span{
+        font-size:1.3rem;
+    }
+.announcement-card-header small{
+        font-size:1rem;
+    }
+
+ .announcement-card-body p{
+        font-size:1.1rem;
+    }
+ .announcement-card-body a{
+        font-size:1.1rem;
+    }
+.announcement-icon {
+ width: 3rem; 
+  height: 3rem;
+}
+
+.announcement-icon img {
+  width: 1.75rem;  
+  height: 1.75rem; 
+}
 }
 
 
