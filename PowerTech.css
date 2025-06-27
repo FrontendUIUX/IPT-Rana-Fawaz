@@ -531,7 +531,7 @@ align-items: center !important;
   flex-wrap: wrap;
   z-index: 2;
   position: absolute;
-  font-family: 'DIN Medium';
+  font-family: 'DIN Bold';
 }
 
 
@@ -640,6 +640,7 @@ align-items: center !important;
   align-items: center;
   background-color: #fff;
 }
+
 #news-section hr{
  margin-left:2rem;
  width:90%;
@@ -650,9 +651,6 @@ align-items: center !important;
   margin-left: 1rem;
 }
 
-#news-section .news-image img {
-  border-radius: 0.25rem;
-}
 
 #news-section .news-text {
   flex: 1;
@@ -679,7 +677,10 @@ align-items: center !important;
   text-align: center;
 }
 
-
+#news-section .news-cta img {
+ width:1.5rem;
+ height:1.5rem;
+}
 #userCarousel {
   top:0.1rem;
   width: 26rem;
@@ -801,7 +802,6 @@ align-items: center !important;
 }
 
 .energy-title h2 {
-  font-size: 3rem;
   font-family: 'DIN Bold';
   margin: 0;
   line-height: 1.3;
@@ -1155,7 +1155,7 @@ width: 3rem !important;
   margin-left: 1rem !important;
   padding-left: 0.5rem;
   min-width: auto;
-  width: 92%;
+  width: 95%;
   max-width: 100%;
   min-height: auto;
   max-height: 30rem;
@@ -1204,6 +1204,10 @@ width: 3rem !important;
 .col-lg-2{
     width: 2.5rem !important;
     }
+#news-section hr{
+ margin-left:2rem;
+ width:80%;
+}
 #news-section .news-image {
   margin-right: 2rem;
      width: 3rem !important;
@@ -1222,16 +1226,17 @@ width: 3rem !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
-    margin-left: 1rem;
+  margin-left: 2rem;
+  padding-right: 2rem;
 }
 
 .news-desc {
-  font-size: 0.5rem;
+  font-size: 0.67rem;
   margin-bottom: 0;
 }
 
 #news-section .news-date {
-font-size: 0.4rem;
+font-size: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -1262,25 +1267,25 @@ font-size: 0.4rem;
     padding: 0.75rem;
   }
     #userCarousel .carousel-item .mb-3{
-          height:5rem;
+          height:8rem;
     }
     #userCarousel .carousel-item img{
-        width:5rem;
-        height:5rem;
+        width:8rem;
+        height:8rem;
     }
   #userCarousel h5 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   #userCarousel .fw-bold {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
     #userCarousel #position{
-        font-size: 1rem;
+        font-size: 1rem !important;
     }
 
   #userCarousel .custom-muted {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .custom-indicators {
@@ -1300,16 +1305,16 @@ font-size: 0.4rem;
   z-index: 20;
 }
 .btn-skyblue {
-  padding: 0.65rem 2.3rem;
-
+  padding: 0.5rem 1.4rem;
+ font-size: 0.7rem;
 }
     
-  .energy-section {
+.energy-section {
       height:100%;
     padding-top: 2rem;
     padding-left: 2rem;
     background-position: top;
-  }
+}
 
   .energy-header {
     flex-direction: column;
@@ -1322,24 +1327,24 @@ font-size: 0.4rem;
         width:100%;
     }
   .energy-title h2 {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     line-height: 1.2;
   }
 
   .energy-title h2 span .quote-img {
     width: 2rem;
-    height: 1rem;
+    height: 1.2rem;
     top: -0.1rem;
-    left: 7.8rem;
+    left: 8.7rem;
   }
     .energy-description{
         width:100%
     }
   .energy-description p {
     margin-left: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-align: left;
-    line-height: 1.5;
+    line-height: 1.3;
   }
 
   .energy-gallery {
@@ -1368,12 +1373,12 @@ font-size: 0.4rem;
   }
 
   .card-info h3 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .card-info p {
-    margin-left: 1rem;
-    font-size: 0.8m;
+    margin-left: 2rem;
+    font-size: 0.7m;
   }
 
   .photo-count {
@@ -2083,8 +2088,11 @@ margin-top: 0.6rem;
     
   #mainCarousel .carousel-caption {
     left: 1rem;
+    width:60vw;
   }
-
+    #mainCarousel .carousel-caption h4{
+      font-size: 1.6rem !important;  
+    }
   #news-section {
     min-width: 50%;
     max-width: 62%;
@@ -2092,11 +2100,11 @@ margin-top: 0.6rem;
     max-height: 35rem;
   }
   #news-section .card-header h2 {
-    font-size: 2.3rem !important;
+    font-size: 2rem !important;
   }
 
   #news-section .card-header a {
-    font-size: 0.5rem !important;
+    font-size: 1.1rem !important;
   }
     
 #news-section .news-text {
@@ -2107,7 +2115,7 @@ margin-top: 0.6rem;
   padding-top: 0.5rem;
 }
  #news-section .news-desc {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
 #news-section  .news-date .text-muted {
@@ -2127,7 +2135,7 @@ margin-top: 0.6rem;
   }
     
     #news-section .news-cta{
-        padding-left:3rem;
+        padding-left:2rem;
     }
   #userCarousel {
     width: 38vw;
@@ -2150,18 +2158,18 @@ margin-top: 0.6rem;
 
   #userCarousel .carousel-item .mb-3 {
     width: 100%;
-    height: 10rem;
+    height: 11rem;
   }
     #userCarousel .carousel-item img{
-    width: 10rem;
-    height: 10rem; 
+    width: 11rem;
+    height: 11rem; 
     }
   #userCarousel h5 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 
   #userCarousel #position {
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
   }
 
   #userCarousel .custom-muted {
@@ -2169,8 +2177,14 @@ margin-top: 0.6rem;
   }
 
   #userCarousel .fw-bold {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
+    
+  #userCarousel .btn-skyblue {
+  padding: 0.5rem 1.8rem;
+    height: auto;
+    font-size:1rem;
+}
  .energy-section .energy-header {
     flex-direction: row; 
     align-items: center;
@@ -2193,12 +2207,12 @@ margin-top: 0.6rem;
 
   }
   .energy-description{
-     width:40%;
+     width:43%;
     }
   .energy-description p {
       width:100%;
       margin: 0;
-    font-size:1rem;
+    font-size:0.95rem;
   }
     
 .energy-card {
@@ -2212,15 +2226,15 @@ margin-top: 0.6rem;
   max-height: unset;
 }
   .energy-card:nth-child(1) {
-    height: 30rem;
+    height: 31rem;
   }
 
   .energy-card:nth-child(2) {
-    height: 22rem;
+    height: 20rem;
   }
 
   .energy-card:nth-child(3) {
-    height: 26rem;
+    height: 25rem;
   }
 .energy-viewall {
   text-align: end;
@@ -2248,7 +2262,7 @@ margin-top: 0.6rem;
     max-height: unset;
     max-width: 40%;
     min-width: 13%;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .photo-count img {
@@ -2349,7 +2363,7 @@ margin-top: 0.6rem;
   }
     
 .energy-section .container{
-        width:90%;
+        width:100%;
 }      
 }
 
@@ -2383,39 +2397,160 @@ margin-top: 0.6rem;
     #mainCarousel .carousel-caption h4{
       font-size: 1.8rem !important;  
     }
-   #news-section .card-header {
+
+#news-section {
+    min-width: 50%;
+    max-width: 62%;
+    min-height: 28rem;
+    max-height: 35rem;
+  } 
+#news-section .card-header {
   padding: 2.7rem 0 !important;
 }
-   #news-section .card-header a{
+#news-section .card-header a{
         font-size: 1.1rem !important;
     }
-
- #userCarousel{
-     margin-left:0.5rem;
-    }
-
-  #userCarousel .btn-skyblue {
-  padding: 0.5rem 1.5rem;
-    height: auto;
-      font-size:1rem;
+#news-section .news-text {
+  flex: 1;
+  min-width: 0;
+  margin-left: 6rem;
+  padding-right: 3rem;
+  padding-top: 0.5rem;
 }
+ #news-section .news-desc {
+    font-size: 1.4rem;
+  }
+
+#news-section  .news-date .text-muted {
+    font-size: 1rem;
+  }
+
+ #news-section .news-image {
+    width: 6rem !important;
+    padding: 0;
+
+  }
+
+  #news-section .news-image img {
+    width: 6rem !important;
+    height: 6rem !important;
+    object-fit: cover;
+  }
+    
+    #news-section .news-cta{
+        padding-left:3rem;
+    }
+ #userCarousel {
+    height: 35rem;
+    margin-left:0.5rem;
+  }
+
+#userCarousel .custom-indicators {
+     width: 33vw;
+  }
+
+ #userCarousel .custom-indicators button {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+#userCarousel .carousel-item .mb-3 {
+    height: 13rem;
+}
+    #userCarousel .carousel-item img{
+    width: 13rem !important;
+    height: 13rem !important; 
+}
+  #userCarousel h5 {
+    font-size: 2.5rem;
+  }
+
+  #userCarousel #position {
+    font-size: 1.5rem !important;
+  }
+
+  #userCarousel .custom-muted {
+    font-size: 1rem !important;
+  }
+    
+  #userCarousel .fw-bold {
+    font-size: 3rem;
+  }
+    
+  #userCarousel .btn-skyblue {
+  padding: 0.5rem 2rem;
+    height: auto;
+    font-size:1rem;
+}
+
+  .energy-title h2 {
+    font-size: 3.5rem;
+      width: 100%;
+
+  }
+    .energy-title h2 span .quote-img {
+    width: 3rem;
+    height: 1.8rem;
+    top: 0.5rem;
+    left: 16rem;
+  }  
 .energy-description p {
     line-height: 1.8;
+    font-size:1rem;
   }
   .energy-card:nth-child(1) {
-    height: 34rem;
+    height: 32rem;
   }
 
   .energy-card:nth-child(2) {
-    height: 28rem;
+    height: 21rem;
   }
 
   .energy-card:nth-child(3) {
-    height: 30rem;
+    height: 26rem;
+  }
+    
+.energy-viewall button {
+    position: relative;
+    right: 0.7rem;
+    bottom: 3.5rem;
+  }
+
+  .card-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .card-info p {
+    margin-left: 2.8rem;
+    font-size: 1rem;
+  }
+
+  .photo-count {
+    top: 2rem;
+    padding: 0.3rem 0.6rem;
+    min-height: unset;
+    max-height: unset;
+    max-width: 40%;
+    min-width: 13%;
+    font-size: 0.9rem;
+  }
+
+  .photo-count img {
+    width: 1rem;
+    height: 1rem;
   }
  .footer-content{
         font-size:1.2rem;
     }
+  .socials a {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .socials img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+    
 #Media-Gallery-banner{
     width:100%;
     height: 100vh;
@@ -2446,7 +2581,7 @@ margin-top: 0.6rem;
   }
     
 #mainCarousel .carousel-caption h4{
-      font-size: 3rem !important;  
+      font-size: 2rem !important;  
     }
 .carousel-indicator-wrapper {
     bottom: 1rem;
@@ -2454,43 +2589,68 @@ margin-top: 0.6rem;
   }
 
 .slide-num {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 #news-section{
-        min-height:35rem;
+        min-height:36rem;
  }
 #news-section .card-header h2{
         font-size: 2.3rem !important;
 }
-    
+ 
+#news-section .card-header a{
+        font-size: 1.3rem !important;
+    }
+#news-section .news-image {
+    width: 7rem !important;
+
+  }
   #news-section .news-image img{
-        width:6rem !important;
-        height:6rem !important;
+        width:7rem !important;
+        height:7rem !important;
     }
   #news-section .news-desc {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 #news-section .news-date{
-      font-size: 1.4rem;  
+      font-size: 1.2rem;  
     } 
 #news-section .news-date img{
         width:1.5rem !important;
         height:1.5rem !important;
     }
 
+  #userCarousel {
+    width:36vw;
+    height: 36rem;
+  }
 
+  #userCarousel .carousel-item .mb-3 {
+    width: 100%;
+    height: 14rem;
+  }
+    #userCarousel .carousel-item img{
+    width: 15rem;
+    height: 15rem; 
+    }
+    
 #userCarousel .fw-bold {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 #userCarousel #position {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
 }
 #userCarousel .custom-muted {
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+  #userCarousel .btn-skyblue {
+  padding: 0.6rem 2.5rem;
+    font-size:1.2rem;
 }
 
 .energy-title h2 {
- font-size: 3.5rem;
+ font-size: 4rem;
 }
     
  .energy-description p {
@@ -2498,15 +2658,42 @@ margin-top: 0.6rem;
   }
    
 .energy-title h2 span .quote-img {
-  left: 16rem;
+ width: 3rem;
+ height: 2.2rem;
+  left: 18.5rem;
 }
+.energy-card:nth-child(1) {
+    height: 34rem;
+  }
+
+  .energy-card:nth-child(2) {
+    height: 23rem;
+  }
+
+  .energy-card:nth-child(3) {
+    height: 28rem;
+  }
+    
 .card-info h3{
     font-size: 1.7rem;
 }
 .card-info p{
- margin-left: 2.5rem;
-font-size: 1.4rem;
+ margin-left: 3.5rem;
+font-size: 1.2rem;
 }
+    
+.photo-count {
+    font-size: 1.2rem;
+}
+
+.photo-count img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+    
+.energy-viewall button {
+font-size: 1.2rem;
+  }
 .footer-content{
  font-size:1.3rem;
 }
@@ -2547,14 +2734,12 @@ left:3.5vw;
   }
 .notification-bell {
     top: 30%;
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
   }
-#mainCarousel .carousel-caption{
-        width:80vw;
-    }
+    
 #mainCarousel .carousel-caption h4{
-      font-size: 3.5rem !important;  
+      font-size: 2.2rem !important;  
     }
 .carousel-indicator-wrapper {
     bottom: 1rem;
@@ -2562,22 +2747,21 @@ left:3.5vw;
   }
 
 .slide-num {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
   }
     
 #news-section{
-        min-height:35rem;
+        min-height:37rem;
  }
 #news-section .card-header h2{
-        font-size: 2.3rem !important;
+        font-size: 2.5rem !important;
 }
-    
-  #news-section .news-image img{
-        width:6rem !important;
-        height:6rem !important;
+
+#news-section .card-header a{
+        font-size: 1.5rem !important;
     }
   #news-section .news-desc {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 #news-section .news-date{
       font-size: 1.4rem;  
@@ -2587,60 +2771,75 @@ left:3.5vw;
         height:1.5rem !important;
     }
 
+#news-section .news-cta img {
+ width:1.8rem;
+ height:1.8rem;
+}
+  #userCarousel {
+    height: 37rem;
+  }
 
+#userCarousel .carousel-item .mb-3 {
+    width: 100%;
+    height: 14rem;
+  }
+ #userCarousel .carousel-item img{
+    width: 15rem;
+    height: 15rem; 
+    }
+    
 #userCarousel .fw-bold {
-  font-size: 3rem;
+  font-size: 3.7rem;
 }
 #userCarousel #position {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
 }
 #userCarousel .custom-muted {
   font-size: 1rem;
 }
 
   .energy-title h2 {
-    font-size: 4rem;
+    font-size: 4.5rem;
   }
 
   .energy-description p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
-  .energy-title h2 span .quote-img {
-    left: 19rem;
-    height:2.5rem;
-  }
+.energy-title h2 span .quote-img {
+ height: 2.7rem;
+  left: 21rem;
+}
     
  .energy-card:nth-child(1) {
-    height: 38rem;
+    height: 36rem;
   }
 
   .energy-card:nth-child(2) {
-    height: 32rem;
+    height: 25rem;
   }
 
   .energy-card:nth-child(3) {
-    height: 34rem;
+    height: 30rem;
   }
   .card-info h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .card-info p {
-    margin-left: 3rem;
-    font-size: 1.6rem;
+    margin-left: 4rem;
+    font-size: 1.5rem;
   }
    .photo-count {
-    padding: 0.6rem 0.9rem;
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 
   .photo-count img {
-    width: 2rem;
-    height: 2rem;
+    width: 1.4rem;
+    height: 1.4rem;
   } 
 .energy-viewall button{
-        font-size:1.5rem;
+        font-size:1.3rem;
     }
     
   .footer-content {
@@ -2648,13 +2847,13 @@ left:3.5vw;
   }
 
   .socials a {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .socials img {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
