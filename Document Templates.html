@@ -9,6 +9,18 @@
     <link href="./bootstrap-icons-1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="./PowerTech.css">
         <style>
+    .position-relative{
+        height: 60vh;
+            }
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
 .navbar {
     background-color: white;
  }
@@ -410,7 +422,7 @@ min-height: 17rem !important;
 </aside>
 <!--Top Page-->
         <div class="position-relative">
-
+   <div class="image-overlay"></div>
   <!-- Navigation bar over image -->
 <nav class="navbar navbar-expand-lg navbar-dark px-3 position-absolute top-0 start-0 w-100" style="z-index: 10;">
   <!-- Brand -->
@@ -444,7 +456,6 @@ min-height: 17rem !important;
     </ul>
   </div>
 </nav>
-    
   <!-- Media Gallery Image -->
  <img src="./media/06.jpg" id="Media-Gallery-banner" alt="Media Gallery">
     <div class="banner-caption text-start">
