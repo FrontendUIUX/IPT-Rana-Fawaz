@@ -2013,21 +2013,21 @@ margin-top: 0.6rem;
 }
     
  #userCarousel .carousel-item .mb-3{
-          height:15rem;
+          height:10rem;
 }
 #userCarousel .carousel-item img{
-        width:15rem !important;
-        height:15rem !important;
+        width:10rem !important;
+        height:10rem !important;
 }
   #userCarousel h5 {
     font-size: 2.8rem;
   }
 
   #userCarousel .fw-bold {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
     #userCarousel #position{
-        font-size: 2.3rem !important;
+        font-size: 2rem !important;
     }
 
   #userCarousel .custom-muted {
@@ -2179,11 +2179,12 @@ margin-top: 0.6rem;
 
   #userCarousel .carousel-item .mb-3 {
     width: 100%;
-    height: 11rem;
+    height: 10rem;
+
   }
     #userCarousel .carousel-item img{
-    width: 11rem;
-    height: 11rem; 
+    width: 10rem !important;
+    height: 10rem !important; 
     }
   #userCarousel h5 {
     font-size: 2.3rem;
@@ -2223,7 +2224,7 @@ margin-top: 0.6rem;
         width: 55%;
     }
   .energy-title h2 {
-    font-size: 3rem;
+    font-size: 2.7rem;
       width: 100%;
 
   }
@@ -2235,7 +2236,12 @@ margin-top: 0.6rem;
       margin: 0;
     font-size:0.95rem;
   }
-    
+       .energy-title h2 span .quote-img {
+    width: 3rem;
+    height: 1.5rem;
+    top: 0.5rem;
+    left: 12.5rem;
+  }  
 .energy-card {
   height:100%;         
   min-height: unset;     
@@ -2593,7 +2599,9 @@ margin-top: 0.6rem;
 /*----------------------------------DESKTOP-3 VERSION--------------------------------------------------------------------------*/
 
 @media only screen and (min-width:1400px){
-
+#dashboard {
+  width: 3.5vw !important;  
+}
   .floating-search-box {
     right: 2rem;
     top: 1.5rem;
@@ -2646,18 +2654,18 @@ margin-top: 0.6rem;
 
   #userCarousel .carousel-item .mb-3 {
     width: 100%;
-    height: 14rem;
+    height: 10rem;
   }
     #userCarousel .carousel-item img{
-    width: 15rem;
-    height: 15rem; 
+    width: 10rem;
+    height: 10rem; 
     }
     
 #userCarousel .fw-bold {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 #userCarousel #position {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
 }
 #userCarousel .custom-muted {
   font-size: 1.5rem;
@@ -2669,7 +2677,7 @@ margin-top: 0.6rem;
 }
 
 .energy-title h2 {
- font-size: 4rem;
+ font-size: 3.5rem;
 }
     
  .energy-description p {
@@ -2678,8 +2686,8 @@ margin-top: 0.6rem;
    
 .energy-title h2 span .quote-img {
  width: 3rem;
- height: 2.2rem;
-  left: 18.5rem;
+ height: 2rem;
+  left: 16rem;
 }
 .energy-card:nth-child(1) {
     height: 34rem;
@@ -2753,7 +2761,7 @@ font-size: 1.2rem;
 @media only screen and (min-width:1600px){
 
 #dashboard {
-  width: 3.5vw;  
+  width: 3.5vw !important;  
 }
     #sidebar {
   width: 3.5vw; 
@@ -2822,25 +2830,25 @@ left:3.5vw;
 
 #userCarousel .carousel-item .mb-3 {
     width: 100%;
-    height: 14rem;
+    height: 10rem;
   }
  #userCarousel .carousel-item img{
-    width: 15rem;
-    height: 15rem; 
+    width: 10rem;
+    height: 10rem; 
     }
     
 #userCarousel .fw-bold {
-  font-size: 3.7rem;
+  font-size: 3rem;
 }
 #userCarousel #position {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
 }
 #userCarousel .custom-muted {
   font-size: 1rem;
 }
 
   .energy-title h2 {
-    font-size: 4.5rem;
+    font-size: 3.7rem;
   }
 
   .energy-description p {
@@ -2848,8 +2856,8 @@ left:3.5vw;
   }
 
 .energy-title h2 span .quote-img {
- height: 2.7rem;
-  left: 21rem;
+ height: 2rem;
+  left: 17rem;
 }
     
  .energy-card:nth-child(1) {
