@@ -2287,26 +2287,25 @@ width: 3.5rem  !important;
     width: 1rem;
     height: 1rem;
   }
-  .footer-content {
+.footer-content {
     padding-left: 1.5rem;
     font-size: 1rem;
-  }
+}
 
-  .socials {
+.socials {
     gap: 0.5rem;
     padding-right: 1.5rem;
-  }
+}
 
-  .socials a {
+.socials a {
     width: 2.2rem;
     height: 2.2rem;
-  }
+}
 
-  .socials img {
+.socials img {
     width: 1.2rem;
     height: 1.2rem;
-  }
-
+}
 }
 
 /*----------------------------------DESKTOP-1 VERSION--------------------------------------------------------------------------*/
@@ -2386,7 +2385,7 @@ margin-top: 0.6rem;
     
 .energy-section .container{
         width:100%;
-}      
+}
 }
 
 /*----------------------------------DESKTOP-2 VERSION--------------------------------------------------------------------------*/
@@ -2926,6 +2925,3 @@ left:3.5rem;
   height: 1.75rem; 
 }
 }
-
-
-
