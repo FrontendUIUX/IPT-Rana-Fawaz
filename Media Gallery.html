@@ -43,8 +43,10 @@ background-repeat: no-repeat;
             
 .energy-section {
  margin-bottom: 4rem;
-  background-image: none;       
+background-image: none;
+justify-content: center;
 }
+
  .energy-card {
 width: 30%;
 margin-bottom: 1.5rem;
@@ -84,39 +86,10 @@ vertical-align: top;
   color: #444;
 }    
 
-.energy-card:nth-child(1) {
+.energy-card{
     height: auto; 
 }
 
-.energy-card:nth-child(2) {
-    height: auto; 
-}
-
-.energy-card:nth-child(3) {
-    height: auto; 
-}
-.energy-card:nth-child(4) {
-    height: auto; 
-}
-
-.energy-card:nth-child(5) {
-    height: auto; 
-}
-
-.energy-card:nth-child(6) {
-    height: auto; 
-}
-.energy-card:nth-child(7) {
-    height: auto; 
-}
-
-.energy-card:nth-child(8) {
-    height: auto; 
-}
-
-.energy-card:nth-child(8) {
-    height: auto; 
-}
 
 .media-overlay {
   position: fixed;
@@ -171,15 +144,6 @@ vertical-align: top;
   margin:-1.3rem;
 }
 
-.prev-preview {
-  left: 0.01rem;
-}
-
-.next-preview {
-  right: 0.01rem;
-}
-
-
 .media-slide-wrapper {
   position: relative;
   width: 60%;
@@ -189,9 +153,10 @@ vertical-align: top;
 }
 
 .media-slide-wrapper img {
+  opacity: 1;
   width:100%;      
   height: 70vh;   
-  object-fit:fill;
+  object-fit:cover;
   display: block;
   margin: 0 auto;
 }
@@ -418,7 +383,6 @@ justify-self: center;
   }
 
   .energy-card {
-    margin-left: 5vw;
     width: 90%;
     height: auto;
   }
@@ -573,6 +537,7 @@ justify-self: center;
   .energy-section {
     margin-bottom: 4rem !important;
     background-image: none !important;
+    justify-content: center;
   }
 
 
@@ -583,9 +548,8 @@ justify-self: center;
     align-items: unset !important;
     justify-content: unset !important;
     flex-direction: unset !important;
+    padding-left:3.25% !important;
   }
-
-
   .energy-card {
     width: 30% !important;
     margin-left: 0 !important; 
@@ -1203,32 +1167,50 @@ closeBtn.addEventListener('click', () => {
 
 document.querySelector('.prev').addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
-  updateSlide();
+  updateSlide('prev');
 });
 
 document.querySelector('.next').addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % slideImages.length;
-  updateSlide();
+  updateSlide('next');
 });
 
-function updateSlide() {
+function updateSlide(direction = 'next') {
   const { src, title } = slideImages[currentIndex];
   const prevIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
   const nextIndex = (currentIndex + 1) % slideImages.length;
 
-  slideWrapper.innerHTML = `
-    <img src="${src}" alt="${title}">
-    <div class="play-overlay">
-      <img src="./media/Assets/Vector.svg" alt="Play">
-    </div>
-    <div class="slide-number">0${currentIndex + 1}</div>
-  `;
 
-  mediaTitle.textContent = title;
+  slideWrapper.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  slideWrapper.style.transform = direction === 'next'? 'translateX(-100%) scale(0.8)': 'translateX(100%) scale(0.8)';
+  slideWrapper.style.opacity = 0;
 
-  document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
-  document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+
+  setTimeout(() => {
+
+    slideWrapper.style.transition = 'none';
+    slideWrapper.style.transform = direction === 'next'? 'translateX(100%) scale(0.8)': 'translateX(-100%) scale(0.8)';
+
+    slideWrapper.innerHTML = `
+      <img src="${src}" alt="${title}" style="width: 100%; height: 70vh; object-fit: cover; display: block;">
+      <div class="play-overlay">
+        <img src="./media/Assets/Vector.svg" alt="Play">
+      </div>
+      <div class="slide-number">0${currentIndex + 1}</div>
+    `;
+    mediaTitle.textContent = title;
+    document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
+    document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+
+    void slideWrapper.offsetWidth;
+
+    slideWrapper.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    slideWrapper.style.transform = 'translateX(0) scale(1)';
+    slideWrapper.style.opacity = 1;
+  }, 500);
 }
+
+
 
 </script>
     </body>
