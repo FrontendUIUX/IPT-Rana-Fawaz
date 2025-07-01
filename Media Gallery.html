@@ -153,6 +153,13 @@ vertical-align: top;
   z-index: 1;
   margin:-1.3rem;
 }
+.prev-preview {
+  left: 0.01rem;
+}
+
+.next-preview {
+  right: 0.01rem;
+}
 
 .media-slide-wrapper {
   position: relative;
@@ -329,9 +336,15 @@ justify-self: center;
 }
 
 .navigation.prev {
-  margin-right: 5rem;
+  padding-left:6rem !important;
+  padding-right:0!important;
   justify-self: flex-start;
 }
+    .navigation.next{
+ padding-left:0rem !important;
+  padding-right:6rem!important; 
+    }
+    
 
 .navigation img {
   width: 3.5rem;
@@ -478,6 +491,7 @@ justify-self: center;
   justify-self: flex-end;
   align-items: center;
     top:-8rem;
+    width:1rem;
 }
 
 .navigation.prev {
@@ -790,6 +804,8 @@ justify-self: center;
     justify-self: auto;
     align-items: center;
     margin: 0;
+    width: unset;
+    height:unset;
   }
 }
 
