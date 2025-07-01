@@ -120,7 +120,10 @@ vertical-align: top;
 
 .media-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(to bottom, #f8f9fa, #ffffff);
   z-index: 9999; 
   display: none; 
@@ -1226,10 +1229,6 @@ function updateSlide() {
   document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
   document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
 }
-
-
-
-
 
 </script>
     </body>

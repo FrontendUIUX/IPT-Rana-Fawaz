@@ -123,13 +123,11 @@ body , html{
   align-content: center;
 }
 #dashboard .nav-link-1 img{
-  width:90%;
+  width:2rem;
   height: auto;
   max-width: 90%;
 }
 .nav-link img {
-  width: 1rem;
-  max-width: 90%;
   transition: filter 0.3s ease;
   object-fit: contain;
 }
@@ -1078,14 +1076,16 @@ align-items: center !important;
     width: 3.5rem;
     height: 3.5rem;
   }
-    
 .navbar-brand{
         margin-left :0;
         padding-left: 0;
  }
-
+    #searchToggle{
+        width:2rem;
+        height:2rem;
+    }
     .navbar-toggler{
-       margin-left: 15%;
+      margin-left: auto;
     }
     .navbar-nav{
         font-size:1rem;
@@ -1578,8 +1578,7 @@ font-size: 0.5rem;
         padding-left:0;
     }
     .navbar-toggler{
-       margin-left: 50vw;
-        height: 5vh;
+       margin-left: auto;
     }
     .position-relative-1 img{
         width:5vw !important;
@@ -2311,7 +2310,12 @@ width: 3.5rem  !important;
 /*----------------------------------DESKTOP-1 VERSION--------------------------------------------------------------------------*/
 
 @media only screen and (min-width:1024px){
-
+    
+#dashboard .nav-link-1 img{
+  width:2rem;
+  height: auto;
+  max-width: 90%;
+}
 #userDropdownMenu {
   width: auto;
  font-size: 1.5rem;
