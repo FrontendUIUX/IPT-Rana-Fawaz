@@ -983,8 +983,8 @@ align-items: center !important;
   justify-content: center;
   background-color: #1E627E; 
   border-radius: 50%;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
   transition: background-color 0.3s;
 }
 
@@ -993,8 +993,8 @@ align-items: center !important;
 }
 
 .socials img {
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .post-footer-section {
@@ -2555,13 +2555,13 @@ margin-top: 0.6rem;
         font-size:1.2rem;
     }
   .socials a {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .socials img {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
     
 #Media-Gallery-banner{
