@@ -838,6 +838,7 @@ align-items: center !important;
 .energy-card:hover .card-info p{
  transform:translateY(-10px);
 }
+
 .card-info h3::before {
   font-family:sans-serif;
   content: "––– ";
