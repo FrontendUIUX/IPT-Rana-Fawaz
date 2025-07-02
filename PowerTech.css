@@ -786,14 +786,22 @@ align-items: center !important;
   border-radius: 0.6rem;
   overflow: hidden;
   box-shadow: none;
-    padding: 0;
+  padding: 0;
 }
 
-.energy-card img {
+.energy-card .img-fluid{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+
+.energy-card:hover .img-fluid {
+  transform: scale(1.1);
+  filter: blur(0.5px);
 }
 
 .card-info {
@@ -803,23 +811,33 @@ align-items: center !important;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
   padding-bottom: 1.25rem;
   width: 100%;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
   z-index: 2;
+}
+.energy-card:hover .card-info {
+  opacity: 1;
 }
 
 .card-info h3 {
   margin: 0 0 0.3125rem;
+  transition: transform 0.4s ease;
   font-size: 1.125rem;
   color: #fff;
   font-family: 'DIN Bold';
 }
-
-
+.energy-card:hover .card-info h3{
+ transform:translateY(-10px);
+}
 .card-info p {
   margin-left: 1.875rem;
   font-family: 'DIN';
   color: rgba(255, 255, 255, 0.7);
+ transition: transform 0.4s ease;
 }
-
+.energy-card:hover .card-info p{
+ transform:translateY(-10px);
+}
 .card-info h3::before {
   font-family:sans-serif;
   content: "––– ";
@@ -2341,9 +2359,9 @@ margin-top: 0.6rem;
     padding-left: 1rem;
   }
  .navbar-nav {
-      justify-content: space-evenly;
+    justify-content: flex-end;
       width:60vw;
-      margin-right: 1rem;
+      margin-right: 2rem;
   }
   .floating-search-box {
     width: 40rem;
