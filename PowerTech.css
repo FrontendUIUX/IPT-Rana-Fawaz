@@ -623,6 +623,40 @@ align-items: center !important;
  width:1.5rem;
  height:1.5rem;
 }
+.cta-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.4s ease-in-out;
+   transform: scale(1) 0.4s ease;
+}
+
+.cta-img.default {
+  opacity: 1;
+  z-index: 1;
+}
+
+.cta-img.active {
+  opacity: 0;
+  z-index: 2;
+}
+
+.cta-link {
+  position: relative;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.cta-link:hover .cta-img.default {
+  opacity: 0;
+}
+
+.cta-link:hover .cta-img.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 #userCarousel {
   top:0.1rem;
   width: 26rem;
