@@ -9,9 +9,15 @@
     <link href="./bootstrap-icons-1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="./PowerTech.css">
         <style>
+.navbar {
+ position:relative;
+}
+.websiteBody{
+    height:86vh !important;
+}
 .image-overlay {
   position: absolute;
-  top: 0;
+  top:0rem;
   left: 0;
   height: 100%;
   width: 100%;
@@ -45,6 +51,7 @@ background-repeat: no-repeat;
  margin-bottom: 4rem;
 background-image: none;
 justify-content: center;
+
 }
 
  .energy-card {
@@ -912,9 +919,8 @@ justify-self: center;
 </aside>
 <!--Top Page-->
         <div class="position-relative websiteBody">
-   <div class="image-overlay"></div>
   <!-- Navigation bar over image -->
-<nav class="navbar navbar-expand-lg navbar-dark px-3 position-absolute top-0 start-0" style="z-index: 10;">
+<nav class="navbar navbar-expand-lg navbar-dark px-3 top-0 start-0" style="z-index: 10;">
   <!-- Brand -->
   <a class="navbar-brand" href="#">
     <img src="./media/logo-subpage.png" alt="Company Logo" height="50">
@@ -948,10 +954,14 @@ justify-self: center;
 </nav>
     
   <!-- Media Gallery Image -->
- <img src="./media/Assets/banner.jpg" id="Media-Gallery-banner" alt="Media Gallery">
-    <div class="banner-caption text-start">
-      <h1>Media Gallery</h1>
-    </div>
+    
+<div class="position-relative  hero-section">
+  <div class="image-overlay"></div>
+  <img src="./media/Assets/banner.jpg" id="Media-Gallery-banner" alt="Media Gallery">
+  <div class="banner-caption text-start">
+    <h1>Media Gallery</h1>
+  </div>
+</div>
 </div>         
     </div>
        <!--media-->
