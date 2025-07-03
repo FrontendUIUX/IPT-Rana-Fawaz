@@ -2381,10 +2381,13 @@ margin-top: 0.6rem;
     }
     
     .homepage-sections .container{
-        width:89% !important;
+        width:100% !important;
         justify-self: center;
+        padding-left: 7.5rem;
+        padding-right: 4rem;
     }
 #news-section {
+    margin-left: 1rem !important;
     min-width: 50%;
     max-width: 62%;
     min-height: 28rem;
@@ -2429,11 +2432,11 @@ margin-top: 0.6rem;
  #userCarousel {
     height: 35rem;
     margin-left:0.5rem;
-     width:32vw;
+     width:30vw;
   }
 
 #userCarousel .custom-indicators {
-     width: 30vw;
+     width: 28vw;
   }
 
  #userCarousel .custom-indicators button {
@@ -2471,7 +2474,7 @@ margin-top: 0.6rem;
 
     .energy-section .container{
         max-width:unset;
-        width:94% !important;
+        width:90% !important;
         justify-self:center;
         margin-left: 0rem;
         margin-right: 0;
