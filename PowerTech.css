@@ -2089,11 +2089,7 @@ margin-top: 0.6rem;
     #mainCarousel .carousel-caption h4{
       font-size: 1.6rem !important;  
     }
-    .homepage-sections{
-        left: 3.5rem;
-        width:calc(100vw - 3.5rem) !important;
-        padding-right: 3.5rem;
-    }
+
   #news-section {
     min-width: 50%;
     max-width: 62%;
@@ -2383,7 +2379,11 @@ margin-top: 0.6rem;
     #mainCarousel .carousel-caption h4{
       font-size: 1.8rem !important;  
     }
-
+    
+    .homepage-sections .container{
+        width:89% !important;
+        justify-self: center;
+    }
 #news-section {
     min-width: 50%;
     max-width: 62%;
@@ -2429,10 +2429,11 @@ margin-top: 0.6rem;
  #userCarousel {
     height: 35rem;
     margin-left:0.5rem;
+     width:32vw;
   }
 
 #userCarousel .custom-indicators {
-     width: 33vw;
+     width: 30vw;
   }
 
  #userCarousel .custom-indicators button {
@@ -2468,6 +2469,13 @@ margin-top: 0.6rem;
     font-size:1rem;
 }
 
+    .energy-section .container{
+        max-width:unset;
+        width:94% !important;
+        justify-self:center;
+        margin-left: 0rem;
+        margin-right: 0;
+    }
   .energy-title h2 {
     font-size: 3rem;
       width: 100%;
