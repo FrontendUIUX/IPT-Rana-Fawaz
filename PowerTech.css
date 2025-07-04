@@ -2458,9 +2458,11 @@ margin-top: 0.6rem;
 #news-section .card-header {
   padding: 2.7rem 1.5rem !important;
 }
-
+#news-section .card-header h2{
+    font-size:1.7rem !important;
+}
 #news-section .card-header a{
-       font-size: 1.1rem !important;
+       font-size: 1rem !important;
     }
 #news-section .news-text {
   flex: 1;
