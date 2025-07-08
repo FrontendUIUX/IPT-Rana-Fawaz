@@ -1179,7 +1179,7 @@ align-items: center !important;
     }
     
     #news-section {
-  padding-left: 0.5rem;
+  margin-left: 0.5rem !important;
   min-width: auto;
   width: 95%;
   max-width: 100%;
