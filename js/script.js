@@ -645,17 +645,21 @@ if (offcanvas) {
   });
 }
 
-   try {
-  console.log('Trying to initialize Masonry...');
+try {
+  console.log('Waiting for images to load before initializing Masonry...');
   const grid = document.querySelector('#masonry-grid');
-  const masonry = new Masonry(grid, {
-    itemSelector: '.energy-card.alt-style',
-    columnWidth: '.energy-card.alt-style',
-    percentPosition: true,
-    gutter: 20,
-    horizontalOrder: true
+
+  imagesLoaded(grid, () => {
+    const masonry = new Masonry(grid, {
+      itemSelector: '.energy-card.alt-style',
+      columnWidth: '.energy-card.alt-style',
+      percentPosition: true,
+      gutter: 20,
+      horizontalOrder: true
+    });
+    console.log('Masonry initialized after images loaded:', masonry);
   });
-  console.log('Masonry initialized:', masonry);
+
 } catch (e) {
   console.error('Masonry failed to initialize:', e);
 }
