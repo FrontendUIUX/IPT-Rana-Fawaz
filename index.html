@@ -32,19 +32,20 @@
   <!-- Dropdown -->
   <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu">
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jalal Fadlallah" data-img="./media/member1.png">
-      <img src="./media/member1.png" alt="User 1" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member1.png" alt="User 1" class="user-img-sm mr-2" loading="lazy" style="width: 2.6875rem; height: 2.75rem;">
       <span>Jalal Fadlallah</span>
     </a>
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Christian Dagher" data-img="./media/member2.png">
-      <img src="./media/member2.png" alt="User 2" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member2.png" alt="User 2" class="user-img-sm mr-2" loading="lazy" style="width: 2.6875rem; height: 2.75rem;">
       <span>Christian Dagher</span>
     </a>
     <a class="dropdown-item d-flex align-items-center" href="#" data-name="Jinan Sarkis" data-img="./media/member3.png">
-      <img src="./media/member3.png" alt="User 3" class="user-img-sm mr-2" style=" width: 2.6875rem; height:2.75rem">
+      <img src="./media/member3.png" alt="User 3" class="user-img-sm mr-2" loading="lazy" style="width: 2.6875rem; height: 2.75rem;">
       <span>Jinan Sarkis</span>
     </a>
   </div>
 </div>
+
 
         </div>
 
@@ -125,38 +126,37 @@
 
     
   <!-- Bootstrap Carousel -->
-  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-      <!-- Bell icon -->
-<div class="notification-bell" data-bs-toggle="offcanvas" data-bs-target="#announcementsCanvas">
-  <img src="./media/alert.svg" alt="Notification Bell" />
-</div>
-<div class="carousel-inner">
-
-  <div class="carousel-item active position-relative">
-    <img src="./media/banner1.png" class="d-block w-100" alt="Slide 1">
-    <div class="carousel-overlay"></div>
-    <div class="carousel-caption text-start">
-      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
-    </div>
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+  <!-- Bell icon -->
+  <div class="notification-bell" data-bs-toggle="offcanvas" data-bs-target="#announcementsCanvas">
+    <img src="./media/alert.svg" alt="Notification Bell" />
   </div>
 
-  <div class="carousel-item position-relative">
-    <img src="./media/banner2.jpg" class="d-block w-100" alt="Slide 2">
-    <div class="carousel-overlay"></div>
-    <div class="carousel-caption text-start">
-      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
+  <div class="carousel-inner">
+    <div class="carousel-item active position-relative">
+      <img src="./media/banner1.png" class="d-block w-100" alt="Slide 1">
+      <div class="carousel-overlay"></div>
+      <div class="carousel-caption text-start">
+        <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
+      </div>
+    </div>
+
+    <div class="carousel-item position-relative">
+      <img src="./media/banner2.jpg" class="d-block w-100" alt="Slide 2" loading="lazy">
+      <div class="carousel-overlay"></div>
+      <div class="carousel-caption text-start">
+        <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
+      </div>
+    </div>
+
+    <div class="carousel-item position-relative">
+      <img src="./media/banner3.jpg" class="d-block w-100" alt="Slide 3" loading="lazy">
+      <div class="carousel-overlay"></div>
+      <div class="carousel-caption text-start">
+        <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
+      </div>
     </div>
   </div>
-
-  <div class="carousel-item position-relative">
-    <img src="./media/banner3.jpg" class="d-block w-100" alt="Slide 3">
-    <div class="carousel-overlay"></div>
-    <div class="carousel-caption text-start">
-      <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>
-    </div>
-  </div>
-
-</div>
 
   <!-- Carousel controls -->
   <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
@@ -167,18 +167,20 @@
     <span class="carousel-control-next-icon"></span>
     <span class="visually-hidden">Next</span>
   </button>
-    <!-- Custom Carousel Progress & Slide Indicator -->
-<div class="carousel-indicator-wrapper">
-  <div class="slide-numbers" id="slideIndicatorBar">
-    <span class="slide-num" data-index="0">01</span>
-    <span class="slide-num active" data-index="1">02</span>
-    <span class="slide-num" data-index="2">03</span>
-    <div class="progress-bar-track">
-    <div class="progress-bar-fill"></div>
-  </div>
+
+  <!-- Slide indicator -->
+  <div class="carousel-indicator-wrapper">
+    <div class="slide-numbers" id="slideIndicatorBar">
+      <span class="slide-num" data-index="0">01</span>
+      <span class="slide-num active" data-index="1">02</span>
+      <span class="slide-num" data-index="2">03</span>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
+
 
 </div>
         </div>
@@ -198,17 +200,15 @@
 
         <!-- Promotion Card -->
         <div class="announcement-card rounded-4 mb-4 overflow-hidden border">
-          <!-- Header Section -->
           <div class="announcement-card-header d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
               <div class="announcement-icon" style="background-color:#1B75A0;">
-                <img src="./media/vector%207.svg" alt="Promotion" />
+                <img src="./media/vector%207.svg" alt="Promotion" loading="lazy" />
               </div>
               <span class="fw-semibold" style="font-family:'DIN';">Promotion</span>
             </div>
             <small class="text-muted text-uppercase" style="font-family:'DIN';">June 11, 2024</small>
           </div>
-          <!-- Body Section -->
           <div class="announcement-card-body">
             <p class="mb-0 small" style="font-family:'DIN';">
               We are thrilled to announce that <strong>Nadia Khalil</strong> has been promoted to <strong>Sustainability Manager</strong>. In her new role, she will spearhead our sustainability initiative, aimed at promoting energy efficiency across all operations.
@@ -218,17 +218,15 @@
 
         <!-- New Born Card -->
         <div class="announcement-card rounded-4 mb-4 overflow-hidden border">
-          <!-- Header Section -->
           <div class="announcement-card-header d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
               <div class="announcement-icon" style="background-color: crimson;">
-                <img src="./media/newborn.png" alt="New Born"/>
+                <img src="./media/newborn.png" alt="New Born" loading="lazy" />
               </div>
               <span class="fw-semibold" style="font-family:'DIN';">New Born</span>
             </div>
             <small class="text-muted text-uppercase" style="font-family:'DIN';">June 11, 2024</small>
           </div>
-          <!-- Body Section -->
           <div class="announcement-card-body">
             <p class="mb-1 small" style="font-family:'DIN';">
               We are delighted to share some wonderful news! Our colleague, <strong>Jad El-Khoury</strong>, has welcomed a new baby into their family. Join us in congratulating him on the arrival of their beautiful newborn, <strong>Ahmad El-Khoury</strong>, born on September 29, 2024.
@@ -241,6 +239,7 @@
     </div>
   </div>
 </div>
+
 
 
 
