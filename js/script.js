@@ -213,12 +213,15 @@ gsap.from(".energy-viewall button", {
     }
   });
     
-  const carouselElement = document.getElementById('mainCarousel');
+const carouselElement = document.getElementById('mainCarousel');
+
+if (carouselElement) {
   const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
 
   carouselElement.addEventListener('click', () => {
     carousel.next();
   });
+}
 document.addEventListener("DOMContentLoaded", function () {
   const slideCount = 3;
   const carousel = document.querySelector('#mainCarousel');
@@ -259,14 +262,16 @@ function buildIndicators(activeIndex) {
     }, 50);
   }
 
-  carousel.addEventListener('slide.bs.carousel', function (e) {
+  const carousel1 = document.querySelector('#mainCarousel');
+if (carousel1) {
+  carousel1.addEventListener('slide.bs.carousel', function (e) {
     currentIndex = e.to;
     buildIndicators(currentIndex);
   });
 
   buildIndicators(currentIndex);
+}
 });
-    
 const offcanvasTitle = document.getElementById('offcanvasTitle');
 const offcanvasContent = document.getElementById('offcanvasContent');
 
@@ -481,6 +486,7 @@ directory: {
       const closeBtn = document.getElementById('outsideCloseBtn');
   const sidebarPanel = document.getElementById('sidebarPanel');
 
+if (sidebarPanel && closeBtn) {
   sidebarPanel.addEventListener('shown.bs.offcanvas', () => {
     closeBtn.classList.remove('d-none');
   });
@@ -488,13 +494,15 @@ directory: {
   sidebarPanel.addEventListener('hidden.bs.offcanvas', () => {
     closeBtn.classList.add('d-none');
   });
-    
+}
 const outsideBtn = document.getElementById('outsideCloseBtn');
 const internalBtn = document.getElementById('internalCloseBtn');
 
-outsideBtn.addEventListener('click', () => {
-  internalBtn.click(); 
-});
+if (outsideBtn && internalBtn) {
+  outsideBtn.addEventListener('click', () => {
+    internalBtn.click();
+  });
+}
     
 const sidebarLinks = document.querySelectorAll('#sidebar .nav-link');
 
@@ -513,65 +521,36 @@ document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(link => {
   });
 });
     
-sidebarPanel.addEventListener('hidden.bs.offcanvas', () => {
-  sidebarLinks.forEach(l => l.classList.remove('active-section'));
-});
-    
+
+if (sidebarPanel) {
+  sidebarPanel.addEventListener('hidden.bs.offcanvas', () => {
+    sidebarLinks.forEach(l => l.classList.remove('active-section'));
+  });
+}
 const offcanvas = document.getElementById('sidebarPanel');
 
-offcanvas.addEventListener('shown.bs.offcanvas', () => {
-  const pollOptions = offcanvas.querySelectorAll('.poll-option');
+if (offcanvas) {
+  offcanvas.addEventListener('shown.bs.offcanvas', () => {
+    const pollOptions = offcanvas.querySelectorAll('.poll-option');
 
-  function resetPolls() {
-    pollOptions.forEach(opt => {
-      const fill = opt.querySelector('.poll-fill');
-      const percentText = opt.querySelector('.percentage');
-      const optionText = opt.querySelector('.option-text');
-
-      if (fill) {
-        fill.style.transition = 'none'; 
-        fill.style.width = '0%';
-        fill.style.minWidth = '0';
-        fill.offsetHeight;
-        fill.style.transition = '';      
-      }
-      if (percentText) {
-        percentText.textContent = '0%';
-        percentText.classList.remove('text-primary', 'fw-bold');
-        percentText.classList.add('text-muted');
-        percentText.style.opacity = '0'; 
-      }
-      if (optionText) {
-        optionText.classList.remove('text-primary', 'fw-bold');
-        optionText.classList.add('text-dark');
-      }
-      opt.style.borderColor = '';
-      opt.classList.remove('selected');
-    });
-  }
-
-  pollOptions.forEach(option => {
-    option.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-
+    function resetPolls() {
       pollOptions.forEach(opt => {
         const fill = opt.querySelector('.poll-fill');
         const percentText = opt.querySelector('.percentage');
         const optionText = opt.querySelector('.option-text');
 
         if (fill) {
-          fill.style.transition = 'none';
+          fill.style.transition = 'none'; 
           fill.style.width = '0%';
           fill.style.minWidth = '0';
           fill.offsetHeight;
-          fill.style.transition = '';
+          fill.style.transition = '';      
         }
         if (percentText) {
           percentText.textContent = '0%';
           percentText.classList.remove('text-primary', 'fw-bold');
           percentText.classList.add('text-muted');
-          percentText.style.opacity = '0';
+          percentText.style.opacity = '0'; 
         }
         if (optionText) {
           optionText.classList.remove('text-primary', 'fw-bold');
@@ -580,57 +559,200 @@ offcanvas.addEventListener('shown.bs.offcanvas', () => {
         opt.style.borderColor = '';
         opt.classList.remove('selected');
       });
+    }
 
-    
-      setTimeout(() => {
+    pollOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+
         pollOptions.forEach(opt => {
-          const percent = opt.dataset.percent;
           const fill = opt.querySelector('.poll-fill');
           const percentText = opt.querySelector('.percentage');
           const optionText = opt.querySelector('.option-text');
 
           if (fill) {
-            fill.style.width = percent + '%';
-            fill.style.minWidth = '20px';
+            fill.style.transition = 'none';
+            fill.style.width = '0%';
+            fill.style.minWidth = '0';
+            fill.offsetHeight;
+            fill.style.transition = '';
           }
           if (percentText) {
-            percentText.textContent = percent + '%';
-            percentText.style.opacity = '1'; 
-            percentText.classList.remove('text-muted');
-            percentText.classList.add('text-muted'); 
+            percentText.textContent = '0%';
+            percentText.classList.remove('text-primary', 'fw-bold');
+            percentText.classList.add('text-muted');
+            percentText.style.opacity = '0';
           }
           if (optionText) {
-            optionText.classList.remove('text-primary', 'fw-bold', 'text-dark');
+            optionText.classList.remove('text-primary', 'fw-bold');
             optionText.classList.add('text-dark');
           }
           opt.style.borderColor = '';
           opt.classList.remove('selected');
         });
 
-        option.classList.add('selected');
-        option.style.borderColor = 'cadetblue';
+        setTimeout(() => {
+          pollOptions.forEach(opt => {
+            const percent = opt.dataset.percent;
+            const fill = opt.querySelector('.poll-fill');
+            const percentText = opt.querySelector('.percentage');
+            const optionText = opt.querySelector('.option-text');
 
-        const clickedPercentText = option.querySelector('.percentage');
-        const clickedOptionText = option.querySelector('.option-text');
+            if (fill) {
+              fill.style.width = percent + '%';
+              fill.style.minWidth = '20px';
+            }
+            if (percentText) {
+              percentText.textContent = percent + '%';
+              percentText.style.opacity = '1'; 
+              percentText.classList.remove('text-muted');
+              percentText.classList.add('text-muted'); 
+            }
+            if (optionText) {
+              optionText.classList.remove('text-primary', 'fw-bold', 'text-dark');
+              optionText.classList.add('text-dark');
+            }
+            opt.style.borderColor = '';
+            opt.classList.remove('selected');
+          });
 
-        if (clickedPercentText) {
-          clickedPercentText.classList.remove('text-muted');
-          clickedPercentText.classList.add('text-primary', 'fw-bold');
-          clickedPercentText.style.opacity = '1';
-        }
-        if (clickedOptionText) {
-          clickedOptionText.classList.remove('text-dark');
-          clickedOptionText.classList.add('text-primary', 'fw-bold');
-        }
-      }, 50); 
+          option.classList.add('selected');
+          option.style.borderColor = 'cadetblue';
+
+          const clickedPercentText = option.querySelector('.percentage');
+          const clickedOptionText = option.querySelector('.option-text');
+
+          if (clickedPercentText) {
+            clickedPercentText.classList.remove('text-muted');
+            clickedPercentText.classList.add('text-primary', 'fw-bold');
+            clickedPercentText.style.opacity = '1';
+          }
+          if (clickedOptionText) {
+            clickedOptionText.classList.remove('text-dark');
+            clickedOptionText.classList.add('text-primary', 'fw-bold');
+          }
+        }, 50); 
+      });
     });
-  });
 
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.poll-option')) {
-      resetPolls();
-    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.poll-option')) {
+        resetPolls();
+      }
+    });
+
+    resetPolls();
   });
-  resetPolls();
+}
+
+   try {
+  console.log('Trying to initialize Masonry...');
+  const grid = document.querySelector('#masonry-grid');
+  const masonry = new Masonry(grid, {
+    itemSelector: '.energy-card.alt-style',
+    columnWidth: '.energy-card.alt-style',
+    percentPosition: true,
+    gutter: 20,
+    horizontalOrder: true
+  });
+  console.log('Masonry initialized:', masonry);
+} catch (e) {
+  console.error('Masonry failed to initialize:', e);
+}
+
+
+    
+const energyCards = document.querySelectorAll('.energy-card.alt-style');
+const overlay = document.getElementById('mediaOverlay');
+const closeBtn1 = document.querySelector('.media-close');
+const slideWrapper = document.querySelector('.media-slide-wrapper');
+const mediaTitle = document.getElementById('mediaTitle');
+
+let isFirstOpen = true;
+let slideImages = [];
+let currentIndex = 0;
+
+const originalImages = [...energyCards].map(card => ({
+  src: card.querySelector('img').src,
+  title: card.querySelector('h3').textContent
+}));
+
+energyCards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+    const before = originalImages.slice(index);
+    const after = originalImages.slice(0, index);
+    slideImages = [...before, ...after]; 
+
+    currentIndex = 0;
+    updateSlide();
+    overlay.style.display = 'block';
+  });
 });
 
+closeBtn1.addEventListener('click', () => {
+  overlay.style.display = 'none';
+  isFirstOpen = true;
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
+  updateSlide('prev');
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slideImages.length;
+  updateSlide('next');
+});
+
+function updateSlide(direction = 'next') {
+  const { src, title } = slideImages[currentIndex];
+  const prevIndex = (currentIndex - 1 + slideImages.length) % slideImages.length;
+  const nextIndex = (currentIndex + 1) % slideImages.length;
+
+  if (isFirstOpen) {
+    // No animation on first open
+    slideWrapper.innerHTML = `
+      <img src="${src}" alt="${title}" style="width: 100%; height: 70vh; object-fit: cover; display: block;">
+      <div class="play-overlay">
+        <img src="./media/Assets/Vector.svg" alt="Play">
+      </div>
+      <div class="slide-number">0${currentIndex + 1}</div>
+    `;
+    mediaTitle.textContent = title;
+    document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
+    document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+    
+    isFirstOpen = false; 
+    return;
+  }
+
+  slideWrapper.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  slideWrapper.style.transform = direction === 'next'
+    ? 'translateX(-100%) scale(0.8)'
+    : 'translateX(100%) scale(0.8)';
+  slideWrapper.style.opacity = 0;
+
+  setTimeout(() => {
+    slideWrapper.style.transition = 'none';
+    slideWrapper.style.transform = direction === 'next'
+      ? 'translateX(100%) scale(0.8)'
+      : 'translateX(-100%) scale(0.8)';
+
+    slideWrapper.innerHTML = `
+      <img src="${src}" alt="${title}" style="width: 100%; height: 70vh; object-fit: cover; display: block;">
+      <div class="play-overlay">
+        <img src="./media/Assets/Vector.svg" alt="Play">
+      </div>
+      <div class="slide-number">0${currentIndex + 1}</div>
+    `;
+    mediaTitle.textContent = title;
+    document.querySelector('.prev-preview').style.backgroundImage = `url(${slideImages[prevIndex].src})`;
+    document.querySelector('.next-preview').style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+
+    void slideWrapper.offsetWidth;
+
+    slideWrapper.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    slideWrapper.style.transform = 'translateX(0) scale(1)';
+    slideWrapper.style.opacity = 1;
+  }, 500);
+}
