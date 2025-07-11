@@ -334,6 +334,7 @@ margin-top:0;
   src: url('./fonts/din regular.ttf') format('truetype');
   font-weight:normal;
   font-style: normal;
+  font-display: swap;
 }
 .navbar-nav{
     font-family: 'DIN';
@@ -460,12 +461,14 @@ align-items: center !important;
   src: url('./fonts/din bold.otf') format('opentype');
   font-weight:normal;
   font-style: normal;
+    font-display: swap;
 }
 @font-face {
   font-family: 'DIN Medium';
   src: url('./fonts/din medium.otf') format('opentype');
   font-weight:normal;
   font-style: normal;
+  font-display: swap;
 }
 #mainCarousel .carousel-caption {
   text-align: left;
