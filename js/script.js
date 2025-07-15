@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);const masterTL=gsap.timeline({paused:!0}),nav
 
     <div class="accordion" id="userAccordion">
 
-      <div class="accordion-item border-0 mb-3">
+      <div class="accordion-item border-0 mb-3" style="background:transparent">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userOne">
             <img src="./media/ellipse%2020.png" alt="Jad" class="rounded-circle me-3" width="55rem" height="55rem">
@@ -28,12 +28,12 @@ gsap.registerPlugin(ScrollTrigger);const masterTL=gsap.timeline({paused:!0}),nav
         <div id="userOne" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
           <div class="accordion-body bg-light rounded shadow-sm">
             <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong>+961 01 234 567</p>
-            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong><a href="#">JadKhoury@gmail.com</a></p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong><a href="#" style="color: #3F7B94;">JadKhoury@gmail.com</a></p>
           </div>
         </div>
       </div>
 
-      <div class="accordion-item border-0 mb-3">
+      <div class="accordion-item border-0 mb-3" style="background:transparent">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userTwo">
             <img src="./media/ellipse%2021.png" alt="Maya" class="rounded-circle me-3" width="55rem" height="55rem">
@@ -46,12 +46,12 @@ gsap.registerPlugin(ScrollTrigger);const masterTL=gsap.timeline({paused:!0}),nav
         <div id="userTwo" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
           <div class="accordion-body bg-light rounded shadow-sm">
             <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong> +961 03 456 789</p>
-            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#">MayaSaad@gmail.com</a></p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#" style="color: #3F7B94;">MayaSaad@gmail.com</a></p>
           </div>
         </div>
       </div>
 
-      <div class="accordion-item border-0 mb-3">
+      <div class="accordion-item border-0 mb-3" style="background:transparent">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button" data-bs-toggle="collapse" data-bs-target="#userThree">
             <img src="./media/ellipse%2022.png" alt="Ziad" class="rounded-circle me-3" width="55rem" height="55rem">
@@ -64,7 +64,7 @@ gsap.registerPlugin(ScrollTrigger);const masterTL=gsap.timeline({paused:!0}),nav
         <div id="userThree" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
           <div class="accordion-body bg-light rounded shadow-sm">
             <p class="d-flex align-items-center mb-1" style="gap: 2rem;"><strong>Mobile:</strong>+961 70 987 654</p>
-            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#">ZiadHaddad@gmail.com</a></p>
+            <p class="d-flex align-items-center mb-0" style="gap: 3rem;"><strong>Email:</strong> <a href="#" style="color: #3F7B94;">ZiadHaddad@gmail.com</a></p>
           </div>
         </div>
       </div>
@@ -177,18 +177,117 @@ gsap.registerPlugin(ScrollTrigger);const masterTL=gsap.timeline({paused:!0}),nav
     <span class="percentage text-muted"></span>
   </div>
 
-</div>`}};document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(e=>{e.addEventListener("click",t=>{let s=e.getAttribute("data-section");contentMap[s]&&(offcanvasTitle.textContent=contentMap[s].title,offcanvasContent.innerHTML=contentMap[s].content)})});const closeBtn=document.getElementById("outsideCloseBtn"),sidebarPanel=document.getElementById("sidebarPanel");sidebarPanel&&closeBtn&&(sidebarPanel.addEventListener("shown.bs.offcanvas",()=>{closeBtn.classList.remove("d-none")}),sidebarPanel.addEventListener("hidden.bs.offcanvas",()=>{closeBtn.classList.add("d-none")}));const outsideBtn=document.getElementById("outsideCloseBtn"),internalBtn=document.getElementById("internalCloseBtn");outsideBtn&&internalBtn&&outsideBtn.addEventListener("click",()=>{internalBtn.click()});const sidebarLinks=document.querySelectorAll("#sidebar .nav-link");document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(e=>{e.addEventListener("click",function(){let e=this.getAttribute("data-section");sidebarLinks.forEach(e=>e.classList.remove("active-section")),sidebarLinks.forEach(t=>{t.getAttribute("data-section")===e&&t.classList.add("active-section")})})}),sidebarPanel&&sidebarPanel.addEventListener("hidden.bs.offcanvas",()=>{sidebarLinks.forEach(e=>e.classList.remove("active-section"))});const offcanvas=document.getElementById("sidebarPanel");offcanvas&&offcanvas.addEventListener("shown.bs.offcanvas",()=>{let e=offcanvas.querySelectorAll(".poll-option");function t(){e.forEach(e=>{let t=e.querySelector(".poll-fill"),s=e.querySelector(".percentage"),a=e.querySelector(".option-text");t&&(t.style.transition="none",t.style.width="0%",t.style.minWidth="0",t.offsetHeight,t.style.transition=""),s&&(s.textContent="0%",s.classList.remove("text-primary","fw-bold"),s.classList.add("text-muted"),s.style.opacity="0"),a&&(a.classList.remove("text-primary","fw-bold"),a.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")})}e.forEach(t=>{t.addEventListener("click",s=>{s.stopPropagation(),e.forEach(e=>{let t=e.querySelector(".poll-fill"),s=e.querySelector(".percentage"),a=e.querySelector(".option-text");t&&(t.style.transition="none",t.style.width="0%",t.style.minWidth="0",t.offsetHeight,t.style.transition=""),s&&(s.textContent="0%",s.classList.remove("text-primary","fw-bold"),s.classList.add("text-muted"),s.style.opacity="0"),a&&(a.classList.remove("text-primary","fw-bold"),a.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")}),setTimeout(()=>{e.forEach(e=>{let t=e.dataset.percent,s=e.querySelector(".poll-fill"),a=e.querySelector(".percentage"),r=e.querySelector(".option-text");s&&(s.style.width=t+"%",s.style.minWidth="20px"),a&&(a.textContent=t+"%",a.style.opacity="1",a.classList.remove("text-muted"),a.classList.add("text-muted")),r&&(r.classList.remove("text-primary","fw-bold","text-dark"),r.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")}),t.classList.add("selected"),t.style.borderColor="cadetblue";let s=t.querySelector(".percentage"),a=t.querySelector(".option-text");s&&(s.classList.remove("text-muted"),s.classList.add("text-primary","fw-bold"),s.style.opacity="1"),a&&(a.classList.remove("text-dark"),a.classList.add("text-primary","fw-bold"))},50)})}),document.addEventListener("click",e=>{e.target.closest(".poll-option")||t()}),t()});const t=document.querySelector("#masonry-grid");if(t){imagesLoaded(t,()=>{new Masonry(t,{itemSelector:".energy-card.alt-style",columnWidth:".energy-card.alt-style",percentPosition:true,gutter:20,horizontalOrder:true});});}const energyCards=document.querySelectorAll(".energy-card.alt-style"),overlay=document.getElementById("mediaOverlay"),closeBtn1=document.querySelector(".media-close"),slideWrapper=document.querySelector(".media-slide-wrapper"),mediaTitle=document.getElementById("mediaTitle");let isFirstOpen=!0,slideImages=[],currentIndex=0;const originalImages=[...energyCards].map(e=>({src:e.querySelector("img").src,title:e.querySelector("h2").textContent}));function updateSlide(e="next"){let{src:t,title:s}=slideImages[currentIndex],a=(currentIndex-1+slideImages.length)%slideImages.length,r=(currentIndex+1)%slideImages.length;if(isFirstOpen){slideWrapper.innerHTML=`
-      <img src="${t}" alt="${s}" style="width: 100%; height: 70vh; object-fit: cover; display: block;">
-      <div class="play-overlay">
-        <img src="./media/Assets/Vector.svg" alt="Play">
-      </div>
-      <div class="slide-number">0${currentIndex+1}</div>
-    `,mediaTitle.textContent=s,document.querySelector(".prev-preview").style.backgroundImage=`url(${slideImages[a].src})`,document.querySelector(".next-preview").style.backgroundImage=`url(${slideImages[r].src})`,isFirstOpen=!1;return}slideWrapper.style.transition="transform 0.5s ease, opacity 0.5s ease",slideWrapper.style.transform="next"===e?"translateX(-100%) scale(0.8)":"translateX(100%) scale(0.8)",slideWrapper.style.opacity=0,setTimeout(()=>{slideWrapper.style.transition="none",slideWrapper.style.transform="next"===e?"translateX(100%) scale(0.8)":"translateX(-100%) scale(0.8)",slideWrapper.innerHTML=`
-      <img src="${t}" alt="${s}" style="width: 100%; height: 70vh; object-fit: cover; display: block;">
-      <div class="play-overlay">
-        <img src="./media/Assets/Vector.svg" alt="Play">
-      </div>
-      <div class="slide-number">0${currentIndex+1}</div>
-    `,mediaTitle.textContent=s,document.querySelector(".prev-preview").style.backgroundImage=`url(${slideImages[a].src})`,document.querySelector(".next-preview").style.backgroundImage=`url(${slideImages[r].src})`,slideWrapper.offsetWidth,slideWrapper.style.transition="transform 0.5s ease, opacity 0.5s ease",slideWrapper.style.transform="translateX(0) scale(1)",slideWrapper.style.opacity=1},500)}energyCards.forEach((e,t)=>{e.addEventListener("click",()=>{let e=originalImages.slice(t),s=originalImages.slice(0,t);slideImages=[...e,...s],currentIndex=0,updateSlide(),overlay.style.display="block"})}),closeBtn1&&closeBtn1.addEventListener("click",()=>{overlay.style.display="none",isFirstOpen=!0}),
-document.querySelector(".prev")?.addEventListener("click",()=>{currentIndex=(currentIndex-1+slideImages.length)%slideImages.length,updateSlide("prev")}),
-document.querySelector(".next")?.addEventListener("click",()=>{currentIndex=(currentIndex+1)%slideImages.length,updateSlide("next")});
+</div>`}};document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(e=>{e.addEventListener("click",t=>{let s=e.getAttribute("data-section");contentMap[s]&&(offcanvasTitle.textContent=contentMap[s].title,offcanvasContent.innerHTML=contentMap[s].content)})});const closeBtn=document.getElementById("outsideCloseBtn"),sidebarPanel=document.getElementById("sidebarPanel");sidebarPanel&&closeBtn&&(sidebarPanel.addEventListener("shown.bs.offcanvas",()=>{closeBtn.classList.remove("d-none")}),sidebarPanel.addEventListener("hidden.bs.offcanvas",()=>{closeBtn.classList.add("d-none")}));const outsideBtn=document.getElementById("outsideCloseBtn"),internalBtn=document.getElementById("internalCloseBtn");outsideBtn&&internalBtn&&outsideBtn.addEventListener("click",()=>{internalBtn.click()});const sidebarLinks=document.querySelectorAll("#sidebar .nav-link");document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(e=>{e.addEventListener("click",function(){let e=this.getAttribute("data-section");sidebarLinks.forEach(e=>e.classList.remove("active-section")),sidebarLinks.forEach(t=>{t.getAttribute("data-section")===e&&t.classList.add("active-section")})})}),sidebarPanel&&sidebarPanel.addEventListener("hidden.bs.offcanvas",()=>{sidebarLinks.forEach(e=>e.classList.remove("active-section"))});const offcanvas=document.getElementById("sidebarPanel");offcanvas&&offcanvas.addEventListener("shown.bs.offcanvas",()=>{let e=offcanvas.querySelectorAll(".poll-option");function t(){e.forEach(e=>{let t=e.querySelector(".poll-fill"),s=e.querySelector(".percentage"),a=e.querySelector(".option-text");t&&(t.style.transition="none",t.style.width="0%",t.style.minWidth="0",t.offsetHeight,t.style.transition=""),s&&(s.textContent="0%",s.classList.remove("text-primary","fw-bold"),s.classList.add("text-muted"),s.style.opacity="0"),a&&(a.classList.remove("text-primary","fw-bold"),a.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")})}e.forEach(t=>{t.addEventListener("click",s=>{s.stopPropagation(),e.forEach(e=>{let t=e.querySelector(".poll-fill"),s=e.querySelector(".percentage"),a=e.querySelector(".option-text");t&&(t.style.transition="none",t.style.width="0%",t.style.minWidth="0",t.offsetHeight,t.style.transition=""),s&&(s.textContent="0%",s.classList.remove("text-primary","fw-bold"),s.classList.add("text-muted"),s.style.opacity="0"),a&&(a.classList.remove("text-primary","fw-bold"),a.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")}),setTimeout(()=>{e.forEach(e=>{let t=e.dataset.percent,s=e.querySelector(".poll-fill"),a=e.querySelector(".percentage"),r=e.querySelector(".option-text");s&&(s.style.width=t+"%",s.style.minWidth="20px"),a&&(a.textContent=t+"%",a.style.opacity="1",a.classList.remove("text-muted"),a.classList.add("text-muted")),r&&(r.classList.remove("text-primary","fw-bold","text-dark"),r.classList.add("text-dark")),e.style.borderColor="",e.classList.remove("selected")}),t.classList.add("selected"),t.style.borderColor="cadetblue";let s=t.querySelector(".percentage"),a=t.querySelector(".option-text");s&&(s.classList.remove("text-muted"),s.classList.add("text-primary","fw-bold"),s.style.opacity="1"),a&&(a.classList.remove("text-dark"),a.classList.add("text-primary","fw-bold"))},50)})}),document.addEventListener("click",e=>{e.target.closest(".poll-option")||t()}),t()});const t=document.querySelector("#masonry-grid");if(t){imagesLoaded(t,()=>{new Masonry(t,{itemSelector:".energy-card.alt-style",columnWidth:".energy-card.alt-style",percentPosition:true,gutter:20,horizontalOrder:true});});}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const energyCards = document.querySelectorAll(".energy-card.alt-style");
+  const overlay = document.getElementById("mediaOverlay");
+  const closeBtn = document.querySelector(".media-close");
+  const swiperWrapper = document.querySelector(".swiper-wrapper");
+  const mediaTitle = document.getElementById("mediaTitle");
+  const prevPreview = document.querySelector(".prev-preview");
+  const nextPreview = document.querySelector(".next-preview");
+
+  const originalImages = [...energyCards].map(card => ({
+    src: card.querySelector("img").src,
+    title: card.querySelector("h2").textContent
+  }));
+
+  let swiperInstance = null;
+  let slideImages = [];
+
+  energyCards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      slideImages = [...originalImages.slice(index), ...originalImages.slice(0, index)];
+
+      if (swiperInstance) {
+        swiperInstance.destroy(true, true);
+        swiperInstance = null;
+      }
+
+      swiperWrapper.innerHTML = "";
+      // Assign numbering once here — fixed and static
+      slideImages.forEach(({ src, title }, i) => {
+        const slide = document.createElement("div");
+        slide.className = "swiper-slide";
+        slide.innerHTML = `
+          <div style="position:relative; width:100%; height:70vh;">
+            <img src="${src}" alt="${title}" style="width:100%; height:100%; object-fit:cover;">
+            <div class="play-overlay">
+              <img src="./media/Assets/Vector.svg" alt="Play">
+            </div>
+            <div class="slide-number">${i + 1 < 10 ? "0" + (i + 1) : i + 1}</div>
+          </div>
+        `;
+        swiperWrapper.appendChild(slide);
+      });
+
+      overlay.style.display = "block";
+      mediaTitle.textContent = slideImages[0].title;
+
+      swiperInstance = new Swiper(".mySwiper", {
+        loop: true,
+        centeredSlides: true,
+        grabCursor: true,
+        slidesPerView: 2,
+        effect: "coverflow",
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        on: {
+          slideChangeTransitionEnd() {
+            const realIndex = this.realIndex;
+            mediaTitle.textContent = slideImages[realIndex].title;
+            updatePreviews(realIndex);
+            // <== NO updateSlideNumbers here, numbering fixed at start
+          },
+        },
+      });
+
+      updatePreviews(0);
+      // Set numbering only once, here, no calls after this
+      // updateSlideNumbers(0); <-- removed on purpose
+      swiperInstance.slideToLoop(0, 0);
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
+
+  function updatePreviews(currentIndex) {
+    const total = slideImages.length;
+    const prevIndex = (currentIndex - 1 + total) % total;
+    const nextIndex = (currentIndex + 1) % total;
+
+    if (prevPreview && nextPreview) {
+      prevPreview.style.backgroundImage = `url(${slideImages[prevIndex].src})`;
+      nextPreview.style.backgroundImage = `url(${slideImages[nextIndex].src})`;
+
+      prevPreview.style.transform = "translate(-20px, -50%) scale(0.9)";
+      nextPreview.style.transform = "translate(20px, -50%) scale(0.9)";
+
+      setTimeout(() => {
+        prevPreview.style.transform = "translate(0, -50%) scale(1)";
+        nextPreview.style.transform = "translate(0, -50%) scale(1)";
+      }, 500);
+    }
+  }
+});
+
+
+
+
+
+
+
+ 
+
