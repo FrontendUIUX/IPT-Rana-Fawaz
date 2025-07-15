@@ -7,7 +7,12 @@
         <title>PowerTech website Media Gallery</title>
     <link rel="icon" href="./media/favicon.ico" type="image/x-icon" />
     <link href="./bootstrap-5.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css"/>
     <link href="./bootstrap-icons-1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="preload" as="image" href="./media/Assets/banner%201.jpg" type="image/jpeg">
+    <link rel="preload" href="./fonts/din%20bold.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="./fonts/din%20medium.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="./fonts/din%20regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="./PowerTech.css">
         <style>
 .navbar {
@@ -113,6 +118,7 @@ vertical-align: top;
 .energy-card:hover .card-info p{
  transform:translateY(2px);
 }
+    
 .media-overlay {
   position: fixed;
   top: 0;
@@ -120,9 +126,8 @@ vertical-align: top;
   bottom: 0;
   left: 0;
   background: linear-gradient(to bottom, #f8f9fa, #ffffff);
-  z-index: 9999; 
-  display: none; 
-  padding: 2rem;
+  z-index: 9999;
+  display: none;
   text-align: center;
 }
 
@@ -136,60 +141,75 @@ vertical-align: top;
   width: 1rem;
   height: 1rem;
 }
+
 #mediaTitle {
   font-size: 3.5rem;
-  margin-bottom: 2rem;
-  font-weight:600;
+  margin-bottom: 4rem;
+  font-weight: 600;
   color: #000;
 }
 
-.media-slider {
-  position: relative;
-  display: flex;
+
+.swiper-wrapper {
   align-items: center;
-  justify-content: center;
+
 }
 
-.side-preview {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28%;
-  height: 55vh;
-  background-size: cover;
-  background-position: center;
-  filter: blur(1px) brightness(0.9);
-  opacity: 0.2;
-  border-radius: 0.5rem;
-  pointer-events: none;
-  z-index: 1;
-  margin:-1.3rem;
-}
-.prev-preview {
-  left: 0.01rem;
+.swiper-slide {
+  transition: transform 0.5s ease;
+  border-radius: 0.6rem;
 }
 
-.next-preview {
-  right: 0.01rem;
-}
-
-.media-slide-wrapper {
-  position: relative;
-  width: 60%;
-  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.media-slide-wrapper img {
-  opacity: 1;
-  width:100%;      
-  height: 70vh;   
-  object-fit:cover;
-  display: block;
+.swiper-slide img {
+  object-fit: cover;
+  border-radius: 0.6rem;
   margin: 0 auto;
 }
 
+.swiper-slide:not(.swiper-slide-active) {
+  filter: blur(1px) brightness(0.8);
+  opacity: 0.3;
+}
+.swiper-slide:not(.swiper-slide-active) img{
+     width:70% !important;
+    }
+
+.swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+}
+
+.swiper-slide .play-overlay {
+  display: none;
+}
+.swiper-slide-active .play-overlay {
+  display: flex;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+.play-overlay img {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+    object-fit: contain;
+    border-radius: 0rem !important;
+}
+
+/* Slide number styling */
 .slide-number {
   position: absolute;
   bottom: 1rem;
@@ -197,52 +217,32 @@ vertical-align: top;
   font-size: 1.5rem;
   color: white;
   font-weight: bold;
-} 
+}
 
-.play-overlay {
-  position: absolute;
+/* Navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  background: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin-top: 0 !important;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.6); 
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-items: center;
+  transform: translateY(-50%);
   z-index: 10;
-  cursor: pointer;
 }
-
-.play-overlay img {
-  width: 1.5rem;
-  height: 1.5rem;
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none !important;
 }
-
-.navigation {
-  z-index: 2;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.navigation img {
-  display: block;
+.swiper-button-prev img,
+.swiper-button-next img {
   width: 5rem;
   height: 5rem;
+  display: block;
 }
 
-.navigation.prev img {
-  transform: scaleX(-1);
-}
-             
 
+            
 @media (max-width: 600px) {
  #userDropdownMenu span{
         color:black;
@@ -299,95 +299,6 @@ vertical-align: top;
     height: 0.75rem;
   }
     
-.media-overlay {
-  padding: 1rem;
-}
-
-#mediaTitle {
-  font-size: 1.7rem;
-  margin-bottom: 1rem;
-}
-
-.media-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-}
-
-.media-close img {
-  width: 0.875rem;
-  height: 0.875rem;
-}
-
-.media-slider {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "image"
-    "buttons";
-  gap: 0rem 0;
-  width: 100%;
-}
-
-.media-slide-wrapper {
-  grid-area: image;
-  width: 90%;
-justify-self: center;
-    margin-top: 1rem;
-}
-
-.navigation.prev,
-.navigation.next {
-  grid-area: buttons;
-  display: inline-flex;
-  vertical-align: middle;
-  justify-self: flex-end;
-  align-items: center;
-    top:-8rem;
-}
-
-.navigation.prev {
-  padding-left:6rem !important;
-  padding-right:0!important;
-  justify-self: flex-start;
-}
-.navigation.next{
- padding-left:0rem !important;
-  padding-right:6rem!important; 
-    }
-    
-
-.navigation img {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.side-preview {
-  display: none;
-}
-
-
-.media-slide-wrapper img {
-  height: 70vh;
-  object-fit: cover;
-}
-
-.play-overlay {
-  width: 3rem;
-  height: 3rem;
-}
-
-.play-overlay img {
-  width: 1rem;
-  height: 1rem;
-}
-
-.slide-number {
-  font-size: 1.3rem;
-  bottom: 0.5rem;
-  left: 0.5rem;
-}
 
 }
             
@@ -442,105 +353,7 @@ justify-self: center;
     font-size: 1rem !important;
   }
 
-  .photo-count {
-    align-items: center;
-    justify-content: center;
-    top: 2vh;
-    right: 0;
-    font-size: 1.5rem;
-    padding: 0.75rem 1.1rem;
-    max-height: 18%;
-    max-width: 24%;
-  }
-
-  .photo-count img {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-.media-overlay {
-  padding: 1rem;
-}
-
-#mediaTitle {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.media-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-}
-
-.media-close img {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.media-slider {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "image"
-    "buttons";
-  gap: 0rem 0;
-  width: 100%;
-}
-
-.media-slide-wrapper {
-  grid-area: image;
-  width: 90%;
-justify-self: center;
-    margin-top: 1rem;
-}
-
-.navigation.prev,
-.navigation.next {
-  grid-area: buttons;
-  display: inline-flex;
-  vertical-align: middle;
-  justify-self: flex-end;
-  align-items: center;
-    top:-8rem;
-    width:1rem;
-}
-
-.navigation.prev {
-  margin-right: 5rem;
- justify-self: flex-start;
-}
-
-.navigation img {
-  width: 4.5rem;
-  height: 4.5rem;
-}
-
-.side-preview {
-  display: none;
-}
-
-
-.media-slide-wrapper img {
-  height: 70vh;
-  object-fit: cover;
-}
-
-.play-overlay {
-  width: 3rem;
-  height: 3rem;
-}
-
-.play-overlay img {
-  width: 1rem;
-  height: 1rem;
-}
-
-.slide-number {
-  font-size: 2rem;
-  bottom: 0.5rem;
-  left: 0.5rem;
-}
+  
 
 }
 
@@ -642,170 +455,6 @@ justify-self: center;
     height: 1rem !important;
     margin-right: 0.25rem !important;
     vertical-align: middle !important;
-  }
-.media-close img {
-  width: 1.875rem;
-  height: 1.875rem;
-}
-    #mediaTitle {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-    .navigation img {
-  width: 5.5rem;
-  height: 5.5rem;
-}
-
-    .slide-number {
-  font-size: 2rem;
-
-}
-
- .media-overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
-    z-index: 9999;
-    display: none;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  #mediaTitle {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    color: #000;
-  }
-
-  .media-close {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    cursor: pointer;
-  }
-
-  .media-close img {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .media-slider {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    grid-template-columns: none;
-    grid-template-rows: none;
-    grid-template-areas: none;
-  }
-
-  .side-preview {
-    position: absolute;
-    display: block;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28%;
-    height: 55vh;
-    background-size: cover;
-    background-position: center;
-    filter: blur(1px) brightness(0.9);
-    opacity: 0.2;
-    border-radius: 0.5rem;
-    pointer-events: none;
-    z-index: 1;
-    margin: -1.3rem;
-  }
-
-  .prev-preview {
-    left: 0.01rem;
-  }
-
-  .next-preview {
-    right: 0.01rem;
-  }
-
-  .media-slide-wrapper {
-    position: relative;
-    width: 60%;
-    min-width: 40%;
-    margin: 0;
-    justify-self: auto;
-    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-
-  .media-slide-wrapper img {
-    width: 100%;
-    height: 70vh;
-    object-fit: fill;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .slide-number {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    font-size: 1.5rem;
-    color: white;
-    font-weight: bold;
-  }
-
-  .play-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    cursor: pointer;
-  }
-
-  .play-overlay img {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .navigation {
-    z-index: 2;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    grid-area: auto;
-    top: auto;
-    margin: 0;
-  }
-
-  .navigation img {
-    display: block;
-    width: 5rem;
-    height: 5rem;
-  }
-
-
-  .navigation.prev,
-  .navigation.next {
-    top:0;
-    display: flex;
-    justify-self: auto;
-    align-items: center;
-    margin: 0;
-    width: unset;
-    height:unset;
   }
 
 }
@@ -1048,34 +697,40 @@ justify-self: center;
 </div>
 </section>
         
+<!-- Overlay Container -->
 <div id="mediaOverlay" class="media-overlay">
+  <!-- Close Button -->
   <span class="media-close">
-  <img src="./media/Assets/Group%2039442.svg" alt="Close"  loading="lazy"/>
-</span>
-  <h2 id="mediaTitle">Empower Together</h2>
-<div class="media-slider">
-  <div class="side-preview prev-preview"></div>
-  <div class="side-preview next-preview"></div>
+    <img src="./media/Assets/Group%2039442.svg" alt="Close" />
+  </span>
 
-  <button class="navigation prev">
-    <img src="./media/next.svg" alt="Previous arrow" loading="lazy"/>
-  </button>
+  <!-- Media Title -->
+  <h2 id="mediaTitle" class="media-title"></h2>
 
-  <div class="media-slide-wrapper">   
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slides will be added dynamically via JS -->
     </div>
 
-  <button class="navigation next">
-    <img src="./media/next.svg" alt="Next arrow" loading="lazy"/>
-  </button>
+    <!-- Custom navigation buttons -->
+    <div class="swiper-button-prev custom-nav">
+      <img src="./media/next.svg" alt="Previous" style="transform: scaleX(-1);" />
+    </div>
+    <div class="swiper-button-next custom-nav">
+      <img src="./media/next.svg" alt="Next" />
+    </div>
+  </div>
 </div>
-</div>
-        
+
+      
 <script src="./js/gsap.min.js" defer></script>
 <script src="./js/ScrollTrigger.min.js" defer></script>        
 <script src="./js/jquery-3.7.1.min.js" defer></script>
 <script src="./bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="./js/masonry.pkgd.min.js" defer></script>
 <script src="./js/imagesloaded.pkgd.min.js" defer></script>
+<script src="./js/swiper-bundle.min.js"></script>
 <script src="./js/script.js" defer></script>
     </body>
 </html>

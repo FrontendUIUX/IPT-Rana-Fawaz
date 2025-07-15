@@ -154,6 +154,20 @@ margin-top:0;
     color: #6c757d !important; 
 }
 
+.accordion-button {
+  border-radius: 0.7rem !important; 
+}
+.accordion-button:not(.collapsed) {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.accordion-body {
+  border-top-left-radius: 0rem !important;
+  border-top-left-radius: 0rem !important;
+  border-bottom-left-radius: 0.7rem !important;
+  border-bottom-right-radius: 0.7rem !important;
+}
+
 .event-date{
     margin-top: 1.5rem;
     margin-left:2rem;
@@ -275,10 +289,12 @@ margin-top:0;
   align-items: center;
   justify-content: center;
   z-index: 1061; 
+  cursor: pointer;
 }
 
 .btn-close-custom::before {
   content: "✕";
+  cursor: pointer;
 }
 
 .btn-close-custom:hover,
@@ -767,6 +783,12 @@ align-items: center !important;
   margin-top: 0.5rem;
 }
 
+#userCarousel .custom-muted::before,
+#userCarousel .custom-muted::after{
+    content: "–––";
+     margin: 0 0.25rem;
+} 
+
 #userCarousel .carousel-control-prev,
 #userCarousel .carousel-control-next {
   opacity: 0;
@@ -852,7 +874,7 @@ align-items: center !important;
 .energy-card {
   flex: 1;
   position: relative;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   overflow: hidden;
   box-shadow: none;
   padding: 0;
