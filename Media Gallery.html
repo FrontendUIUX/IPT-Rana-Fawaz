@@ -68,7 +68,15 @@ box-sizing: border-box;
 display: inline-block;
 vertical-align: top;
  }
-
+            
+.image-container {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: block;
+    object-fit: cover;
+  width: 100%;
+  height: auto;
+}
 .energy-card.alt-style .card-info {
   position: static;
   background: none;
@@ -97,7 +105,8 @@ vertical-align: top;
   margin: 0;
   font-size: 0.875rem;
   color: #444;
-}    
+} 
+
 .energy-card:nth-child(1) {
   height: auto;
 }
@@ -113,10 +122,10 @@ vertical-align: top;
     height: auto; 
 }
 .energy-card:hover .card-info h2{
- transform:translateY(5px);
+ transform:translateY(2px);
 }
 .energy-card:hover .card-info p{
- transform:translateY(2px);
+ transform:translateY(1px);
 }
     
 .media-overlay {
@@ -300,7 +309,11 @@ vertical-align: top;
     width: 0.75rem;
     height: 0.75rem;
   }
-
+.swiper-button-prev,
+.swiper-button-next {
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
 }
             
 @media (min-width: 600px) {
@@ -446,7 +459,7 @@ vertical-align: top;
     position: absolute !important;
     top: 1rem !important;
     font-size: 1rem !important;
-    padding: 0.25rem 0.5rem !important;
+    padding: 0.4rem 0.5rem !important;
     border-top-left-radius: 0.25rem !important;
     border-bottom-left-radius: 0.25rem !important;
   }
@@ -616,67 +629,86 @@ vertical-align: top;
 </div>         
     </div>
        <!--media-->
-  <section class="energy-section">
+<section class="energy-section">
   <div class="container">
     <div class="energy-gallery" id="masonry-grid">
 
-      <!-- Cards -->
       <div class="energy-card alt-style">
-        <img src="./media/Assets/1.min.jpg" alt="Energy in Action" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/1.min.jpg" alt="Energy in Action" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">10</span>
         <div class="card-info"><h2>Energy in Action</h2><p>JUNE 13, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/2.min.jpg" alt="Empower Together" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/2.min.jpg" alt="Empower Together" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">18</span>
         <div class="card-info"><h2>Empower Together</h2><p>JUNE 9, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/3.min.jpg" alt="Power Moments" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/3.min.jpg" alt="Power Moments" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">5</span>
         <div class="card-info"><h2>Power Moments</h2><p>MAY 5, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/4.min.jpg" alt="Sustainability Initiatives" class="img-fluid" loading="lazy">
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon">14</span>
+        <div class="image-container">
+          <img src="./media/Assets/4.min.jpg" alt="Sustainability Initiatives" class="img-fluid" loading="lazy">
+        </div>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">14</span>
         <div class="card-info"><h2>Sustainability Initiatives</h2><p>MAY 2, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/5.min.jpg" alt="Product Launches" class="img-fluid">
+        <div class="image-container">
+          <img src="./media/Assets/5.min.jpg" alt="Product Launches" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">6</span>
         <div class="card-info"><h2>Product Launches</h2><p>APRIL 27, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/6.min.jpg" alt="Awards & Recognition" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/6.min.jpg" alt="Awards & Recognition" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">22</span>
         <div class="card-info"><h2>Awards & Recognition</h2><p>APRIL 13, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/7.min.jpg" alt="Community Involvement" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/7.min.jpg" alt="Community Involvement" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">12</span>
         <div class="card-info"><h2>Community Involvement</h2><p>APRIL 3, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/8.min.jpg" alt="Partner Engagement" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/8.min.jpg" alt="Partner Engagement" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">18</span>
         <div class="card-info"><h2>Partner Engagement</h2><p>MARCH 12, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
-        <img src="./media/Assets/9.min.jpg" alt="Office Life" class="img-fluid" loading="lazy">
+        <div class="image-container">
+          <img src="./media/Assets/9.min.jpg" alt="Office Life" class="img-fluid" loading="lazy">
+        </div>
         <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">34</span>
         <div class="card-info"><h2>Office Life</h2><p>MARCH 4, 2024</p></div>
       </div>
+
     </div>
   </div>
-</section> 
+</section>
+ 
         <!-- Below footer section -->
 <section class="post-footer-section">
       <!--footer-->
