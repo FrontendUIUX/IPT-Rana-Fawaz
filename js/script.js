@@ -185,8 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".media-close");
   const swiperWrapper = document.querySelector(".swiper-wrapper");
   const mediaTitle = document.getElementById("mediaTitle");
-  const prevPreview = document.querySelector(".prev-preview");
-  const nextPreview = document.querySelector(".next-preview");
+
 
   const originalImages = [...energyCards].map(card => ({
     src: card.querySelector("img").src,
@@ -206,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       swiperWrapper.innerHTML = "";
-      // Assign numbering once here — fixed and static
+
       slideImages.forEach(({ src, title }, i) => {
         const slide = document.createElement("div");
         slide.className = "swiper-slide";
@@ -243,18 +242,15 @@ document.addEventListener("DOMContentLoaded", () => {
           prevEl: ".swiper-button-prev",
         },
         on: {
-          slideChangeTransitionEnd() {
+           slideChange() {
             const realIndex = this.realIndex;
             mediaTitle.textContent = slideImages[realIndex].title;
             updatePreviews(realIndex);
-            // <== NO updateSlideNumbers here, numbering fixed at start
           },
         },
       });
 
       updatePreviews(0);
-      // Set numbering only once, here, no calls after this
-      // updateSlideNumbers(0); <-- removed on purpose
       swiperInstance.slideToLoop(0, 0);
     });
   });
@@ -268,18 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevIndex = (currentIndex - 1 + total) % total;
     const nextIndex = (currentIndex + 1) % total;
 
-    if (prevPreview && nextPreview) {
-      prevPreview.style.backgroundImage = `url(${slideImages[prevIndex].src})`;
-      nextPreview.style.backgroundImage = `url(${slideImages[nextIndex].src})`;
-
-      prevPreview.style.transform = "translate(-20px, -50%) scale(0.9)";
-      nextPreview.style.transform = "translate(20px, -50%) scale(0.9)";
-
-      setTimeout(() => {
-        prevPreview.style.transform = "translate(0, -50%) scale(1)";
-        nextPreview.style.transform = "translate(0, -50%) scale(1)";
-      }, 500);
-    }
   }
 });
 
