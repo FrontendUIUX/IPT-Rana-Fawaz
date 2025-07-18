@@ -4,7 +4,7 @@ body , html{
 #top-bar {
   height:3.5rem;
   width: 100vw;
-  background-image: url("./media/top-bar-pattern.jpg");
+  background-image: url("./media/compressed/top-bar-pattern.webp");
   z-index: 1050;
   position: fixed;
   box-sizing: border-box; 
@@ -542,7 +542,7 @@ align-items: center !important;
   flex-wrap: wrap;
   align-items: center;
   padding-bottom: 3rem;
-  background-image: url("./media/bg%202.jpg");
+  background-image: url("./media/compressed/bg%202.min.webp");
 }
 .homepage-sections .container{
     width:90% !important;
@@ -691,7 +691,7 @@ align-items: center !important;
   position: relative;
   display: block;
   height: 100%;
-  background-image: url("./media/employee-corner-bg.jpg");
+  background-image: url("./media/compressed/employee-corner-bg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -818,7 +818,7 @@ align-items: center !important;
 
 .energy-section {
   padding-top: 3rem;
-  background-image: url(./media/media-sectionbg.jpg);
+  background-image: url(./media/compressed/media-sectionbg.webp);
   background-size: cover;             
   background-repeat: no-repeat;     
   background-position: center;       
@@ -2604,6 +2604,9 @@ margin-top: 0.6rem;
     line-height: 1.8;
     font-size:1rem;
   }
+    .energy-card .img-fluid{
+        min-height:100%;
+    }
   .energy-card:nth-child(1) {
     height: 32rem;
   }
