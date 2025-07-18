@@ -255,10 +255,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+if (closeBtn) {
   closeBtn.addEventListener("click", () => {
     overlay.style.display = "none";
   });
-
+}
   function updatePreviews(currentIndex) {
     const total = slideImages.length;
     const prevIndex = (currentIndex - 1 + total) % total;
