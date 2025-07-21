@@ -52,6 +52,11 @@ body , html{
     border: none;
 }
 
+#dashboard .nav-link-1 img{
+  width:2rem;
+  height:2.5rem;
+  max-width: 90%;
+}
 #sidebar {
   position:fixed;
   top: 3.5rem;
@@ -1590,11 +1595,7 @@ font-size: 0.5rem;
 /*----------------------------------TABLET-1 VERSION---------------------------------------------------------------------------*/
 
 @media only screen and (min-width:600px) {
-#dashboard .nav-link-1 img{
-  width:2rem;
-  height:2.5rem;
-  max-width: 90%;
-}
+
    #user { 
   margin-right: 2.5rem;
 }

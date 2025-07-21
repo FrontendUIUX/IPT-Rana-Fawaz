@@ -91,9 +91,7 @@ vertical-align: top;
   font-family: 'DIN Medium';
 }
 
-.energy-card.alt-style img{
-  width: 100%;
-  height: auto;         
+.energy-card.alt-style img{         
   display: block;
   cursor: pointer;
 }
@@ -258,7 +256,9 @@ vertical-align: top;
  #userDropdownMenu span{
         color:black;
 }
-
+    .energy-section .container{
+   margin-top: 3.5rem;
+    }
   .energy-gallery {
     display: flex;
     flex-direction: column;
@@ -343,13 +343,13 @@ vertical-align: top;
   }
 
   .energy-card {
-    width: 90%;
+    width: 100%;
     height: auto;
   }
 
   .energy-card img {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     max-height: none;
     min-height: auto;
   }
@@ -367,8 +367,12 @@ vertical-align: top;
     font-size: 1rem !important;
   }
 
-  
-
+    .energy-section .container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:auto;
+    }
 }
 
 @media (min-width: 992px) {
@@ -439,8 +443,6 @@ vertical-align: top;
   }
 
   .energy-card.alt-style img {
-    width: 100% !important;
-    height: auto !important;
     display: block !important;
   }
 
@@ -465,8 +467,6 @@ vertical-align: top;
   }
 
   .photo-count img {
-    width: 1rem !important;
-    height: 1rem !important;
     margin-right: 0.25rem !important;
     vertical-align: middle !important;
   }
@@ -621,7 +621,7 @@ vertical-align: top;
     
 <div class="position-relative  hero-section">
   <div class="image-overlay"></div>
-  <img src="./media/Assets/banner%201s.webp" id="Media-Gallery-banner" alt="Media Gallery">
+  <img src="./media/Assets/banner%201s.webp" id="Media-Gallery-banner" alt="Media Gallery" style="width:100vw; height:60vh">
   <div class="banner-caption text-start">
     <h1>Media Gallery</h1>
   </div>
@@ -635,73 +635,73 @@ vertical-align: top;
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/1.min.webp" alt="Energy in Action" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/1.min.webp" alt="Energy in Action" class="img-fluid" loading="lazy" style="width:514px;height:350px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">10</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">10</span>
         <div class="card-info"><h2>Energy in Action</h2><p>JUNE 13, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/2.min.webp" alt="Empower Together" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/2.min.webp" alt="Empower Together" class="img-fluid" loading="lazy" style="width:514px;height:594px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">18</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">18</span>
         <div class="card-info"><h2>Empower Together</h2><p>JUNE 9, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/3.min.webp" alt="Power Moments" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/3.min.webp" alt="Power Moments" class="img-fluid" loading="lazy" style="width:518px;height:315px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">5</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">5</span>
         <div class="card-info"><h2>Power Moments</h2><p>MAY 5, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/4.min.webp" alt="Sustainability Initiatives" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/4.min.webp" alt="Sustainability Initiatives" class="img-fluid" loading="lazy" style="width:514px; height:485px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">14</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">14</span>
         <div class="card-info"><h2>Sustainability Initiatives</h2><p>MAY 2, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/5.min.webp" alt="Product Launches" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/5.min.webp" alt="Product Launches" class="img-fluid" loading="lazy" style="width:518px; height:316px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">6</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">6</span>
         <div class="card-info"><h2>Product Launches</h2><p>APRIL 27, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/6.min.webp" alt="Awards & Recognition" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/6.min.webp" alt="Awards & Recognition" class="img-fluid" loading="lazy" style="width:518px; height:350px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">22</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">22</span>
         <div class="card-info"><h2>Awards & Recognition</h2><p>APRIL 13, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/7.min.webp" alt="Community Involvement" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/7.min.webp" alt="Community Involvement" class="img-fluid" loading="lazy" style="width:514px; height:344px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">12</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">12</span>
         <div class="card-info"><h2>Community Involvement</h2><p>APRIL 3, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/8.min.webp" alt="Partner Engagement" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/8.min.webp" alt="Partner Engagement" class="img-fluid" loading="lazy" style="width:514px; height:484px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">18</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">18</span>
         <div class="card-info"><h2>Partner Engagement</h2><p>MARCH 12, 2024</p></div>
       </div>
 
       <div class="energy-card alt-style">
         <div class="image-container">
-          <img src="./media/Assets/9.min.webp" alt="Office Life" class="img-fluid" loading="lazy">
+          <img src="./media/Assets/9.min.webp" alt="Office Life" class="img-fluid" loading="lazy" style="width:514px; height:567px">
         </div>
-        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy">34</span>
+        <span class="photo-count"><img src="./media/Assets/Icon%20awesome-photo-video.svg" alt="album icon" loading="lazy" style="width:29px;height:23px">34</span>
         <div class="card-info"><h2>Office Life</h2><p>MARCH 4, 2024</p></div>
       </div>
 
