@@ -354,7 +354,7 @@ margin-top:0;
 }
 @font-face {
   font-family: 'DIN';
-  src: url('./fonts/din regular.ttf') format('truetype');
+  src: url('./fonts/din-regular.woff2') format('woff2');
   font-weight:normal;
   font-style: normal;
   font-display: swap;
@@ -478,14 +478,14 @@ align-items: center !important;
 
 @font-face {
   font-family: 'DIN Bold';
-  src: url('./fonts/din bold.otf') format('opentype');
+  src: url('./fonts/din-bold.woff2') format('woff2');
   font-weight:normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'DIN Medium';
-  src: url('./fonts/din medium.otf') format('opentype');
+  src: url('./fonts/din-medium.woff2') format('woff2');
   font-weight:normal;
   font-style: normal;
   font-display: swap;
