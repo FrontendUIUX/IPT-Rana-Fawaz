@@ -1,5 +1,6 @@
 body , html{
     overflow-x:hidden;
+     font-family: 'DIN', 'Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 #top-bar {
   height:3.5rem;
@@ -15,7 +16,7 @@ body , html{
 }
 
 #user { 
-  font-family: 'DIN Medium';
+  font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -117,7 +118,7 @@ body , html{
 }
 
 #sidebarPanel .offcanvas-header h4{
-    font-family: 'DIN Bold';
+    font-family: 'DIN Bold','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 
 #sidebarPanel .offcanvas-body {
@@ -146,10 +147,10 @@ margin-top:0;
   opacity: 0.5;
 }
 .accordion-button h6{
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 .accordion-button small{
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 .accordion-button:not(.collapsed) h6{
     color: #000 !important; 
@@ -221,18 +222,18 @@ margin-top:0;
   .event-card .label-holiday {
     color: #dc3545;
     font-size: 0.8rem;
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
     margin-top: 0.25rem;
     display: block;
   }
   .event-card strong {
     font-size: 1.25rem;
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   }
 
   .event-card .text-end small div {
     font-size: 1rem;
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   }
 
   .events-wrapper hr {
@@ -496,7 +497,7 @@ align-items: center !important;
   flex-wrap: wrap;
   z-index: 2;
   position: absolute;
-  font-family: 'DIN Bold';
+  font-family: 'DIN Bold','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 
 
@@ -575,11 +576,11 @@ align-items: center !important;
   border-bottom: none;
 }
   #news-section .card-header h2 {
-   font-family: 'DIN Medium';
+   font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   }
 
   #news-section .card-header a {
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   }
 #news-section > * {
   margin: 0 !important;
@@ -622,13 +623,13 @@ align-items: center !important;
   min-width: 0;
 }
 .news-desc{
-    font-family: 'DIN';
+    font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 
 #news-section .news-date {
   display: flex;
   align-items: center;
-  font-family: 'DIN';
+  font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 
 #news-section .news-date img {
@@ -806,7 +807,7 @@ align-items: center !important;
 .btn-skyblue {
   background-color: azure;
   border-radius: 2rem;
-  font-family: 'DIN Medium';
+  font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   color: #005050;
   border: none;
   padding: 0.75rem 2.5rem;
@@ -838,7 +839,7 @@ align-items: center !important;
 }
 
 .energy-title h2 {
-  font-family: 'DIN Bold';
+  font-family: 'DIN Bold','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   margin: 0;
   line-height: 1.3;
   color: #000;
@@ -918,14 +919,14 @@ align-items: center !important;
   transition: transform 0.4s ease;
   font-size: 1.125rem;
   color: #fff;
-  font-family: 'DIN Bold';
+  font-family: 'DIN Bold','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 .energy-card:hover .card-info h2{
  transform:translateY(-10px);
 }
 .card-info p {
   margin-left: 1.875rem;
-  font-family: 'DIN';
+  font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   color: rgba(255, 255, 255, 0.7);
  transition: transform 0.4s ease;
 }
@@ -956,7 +957,7 @@ align-items: center !important;
   gap: 0.375rem;
   border-bottom-left-radius: 0.3rem;
   border-top-left-radius: 0.3rem;
-  font-family: 'DIN Medium';
+  font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
    z-index:2;
 }
 
@@ -976,7 +977,7 @@ align-items: center !important;
   background-color: #dc002c;
   color: white;
   border: none;
-  font-family: 'DIN';
+  font-family: 'DIN','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
   padding: 0.625rem 2.125rem;
   font-size: 0.875rem;
   border-radius: 1.5625rem;
@@ -1028,7 +1029,7 @@ align-items: center !important;
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.875rem;
-  font-family: 'DIN Medium';
+  font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 
 .footer-text {
@@ -1097,7 +1098,7 @@ align-items: center !important;
   display: flex;
   z-index: 2;
   position: absolute;
-  font-family: 'DIN Medium';
+  font-family: 'DIN Medium','Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
 }
 .banner-caption h1{
     font-size:3rem;  
