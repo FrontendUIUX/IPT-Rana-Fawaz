@@ -12,9 +12,10 @@
         <link rel="preload" href="./fonts/din-medium.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="./fonts/din-regular.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="./PowerTech.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./PowerTech.css"></noscript>
-        <link rel="preload" as="image" href="./media/compressed/banner1.min.webp" type="image/png">
+        <link rel="preload" as="image" href="./media/compressed/banner1sm.min.webp" type="image/webp" fetchpriority="high">
     </head>
     <body>
+    <img src="/media/compressed/banner1sm.min.webp" alt="Preload LCP" width="1920" height="1080" style="position:absolute; width:0; height:0; overflow:hidden;" fetchpriority="high" />
     <!--Heading-->
     <!--topbar-->
 <div id="top-bar" class="d-flex justify-content-between align-items-center px-0 py-1 shadow">
@@ -139,7 +140,7 @@
 
   <div class="carousel-inner">
     <div class="carousel-item active position-relative">
-      <img src="./media/compressed/banner1sm.min.webp" class="d-block" alt="Slide 1" fetchpriority="high" style="width:100%;height:100%">
+      <img src="./media/compressed/banner1sm.min.webp" class="d-block" alt="Slide 1" decoding="async" fetchpriority="high" width="1920" height="1080" loading="eager" style="width:100%;height:100%">
       <div class="carousel-overlay"></div>
       <div class="carousel-caption text-start">
         <h4>Pioneering Telecom, Power, and Automotive Innovations for a better Future</h4>

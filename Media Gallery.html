@@ -9,7 +9,7 @@
       <link rel="preload" href="./bootstrap-5.3.6-dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./bootstrap-5.3.6-dist/css/bootstrap.min.css"></noscript>
       <link rel="preload" href="./bootstrap-icons-1.10.5/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./bootstrap-icons-1.10.5/font/bootstrap-icons.css"></noscript>
       <link rel="preload" href="./css/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./css/swiper-bundle.min.css"></noscript>
-      <link rel="preload" as="image" href="./media/Assets/banner%201.webp" type="image/webp">
+      <link rel="preload" as="image" href="./media/Assets/banner%201s.webp" type="image/webp"  fetchpriority="high">
       <link rel="preload" href="./fonts/din-bold.woff2" as="font" type="font/woff2" crossorigin>
       <link rel="preload" href="./fonts/din-medium.woff2" as="font" type="font/woff2" crossorigin>
       <link rel="preload" href="./fonts/din-regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -517,6 +517,7 @@ vertical-align: top;
         </style>
     </head>
     <body>
+<img src="./media/Assets/banner%201s.webp" alt="Media Gallery (Preload)" width="1920" height="1080" style="position:absolute; width:0; height:0; overflow:hidden;" fetchpriority="high" decoding="async">
     <!--Heading-->
     <!--topbar-->
 <div id="top-bar" class="d-flex justify-content-between align-items-center px-0 py-1 shadow">
@@ -621,7 +622,7 @@ vertical-align: top;
     
 <div class="position-relative  hero-section">
   <div class="image-overlay"></div>
-  <img src="./media/Assets/banner%201s.webp" id="Media-Gallery-banner" alt="Media Gallery" style="width:100vw; height:60vh">
+ <img src="./media/Assets/banner%201s.webp" id="Media-Gallery-banner" alt="Media Gallery"width="1920" height="1080" style="width:100vw; height:60vh;" decoding="async" fetchpriority="high">
   <div class="banner-caption text-start">
     <h1>Media Gallery</h1>
   </div>
