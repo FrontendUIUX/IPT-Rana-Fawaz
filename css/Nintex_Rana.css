@@ -1,14 +1,10 @@
-.theme-entry div[name='Area Item OBB_Collapse'] table {
-  table-layout: auto !important;
-  width: auto !important;
+.theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
   min-width: 130% !important;
+  overflow-x:scroll;
 }
-
-.theme-entry div[name='Area Item OBB_Collapse'] th,
-.theme-entry div[name='Area Item OBB_Collapse'] td {
-  white-space: nowrap !important;
-}
-
 .theme-entry div[name='Area Item OBB_Collapse'] colgroup col {
   width: auto !important;
 } 
+.theme-entry div[name='Area Item OBB_Collapse'] colgroup col table {
+  table-layout: auto;
+}
