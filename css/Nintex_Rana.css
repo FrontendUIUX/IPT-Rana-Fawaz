@@ -1,0 +1,14 @@
+.theme-entry div[name='Area Item OBB_Collapse'] table {
+  table-layout: auto !important;
+  width: auto !important;
+  min-width: 130% !important;
+}
+
+.theme-entry div[name='Area Item OBB_Collapse'] th,
+.theme-entry div[name='Area Item OBB_Collapse'] td {
+  white-space: nowrap !important;
+}
+
+.theme-entry div[name='Area Item OBB_Collapse'] colgroup col {
+  width: auto !important;
+}
