@@ -1,6 +1,6 @@
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body {
   display: block !important;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
