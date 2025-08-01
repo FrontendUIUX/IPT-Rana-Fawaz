@@ -30,11 +30,37 @@
 }
 
 .filterChosen.filter::before {
-    content: "Choose Filter:";
+    content: "Choose Filter: ";
     position: relative;
     left: 0;
     width: fit-content;
     color: #131313;
     font-size: 1rem;
     font-family: var(--regularFont) !important;
+}
+
+html:not(.designer) .popup.dialog{
+    width: 600px;
+    top: 66.906px;
+    left: 375.5px;
+    height: 400px !important;
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+
+html:not(.designer) .popup.dialog .popup-header .popup-header-text {
+    font-size: 1.6rem;
+    color: #131313;
+}
+
+html:not(.designer) .theme-entry .popup-header {
+    padding: 1rem 2rem;
+    background-color: lightyellow;
+    margin: 0 !important;
+    position: relative !important;
+    height: fit-content !important;
+}
+
+.theme-entry .dialog#PickerSearchDialog {
+    min-height: 30.8rem;
 }
