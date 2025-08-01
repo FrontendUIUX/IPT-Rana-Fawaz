@@ -77,3 +77,14 @@ html:not(.designer) .theme-entry .grid .grid-column-header-text {
     color: #131313;
 }
 
+html:not(.designer) [name*="OBB_button OBB_primary_button"], html:not(.designer) .SourceCode-Forms-Controls-Web-Button {
+    background-color: #8b5b5b !important;
+    color: white !important;
+}
+
+html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-Controls-Web-Button {
+    border-radius: .5rem;
+    border: none;
+    transition: var(--transition);
+    font-family: var(--regularFont);
+}
