@@ -13,3 +13,9 @@
   width: auto !important;
 }
 
+.theme-entry .filterContainer .quickSearch.filter{
+    display:none;
+}
+.theme-entry .filterContainer .filterChosen.filter{
+    display:inline-block;
+}
