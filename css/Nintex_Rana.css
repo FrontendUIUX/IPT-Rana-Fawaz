@@ -16,6 +16,10 @@
 .quickSearch.filter{
     display:none !important;
 }
+
+.filterChosen.filter {
+    position: relative;
+}
 .filterChosen.filter{
     display:inline-block !important;
 }
@@ -26,7 +30,7 @@
 }
 
 .filterChosen.filter::before {
-    content: "Choose Filter:";
+    content: "Choose Filter: ";
     position: relative;
     left: 0;
     width: fit-content;
