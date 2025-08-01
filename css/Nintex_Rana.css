@@ -13,9 +13,9 @@
   width: auto !important;
 }
 
-.theme-entry .filterContainer .quickSearch.filter{
+.quickSearch.filter{
     display:none !important;
 }
-.theme-entry .filterContainer .filterChosen.filter{
+.filterChosen.filter{
     display:inline-block !important;
 }
