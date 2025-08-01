@@ -59,7 +59,7 @@ html:not(.designer) .theme-entry .popup-header {
 }
 
 .theme-entry .dialog#PickerSearchDialog {
-    min-height:48.8rem;
+    min-height:38.8rem;
 }
 
 .theme-entry .picker-search-grid.grid.full {
