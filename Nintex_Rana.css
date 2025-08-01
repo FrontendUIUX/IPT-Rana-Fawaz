@@ -16,9 +16,19 @@
 .quickSearch.filter{
     display:none !important;
 }
+
+.filterChosen.filter {
+    position: relative;
+}
 .filterChosen.filter{
     display:inline-block !important;
 }
+
+.filterChosen.filter .filterLabel{
+    position:relative;
+    display:none;
+}
+
 .filterChosen.filter::before {
     content: "Choose Filter:";
     position: relative;
@@ -27,7 +37,4 @@
     color: #131313;
     font-size: 1rem;
     font-family: var(--regularFont) !important;
-}
-.filterChosen.filter{
-    display:none !important;
 }
