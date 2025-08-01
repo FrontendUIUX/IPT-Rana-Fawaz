@@ -43,7 +43,7 @@ html:not(.designer) .popup.dialog{
     width: 600px;
     top: 66.906px;
     left: 375.5px;
-    height: 400px !important;
+    height: fit-content !important;
     border-radius: 1rem !important;
     overflow: hidden;
 }
@@ -59,5 +59,5 @@ html:not(.designer) .theme-entry .popup-header {
 }
 
 .theme-entry .dialog#PickerSearchDialog {
-    min-height:30rem;
+    min-height:48.8rem;
 }
