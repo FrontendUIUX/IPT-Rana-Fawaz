@@ -19,3 +19,15 @@
 .filterChosen.filter{
     display:inline-block !important;
 }
+.filterChosen.filter .filterLabel::before {
+    content: "Choose Filter:";
+    position: relative;
+    left: 0;
+    width: fit-content;
+    color: #131313;
+    font-size: 1rem;
+    font-family: var(--regularFont) !important;
+}
+.filterChosen.filter .filterLabel{
+    display:none !important;
+}
