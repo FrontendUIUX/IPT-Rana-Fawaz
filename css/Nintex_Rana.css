@@ -1,10 +1,10 @@
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body {
   display: block !important;
-  overflow-x: hidden;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
   table-layout: auto !important;
+  overflow-x: hidden;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] colgroup col {
