@@ -39,6 +39,25 @@
     font-family: var(--regularFont) !important;
 }
 
-.theme-entry #listFilterNamePopup {
-    height: 50%;
+html:not(.designer) .popup.dialog{
+    width: 600px;
+    top: 66.906px;
+    left: 375.5px;
+    height: 400px !important;
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+
+html:not(.designer) .popup.dialog .popup-header .popup-header-text {
+    font-size: 1.6rem;
+    color: #131313;
+}
+
+html:not(.designer) .theme-entry .popup-header {
+    padding: 1rem 2rem;
+    background-color: #8b5b5b;
+}
+
+.theme-entry .dialog#PickerSearchDialog {
+    min-height:30rem;
 }
