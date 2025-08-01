@@ -14,8 +14,8 @@
 }
 
 .theme-entry .filterContainer .quickSearch.filter{
-    display:none;
+    display:none !important;
 }
 .theme-entry .filterContainer .filterChosen.filter{
-    display:inline-block;
+    display:inline-block !important;
 }
