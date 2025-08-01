@@ -78,7 +78,7 @@ html:not(.designer) .theme-entry .grid .grid-column-header-text {
 }
 
 html:not(.designer) [name*="OBB_button OBB_primary_button"], html:not(.designer) .SourceCode-Forms-Controls-Web-Button {
-    background-color: #8b5b5b !important;
+    background-color: var(--aqua) !important;
     color: white !important;
 }
 
