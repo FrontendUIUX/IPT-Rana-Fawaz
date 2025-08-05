@@ -3,7 +3,7 @@
 }
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body {
   display: block !important;
-    overflow-x: scroll;
+  overflow-x: scroll;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
@@ -61,11 +61,11 @@ html:not(.designer) .theme-entry .popup-header {
 }
 
 .theme-entry .dialog#PickerSearchDialog {
-    min-height:38.8rem;
+    min-height:unset;
 }
 
 .theme-entry .picker-search-grid.grid.full {
-    min-height: 20.2rem;
+    min-height:unset;
 }
 
 html:not(.designer) .theme-entry .grid table.grid-column-header-table td {
