@@ -1,12 +1,16 @@
+.theme-entry.runtime-form {
+ overflow-y: auto;
+}
+.theme-entry .scroll-wrapper {
+    overflow-x: hidden !important;
+}
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body {
-  display: block !important;
-    overflow-x: hidden;
+  overflow-x: scroll;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
-  min-width: 130% !important;
   table-layout: auto !important;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] colgroup col {
@@ -39,6 +43,12 @@
     font-family: var(--regularFont) !important;
 }
 
+html:not(.designer) [name*="OBB_label"] {
+    color: var(--black) !important;
+    font-size: 1rem !important;
+    font-family: var(--regularFont);
+}
+
 html:not(.designer) .popup.dialog{
     width: 600px;
     top: 66.906px;
@@ -59,5 +69,35 @@ html:not(.designer) .theme-entry .popup-header {
 }
 
 .theme-entry .dialog#PickerSearchDialog {
-    min-height:30rem;
+    min-height:38.8rem;
 }
+
+.theme-entry .picker-search-grid.grid.full {
+    min-height: 20.2rem;
+}
+
+html:not(.designer) .theme-entry .grid table.grid-column-header-table td {
+    background-color: #8b5b5b;
+    border-right: 1px solid rgb(220 220 220 / 80%);
+    cursor: pointer;
+}
+html:not(.designer) .theme-entry .grid .grid-column-header-text {
+    font-family: var(--regularFont) !important;
+    width: fit-content !important;
+    color: #131313;
+}
+
+html:not(.designer) [name*="OBB_button OBB_primary_button"], html:not(.designer) .SourceCode-Forms-Controls-Web-Button {
+    background-color: var(--aqua) !important;
+    color: white !important;
+}
+
+html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-Controls-Web-Button {
+    border-radius: .5rem;
+    /* margin-left: 1rem; */
+    border: none;
+    transition: var(--transition);
+    font-family: var(--regularFont);
+}
+
+
