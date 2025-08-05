@@ -61,11 +61,11 @@ html:not(.designer) .theme-entry .popup-header {
 }
 
 .theme-entry .dialog#PickerSearchDialog {
-    min-height:unset;
+    min-height:38.8rem;
 }
 
 .theme-entry .picker-search-grid.grid.full {
-    min-height:unset;
+    min-height: 20.2rem;
 }
 
 html:not(.designer) .theme-entry .grid table.grid-column-header-table td {
