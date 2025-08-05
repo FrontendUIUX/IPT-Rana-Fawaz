@@ -98,9 +98,4 @@ html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-
     font-family: var(--regularFont);
 }
 
-@media only screen and (max-width:600px) {
-    .theme-entry{
-        overflow-y: auto;
-}
-    
-}
+
