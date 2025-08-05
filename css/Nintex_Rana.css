@@ -98,4 +98,13 @@ html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-
     font-family: var(--regularFont);
 }
 
-
+@media only screen and (max-width:600px) {
+    html:not(.designer) .popup.dialog {
+    width: 100% !important;
+    top: 0 !important;
+    left:0 !important;
+    height: 100% !important;
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+}
