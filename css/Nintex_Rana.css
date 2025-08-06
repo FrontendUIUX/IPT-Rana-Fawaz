@@ -102,7 +102,7 @@ html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-
     html:not(.designer) .popup.dialog {
     width: 100% !important;
     top: 20% !important;
-    left:50% !important;
+    left:0% !important;
     height: fit-content !important;
     border-radius: 1rem !important;
     overflow: hidden;
