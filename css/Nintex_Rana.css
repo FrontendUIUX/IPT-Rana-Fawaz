@@ -119,7 +119,9 @@ html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-
 .theme-entry .SourceCodeFormsControlsWorklist table.nav>tbody>tr:first-child {
     flex-direction: column !important;
     justify-content: center !important;
+} 
+.theme-entry .SourceCodeFormsControlsWorklist .headerTxt {
+ padding-left: 0 !important;   
 }
-    
 }
 
