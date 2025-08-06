@@ -107,4 +107,8 @@ html:not(.designer) [name*="OBB_button"], html:not(.designer) .SourceCode-Forms-
     border-radius: 1rem !important;
     overflow: hidden;
 }
+.theme-entry .SourceCodeFormsControlsWorklist table.nav>tbody>tr:first-child {
+    flex-direction: column !important;
 }
+}
+
