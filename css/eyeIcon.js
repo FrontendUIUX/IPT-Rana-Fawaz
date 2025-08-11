@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   eyeIcon.style.position = "absolute";
   eyeIcon.style.top = "60%";    
-  eyeIcon.style.right = "8px";
-  eyeIcon.style.transform = "translate(-50%)";  
+  eyeIcon.style.right = "30px";  
   eyeIcon.style.cursor = "pointer";
   eyeIcon.style.color = "#888";
   eyeIcon.style.fontSize = "1.1em";
