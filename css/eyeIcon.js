@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
   eyeIcon.className = "fa-solid fa-eye";
 
   eyeIcon.style.position = "absolute";
-  eyeIcon.style.top = "75%";    
+  eyeIcon.style.top = "60%";    
   eyeIcon.style.right = "8px";
-  eyeIcon.style.transform = "";  
+  eyeIcon.style.transform = "translate(-50%)";  
   eyeIcon.style.cursor = "pointer";
   eyeIcon.style.color = "#888";
   eyeIcon.style.fontSize = "1.1em";
