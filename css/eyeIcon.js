@@ -3,33 +3,36 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!passwordInput) return;
 
 
+  passwordInput.style.boxSizing = 'border-box';
+
+  
   passwordInput.type = 'password';
 
 
   var parent = passwordInput.parentNode;
   parent.style.position = 'relative';
 
+ 
+  passwordInput.style.paddingRight = '40px';
+
   
-  passwordInput.style.paddingRight = '30px';
-
-
   var eyeIcon = document.createElement("i");
   eyeIcon.className = "fa-solid fa-eye";
-  
+
   
   eyeIcon.style.position = "absolute";
   eyeIcon.style.top = "50%";
+  eyeIcon.style.right = "8px";
   eyeIcon.style.transform = "translateY(-50%)";
-  eyeIcon.style.right = "10px";
   eyeIcon.style.cursor = "pointer";
   eyeIcon.style.color = "#888";
   eyeIcon.style.fontSize = "1.1em";
   eyeIcon.style.userSelect = "none";
 
- 
+  
   parent.appendChild(eyeIcon);
 
-
+  
   eyeIcon.addEventListener("click", function () {
     var isPwd = passwordInput.type === 'password';
     passwordInput.type = isPwd ? 'text' : 'password';
