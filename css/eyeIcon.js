@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-  // Load Font Awesome (only for open eye icon)
   var faLink = document.createElement("link");
   faLink.rel = "stylesheet";
   faLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
