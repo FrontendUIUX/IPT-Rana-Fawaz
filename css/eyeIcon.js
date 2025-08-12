@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   var faLink = document.createElement("link");
   faLink.rel = "stylesheet";
   faLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
   document.head.appendChild(faLink);
-
 
   function addEyeToggle(inputName) {
     var passwordInput = document.querySelector(`input[name="${inputName}"]`);
@@ -12,23 +10,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     passwordInput.style.boxSizing = 'border-box';
     passwordInput.type = 'password';
+    passwordInput.style.paddingRight = '40px'; 
 
     var parent = passwordInput.parentNode;
-    parent.style.position = 'relative';
-    passwordInput.style.paddingRight = '40px';
+    parent.style.position = 'relative'; 
+
+    passwordInput.style.position = 'relative';
 
     var eyeIcon = document.createElement("i");
     eyeIcon.className = "fa-solid fa-eye";
-Object.assign(eyeIcon.style, {
-  position: "absolute",
-  top: "50%",
-  left: (passwordInput.offsetWidth - 25) + "px",
-  cursor: "pointer",
-  fontSize: "1.1em",
-  userSelect: "none"
-});
+    Object.assign(eyeIcon.style, {
+      position: "absolute",
+      top: "50%",
+      right: "10px",       
+      cursor: "pointer",
+      fontSize: "1.1em",
+      userSelect: "none",
+      color: "orange"
+    });
+
 
     parent.appendChild(eyeIcon);
+
+
 
     eyeIcon.addEventListener("click", function (event) {
       event.stopPropagation();
@@ -43,7 +47,9 @@ Object.assign(eyeIcon.style, {
       }
     });
   }
+
   addEyeToggle("Password Text Box OBB_textbox");
   addEyeToggle("Confirm Password Text Box OBB_textbox");
 });
+
 
