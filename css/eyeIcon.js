@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var parent = passwordInput.parentNode;
 
-    // Create a new wrapper div
     var wrapper = document.createElement("div");
     wrapper.style.position = "relative";
     wrapper.style.display = "inline-block";
@@ -29,13 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
     eyeIcon.className = "fa-solid fa-eye";
     Object.assign(eyeIcon.style, {
       position: "absolute",
-      top: "50%",
+      top: "25%",
       right: "10px",
-      transform: "translateY(-50%)",
       cursor: "pointer",
       fontSize: "1.1em",
       userSelect: "none",
-      color: "orange",
     });
 
     wrapper.appendChild(eyeIcon);
