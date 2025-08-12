@@ -17,12 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var wrapper = document.createElement("div");
     wrapper.style.position = "relative";
     wrapper.style.display = "inline-block";
-
-
-    function updateWrapperWidth() {
-      wrapper.style.width = passwordInput.offsetWidth + "px";
-    }
-    updateWrapperWidth();
+    wrapper.style.width = "100%"; 
 
     parent.insertBefore(wrapper, passwordInput);
     wrapper.appendChild(passwordInput);
@@ -52,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         eyeIcon.style.display = "block";
       }
     });
-
-    window.addEventListener("resize", updateWrapperWidth);
   }
 
   addEyeToggle("Password Text Box OBB_textbox");
