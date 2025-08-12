@@ -8,36 +8,48 @@ document.addEventListener("DOMContentLoaded", function () {
     var passwordInput = document.querySelector(`input[name="${inputName}"]`);
     if (!passwordInput) return;
 
-    passwordInput.style.boxSizing = 'border-box';
-    passwordInput.type = 'password';
-    passwordInput.style.paddingRight = '40px'; 
+    passwordInput.type = "password";
+    passwordInput.style.boxSizing = "border-box";
+    passwordInput.style.paddingRight = "40px";
 
     var parent = passwordInput.parentNode;
-    parent.style.position = 'relative'; 
 
-    passwordInput.style.position = 'relative';
+    // Create a new wrapper div
+    var wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+    wrapper.style.display = "inline-block";
+    wrapper.style.width = passwordInput.offsetWidth + "px"; 
+
+
+    parent.insertBefore(wrapper, passwordInput);
+
+    wrapper.appendChild(passwordInput);
 
     var eyeIcon = document.createElement("i");
     eyeIcon.className = "fa-solid fa-eye";
     Object.assign(eyeIcon.style, {
       position: "absolute",
       top: "50%",
-      right: "10px",       
+      right: "10px",
+      transform: "translateY(-50%)",
       cursor: "pointer",
       fontSize: "1.1em",
       userSelect: "none",
-      color: "orange"
+      color: "orange",
     });
-    parent.appendChild(eyeIcon);
-      
+
+    wrapper.appendChild(eyeIcon);
+
     eyeIcon.addEventListener("click", function (event) {
       event.stopPropagation();
-      passwordInput.type = 'text';
+      passwordInput.type = "text";
       eyeIcon.style.display = "none";
+      passwordInput.focus();
     });
+
     document.addEventListener("click", function (event) {
-      if (!parent.contains(event.target)) {
-        passwordInput.type = 'password';
+      if (!wrapper.contains(event.target)) {
+        passwordInput.type = "password";
         eyeIcon.style.display = "block";
       }
     });
@@ -46,5 +58,3 @@ document.addEventListener("DOMContentLoaded", function () {
   addEyeToggle("Password Text Box OBB_textbox");
   addEyeToggle("Confirm Password Text Box OBB_textbox");
 });
-
-
