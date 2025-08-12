@@ -43,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
-
   addEyeToggle("Password Text Box OBB_textbox");
   addEyeToggle("Confirm Password Text Box OBB_textbox");
 });
