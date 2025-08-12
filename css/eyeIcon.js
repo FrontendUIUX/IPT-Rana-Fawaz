@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object.assign(eyeIcon.style, {
     position: "absolute",
     top: "60%",
-    right: "30px",
+    right: "25px",
     cursor: "pointer",
     fontSize: "1.1em",
     userSelect: "none"
