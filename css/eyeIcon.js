@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var parent = passwordInput.parentNode;
   parent.style.position = 'relative';
-
   passwordInput.style.paddingRight = '40px';
 
   var eyeIcon = document.createElement("i");
@@ -23,11 +22,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   parent.appendChild(eyeIcon);
 
-  eyeIcon.addEventListener("click", function () {
+
+  eyeIcon.addEventListener("click", function (event) {
+    event.stopPropagation(); // prevent click from bubbling up
     var isPwd = passwordInput.type === 'password';
     passwordInput.type = isPwd ? 'text' : 'password';
     eyeIcon.classList.toggle("fa-eye");
     eyeIcon.classList.toggle("fa-eye-slash");
   });
+
+
+  document.addEventListener("click", function (event) {
+    var clickedInside = passwordInput.contains(event.target) || eyeIcon.contains(event.target);
+    if (!clickedInside) {
+      // Reset to hidden password
+      passwordInput.type = 'password';
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
+  });
 });
+
 
