@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var eyeIcon = document.createElement("i");
     eyeIcon.className = "fa-solid fa-eye";
-    Object.assign(eyeIcon.style, {
-      position: "absolute",
-      top: "60%",
-      right: "25px",
-      cursor: "pointer",
-      fontSize: "1.1em",
-      userSelect: "none"
-    });
+Object.assign(eyeIcon.style, {
+  position: "absolute",
+  top: "50%",
+  left: (passwordInput.offsetWidth - 25) + "px",
+  cursor: "pointer",
+  fontSize: "1.1em",
+  userSelect: "none"
+});
 
     parent.appendChild(eyeIcon);
 
