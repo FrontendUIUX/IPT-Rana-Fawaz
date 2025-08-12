@@ -28,18 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
       userSelect: "none",
       color: "orange"
     });
-
-
     parent.appendChild(eyeIcon);
-
-
-
+      
     eyeIcon.addEventListener("click", function (event) {
       event.stopPropagation();
       passwordInput.type = 'text';
       eyeIcon.style.display = "none";
     });
-
     document.addEventListener("click", function (event) {
       if (!parent.contains(event.target)) {
         passwordInput.type = 'password';
