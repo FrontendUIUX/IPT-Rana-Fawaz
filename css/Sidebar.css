@@ -3,13 +3,13 @@
   transition: transform 0.3s ease;
 }
 
-html:not(.designer) body.sidebar-close {
+html:not(.designer) body.sidebarVisible.sidebar-close {
     margin-left: 0 !important;
     width: 100% !important;
     padding: 0px 1rem;
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-html:not(.designer) body {
+html:not(.designer) body.sidebarVisible {
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
