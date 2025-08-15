@@ -1,5 +1,5 @@
 .sidebar.hidden {
-    padding: 0rem !important;
+    padding-right: 0.5rem !important;
     transform: translateX(calc(-100% + 3rem));
      transition: transform 0.3s ease, width 0.3s ease;
 }
