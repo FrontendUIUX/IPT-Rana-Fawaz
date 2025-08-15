@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
         background: "transparent",
         cursor: "pointer",
         marginLeft: "auto",
+        marginTop: "4rem",
+        marginBottom:"2rem",
         display: "flex",
         alignItems: "center"
       });
