@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.body.classList.contains("sidebar-close")) {
           arrow.style.transform = "rotate(180deg)"; 
         } else {
-          arrow.style.transform = "rotate(180deg)";
+          arrow.style.transform = "rotate(0deg)";
         }
       });
 
