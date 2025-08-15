@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.getElementById("sidebar");
-  if (!sidebar) return;
-
   const observer = new MutationObserver((mutations, obs) => {
-    const menuSection = sidebar.querySelector(".sidebar-section.topic");
-    if (menuSection) {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) {
+ 
       obs.disconnect();
+
+      const menuSection = sidebar.querySelector(".sidebar-section.topic");
+      if (!menuSection) return;
+
 
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuSection.parentNode.insertBefore(wrapper, menuSection);
       wrapper.appendChild(menuSection);
 
-   
+  
       const toggleButton = document.createElement("button");
       toggleButton.id = "toggleSidebarBtn";
       toggleButton.innerHTML = `
@@ -35,15 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
         alignItems: "center"
       });
 
+   
       wrapper.appendChild(toggleButton);
 
- 
+   
       toggleButton.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
       });
     }
   });
 
- 
-  observer.observe(sidebar, { childList: true, subtree: true });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 });
