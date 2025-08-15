@@ -1,4 +1,5 @@
 .sidebar.hidden {
+    padding: 0rem !important;
     transform: translateX(calc(-100% + 6rem));
      transition: transform 0.3s ease, width 0.3s ease;
 }
@@ -8,8 +9,8 @@
 }
 
 html:not(.designer) body.sidebarVisible.sidebar-close {
-    margin-left: 6rem !important; 
-    width: calc(100% - 6rem) !important;
+    margin-left: 3rem !important; 
+    width: calc(100% - 3rem) !important;
     padding: 0 1rem;
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
@@ -20,7 +21,7 @@ html:not(.designer) body.sidebarVisible {
 
 html:not(.designer) .sidebarVisible.sidebar-close [name="OBB_header"] {
     left: 3rem !important;
-    width: calc(100% - 6rem) !important;
+    width: calc(100% - 3rem) !important;
     transition: left 0.3s ease, width 0.3s ease;
 }
 
