@@ -45,7 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle("sidebar-close");
 
         const arrow = toggleButton.querySelector(".toggle-arrow");
+        if (document.body.classList.contains("sidebar-close")) {
           arrow.style.transform = "rotate(180deg)"; 
+        } else {
+          arrow.style.transform = "rotate(180deg)";
+        }
       });
 
       toggleButton.querySelector(".toggle-arrow").style.transform = "rotate(180deg)";
