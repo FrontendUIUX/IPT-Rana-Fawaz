@@ -13,3 +13,13 @@ html:not(.designer) body.sidebarVisible.sidebar-close {
 html:not(.designer) body.sidebarVisible {
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
+
+html:not(.designer) .sidebarVisible.sidebar-close [name="OBB_header"] {
+        left: 0rem;
+        width:100vw;
+        transition: left 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) .sidebarVisible [name="OBB_header"] {
+       transition: left 0.3s ease, width 0.3s ease;
+}
