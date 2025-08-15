@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const arrow = toggleButton.querySelector(".toggle-arrow");
         if (document.body.classList.contains("sidebar-close")) {
-          arrow.style.transform = "rotate(180deg)"; 
+          arrow.style.transform = "rotate(0deg)"; 
         } else {
-          arrow.style.transform = "rotate(0deg)";
+          arrow.style.transform = "rotate(1800deg)";
         }
       });
 
