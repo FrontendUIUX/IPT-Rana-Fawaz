@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
 
   if (sidebar) {
-    // 1. Create the button
     const toggleButton = document.createElement("button");
     toggleButton.id = "toggleSidebarBtn";
     toggleButton.innerHTML = `
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </svg>
     `;
 
-    // 2. Style it
     toggleButton.style.border = "none";
     toggleButton.style.background = "transparent";
     toggleButton.style.cursor = "pointer";
@@ -21,12 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleButton.style.top = "10px";
     toggleButton.style.right = "10px";
     toggleButton.style.zIndex = "1000";
-
-    // 3. Insert it into the sidebar (top-right)
-    sidebar.style.position = "relative"; // So button positions correctly
+      
+    sidebar.style.position = "relative"; 
     sidebar.prepend(toggleButton);
 
-    // 4. Click event to toggle visibility
     toggleButton.addEventListener("click", () => {
       sidebar.classList.toggle("hidden");
     });
