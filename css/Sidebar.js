@@ -39,17 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       wrapper.appendChild(toggleButton);
 
-      // Toggle sidebar and arrow direction
+  
       toggleButton.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
         document.body.classList.toggle("sidebar-close");
 
         const arrow = toggleButton.querySelector(".toggle-arrow");
-        if (document.body.classList.contains("sidebar-close")) {
           arrow.style.transform = "rotate(180deg)"; 
-        } else {
-          arrow.style.transform = "rotate(0deg)";
-        }
       });
 
       toggleButton.querySelector(".toggle-arrow").style.transform = "rotate(180deg)";
