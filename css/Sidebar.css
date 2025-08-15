@@ -28,3 +28,11 @@ html:not(.designer) .sidebarVisible.sidebar-close [name="OBB_header"] {
 html:not(.designer) .sidebarVisible [name="OBB_header"] {
        transition: left 0.3s ease, width 0.3s ease;
 }
+
+html:not(.designer) .sidebarVisible.sidebar-close .sidebar.hidden .navbarBrand {
+display: none !important;
+}
+
+html:not(.designer) .sidebarVisible .sidebar .navbarBrand {
+display: block !important;
+}
