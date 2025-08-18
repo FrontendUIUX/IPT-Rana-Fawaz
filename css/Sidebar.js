@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Object.assign(label.style, {
         position: "absolute",
         left: "10px",
-        top: "50%",                  // start in the middle
+        top: "50%",                  
         transform: "translateY(-50%)",
         color: "#aaa",
         pointerEvents: "none",
@@ -121,18 +121,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fontWeight: "normal",
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
-        padding: "0 0.2rem",
-        opacity: "0"                  // start invisible
+        padding: "0 0.2rem",                
       });
 
       wrapper.appendChild(label);
 
-      // Animate: move up + fade in
+  
       requestAnimationFrame(() => {
-        label.style.top = "0";        // move to top
+        label.style.top = "0";        
         label.style.fontSize = "0.75rem";
-        label.style.color = "var(--aqua)";
-        label.style.opacity = "1";    // fade in
+        label.style.color = "var(--aqua)";   
       });
 
       return label;
@@ -152,10 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function resetLabel() {
       if (!typedDuringFocus) {
-        label.style.top = "50%";      // move back to middle
+        label.style.top = "50%";      
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
-        label.style.opacity = "0";     // fade out
         input.style.border = originalBorder;
 
         setTimeout(() => {
