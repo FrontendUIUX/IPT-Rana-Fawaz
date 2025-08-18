@@ -72,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  function addCustomLabel(input) {
-    if (!input || input._customLabelApplied) return;
-    input._customLabelApplied = true; 
+  function addFloatingLabel(input) {
+    if (!input || input._floatingLabelApplied) return;
+    input._floatingLabelApplied = true;
 
     var parent = input.parentNode;
     var wrapper = document.createElement("div");
@@ -94,44 +94,52 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (e) {}
 
-    function createLabel() {
-      const label = document.createElement("label");
-      label.innerText = wmText;
-      Object.assign(label.style, {
-        position: "absolute",
-        top: "50%",
-        left: "10px",
-        transform: "translateY(-50%)",
-        color: "var(--aqua)",
-        pointerEvents: "none",
-        fontFamily: "var(--regularFont)",
-        fontSize: "1rem",
-        fontWeight: "normal",
-      });
-      wrapper.appendChild(label);
-      return label;
+    const label = document.createElement("label");
+    label.innerText = wmText;
+    Object.assign(label.style, {
+      position: "absolute",
+      top: "50%",
+      left: "10px",
+      transform: "translateY(-50%)",
+      color: "#aaa",
+      pointerEvents: "none",
+      fontFamily: "var(--regularFont)",
+      fontSize: "1rem",
+      fontWeight: "normal",
+      transition: "all 0.2s ease-out",
+      backgroundColor: "white",
+      padding: "0 0.2rem"
+    });
+    wrapper.appendChild(label);
+
+    function floatLabel() {
+      label.style.top = "0";
+      label.style.fontSize = "0.75rem";
+      label.style.color = "var(--aqua)";
+      label.style.transform = "translateY(-50%)"; 
     }
 
-    let label = null;
-
-
-    input.addEventListener("focus", () => {
-      if (!label) label = createLabel();
-    });
-
-
-    document.addEventListener("click", (e) => {
-      if (label && !wrapper.contains(e.target)) {
-        label.remove();
-        label = null;
+    function resetLabel() {
+      if (!input.value || input.value.trim() === "") {
+        label.style.top = "50%";
+        label.style.fontSize = "1rem";
+        label.style.color = "#aaa";
+        label.style.transform = "translateY(-50%)";
       }
-    });
-  }
+    }
 
+    input.addEventListener("focus", floatLabel);
+    input.addEventListener("input", floatLabel);
+    input.addEventListener("blur", resetLabel);
+
+    if (input.value && input.value.trim() !== "") {
+      floatLabel();
+    }
+  }
 
   document.addEventListener("click", function(e) {
     const input = e.target.closest('html:not(.designer) [name*="OBB_textbox"]');
-    if (input) addCustomLabel(input);
+    if (input) addFloatingLabel(input);
   });
 
 });
