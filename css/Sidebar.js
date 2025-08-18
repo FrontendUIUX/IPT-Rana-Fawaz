@@ -1,3 +1,13 @@
+(function () {
+  try {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if ((saved && saved === 'dark') || (!saved && prefersDark)) {
+      document.documentElement.classList.add('dark-mode');
+    }
+  } catch(e) {}
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const observer = new MutationObserver((mutations, obs) => {
     const sidebar = document.getElementById("sidebar");
@@ -55,6 +65,67 @@ document.addEventListener("DOMContentLoaded", () => {
       toggleButton.querySelector(".toggle-arrow").style.transform = "rotate(180deg)";
     }
   });
+    
 
   observer.observe(document.body, { childList: true, subtree: true });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  function addCustomLabel(input) {
+    if (!input) return;
+
+    var parent = input.parentNode;
+    var wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+    wrapper.style.display = "inline-block";
+    wrapper.style.width = "100%";
+
+    parent.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+
+    var wmText = "Enter value";
+    try {
+      var dataOptions = input.getAttribute("data-options");
+      if (dataOptions) {
+        var parsed = JSON.parse(dataOptions.replace(/&quot;/g, '"'));
+        wmText = parsed.waterMarkText || wmText;
+      }
+    } catch (e) {}
+
+    var label = document.createElement("label");
+    label.innerText = wmText;
+    Object.assign(label.style, {
+      position: "absolute",
+      top: "50%",
+      left: "10px",
+      transform: "translateY(-50%)",
+      color: "#aaa",
+      pointerEvents: "none",
+      transition: "all 0.2s ease",
+    });
+    wrapper.appendChild(label);
+
+    function updateLabel() {
+      if (input.value && input.value.trim() !== "" && input.value !== wmText) {
+        label.style.color = "transparent";
+      } else {
+        label.style.color = "#aaa";
+      }
+    }
+
+    input.addEventListener("focus", () => {
+      if (!input.value || input.value === wmText) {
+        label.style.color = "var(--aqua)";
+      }
+    });
+
+    input.addEventListener("blur", updateLabel);
+    input.addEventListener("input", updateLabel);
+
+    updateLabel();
+  }
+
+
+  document.querySelectorAll('html:not(.designer) [name*="OBB_textbox"]').forEach(addCustomLabel);
+});
+
