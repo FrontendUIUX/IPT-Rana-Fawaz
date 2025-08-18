@@ -186,59 +186,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Create styles for the switch ---
-  const style = document.createElement("style");
-  style.innerHTML = `
-    .theme-switch {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-      z-index: 9999; /* Always on top */
-    }
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px; width: 26px;
-      left: 4px; bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    .theme-switch input:checked + .slider {
-      background-color: #2196F3;
-    }
-    .theme-switch input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-  `;
-  document.head.appendChild(style);
 
-  // --- Create the switch ---
   const label = document.createElement("label");
   label.className = "theme-switch";
+
 
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = "darkModeToggle";
 
+
   const span = document.createElement("span");
   span.className = "slider";
+
 
   label.appendChild(checkbox);
   label.appendChild(span);
