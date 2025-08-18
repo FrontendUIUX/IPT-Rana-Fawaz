@@ -71,10 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  function addCustomLabel(input) {
-    if (!input) return;
 
-    if (input.offsetParent === null) return;
+  function addCustomLabel(input) {
+    if (!input || input._customLabelApplied) return;
+    input._customLabelApplied = true; 
 
     var parent = input.parentNode;
     var wrapper = document.createElement("div");
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
+
 
     var wmText = "Enter value";
     try {
@@ -102,29 +103,36 @@ document.addEventListener("DOMContentLoaded", function () {
       left: "10px",
       transform: "translateY(-50%)",
       color: "var(--aqua)",
+      pointerEvents: "none",
       fontFamily: "var(--regularFont)",
       fontSize: "1rem",
-      fontWeight: "normal", 
-      pointerEvents: "none",
-      opacity: "0",          
-      transition: "all 0.2s ease",
+      fontWeight: "normal",
+      opacity: 0,
+      transition: "all 0.2s ease"
     });
     wrapper.appendChild(label);
 
-  
-    input.addEventListener("focus", () => {
-      label.style.opacity = "1";
-    });
-
-    input.addEventListener("blur", () => {
- 
-      if (!input.value || input.value.trim() === "" || input.value === wmText) {
-        label.style.opacity = "0";
+    function updateLabel() {
+      if (input.value && input.value.trim() !== "" && input.value !== wmText) {
+        label.style.opacity = 0;
+      } else {
+        label.style.opacity = 1;
       }
+    }
+
+    input.addEventListener("focus", () => {
+      label.style.opacity = 1;
     });
+    input.addEventListener("blur", updateLabel);
+    input.addEventListener("input", updateLabel);
+
+    updateLabel();
   }
 
 
-  document.querySelectorAll('html:not(.designer) [name*="OBB_textbox"]').forEach(addCustomLabel);
-});
+  document.addEventListener("click", function(e) {
+    const input = e.target.closest('html:not(.designer) [name*="OBB_textbox"]');
+    if (input) addCustomLabel(input);
+  });
 
+});
