@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
 
+ 
     var wmText = "Enter value";
     try {
       var dataOptions = input.getAttribute("data-options");
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (e) {}
 
+   
     const label = document.createElement("label");
     label.innerText = wmText;
     Object.assign(label.style, {
@@ -106,32 +108,43 @@ document.addEventListener("DOMContentLoaded", function () {
       fontFamily: "var(--regularFont)",
       fontSize: "1rem",
       fontWeight: "normal",
-      transition: "all 0.2s ease-out",
+      transition: "all 0.3s ease",
       backgroundColor: "white",
-      padding: "0 0.2rem"
+      padding: "0 0.2rem",
+      opacity: "0"
     });
     wrapper.appendChild(label);
+
+    // Store original border
+    const originalBorder = input.style.border || "1px solid #ccc";
+    input.style.transition = "border-color 0.3s ease";
 
     function floatLabel() {
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
-      label.style.transform = "translateY(-50%)"; 
+      label.style.transform = "translateY(-50%)";
+      label.style.opacity = "1";
+      input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!input.value || input.value.trim() === "") {
-        label.style.top = "50%";
-        label.style.fontSize = "1rem";
-        label.style.color = "#aaa";
-        label.style.transform = "translateY(-50%)";
+       
+        label.style.opacity = "0";
+        input.style.border = originalBorder;
+      } else {
+    
+        floatLabel();
       }
     }
+
 
     input.addEventListener("focus", floatLabel);
     input.addEventListener("input", floatLabel);
     input.addEventListener("blur", resetLabel);
 
+  
     if (input.value && input.value.trim() !== "") {
       floatLabel();
     }
@@ -143,3 +156,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
