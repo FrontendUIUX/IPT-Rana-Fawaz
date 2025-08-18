@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
       input.id = 'input_' + Math.random().toString(36).substr(2, 9);
     }
 
-
     input._hasUserInput = false;
 
     let wmText = "Enter value";
@@ -132,16 +131,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function resetLabel() {
       if (!input._hasUserInput) {
-  
+     
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
-
+        
         setTimeout(() => {
           if (!input._hasUserInput) {
             label.remove();
+            input._hasUserInput = false; 
           }
         }, 300);
       } else {
@@ -165,3 +165,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
