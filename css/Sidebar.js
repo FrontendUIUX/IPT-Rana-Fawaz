@@ -186,27 +186,57 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Create the switch
-  const label = document.createElement("label");
-  label.className = "theme-switch";
+    // --- Create the iOS-style switch ---
+    const label = document.createElement("label");
+    label.className = "theme-switch";
 
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.id = "darkModeToggle";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "darkModeToggle";
 
-  const span = document.createElement("span");
-  span.className = "slider";
+    const span = document.createElement("span");
+    span.className = "slider";
 
-  label.appendChild(checkbox);
-  label.appendChild(span);
-  document.body.appendChild(label);
+    label.appendChild(checkbox);
+    label.appendChild(span);
+    document.body.appendChild(label);
 
-  // Toggle class on body
-  checkbox.addEventListener("change", function () {
-    if (checkbox.checked) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
+    // Optional: position and style for visibility
+    label.style.position = "fixed";
+    label.style.bottom = "20px";
+    label.style.right = "20px";
+    label.style.zIndex = 9999;
+
+    // --- Nightify toggle function ---
+    function toggleNightify() {
+        const existing = document.querySelector('#nightify');
+        if (existing) {
+            existing.parentNode.removeChild(existing);
+            return false;
+        }
+
+        const head = document.getElementsByTagName('head')[0],
+              style = document.createElement('style');
+        style.setAttribute('type', 'text/css');
+        style.setAttribute('id', 'nightify');
+
+        // Invert colors but fix images/videos
+        style.appendChild(document.createTextNode(`
+            html {
+                -webkit-filter: invert(100%) hue-rotate(180deg) contrast(70%) !important;
+                background: #fff !important;
+            }
+            img, video, iframe {
+                filter: invert(100%) hue-rotate(180deg) contrast(100%) !important;
+            }
+        `));
+
+        head.appendChild(style);
+        return true;
     }
-  });
+
+    // --- Hook switch ---
+    checkbox.addEventListener("change", function() {
+        toggleNightify();
+    });
 });
