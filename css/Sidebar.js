@@ -208,35 +208,44 @@ document.addEventListener("DOMContentLoaded", function () {
     label.style.zIndex = 9999;
 
     // --- Nightify toggle function ---
-    function toggleNightify() {
+    function toggleNightify(on) {
         const existing = document.querySelector('#nightify');
-        if (existing) {
-            existing.parentNode.removeChild(existing);
-            return false;
+        if (existing) existing.parentNode.removeChild(existing);
+
+        if (on) {
+            const head = document.getElementsByTagName('head')[0],
+                  style = document.createElement('style');
+            style.setAttribute('type', 'text/css');
+            style.setAttribute('id', 'nightify');
+
+            style.appendChild(document.createTextNode(`
+                html {
+                    -webkit-filter: invert(100%) hue-rotate(180deg) contrast(70%) !important;
+                    background: #fff !important;
+                }
+                img, video, iframe {
+                    filter: invert(100%) hue-rotate(180deg) contrast(100%) !important;
+                }
+            `));
+            head.appendChild(style);
         }
+    }
 
-        const head = document.getElementsByTagName('head')[0],
-              style = document.createElement('style');
-        style.setAttribute('type', 'text/css');
-        style.setAttribute('id', 'nightify');
-
-        // Invert colors but fix images/videos
-        style.appendChild(document.createTextNode(`
-            html {
-                -webkit-filter: invert(100%) hue-rotate(180deg) contrast(70%) !important;
-                background: #fff !important;
-            }
-            img, video, iframe {
-                filter: invert(100%) hue-rotate(180deg) contrast(100%) !important;
-            }
-        `));
-
-        head.appendChild(style);
-        return true;
+    // --- Load previous preference ---
+    const saved = localStorage.getItem('nightify');
+    if (saved === 'on') {
+        checkbox.checked = true;
+        toggleNightify(true);
     }
 
     // --- Hook switch ---
     checkbox.addEventListener("change", function() {
-        toggleNightify();
+        if (checkbox.checked) {
+            toggleNightify(true);
+            localStorage.setItem('nightify', 'on');
+        } else {
+            toggleNightify(false);
+            localStorage.setItem('nightify', 'off');
+        }
     });
 });
