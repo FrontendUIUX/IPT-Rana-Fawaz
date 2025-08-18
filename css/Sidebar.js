@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         position: "absolute",
         left: "10px",
         top: "50%",                  
-        transform: "translateY(-50%)",
         color: "#aaa",
         pointerEvents: "none",
         fontFamily: "var(--regularFont)",
