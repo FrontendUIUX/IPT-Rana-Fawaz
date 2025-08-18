@@ -74,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function addCustomLabel(input) {
     if (!input) return;
 
+    if (input.offsetParent === null) return;
+
     var parent = input.parentNode;
     var wrapper = document.createElement("div");
     wrapper.style.position = "relative";
@@ -99,30 +101,27 @@ document.addEventListener("DOMContentLoaded", function () {
       top: "50%",
       left: "10px",
       transform: "translateY(-50%)",
-      color: "#aaa",
+      color: "var(--aqua)",
+      fontFamily: "var(--regularFont)",
+      fontSize: "1rem",
+      fontWeight: "normal", 
       pointerEvents: "none",
+      opacity: "0",          
       transition: "all 0.2s ease",
     });
     wrapper.appendChild(label);
 
-    function updateLabel() {
-      if (input.value && input.value.trim() !== "" && input.value !== wmText) {
-        label.style.color = "transparent";
-      } else {
-        label.style.color = "#aaa";
-      }
-    }
-
+  
     input.addEventListener("focus", () => {
-      if (!input.value || input.value === wmText) {
-        label.style.color = "var(--aqua)";
-      }
+      label.style.opacity = "1";
     });
 
-    input.addEventListener("blur", updateLabel);
-    input.addEventListener("input", updateLabel);
-
-    updateLabel();
+    input.addEventListener("blur", () => {
+ 
+      if (!input.value || input.value.trim() === "" || input.value === wmText) {
+        label.style.opacity = "0";
+      }
+    });
   }
 
 
