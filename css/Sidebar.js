@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function addFloatingLabel(input) {
     if (!input) return;
 
-
     let wrapper = input.parentNode;
     if (!wrapper.classList.contains("floating-label-wrapper")) {
       wrapper = document.createElement("div");
@@ -91,14 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
       input.id = 'input_' + Math.random().toString(36).substr(2, 9);
     }
 
+  
+    if (input._userTyped === undefined) input._userTyped = false;
 
-    input._userTyped = false;
-
+    const originalBorder = input.style.border || "1px solid #ccc";
+    input.style.transition = "border-color 0.3s ease";
 
     function createLabel() {
-   
       let existingLabel = wrapper.querySelector("label.floating-label");
-      if (existingLabel) existingLabel.remove();
+      if (existingLabel) return existingLabel;
 
       let wmText = "Enter value";
       try {
@@ -134,18 +134,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let label = createLabel();
 
-    const originalBorder = input.style.border || "1px solid #ccc";
-    input.style.transition = "border-color 0.3s ease";
-
     function floatLabel() {
-      label.style.top = "0";          
-      label.style.fontSize = "0.75rem"; 
+      label.style.top = "0";
+      label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
       input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!input._userTyped) {
+    
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
@@ -153,24 +151,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
           if (!input._userTyped) {
+            
             label.remove();
           }
         }, 300);
       } else {
+       
         floatLabel();
       }
     }
 
     input.addEventListener("focus", () => {
-
-      if (!wrapper.querySelector("label.floating-label")) {
-        label = createLabel();
-      }
+      label = createLabel();
       floatLabel();
     });
 
     input.addEventListener("input", () => {
-
       input._userTyped = true;
       floatLabel();
     });
