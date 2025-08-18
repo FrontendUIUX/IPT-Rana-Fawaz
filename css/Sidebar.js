@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
 
-
+ 
     let wmText = "Enter value";
     try {
       const dataOptions = input.getAttribute("data-options");
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
       transition: "all 0.3s ease",
       backgroundColor: "white",
       padding: "0 0.2rem",
-      opacity: "1"
+      opacity: "0"
     });
     wrapper.appendChild(label);
 
@@ -120,25 +120,29 @@ document.addEventListener("DOMContentLoaded", function () {
     input.style.transition = "border-color 0.3s ease";
 
     function floatLabel() {
+      label.style.opacity = "1"; 
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
       label.style.transform = "translateY(-50%) scale(1)";
-      label.style.opacity = "1";
       input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!input.value || input.value.trim() === "") {
-   
+
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         label.style.transform = "translateY(-50%) scale(1)";
-        label.style.opacity = "0";
         input.style.border = originalBorder;
+
+        setTimeout(() => {
+          if (!input.value || input.value.trim() === "") {
+            label.remove();
+          }
+        }, 300);
       } else {
- 
         floatLabel();
       }
     }
@@ -152,7 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (input.value && input.value.trim() !== "") {
       floatLabel();
     } else {
-      label.style.opacity = "1"; 
+
+      setTimeout(() => {
+        label.style.opacity = "1";
+      }, 50);
     }
   }
 
@@ -162,3 +169,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
