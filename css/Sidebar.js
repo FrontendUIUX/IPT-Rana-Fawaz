@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function addFloatingLabel(input) {
     if (!input) return;
 
- 
     let wrapper = input.parentNode;
     if (!wrapper.classList.contains("floating-label-wrapper")) {
       wrapper = document.createElement("div");
@@ -87,12 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
       wrapper.appendChild(input);
     }
 
-
     if (!input.id) input.id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
-
 
     function createLabel() {
       const existing = wrapper.querySelector("label.floating-label");
@@ -112,11 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
       label.setAttribute("for", input.id);
       label.innerText = wmText;
 
-    
       Object.assign(label.style, {
         position: "absolute",
         left: "10px",
-        top: "50%",
+        top: "50%",                  // start in the middle
         transform: "translateY(-50%)",
         color: "#aaa",
         pointerEvents: "none",
@@ -126,17 +122,17 @@ document.addEventListener("DOMContentLoaded", function () {
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
         padding: "0 0.2rem",
-        opacity: "0"
+        opacity: "0"                  // start invisible
       });
 
       wrapper.appendChild(label);
 
-   
+      // Animate: move up + fade in
       requestAnimationFrame(() => {
-        label.style.top = "0";        
-        label.style.fontSize = "0.75rem"; 
+        label.style.top = "0";        // move to top
+        label.style.fontSize = "0.75rem";
         label.style.color = "var(--aqua)";
-        label.style.opacity = "1";     
+        label.style.opacity = "1";    // fade in
       });
 
       return label;
@@ -150,17 +146,16 @@ document.addEventListener("DOMContentLoaded", function () {
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
-      label.style.opacity = "1"; 
+      label.style.opacity = "1";
       input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!typedDuringFocus) {
-
-        label.style.top = "50%";
+        label.style.top = "50%";      // move back to middle
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
-        label.style.opacity = "0";
+        label.style.opacity = "0";     // fade out
         input.style.border = originalBorder;
 
         setTimeout(() => {
@@ -180,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
       typedDuringFocus = true;
       floatLabel();
 
-    
       if (input.value.trim() === "") typedDuringFocus = false;
     });
 
@@ -193,3 +187,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
