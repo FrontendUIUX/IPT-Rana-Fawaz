@@ -86,19 +86,14 @@ document.addEventListener("DOMContentLoaded", function () {
       wrapper.appendChild(input);
     }
 
-    if (!input.id) {
-      input.id = 'input_' + Math.random().toString(36).substr(2, 9);
-    }
-
-  
-    if (input._userTyped === undefined) input._userTyped = false;
+    if (!input.id) input.id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
 
     function createLabel() {
-      let existingLabel = wrapper.querySelector("label.floating-label");
-      if (existingLabel) return existingLabel;
+      const existing = wrapper.querySelector("label.floating-label");
+      if (existing) existing.remove();
 
       let wmText = "Enter value";
       try {
@@ -132,46 +127,40 @@ document.addEventListener("DOMContentLoaded", function () {
       return label;
     }
 
-    let label = createLabel();
+    let typedDuringFocus = false; 
 
-    function floatLabel() {
+    function floatLabel(label) {
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
       input.style.borderColor = "var(--aqua)";
     }
 
-    function resetLabel() {
-      if (!input._userTyped) {
-    
+    function resetLabel(label) {
+      if (!typedDuringFocus) {
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
         setTimeout(() => {
-          if (!input._userTyped) {
-            
-            label.remove();
-          }
+          if (!typedDuringFocus) label.remove();
         }, 300);
-      } else {
-       
-        floatLabel();
       }
     }
 
     input.addEventListener("focus", () => {
-      label = createLabel();
-      floatLabel();
-    });
+      typedDuringFocus = false;
+      const label = createLabel();
+      floatLabel(label);
 
-    input.addEventListener("input", () => {
-      input._userTyped = true;
-      floatLabel();
-    });
+      input.addEventListener("input", function onInput() {
+        typedDuringFocus = true;
+        floatLabel(label);
+      }, { once: false }); 
 
-    input.addEventListener("blur", resetLabel);
+      input.addEventListener("blur", () => resetLabel(label), { once: true });
+    });
   }
 
   document.addEventListener("click", function(e) {
