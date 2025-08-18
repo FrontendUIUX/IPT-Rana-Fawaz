@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fontFamily: "var(--regularFont)",
         fontSize: "1rem",
         fontWeight: "normal",
-        transition: "all 0.3s ease",
+        transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease",
         backgroundColor: "white",
         padding: "0 0.2rem",
         opacity: "1"
@@ -127,16 +127,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return label;
     }
 
-    let typedDuringFocus = false; 
+    let typedDuringFocus = false;
+    let label;
 
-    function floatLabel(label) {
+    function floatLabel() {
+      if (!label) return;
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
       input.style.borderColor = "var(--aqua)";
     }
 
-    function resetLabel(label) {
+    function resetLabel() {
       if (!typedDuringFocus) {
         label.style.top = "50%";
         label.style.fontSize = "1rem";
@@ -145,22 +147,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
           if (!typedDuringFocus) label.remove();
-        }, 300);
+          label = null; 
+        }, 500);
       }
     }
 
     input.addEventListener("focus", () => {
       typedDuringFocus = false;
-      const label = createLabel();
-      floatLabel(label);
-
-      input.addEventListener("input", function onInput() {
-        typedDuringFocus = true;
-        floatLabel(label);
-      }, { once: false }); 
-
-      input.addEventListener("blur", () => resetLabel(label), { once: true });
+      label = createLabel();
+      floatLabel();
     });
+
+    input.addEventListener("input", () => {
+
+      typedDuringFocus = true;
+      floatLabel();
+
+
+      if (input.value.trim() === "") typedDuringFocus = false;
+    });
+
+    input.addEventListener("blur", resetLabel);
   }
 
   document.addEventListener("click", function(e) {
