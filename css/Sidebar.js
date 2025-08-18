@@ -128,8 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateLabel();
   }
-
-
   document.addEventListener("click", function(e) {
     const input = e.target.closest('html:not(.designer) [name*="OBB_textbox"]');
     if (input) addCustomLabel(input);
