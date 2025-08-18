@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Create the switch ---
+  // Create the switch
   const label = document.createElement("label");
   label.className = "theme-switch";
 
@@ -201,75 +201,12 @@ document.addEventListener("DOMContentLoaded", function () {
   label.appendChild(span);
   document.body.appendChild(label);
 
-  // --- Helper: invert a color ---
-  function invertColor(color) {
-    if (!color) return "";
-    
-    // RGB case
-    if (color.startsWith("rgb")) {
-      const rgb = color.match(/\d+/g).map(Number);
-      return `rgb(${255 - rgb[0]}, ${255 - rgb[1]}, ${255 - rgb[2]})`;
-    }
-
-    // HEX case
-    if (color.startsWith("#")) {
-      let hex = color.replace("#", "");
-      if (hex.length === 3) {
-        hex = hex.split("").map(c => c + c).join("");
-      }
-      let r = 255 - parseInt(hex.substr(0,2),16);
-      let g = 255 - parseInt(hex.substr(2,2),16);
-      let b = 255 - parseInt(hex.substr(4,2),16);
-      return `rgb(${r},${g},${b})`;
-    }
-
-    return color; // fallback (transparent, named colors, etc.)
-  }
-
-  // --- Store originals so we can restore them ---
-  const originalStyles = new WeakMap();
-
-  function applyDynamicDarkMode() {
-    document.querySelectorAll("*").forEach(el => {
-      const style = getComputedStyle(el);
-
-      if (!originalStyles.has(el)) {
-        originalStyles.set(el, {
-          backgroundColor: el.style.backgroundColor,
-          color: el.style.color
-        });
-      }
-
-      // Invert background
-      let bg = style.backgroundColor;
-      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
-        el.style.backgroundColor = invertColor(bg);
-      }
-
-      // Invert text
-      let color = style.color;
-      if (color) {
-        el.style.color = invertColor(color);
-      }
-    });
-  }
-
-  function removeDynamicDarkMode() {
-    document.querySelectorAll("*").forEach(el => {
-      if (originalStyles.has(el)) {
-        const { backgroundColor, color } = originalStyles.get(el);
-        el.style.backgroundColor = backgroundColor || "";
-        el.style.color = color || "";
-      }
-    });
-  }
-
-  // --- Hook toggle ---
+  // Toggle class on body
   checkbox.addEventListener("change", function () {
     if (checkbox.checked) {
-      applyDynamicDarkMode();
+      document.body.classList.add("dark-mode");
     } else {
-      removeDynamicDarkMode();
+      document.body.classList.remove("dark-mode");
     }
   });
 });

@@ -98,3 +98,37 @@ html:not(.designer) textarea:focus::placeholder {
 .theme-switch input:checked + .slider:before {
   transform: translateX(26px);
 }
+
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .form-header,
+body.dark-mode .panel {
+  background-color: #1b1f2f !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .form-control,
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #2a2a3b !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode a {
+  color: #82aaff !important; /* nice blue accent */
+}
+
+body.dark-mode .btn {
+  background-color: #3a3f58 !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
+}
+
+body.dark-mode .btn:hover {
+  background-color: #505577 !important;
+}
