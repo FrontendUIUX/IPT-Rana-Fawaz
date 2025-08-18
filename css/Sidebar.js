@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(document.body, { childList: true, subtree: true });
 });
 
-ddocument.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
   function addFloatingLabel(input) {
     if (!input) return;
@@ -126,7 +126,7 @@ ddocument.addEventListener("DOMContentLoaded", function () {
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
         padding: "0 0.2rem",
-        opacity: "1"
+        opacity: "0"
       });
 
       wrapper.appendChild(label);
