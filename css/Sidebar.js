@@ -70,12 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(document.body, { childList: true, subtree: true });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+ddocument.addEventListener("DOMContentLoaded", function () {
 
   function addFloatingLabel(input) {
     if (!input) return;
 
-    // Wrap input if not already wrapped
+ 
     let wrapper = input.parentNode;
     if (!wrapper.classList.contains("floating-label-wrapper")) {
       wrapper = document.createElement("div");
@@ -87,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
       wrapper.appendChild(input);
     }
 
-    // Ensure input has an ID
+
     if (!input.id) input.id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
 
-    // Create or recreate the floating label
+
     function createLabel() {
       const existing = wrapper.querySelector("label.floating-label");
       if (existing) existing.remove();
@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       label.setAttribute("for", input.id);
       label.innerText = wmText;
 
+    
       Object.assign(label.style, {
         position: "absolute",
         left: "10px",
@@ -125,14 +126,17 @@ document.addEventListener("DOMContentLoaded", function () {
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
         padding: "0 0.2rem",
-        opacity: "0" // start invisible for fade-in
+        opacity: "0"
       });
 
       wrapper.appendChild(label);
 
-      // Trigger fade-in animation
+   
       requestAnimationFrame(() => {
-        label.style.opacity = "1";
+        label.style.top = "0";        
+        label.style.fontSize = "0.75rem"; 
+        label.style.color = "var(--aqua)";
+        label.style.opacity = "1";     
       });
 
       return label;
@@ -146,14 +150,17 @@ document.addEventListener("DOMContentLoaded", function () {
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
+      label.style.opacity = "1"; 
       input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!typedDuringFocus) {
+
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
+        label.style.opacity = "0";
         input.style.border = originalBorder;
 
         setTimeout(() => {
@@ -173,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
       typedDuringFocus = true;
       floatLabel();
 
-
+    
       if (input.value.trim() === "") typedDuringFocus = false;
     });
 
