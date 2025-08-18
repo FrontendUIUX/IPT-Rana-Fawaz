@@ -1,4 +1,102 @@
 .sidebar.hidden {
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
+    padding-right: 0.5rem !important;
+    transform: translateX(calc(-100% + 3rem));
+     transition: transform 0.3s ease, width 0.3s ease;
 }
+
+.sidebar {
+    transition: transform 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) body.sidebarVisible.sidebar-close {
+    margin-left: 3rem !important; 
+    width: calc(100% - 3rem) !important;
+    padding: 0 1rem;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) body.sidebarVisible {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) .sidebarVisible.sidebar-close [name="OBB_header"] {
+    left: 3rem !important;
+    width: calc(100% - 3rem) !important;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) .sidebarVisible [name="OBB_header"] {
+       transition: left 0.3s ease, width 0.3s ease;
+}
+
+html:not(.designer) .sidebarVisible.sidebar-close .sidebar.hidden .navbarBrand {
+display: none !important;
+}
+
+html:not(.designer) .sidebarVisible .sidebar .navbarBrand {
+display: block !important;
+}
+
+html:not(.designer) [name*="OBB_textbox"]:focus,
+html:not(.designer) [name*="OBB_textarea"]:focus,
+html:not(.designer) textarea:focus {
+    border: 1px solid var(--aqua) !important;
+    outline: none;
+}
+
+
+html:not(.designer) [name*="OBB_textbox"]:focus::placeholder,
+html:not(.designer) [name*="OBB_textarea"]:focus::placeholder,
+html:not(.designer) textarea:focus::placeholder {
+    color: var(--aqua) !important;
+}
+
+.theme-switch {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  z-index: 9999; /* Always visible */
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.theme-switch input:checked + .slider {
+  background-color: #2196F3;
+}
+
+.theme-switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
