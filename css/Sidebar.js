@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!input || input._floatingLabelApplied) return;
     input._floatingLabelApplied = true;
 
-    var parent = input.parentNode;
-    var wrapper = document.createElement("div");
+    const parent = input.parentNode;
+    const wrapper = document.createElement("div");
     wrapper.style.position = "relative";
     wrapper.style.display = "inline-block";
     wrapper.style.width = "100%";
@@ -85,24 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
 
- 
-    var wmText = "Enter value";
+
+    let wmText = "Enter value";
     try {
-      var dataOptions = input.getAttribute("data-options");
+      const dataOptions = input.getAttribute("data-options");
       if (dataOptions) {
-        var parsed = JSON.parse(dataOptions.replace(/&quot;/g, '"'));
+        const parsed = JSON.parse(dataOptions.replace(/&quot;/g, '"'));
         wmText = parsed.waterMarkText || wmText;
       }
     } catch (e) {}
 
-   
+  
     const label = document.createElement("label");
     label.innerText = wmText;
     Object.assign(label.style, {
       position: "absolute",
-      top: "50%",
       left: "10px",
-      transform: "translateY(-50%)",
+      top: "50%",
+      transform: "translateY(-50%) scale(1)",
       color: "#aaa",
       pointerEvents: "none",
       fontFamily: "var(--regularFont)",
@@ -111,11 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
       transition: "all 0.3s ease",
       backgroundColor: "white",
       padding: "0 0.2rem",
-      opacity: "0"
+      opacity: "1"
     });
     wrapper.appendChild(label);
 
-    // Store original border
+
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
 
@@ -123,18 +123,22 @@ document.addEventListener("DOMContentLoaded", function () {
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
-      label.style.transform = "translateY(-50%)";
+      label.style.transform = "translateY(-50%) scale(1)";
       label.style.opacity = "1";
       input.style.borderColor = "var(--aqua)";
     }
 
     function resetLabel() {
       if (!input.value || input.value.trim() === "") {
-       
+   
+        label.style.top = "50%";
+        label.style.fontSize = "1rem";
+        label.style.color = "#aaa";
+        label.style.transform = "translateY(-50%) scale(1)";
         label.style.opacity = "0";
         input.style.border = originalBorder;
       } else {
-    
+ 
         floatLabel();
       }
     }
@@ -144,9 +148,11 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("input", floatLabel);
     input.addEventListener("blur", resetLabel);
 
-  
+
     if (input.value && input.value.trim() !== "") {
       floatLabel();
+    } else {
+      label.style.opacity = "1"; 
     }
   }
 
@@ -156,4 +162,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-
