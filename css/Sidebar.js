@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
 
-
     var wmText = "Enter value";
     try {
       var dataOptions = input.getAttribute("data-options");
@@ -95,39 +94,41 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (e) {}
 
-    var label = document.createElement("label");
-    label.innerText = wmText;
-    Object.assign(label.style, {
-      position: "absolute",
-      top: "50%",
-      left: "10px",
-      transform: "translateY(-50%)",
-      color: "var(--aqua)",
-      pointerEvents: "none",
-      fontFamily: "var(--regularFont)",
-      fontSize: "1rem",
-      fontWeight: "normal",
-      opacity: 0,
-      transition: "all 0.2s ease"
-    });
-    wrapper.appendChild(label);
-
-    function updateLabel() {
-      if (input.value && input.value.trim() !== "" && input.value !== wmText) {
-        label.style.opacity = 0;
-      } else {
-        label.style.opacity = 1;
-      }
+    function createLabel() {
+      const label = document.createElement("label");
+      label.innerText = wmText;
+      Object.assign(label.style, {
+        position: "absolute",
+        top: "50%",
+        left: "10px",
+        transform: "translateY(-50%)",
+        color: "var(--aqua)",
+        pointerEvents: "none",
+        fontFamily: "var(--regularFont)",
+        fontSize: "1rem",
+        fontWeight: "normal",
+      });
+      wrapper.appendChild(label);
+      return label;
     }
 
-    input.addEventListener("focus", () => {
-      label.style.opacity = 1;
-    });
-    input.addEventListener("blur", updateLabel);
-    input.addEventListener("input", updateLabel);
+    let label = null;
 
-    updateLabel();
+
+    input.addEventListener("focus", () => {
+      if (!label) label = createLabel();
+    });
+
+
+    document.addEventListener("click", (e) => {
+      if (label && !wrapper.contains(e.target)) {
+        label.remove();
+        label = null;
+      }
+    });
   }
+
+
   document.addEventListener("click", function(e) {
     const input = e.target.closest('html:not(.designer) [name*="OBB_textbox"]');
     if (input) addCustomLabel(input);
