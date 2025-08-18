@@ -73,51 +73,60 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
 
   function addFloatingLabel(input) {
-    if (!input || input._floatingLabelApplied) return;
-    input._floatingLabelApplied = true;
+    if (!input) return;
 
-    const parent = input.parentNode;
-    const wrapper = document.createElement("div");
-    wrapper.style.position = "relative";
-    wrapper.style.display = "inline-block";
-    wrapper.style.width = "100%";
-    parent.insertBefore(wrapper, input);
-    wrapper.appendChild(input);
+
+    if (!input.parentNode.classList.contains("floating-label-wrapper")) {
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("floating-label-wrapper");
+      wrapper.style.position = "relative";
+      wrapper.style.display = "inline-block";
+      wrapper.style.width = "100%";
+      input.parentNode.insertBefore(wrapper, input);
+      wrapper.appendChild(input);
+    }
+    const wrapper = input.parentNode;
 
     if (!input.id) {
       input.id = 'input_' + Math.random().toString(36).substr(2, 9);
     }
 
-    input._hasUserInput = false;
 
-    let wmText = "Enter value";
-    try {
-      const dataOptions = input.getAttribute("data-options");
-      if (dataOptions) {
-        const parsed = JSON.parse(dataOptions.replace(/&quot;/g, '"'));
-        wmText = parsed.waterMarkText || wmText;
-      }
-    } catch (e) {}
+    input._userTyped = false;
 
-    const label = document.createElement("label");
-    label.setAttribute("for", input.id);
-    label.innerText = wmText;
-    Object.assign(label.style, {
-      position: "absolute",
-      left: "10px",
-      top: "50%",
-      transform: "translateY(-50%)",
-      color: "#aaa",
-      pointerEvents: "none",
-      fontFamily: "var(--regularFont)",
-      fontSize: "1rem",
-      fontWeight: "normal",
-      transition: "all 0.3s ease",
-      backgroundColor: "white",
-      padding: "0 0.2rem",
-      opacity: "1"
-    });
-    wrapper.appendChild(label);
+ 
+    let label = wrapper.querySelector("label.floating-label");
+    if (!label) {
+      let wmText = "Enter value";
+      try {
+        const dataOptions = input.getAttribute("data-options");
+        if (dataOptions) {
+          const parsed = JSON.parse(dataOptions.replace(/&quot;/g, '"'));
+          wmText = parsed.waterMarkText || wmText;
+        }
+      } catch (e) {}
+
+      label = document.createElement("label");
+      label.classList.add("floating-label");
+      label.setAttribute("for", input.id);
+      label.innerText = wmText;
+      Object.assign(label.style, {
+        position: "absolute",
+        left: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: "#aaa",
+        pointerEvents: "none",
+        fontFamily: "var(--regularFont)",
+        fontSize: "1rem",
+        fontWeight: "normal",
+        transition: "all 0.3s ease",
+        backgroundColor: "white",
+        padding: "0 0.2rem",
+        opacity: "1"
+      });
+      wrapper.appendChild(label);
+    }
 
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
@@ -130,18 +139,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function resetLabel() {
-      if (!input._hasUserInput) {
-     
+      if (!input.value || input.value.trim() === "") {
+        // Animate back inside
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
-        
         setTimeout(() => {
-          if (!input._hasUserInput) {
-            label.remove();
-            input._hasUserInput = false; 
+          if (!input.value || input.value.trim() === "") {
+            label.remove(); 
+            input._userTyped = false;
           }
         }, 300);
       } else {
@@ -149,14 +157,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    input.addEventListener("focus", floatLabel);
+    input.addEventListener("focus", () => {
+   
+      if (!wrapper.querySelector("label.floating-label")) {
+        addFloatingLabel(input);
+        return;
+      }
+      floatLabel();
+    });
 
     input.addEventListener("input", () => {
-      input._hasUserInput = true;
+      input._userTyped = true;
       floatLabel();
     });
 
     input.addEventListener("blur", resetLabel);
+
+   
+    if (input.value && input.value.trim() !== "") {
+      floatLabel();
+      input._userTyped = true;
+    }
   }
 
   document.addEventListener("click", function(e) {
@@ -165,4 +186,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-
