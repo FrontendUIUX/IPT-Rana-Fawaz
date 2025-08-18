@@ -126,7 +126,7 @@ ddocument.addEventListener("DOMContentLoaded", function () {
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
         padding: "0 0.2rem",
-        opacity: "0"
+        opacity: "1"
       });
 
       wrapper.appendChild(label);
