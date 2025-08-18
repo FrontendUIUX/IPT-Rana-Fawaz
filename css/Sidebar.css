@@ -36,3 +36,17 @@ display: none !important;
 html:not(.designer) .sidebarVisible .sidebar .navbarBrand {
 display: block !important;
 }
+
+html:not(.designer) [name*="OBB_textbox"]:focus,
+html:not(.designer) [name*="OBB_textarea"]:focus,
+html:not(.designer) textarea:focus {
+    border: 1px solid aqua !important;
+    outline: none;
+}
+
+
+html:not(.designer) [name*="OBB_textbox"]:focus::placeholder,
+html:not(.designer) [name*="OBB_textarea"]:focus::placeholder,
+html:not(.designer) textarea:focus::placeholder {
+    color: aqua !important;
+}
