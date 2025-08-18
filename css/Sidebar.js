@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!input || input._floatingLabelApplied) return;
     input._floatingLabelApplied = true;
 
-
     const parent = input.parentNode;
     const wrapper = document.createElement("div");
     wrapper.style.position = "relative";
@@ -85,12 +84,13 @@ document.addEventListener("DOMContentLoaded", function () {
     parent.insertBefore(wrapper, input);
     wrapper.appendChild(input);
 
-
     if (!input.id) {
       input.id = 'input_' + Math.random().toString(36).substr(2, 9);
     }
 
-   
+
+    input._hasUserInput = false;
+
     let wmText = "Enter value";
     try {
       const dataOptions = input.getAttribute("data-options");
@@ -99,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
         wmText = parsed.waterMarkText || wmText;
       }
     } catch (e) {}
-
 
     const label = document.createElement("label");
     label.setAttribute("for", input.id);
@@ -121,10 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     wrapper.appendChild(label);
 
-
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
-
 
     function floatLabel() {
       label.style.top = "0";          
@@ -133,16 +130,17 @@ document.addEventListener("DOMContentLoaded", function () {
       input.style.borderColor = "var(--aqua)";
     }
 
-
     function resetLabel() {
-      if (!input.value || input.value.trim() === "") {
+      if (!input._hasUserInput) {
+  
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
+
         setTimeout(() => {
-          if (!input.value || input.value.trim() === "") {
+          if (!input._hasUserInput) {
             label.remove();
           }
         }, 300);
@@ -151,11 +149,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    input.addEventListener("focus", () => {
+    input.addEventListener("focus", floatLabel);
+
+    input.addEventListener("input", () => {
+      input._hasUserInput = true;
       floatLabel();
     });
 
-    input.addEventListener("input", floatLabel);
     input.addEventListener("blur", resetLabel);
   }
 
