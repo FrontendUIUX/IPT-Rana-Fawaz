@@ -76,8 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!input) return;
 
 
-    if (!input.parentNode.classList.contains("floating-label-wrapper")) {
-      const wrapper = document.createElement("div");
+    let wrapper = input.parentNode;
+    if (!wrapper.classList.contains("floating-label-wrapper")) {
+      wrapper = document.createElement("div");
       wrapper.classList.add("floating-label-wrapper");
       wrapper.style.position = "relative";
       wrapper.style.display = "inline-block";
@@ -85,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
       input.parentNode.insertBefore(wrapper, input);
       wrapper.appendChild(input);
     }
-    const wrapper = input.parentNode;
 
     if (!input.id) {
       input.id = 'input_' + Math.random().toString(36).substr(2, 9);
@@ -94,9 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     input._userTyped = false;
 
- 
-    let label = wrapper.querySelector("label.floating-label");
-    if (!label) {
+
+    function createLabel() {
+   
+      let existingLabel = wrapper.querySelector("label.floating-label");
+      if (existingLabel) existingLabel.remove();
+
       let wmText = "Enter value";
       try {
         const dataOptions = input.getAttribute("data-options");
@@ -106,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } catch (e) {}
 
-      label = document.createElement("label");
+      const label = document.createElement("label");
       label.classList.add("floating-label");
       label.setAttribute("for", input.id);
       label.innerText = wmText;
@@ -126,7 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
         opacity: "1"
       });
       wrapper.appendChild(label);
+      return label;
     }
+
+    let label = createLabel();
 
     const originalBorder = input.style.border || "1px solid #ccc";
     input.style.transition = "border-color 0.3s ease";
@@ -139,17 +145,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function resetLabel() {
-      if (!input.value || input.value.trim() === "") {
-        // Animate back inside
+      if (!input._userTyped) {
         label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
         setTimeout(() => {
-          if (!input.value || input.value.trim() === "") {
-            label.remove(); 
-            input._userTyped = false;
+          if (!input._userTyped) {
+            label.remove();
           }
         }, 300);
       } else {
@@ -158,26 +162,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     input.addEventListener("focus", () => {
-   
+
       if (!wrapper.querySelector("label.floating-label")) {
-        addFloatingLabel(input);
-        return;
+        label = createLabel();
       }
       floatLabel();
     });
 
     input.addEventListener("input", () => {
+
       input._userTyped = true;
       floatLabel();
     });
 
     input.addEventListener("blur", resetLabel);
-
-   
-    if (input.value && input.value.trim() !== "") {
-      floatLabel();
-      input._userTyped = true;
-    }
   }
 
   document.addEventListener("click", function(e) {
