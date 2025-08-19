@@ -72,18 +72,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  function wrapInput(input) {
+    if (!input) return;
+    if (input.closest(".floating-label-wrapper")) return; // already wrapped
+
+    let wrapper = document.createElement("div");
+    wrapper.classList.add("floating-label-wrapper");
+    wrapper.style.position = "relative";
+    wrapper.style.display = "inline-block";
+    wrapper.style.width = "100%";
+
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+  }
+
   function addFloatingLabel(input) {
     if (!input) return;
 
-    let wrapper = input.parentNode;
-    if (!wrapper.classList.contains("floating-label-wrapper")) {
-      wrapper = document.createElement("div");
-      wrapper.classList.add("floating-label-wrapper");
-      wrapper.style.position = "relative";
-      wrapper.style.display = "inline-block";
-      wrapper.style.width = "100%";
-      input.parentNode.insertBefore(wrapper, input);
-      wrapper.appendChild(input);
+    let wrapper = input.closest(".floating-label-wrapper");
+    if (!wrapper) {
+      wrapInput(input);
+      wrapper = input.closest(".floating-label-wrapper");
     }
 
     if (!input.id) input.id = 'input_' + Math.random().toString(36).substr(2, 9);
@@ -112,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Object.assign(label.style, {
         position: "absolute",
         left: "10px",
-        top: "50%",                  
+        top: "50%",
         transform: "translateY(-50%)",
         color: "#aaa",
         pointerEvents: "none",
@@ -121,16 +130,15 @@ document.addEventListener("DOMContentLoaded", function () {
         fontWeight: "normal",
         transition: "top 0.5s ease, font-size 0.5s ease, color 0.5s ease, opacity 0.5s ease",
         backgroundColor: "white",
-        padding: "0 0.2rem",                
+        padding: "0 0.2rem",
       });
 
       wrapper.appendChild(label);
 
-  
       requestAnimationFrame(() => {
-        label.style.top = "0";        
+        label.style.top = "0";
         label.style.fontSize = "0.75rem";
-        label.style.color = "var(--aqua)";   
+        label.style.color = "var(--aqua)";
       });
 
       return label;
@@ -150,14 +158,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function resetLabel() {
       if (!typedDuringFocus) {
-        label.style.top = "50%";      
+        label.style.top = "50%";
         label.style.fontSize = "1rem";
         label.style.color = "#aaa";
         input.style.border = originalBorder;
 
         setTimeout(() => {
-          if (!typedDuringFocus) label.remove();
-          label = null;
+          if (!typedDuringFocus) {
+            label.remove();
+            label = null;
+          }
         }, 500);
       }
     }
@@ -171,19 +181,40 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("input", () => {
       typedDuringFocus = true;
       floatLabel();
-
       if (input.value.trim() === "") typedDuringFocus = false;
     });
 
     input.addEventListener("blur", resetLabel);
   }
 
-  document.addEventListener("click", function(e) {
-    const input = e.target.closest('html:not(.designer) [name*="OBB_textbox"]');
-    if (input) addFloatingLabel(input);
+  // MutationObserver to wrap inputs automatically
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        if (node.nodeType === 1) {
+          const inputs = node.matches?.('html:not(.designer) [name*="OBB_textbox"]')
+            ? [node]
+            : node.querySelectorAll?.('html:not(.designer) [name*="OBB_textbox"]');
+
+          inputs && inputs.forEach(input => {
+            wrapInput(input);
+            addFloatingLabel(input);
+          });
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Initialize existing inputs on load
+  document.querySelectorAll('html:not(.designer) [name*="OBB_textbox"]').forEach(input => {
+    wrapInput(input);
+    addFloatingLabel(input);
   });
 
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // --- Create the iOS-style switch ---
