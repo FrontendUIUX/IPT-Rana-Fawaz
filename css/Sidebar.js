@@ -135,11 +135,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       wrapper.appendChild(label);
 
-     setTimeout(() => {
-        label.style.top = "0";
-        label.style.fontSize = "0.75rem";
-        label.style.color = "var(--aqua)";
-       }, 0);
+  setTimeout(() => {
+    floatLabel(input);
+  }, 0);
 
       return label;
     }
