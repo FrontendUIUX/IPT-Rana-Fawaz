@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function wrapInput(input) {
     if (!input) return;
-    if (input.closest(".floating-label-wrapper")) return; // already wrapped
+    if (input.closest(".floating-label-wrapper")) return; 
 
     let wrapper = document.createElement("div");
     wrapper.classList.add("floating-label-wrapper");
@@ -135,11 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       wrapper.appendChild(label);
 
-      requestAnimationFrame(() => {
+     setTimeout(() => {
         label.style.top = "0";
         label.style.fontSize = "0.75rem";
         label.style.color = "var(--aqua)";
-      });
+       }, 0);
 
       return label;
     }
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("blur", resetLabel);
   }
 
-  // MutationObserver to wrap inputs automatically
+
   const observer = new MutationObserver((mutations) => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
@@ -207,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Initialize existing inputs on load
   document.querySelectorAll('html:not(.designer) [name*="OBB_textbox"]').forEach(input => {
     wrapInput(input);
     addFloatingLabel(input);
