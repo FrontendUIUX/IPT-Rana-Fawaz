@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function floatLabel() {
       if (!label) return;
+      label.offsetHeight;
       label.style.top = "0";
       label.style.fontSize = "0.75rem";
       label.style.color = "var(--aqua)";
