@@ -97,7 +97,7 @@ $(document).ready(function () {
 function menuBar(){
 
     
-if (currentUrl.includes("Testing Form")){
+if (currentUrl.includes("TestingForm")){
 	   menuItems = [
         { text: "Testing 1", url: "/Runtime/Runtime/Form/Testing+Form+1/" },
         { text: "Testing 2", url: "/Runtime/Runtime/Form/Testing+Form+2/" },
