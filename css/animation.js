@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const logo = document.querySelector(".navbarBrand img");
   const sidebar = document.querySelector(".sidebar");
   const pageBody = document.querySelector(".body.sidebarVisible");
@@ -34,21 +34,16 @@ window.addEventListener("load", () => {
   logo.parentElement.style.position = "relative";
   logo.parentElement.appendChild(shine);
 
-  // --- Animation helpers ---
+  // --- Animation helper ---
   function animate({duration, draw, timing, callback}) {
     const start = performance.now();
-    requestAnimationFrame(function animateFrame(time) {
+    requestAnimationFrame(function frame(time) {
       let timeFraction = (time - start) / duration;
       if (timeFraction > 1) timeFraction = 1;
-
       const progress = timing(timeFraction);
       draw(progress);
-
-      if (timeFraction < 1) {
-        requestAnimationFrame(animateFrame);
-      } else if (callback) {
-        callback();
-      }
+      if (timeFraction < 1) requestAnimationFrame(frame);
+      else if (callback) callback();
     });
   }
 
@@ -64,18 +59,16 @@ window.addEventListener("load", () => {
       logo.style.transform = `translateY(${ -20 + 20*progress }px) scale(${ 1.2 - 0.2*progress })`;
     },
     callback: () => {
-
       // --- 2️⃣ Shine diagonally across logo ---
       animate({
         duration: 600,
         timing: easeInOut,
         draw: progress => {
-          const shineX = -100 + 200*progress; // -100% to +100%
-          const shineY = -100 + 200*progress; // -100% to +100%
+          const shineX = -100 + 200*progress;
+          const shineY = -100 + 200*progress;
           shine.style.transform = `translate(${shineX}%, ${shineY}%)`;
         },
         callback: () => {
-          // Remove shine
           shine.style.opacity = 0;
 
           // --- 3️⃣ Sidebar slides in ---
@@ -86,7 +79,6 @@ window.addEventListener("load", () => {
               sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
             },
             callback: () => {
-
               // --- 4️⃣ Logo moves into sidebar ---
               const sidebarLeft = sidebar.getBoundingClientRect().left;
               const logoRect = logo.getBoundingClientRect();
@@ -98,7 +90,6 @@ window.addEventListener("load", () => {
                   logo.style.transform = `translateX(${deltaX*progress}px) scale(${0.8 + 0.2*(1-progress)})`;
                 },
                 callback: () => {
-
                   // --- 5️⃣ Body slides up ---
                   animate({
                     duration: 800,
@@ -116,5 +107,4 @@ window.addEventListener("load", () => {
       });
     }
   });
-
 });
