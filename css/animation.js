@@ -9,7 +9,7 @@ function waitForElements(selectors, callback) {
 
 // Usage:
 waitForElements(
-  [".navbarBrand img", ".sidebar", ".body.sidebarVisible"],
+  [".navbarBrand img", ".sidebar", ".theme-entry"],
   (logo, sidebar, pageBody) => {
     const body = document.body;
 
