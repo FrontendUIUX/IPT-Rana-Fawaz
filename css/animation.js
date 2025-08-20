@@ -77,7 +77,7 @@ waitForElements(
           },
           callback: () => {
             shine.style.opacity = 0;
-
+            body.style.background = "#ffffff";
             // --- 3️⃣ Sidebar slides in ---
 animate({
   duration: 800,
