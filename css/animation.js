@@ -24,8 +24,14 @@ waitForElements(
     slider.style.opacity = "0";
     slider.style.transform = "translateY(50px)";
 
-    pageBody.style.opacity = "0";
-    pageBody.style.transform = "translateY(50px)";
+    // get all children of pageBody except header
+    const pageChildren = Array.from(pageBody.children).filter(
+      el => !el.matches('[name="OBB_header"]')
+    );
+    pageChildren.forEach(child => {
+      child.style.opacity = "0";
+      child.style.transform = "translateY(50px)";
+    });
 
     // --- Add shine overlay ---
     const shine = document.createElement("div");
@@ -86,20 +92,24 @@ waitForElements(
             logo.removeAttribute("style");
             if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
-            // --- 3️⃣ Body + slider slides up together ---
+            // --- 3️⃣ Page children + slider slide up together ---
             animate({
               duration: 800,
               timing: easeOut,
               draw: progress => {
-                pageBody.style.opacity = progress;
-                pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
+                pageChildren.forEach(child => {
+                  child.style.opacity = progress;
+                  child.style.transform = `translateY(${50*(1-progress)}px)`;
+                });
                 slider.style.opacity = progress;
                 slider.style.transform = `translateY(${50*(1-progress)}px)`;
               },
               callback: () => {
-                // ✅ Reset inline CSS for body, page content, and slider
-                pageBody.style.transform = "";
-                pageBody.style.opacity = "";
+                // ✅ Reset inline CSS
+                pageChildren.forEach(child => {
+                  child.style.transform = "";
+                  child.style.opacity = "";
+                });
                 slider.style.transform = "";
                 slider.style.opacity = "";
 
