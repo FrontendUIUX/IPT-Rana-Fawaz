@@ -14,7 +14,7 @@ waitForElements(
     const body = document.body;
 
     // --- Initial states ---
-    body.style.background = "#fff";
+    body.style.background = "#000000";
     body.style.overflow = "hidden";
 
     logo.style.position = "relative";
