@@ -14,7 +14,7 @@ waitForElements(
       
     // --- Initial states ---
     body.style.background = "#000000";
-    body.style.overflowY = "hidden";
+    body.style.overflow = "hidden";
 
     logo.style.position = "relative";
     logo.style.opacity = "0";
@@ -112,12 +112,13 @@ animate({
             // ✅ Reset inline CSS after animation
             pageBody.style.transform = "";
             pageBody.style.opacity = "";
-              body.style.overflowY = "auto";
-  body.style.backgroundColor = "";
-  body.style.backgroundImage = "";
-  body.style.backgroundRepeat = "";
-  body.style.backgroundSize = "";
-  body.style.backgroundPosition = "";
+            body.style.overflow = "";
+            body.style.overflowY = "auto";
+            body.style.backgroundColor = "";
+            body.style.backgroundImage = "";
+            body.style.backgroundRepeat = "";
+            body.style.backgroundSize = "";
+            body.style.backgroundPosition = "";
           }
         });
       }
