@@ -98,14 +98,22 @@ waitForElements(
                   },
                   callback: () => {
                     // --- 5️⃣ Body slides up ---
-                    animate({
-                      duration: 800,
-                      timing: easeOut,
-                      draw: progress => {
-                        pageBody.style.opacity = progress;
-                        pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
-                      }
-                    });
+                    // --- 5️⃣ Body slides up ---
+animate({
+  duration: 800,
+  timing: easeOut,
+  draw: progress => {
+    pageBody.style.opacity = progress;
+    pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
+  },
+  callback: () => {
+    // ✅ Reset inline CSS after animation
+    pageBody.style.transform = "";
+    pageBody.style.opacity = "";
+    body.style.overflow = ""; // allow scrolling again
+  }
+});
+
                   }
                 });
               }
