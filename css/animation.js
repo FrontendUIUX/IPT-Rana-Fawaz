@@ -14,7 +14,7 @@ waitForElements(
       
     // --- Initial states ---
     body.style.background = "#000000";
-    body.style.overflow = "hidden";
+    body.style.overflowY = "hidden";
 
     logo.style.position = "relative";
     logo.style.opacity = "0";
@@ -112,6 +112,7 @@ animate({
             // ✅ Reset inline CSS after animation
             pageBody.style.transform = "";
             pageBody.style.opacity = "";
+            body.style.overflowY = "auto";
           }
         });
       }
