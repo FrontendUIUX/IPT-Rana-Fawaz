@@ -9,10 +9,9 @@ function waitForElements(selectors, callback) {
 
 // Usage:
 waitForElements(
-  [".navbarBrand img", ".sidebar", ".theme-entry"],
-  (logo, sidebar, pageBody) => {
-    const body = document.body;
-
+  [".navbarBrand img", ".sidebar",".runtime-content", ".theme-entry"],
+  (logo, sidebar, pageBody , body) => {
+      
     // --- Initial states ---
     body.style.background = "#000000";
     body.style.overflow = "hidden";
