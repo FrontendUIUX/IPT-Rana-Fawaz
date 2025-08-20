@@ -22,12 +22,12 @@ waitForElements(
 
     sidebar.style.position = "relative";
     sidebar.style.transform = "translateX(-100%)";
+    
+    slider.style.opacity = "0";
+    slider.style.transform = "translateY(50px)";
 
     pageBody.style.opacity = "0";
     pageBody.style.transform = "translateY(50px)";
-
-    slider.style.opacity = "0";
-    slider.style.transform = "translateY(50px)";
 
     // --- Add shine overlay ---
     const shine = document.createElement("div");
