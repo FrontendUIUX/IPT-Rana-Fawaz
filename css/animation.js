@@ -9,7 +9,7 @@ function waitForElements(selectors, callback) {
 
 // Usage:
 waitForElements(
-  [".navbarBrand img", ".sidebar", ".runtime-content", ".theme-entry", ".slider"],
+  [".navbarBrand img", ".sidebar", ".form", ".theme-entry", ".slider"],
   (logo, sidebar, pageBody, body, slider) => {
 
     // --- Initial states ---
@@ -24,14 +24,8 @@ waitForElements(
     slider.style.opacity = "0";
     slider.style.transform = "translateY(50px)";
 
-    // get all children of pageBody except header
-    const pageChildren = Array.from(pageBody.children).filter(
-      el => !el.matches('[name="OBB_header"]')
-    );
-    pageChildren.forEach(child => {
-      child.style.opacity = "0";
-      child.style.transform = "translateY(50px)";
-    });
+    pageBody.style.opacity = "0";
+    pageBody.style.transform = "translateY(50px)";
 
     // --- Add shine overlay ---
     const shine = document.createElement("div");
@@ -47,11 +41,37 @@ waitForElements(
     logo.parentElement.style.position = "relative";
     logo.parentElement.appendChild(shine);
 
+    // --- Header pinning (robust for any nesting) ---
+    const header = pageBody.querySelector('[name="OBB_header"]');
+    const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+    let headerPlaceholder = null;
+    if (header) {
+      const rect = header.getBoundingClientRect();
+
+      // placeholder keeps layout from collapsing while header is fixed
+      headerPlaceholder = document.createElement('div');
+      headerPlaceholder.style.height = rect.height + 'px';
+      headerPlaceholder.style.width = '100%';
+      header.parentNode.insertBefore(headerPlaceholder, header);
+
+      // pin header
+      header.style.position = 'fixed';
+      header.style.top = '0';
+      header.style.left = '0';
+      header.style.zIndex = '999';
+      // width per your CSS at >=992px
+      header.style.width = isDesktop ? 'calc(100vw - 15rem)' : '100vw';
+      header.style.height = '6rem';
+      header.style.paddingTop = '1rem';
+      header.style.paddingBottom = '1rem';
+    }
+
     function animate({duration, draw, timing, callback}) {
       const start = performance.now();
       requestAnimationFrame(function frame(time) {
         let timeFraction = (time - start) / duration;
         if (timeFraction > 1) timeFraction = 1;
+        if (timeFraction < 0) timeFraction = 0;
         const progress = timing(timeFraction);
         draw(progress);
         if (timeFraction < 1) requestAnimationFrame(frame);
@@ -75,13 +95,20 @@ waitForElements(
         shine.style.opacity = 0;
         body.style.background = "#ffffff";
 
-        // --- 2️⃣ Sidebar slides in + logo fades in ---
+        // --- 2️⃣ Sidebar slides in + logo fades in (and header left offset animates on desktop) ---
         animate({
           duration: 800,
           timing: easeOut,
           draw: progress => {
             sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
-            logo.style.opacity = progress; // fade in logo at the same time
+            logo.style.opacity = progress;
+
+            if (header && isDesktop) {
+              // animate header left from 0 -> 15rem
+              const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+              const targetLeftPx = 15 * rem;
+              header.style.left = (targetLeftPx * progress) + 'px';
+            }
           },
           callback: () => {
             sidebar.style.transform = "";
@@ -92,26 +119,30 @@ waitForElements(
             logo.removeAttribute("style");
             if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
-            // --- 3️⃣ Page children + slider slide up together ---
+            // --- 3️⃣ Whole form (pageBody) + slider slide up together ---
             animate({
               duration: 800,
               timing: easeOut,
               draw: progress => {
-                pageChildren.forEach(child => {
-                  child.style.opacity = progress;
-                  child.style.transform = `translateY(${50*(1-progress)}px)`;
-                });
+                pageBody.style.opacity = progress;
+                pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
                 slider.style.opacity = progress;
                 slider.style.transform = `translateY(${50*(1-progress)}px)`;
               },
               callback: () => {
                 // ✅ Reset inline CSS
-                pageChildren.forEach(child => {
-                  child.style.transform = "";
-                  child.style.opacity = "";
-                });
+                pageBody.style.transform = "";
+                pageBody.style.opacity = "";
                 slider.style.transform = "";
                 slider.style.opacity = "";
+
+                // unpin header and remove placeholder
+                if (header) {
+                  header.removeAttribute('style'); // return control to your stylesheet
+                  if (headerPlaceholder && headerPlaceholder.parentNode) {
+                    headerPlaceholder.parentNode.removeChild(headerPlaceholder);
+                  }
+                }
 
                 body.style.overflowY = "auto";
                 body.style.backgroundColor = "";
