@@ -2,7 +2,14 @@
 (function(){
   const script = document.createElement("script");
   script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.1/gsap.min.js";
-  script.onload = initAnimation;
+  script.onload = () => {
+    // Wait for full page load
+    if (document.readyState === "complete") {
+      initAnimation();
+    } else {
+      window.addEventListener("load", initAnimation);
+    }
+  };
   document.head.appendChild(script);
 })();
 
@@ -61,7 +68,7 @@ function initAnimation() {
 
   // 4️⃣ Logo moves into final sidebar position
   .to(logo, {
-    x: sidebar.offsetLeft - logo.getBoundingClientRect().left + 10, // adjust final x
+    x: sidebar.offsetLeft - logo.getBoundingClientRect().left + 10,
     y: 0,
     scale: 0.8,
     duration: 0.8,
@@ -74,6 +81,6 @@ function initAnimation() {
   // 6️⃣ Remove shine overlay
   .set(shine, {opacity: 0})
 
-  // 7️⃣ Optional: reset transforms to allow sidebar toggle to work normally
+  // 7️⃣ Optional: reset transforms
   .set([logo, sidebar, pageBody], {clearProps: "all"});
 }
