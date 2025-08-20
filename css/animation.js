@@ -59,7 +59,6 @@ waitForElements(
       header.style.top = '0';
       header.style.left = '0';
       header.style.zIndex = '999';
-      // width per your CSS at >=992px
       header.style.width = isDesktop ? 'calc(100vw - 15rem)' : '100vw';
       header.style.height = '6rem';
       header.style.paddingTop = '1rem';
@@ -95,66 +94,72 @@ waitForElements(
         shine.style.opacity = 0;
         body.style.background = "#ffffff";
 
-// --- 2️⃣ Sidebar slides in + logo fades in ---
-animate({
-  duration: 800,
-  timing: easeOut,
-  draw: progress => {
-    sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
-    logo.style.opacity = progress;
-  },
-  callback: () => {
-    sidebar.style.transform = "";
-    sidebar.style.position = "fixed";
+        // --- 2️⃣ Sidebar slides in + logo fades in ---
+        animate({
+          duration: 800,
+          timing: easeOut,
+          draw: progress => {
+            sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
+            logo.style.opacity = progress;
+          },
+          callback: () => {
+            sidebar.style.transform = "";
+            sidebar.style.position = "fixed";
 
-    // Clean up shine and inline styles on logo
-    if (shine && shine.parentElement) shine.remove();
-    logo.removeAttribute("style");
-    if (logo.parentElement) logo.parentElement.removeAttribute("style");
+            // Clean up shine and inline styles on logo
+            if (shine && shine.parentElement) shine.remove();
+            logo.removeAttribute("style");
+            if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
-    // --- 3️⃣ Page children (excluding header) + slider slide up together ---
-    const pageChildren = Array.from(pageBody.children).filter(
-      el => el !== header
-    );
+            // --- 3️⃣ Page children (excluding header) + slider slide up together ---
+            const pageChildren = Array.from(pageBody.children).filter(
+              el => el !== header
+            );
 
-    animate({
-      duration: 800,
-      timing: easeOut,
-      draw: progress => {
-        pageChildren.forEach(child => {
-          child.style.opacity = progress;
-          child.style.transform = `translateY(${50*(1-progress)}px)`;
-        });
-        slider.style.opacity = progress;
-        slider.style.transform = `translateY(${50*(1-progress)}px)`;
-      },
-      callback: () => {
-        // ✅ Reset inline CSS
-        pageChildren.forEach(child => {
-          child.style.transform = "";
-          child.style.opacity = "";
-        });
-        slider.style.transform = "";
-        slider.style.opacity = "";
+            // ✅ reset parent (form) so it's not hiding children anymore
+            pageBody.style.opacity = "";
+            pageBody.style.transform = "";
 
-        // unpin header and remove placeholder
-        if (header) {
-          header.removeAttribute('style'); // back to stylesheet
-          if (headerPlaceholder && headerPlaceholder.parentNode) {
-            headerPlaceholder.parentNode.removeChild(headerPlaceholder);
+            animate({
+              duration: 800,
+              timing: easeOut,
+              draw: progress => {
+                pageChildren.forEach(child => {
+                  child.style.opacity = progress;
+                  child.style.transform = `translateY(${50*(1-progress)}px)`;
+                });
+                slider.style.opacity = progress;
+                slider.style.transform = `translateY(${50*(1-progress)}px)`;
+              },
+              callback: () => {
+                // ✅ Reset inline CSS
+                pageChildren.forEach(child => {
+                  child.style.transform = "";
+                  child.style.opacity = "";
+                });
+                slider.style.transform = "";
+                slider.style.opacity = "";
+
+                // unpin header and remove placeholder
+                if (header) {
+                  header.removeAttribute('style'); // back to stylesheet
+                  if (headerPlaceholder && headerPlaceholder.parentNode) {
+                    headerPlaceholder.parentNode.removeChild(headerPlaceholder);
+                  }
+                }
+
+                body.style.overflowY = "auto";
+                body.style.backgroundColor = "";
+                body.style.backgroundImage = "";
+                body.style.backgroundRepeat = "";
+                body.style.backgroundSize = "";
+                body.style.backgroundPosition = "";
+              }
+            });
           }
-        }
-
-        body.style.overflowY = "auto";
-        body.style.backgroundColor = "";
-        body.style.backgroundImage = "";
-        body.style.backgroundRepeat = "";
-        body.style.backgroundSize = "";
-        body.style.backgroundPosition = "";
+        });
       }
     });
   }
-});
- }
-    });
-});
+);
+
