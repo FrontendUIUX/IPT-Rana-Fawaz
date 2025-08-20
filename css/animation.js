@@ -16,9 +16,7 @@ waitForElements(
     body.style.background = "#000000";
     body.style.overflow = "hidden";
 
-    logo.style.position = "relative";
-    logo.style.opacity = "0";
-    logo.style.transform = "translateY(-20px) scale(1.2)";
+    logo.style.opacity = "0"; // only opacity, no transforms
 
     sidebar.style.position = "relative";
     sidebar.style.transform = "translateX(-100%)";
@@ -58,83 +56,59 @@ waitForElements(
     const easeOut = t => 1 - Math.pow(1 - t, 3);
     const easeInOut = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
 
-    // --- 1️⃣ Logo fade-in + vertical motion ---
+    // --- 1️⃣ Shine diagonally first ---
     animate({
-      duration: 500,
-      timing: easeOut,
+      duration: 600,
+      timing: easeInOut,
       draw: progress => {
-        logo.style.opacity = progress;
-        logo.style.transform = `translateY(${ -20 + 20*progress }px) scale(${ 1.2 - 0.2*progress })`;
+        const shineX = -100 + 200*progress;
+        const shineY = -100 + 200*progress;
+        shine.style.transform = `translate(${shineX}%, ${shineY}%)`;
       },
       callback: () => {
-        // --- 2️⃣ Shine diagonally ---
+        shine.style.opacity = 0;
+        body.style.background = "#ffffff";
+
+        // --- 2️⃣ Sidebar slides in + logo fades in ---
         animate({
-          duration: 600,
-          timing: easeInOut,
+          duration: 800,
+          timing: easeOut,
           draw: progress => {
-            const shineX = -100 + 200*progress;
-            const shineY = -100 + 200*progress;
-            shine.style.transform = `translate(${shineX}%, ${shineY}%)`;
+            sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
+            logo.style.opacity = progress; // fade in logo at the same time
           },
           callback: () => {
-            shine.style.opacity = 0;
-            body.style.background = "#ffffff";
+            sidebar.style.transform = "";
+            sidebar.style.position = "fixed";
 
-            // --- 3️⃣ Sidebar slides in ---
+            // Clean up shine and inline styles on logo
+            if (shine && shine.parentElement) shine.remove();
+            logo.removeAttribute("style");
+            if (logo.parentElement) logo.parentElement.removeAttribute("style");
+
+            // --- 3️⃣ Body + slider slides up together ---
             animate({
               duration: 800,
               timing: easeOut,
               draw: progress => {
-                sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
+                pageBody.style.opacity = progress;
+                pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
+                slider.style.opacity = progress;
+                slider.style.transform = `translateY(${50*(1-progress)}px)`;
               },
               callback: () => {
-                sidebar.style.transform = "";
-                sidebar.style.position = "fixed"; 
+                // ✅ Reset inline CSS for body, page content, and slider
+                pageBody.style.transform = "";
+                pageBody.style.opacity = "";
+                slider.style.transform = "";
+                slider.style.opacity = "";
 
-                // --- 4️⃣ Logo moves to sidebar ---
-                const sidebarLeft = sidebar.getBoundingClientRect().left;
-                const logoRect = logo.getBoundingClientRect();
-                const deltaX = sidebarLeft - logoRect.left + 10;
-                animate({
-                  duration: 800,
-                  timing: easeOut,
-                  draw: progress => {
-                    logo.style.transform = `translateX(${deltaX*progress}px) scale(${0.8 + 0.2*(1-progress)})`;
-                  },
-                  callback: () => {
-                    // --- 5️⃣ Body + slider slides up together ---
-                    animate({
-                      duration: 800,
-                      timing: easeOut,
-                      draw: progress => {
-                        pageBody.style.opacity = progress;
-                        pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
-                        slider.style.opacity = progress;
-                        slider.style.transform = `translateY(${50*(1-progress)}px)`;
-                      },
-                      callback: () => {
-  // ✅ Reset inline CSS for body, page content, and slider
-  pageBody.style.transform = "";
-  pageBody.style.opacity = "";
-  slider.style.transform = "";
-  slider.style.opacity = "";
-
-  body.style.overflowY = "auto";
-  body.style.backgroundColor = "";
-  body.style.backgroundImage = "";
-  body.style.backgroundRepeat = "";
-  body.style.backgroundSize = "";
-  body.style.backgroundPosition = "";
-
-  // ✅ Clean up the logo
-  logo.removeAttribute("style");               // remove inline CSS from <img>
-  if (shine && shine.parentElement) shine.remove(); // remove shine overlay
-  if (logo.parentElement) logo.parentElement.removeAttribute("style"); // remove inline style on <a>
-}
-
-                    });
-                  }
-                });
+                body.style.overflowY = "auto";
+                body.style.backgroundColor = "";
+                body.style.backgroundImage = "";
+                body.style.backgroundRepeat = "";
+                body.style.backgroundSize = "";
+                body.style.backgroundPosition = "";
               }
             });
           }
