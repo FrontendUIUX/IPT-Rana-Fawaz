@@ -279,26 +279,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
         
-document.addEventListener("DOMContentLoaded", function() {
-  const logo = document.querySelector(".navbarBrand img");
-  const sidebar = document.querySelector(".sidebar");
-  const body = document.querySelector(".body.sidebarVisible");
-
-  // Step 1: Show logo with shine
-  logo.classList.add("show-logo");
-
-  // Step 2: After logo shine, slide sidebar in
-  setTimeout(() => {
-    sidebar.classList.add("show-sidebar");
-
-    // Step 3: Move logo into sidebar
-    logo.classList.add("move-logo-to-sidebar");
-  }, 1200); // Adjust timing based on shine duration
-
-  // Step 4: Slide page body up after sidebar in
-  setTimeout(() => {
-    body.classList.add("show-body");
-  }, 2000); // Adjust timing to sync with sidebar
-});
 
 
