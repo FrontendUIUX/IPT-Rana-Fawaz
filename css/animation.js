@@ -79,45 +79,46 @@ waitForElements(
             shine.style.opacity = 0;
 
             // --- 3️⃣ Sidebar slides in ---
-            animate({
-              duration: 800,
-              timing: easeOut,
-              draw: progress => {
-                sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
-              },
-              callback: () => {
-                // --- 4️⃣ Logo moves to sidebar ---
-                const sidebarLeft = sidebar.getBoundingClientRect().left;
-                const logoRect = logo.getBoundingClientRect();
-                const deltaX = sidebarLeft - logoRect.left + 10;
-                animate({
-                  duration: 800,
-                  timing: easeOut,
-                  draw: progress => {
-                    logo.style.transform = `translateX(${deltaX*progress}px) scale(${0.8 + 0.2*(1-progress)})`;
-                  },
-                  callback: () => {
-                    // --- 5️⃣ Body slides up ---
-                    // --- 5️⃣ Body slides up ---
 animate({
   duration: 800,
   timing: easeOut,
   draw: progress => {
-    pageBody.style.opacity = progress;
-    pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
+    sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
   },
   callback: () => {
-    // ✅ Reset inline CSS after animation
-    pageBody.style.transform = "";
-    pageBody.style.opacity = "";
-    body.style.overflow = ""; // allow scrolling again
+    // ✅ Reset sidebar CSS after it reaches final position
+    sidebar.style.transform = "";
+    sidebar.style.position = "fixed";  // instead of relative
+
+    // --- 4️⃣ Logo moves to sidebar ---
+    const sidebarLeft = sidebar.getBoundingClientRect().left;
+    const logoRect = logo.getBoundingClientRect();
+    const deltaX = sidebarLeft - logoRect.left + 10;
+    animate({
+      duration: 800,
+      timing: easeOut,
+      draw: progress => {
+        logo.style.transform = `translateX(${deltaX*progress}px) scale(${0.8 + 0.2*(1-progress)})`;
+      },
+      callback: () => {
+        // --- 5️⃣ Body slides up ---
+        animate({
+          duration: 800,
+          timing: easeOut,
+          draw: progress => {
+            pageBody.style.opacity = progress;
+            pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
+          },
+          callback: () => {
+            // ✅ Reset inline CSS after animation
+            pageBody.style.transform = "";
+            pageBody.style.opacity = "";
+          }
+        });
+      }
+    });
   }
 });
-
-                  }
-                });
-              }
-            });
           }
         });
       }
