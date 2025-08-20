@@ -113,18 +113,25 @@ waitForElements(
                         slider.style.transform = `translateY(${50*(1-progress)}px)`;
                       },
                       callback: () => {
-                        // ✅ Reset inline CSS for body, page content, and slider
-                        pageBody.style.transform = "";
-                        pageBody.style.opacity = "";
-                        slider.style.transform = "";
-                        slider.style.opacity = "";
-                        body.style.overflowY = "auto";
-                        body.style.backgroundColor = "";
-                        body.style.backgroundImage = "";
-                        body.style.backgroundRepeat = "";
-                        body.style.backgroundSize = "";
-                        body.style.backgroundPosition = "";
-                      }
+  // ✅ Reset inline CSS for body, page content, and slider
+  pageBody.style.transform = "";
+  pageBody.style.opacity = "";
+  slider.style.transform = "";
+  slider.style.opacity = "";
+
+  body.style.overflowY = "auto";
+  body.style.backgroundColor = "";
+  body.style.backgroundImage = "";
+  body.style.backgroundRepeat = "";
+  body.style.backgroundSize = "";
+  body.style.backgroundPosition = "";
+
+  // ✅ Clean up the logo
+  logo.removeAttribute("style");               // remove inline CSS from <img>
+  if (shine && shine.parentElement) shine.remove(); // remove shine overlay
+  if (logo.parentElement) logo.parentElement.removeAttribute("style"); // remove inline style on <a>
+}
+
                     });
                   }
                 });
