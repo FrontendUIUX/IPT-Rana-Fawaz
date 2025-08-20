@@ -95,65 +95,66 @@ waitForElements(
         shine.style.opacity = 0;
         body.style.background = "#ffffff";
 
-        // --- 2️⃣ Sidebar slides in + logo fades in (and header left offset animates on desktop) ---
-        animate({
-          duration: 800,
-          timing: easeOut,
-          draw: progress => {
-            sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
-            logo.style.opacity = progress;
+// --- 2️⃣ Sidebar slides in + logo fades in ---
+animate({
+  duration: 800,
+  timing: easeOut,
+  draw: progress => {
+    sidebar.style.transform = `translateX(${ -100 + 100*progress }%)`;
+    logo.style.opacity = progress;
+  },
+  callback: () => {
+    sidebar.style.transform = "";
+    sidebar.style.position = "fixed";
 
-            if (header && isDesktop) {
-              // animate header left from 0 -> 15rem
-              const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-              const targetLeftPx = 15 * rem;
-              header.style.left = (targetLeftPx * progress) + 'px';
-            }
-          },
-          callback: () => {
-            sidebar.style.transform = "";
-            sidebar.style.position = "fixed";
+    // Clean up shine and inline styles on logo
+    if (shine && shine.parentElement) shine.remove();
+    logo.removeAttribute("style");
+    if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
-            // Clean up shine and inline styles on logo
-            if (shine && shine.parentElement) shine.remove();
-            logo.removeAttribute("style");
-            if (logo.parentElement) logo.parentElement.removeAttribute("style");
+    // --- 3️⃣ Page children (excluding header) + slider slide up together ---
+    const pageChildren = Array.from(pageBody.children).filter(
+      el => el !== header
+    );
 
-            // --- 3️⃣ Whole form (pageBody) + slider slide up together ---
-            animate({
-              duration: 800,
-              timing: easeOut,
-              draw: progress => {
-                pageBody.style.opacity = progress;
-                pageBody.style.transform = `translateY(${50*(1-progress)}px)`;
-                slider.style.opacity = progress;
-                slider.style.transform = `translateY(${50*(1-progress)}px)`;
-              },
-              callback: () => {
-                // ✅ Reset inline CSS
-                pageBody.style.transform = "";
-                pageBody.style.opacity = "";
-                slider.style.transform = "";
-                slider.style.opacity = "";
-
-                // unpin header and remove placeholder
-                if (header) {
-                  header.removeAttribute('style'); // return control to your stylesheet
-                  if (headerPlaceholder && headerPlaceholder.parentNode) {
-                    headerPlaceholder.parentNode.removeChild(headerPlaceholder);
-                  }
-                }
-
-                body.style.overflowY = "auto";
-                body.style.backgroundColor = "";
-                body.style.backgroundImage = "";
-                body.style.backgroundRepeat = "";
-                body.style.backgroundSize = "";
-                body.style.backgroundPosition = "";
-              }
-            });
-          }
+    animate({
+      duration: 800,
+      timing: easeOut,
+      draw: progress => {
+        pageChildren.forEach(child => {
+          child.style.opacity = progress;
+          child.style.transform = `translateY(${50*(1-progress)}px)`;
         });
+        slider.style.opacity = progress;
+        slider.style.transform = `translateY(${50*(1-progress)}px)`;
+      },
+      callback: () => {
+        // ✅ Reset inline CSS
+        pageChildren.forEach(child => {
+          child.style.transform = "";
+          child.style.opacity = "";
+        });
+        slider.style.transform = "";
+        slider.style.opacity = "";
+
+        // unpin header and remove placeholder
+        if (header) {
+          header.removeAttribute('style'); // back to stylesheet
+          if (headerPlaceholder && headerPlaceholder.parentNode) {
+            headerPlaceholder.parentNode.removeChild(headerPlaceholder);
+          }
+        }
+
+        body.style.overflowY = "auto";
+        body.style.backgroundColor = "";
+        body.style.backgroundImage = "";
+        body.style.backgroundRepeat = "";
+        body.style.backgroundSize = "";
+        body.style.backgroundPosition = "";
       }
+    });
+  }
+});
+ }
     });
 });
