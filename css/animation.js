@@ -112,7 +112,12 @@ animate({
             // ✅ Reset inline CSS after animation
             pageBody.style.transform = "";
             pageBody.style.opacity = "";
-            body.style.overflowY = "auto";
+              body.style.overflowY = "auto";
+  body.style.backgroundColor = "";
+  body.style.backgroundImage = "";
+  body.style.backgroundRepeat = "";
+  body.style.backgroundSize = "";
+  body.style.backgroundPosition = "";
           }
         });
       }
