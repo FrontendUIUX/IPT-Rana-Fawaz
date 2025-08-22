@@ -24,8 +24,15 @@ waitForElements(
     slider.style.opacity = "0";
     slider.style.transform = "translateY(50px)";
 
-    pageBody.style.opacity = "0";
-    pageBody.style.transform = "translateY(50px)";
+    // get all children of pageBody except header
+    const header = pageBody.querySelector('[name="OBB_header"]');
+    const pageChildren = Array.from(pageBody.children).filter(
+      el => el !== header
+    );
+    pageChildren.forEach(child => {
+      child.style.opacity = "0";
+      child.style.transform = "translateY(50px)";
+    });
 
     // --- Add shine overlay ---
     const shine = document.createElement("div");
@@ -42,7 +49,6 @@ waitForElements(
     logo.parentElement.appendChild(shine);
 
     // --- Header pinning (robust for any nesting) ---
-    const header = pageBody.querySelector('[name="OBB_header"]');
     const isDesktop = window.matchMedia('(min-width: 992px)').matches;
     let headerPlaceholder = null;
     if (header) {
@@ -112,14 +118,6 @@ waitForElements(
             if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
             // --- 3️⃣ Page children (excluding header) + slider slide up together ---
-            const pageChildren = Array.from(pageBody.children).filter(
-              el => el !== header
-            );
-
-            // ✅ reset parent (form) so it's not hiding children anymore
-            pageBody.style.opacity = "";
-            pageBody.style.transform = "";
-
             animate({
               duration: 800,
               timing: easeOut,
@@ -162,4 +160,3 @@ waitForElements(
     });
   }
 );
-
