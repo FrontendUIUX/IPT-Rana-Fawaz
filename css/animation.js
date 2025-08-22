@@ -48,27 +48,24 @@ waitForElements(
     logo.parentElement.style.position = "relative";
     logo.parentElement.appendChild(shine);
 
-    // --- Header pinning (robust for any nesting) ---
-    const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+    // --- Header initial off-screen state ---
     let headerPlaceholder = null;
     if (header) {
       const rect = header.getBoundingClientRect();
 
-      // placeholder keeps layout from collapsing while header is fixed
+      // placeholder keeps layout from collapsing
       headerPlaceholder = document.createElement('div');
       headerPlaceholder.style.height = rect.height + 'px';
       headerPlaceholder.style.width = '100%';
       header.parentNode.insertBefore(headerPlaceholder, header);
 
-      // pin header
-      header.style.position = 'fixed';
-      header.style.top = '0';
-      header.style.left = '0';
-      header.style.zIndex = '999';
-      header.style.width = isDesktop ? 'calc(100vw - 15rem)' : '100vw';
-      header.style.height = '6rem';
-      header.style.paddingTop = '1rem';
-      header.style.paddingBottom = '1rem';
+      // position header above viewport
+      header.style.position = "fixed";
+      header.style.top = "-100%";
+      header.style.left = "0";
+      header.style.zIndex = "999";
+      header.style.width = "100%";
+      header.style.opacity = "0"; // hidden at first
     }
 
     function animate({duration, draw, timing, callback}) {
@@ -112,48 +109,58 @@ waitForElements(
             sidebar.style.transform = "";
             sidebar.style.position = "fixed";
 
-            // Clean up shine and inline styles on logo
             if (shine && shine.parentElement) shine.remove();
             logo.removeAttribute("style");
             if (logo.parentElement) logo.parentElement.removeAttribute("style");
 
-            // --- 3️⃣ Page children (excluding header) + slider slide up together ---
-            animate({
-              duration: 800,
-              timing: easeOut,
-              draw: progress => {
-                pageChildren.forEach(child => {
-                  child.style.opacity = progress;
-                  child.style.transform = `translateY(${50*(1-progress)}px)`;
-                });
-                slider.style.opacity = progress;
-                slider.style.transform = `translateY(${50*(1-progress)}px)`;
-              },
-              callback: () => {
-                // ✅ Reset inline CSS
-                pageChildren.forEach(child => {
-                  child.style.transform = "";
-                  child.style.opacity = "";
-                });
-                slider.style.transform = "";
-                slider.style.opacity = "";
+            // --- 3️⃣ Header slides down from above ---
+            if (header) {
+              animate({
+                duration: 800,
+                timing: easeOut,
+                draw: progress => {
+                  header.style.top = `${-100 + 100*progress}%`;
+                  header.style.opacity = progress;
+                },
+                callback: () => {
+                  // --- 4️⃣ Page children + slider slide up together ---
+                  animate({
+                    duration: 800,
+                    timing: easeOut,
+                    draw: progress => {
+                      pageChildren.forEach(child => {
+                        child.style.opacity = progress;
+                        child.style.transform = `translateY(${50*(1-progress)}px)`;
+                      });
+                      slider.style.opacity = progress;
+                      slider.style.transform = `translateY(${50*(1-progress)}px)`;
+                    },
+                    callback: () => {
+                      // reset inline styles
+                      pageChildren.forEach(child => {
+                        child.style.transform = "";
+                        child.style.opacity = "";
+                      });
+                      slider.style.transform = "";
+                      slider.style.opacity = "";
 
-                // unpin header and remove placeholder
-                if (header) {
-                  header.removeAttribute('style'); // back to stylesheet
-                  if (headerPlaceholder && headerPlaceholder.parentNode) {
-                    headerPlaceholder.parentNode.removeChild(headerPlaceholder);
-                  }
+                      // reset header
+                      header.removeAttribute("style");
+                      if (headerPlaceholder && headerPlaceholder.parentNode) {
+                        headerPlaceholder.parentNode.removeChild(headerPlaceholder);
+                      }
+
+                      body.style.overflowY = "auto";
+                      body.style.backgroundColor = "";
+                      body.style.backgroundImage = "";
+                      body.style.backgroundRepeat = "";
+                      body.style.backgroundSize = "";
+                      body.style.backgroundPosition = "";
+                    }
+                  });
                 }
-
-                body.style.overflowY = "auto";
-                body.style.backgroundColor = "";
-                body.style.backgroundImage = "";
-                body.style.backgroundRepeat = "";
-                body.style.backgroundSize = "";
-                body.style.backgroundPosition = "";
-              }
-            });
+              });
+            }
           }
         });
       }
