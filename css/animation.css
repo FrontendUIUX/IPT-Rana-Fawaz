@@ -1,0 +1,102 @@
+/* ---------- SIMPLE STAGED ANIMATION CSS ---------- */
+
+/* 0) Boot state applied by JS before anything runs */
+body.boot { overflow: hidden; background: #000; }
+
+/* Sidebar: slide from left */
+.sidebar { transition: transform .8s ease; }
+body.boot .sidebar { transform: translateX(-100%); }
+body.boot.s1 .sidebar { transform: translateX(0); }
+
+/* Logo: fade in */
+.navbarBrand img { transition: opacity .8s ease; }
+body.boot .navbarBrand img { opacity: 0; }
+body.boot.s1 .navbarBrand img { opacity: 1; }
+
+/* Theme switch: keep your final slider CSS exactly as you wanted */
+.theme-switch {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  z-index: 9999;
+  transition: transform .8s ease, opacity .8s ease;
+}
+body.boot .theme-switch { opacity: 0; transform: translateY(50px); }
+body.boot.s3 .theme-switch { opacity: 1; transform: translateY(0); }
+
+/* Slider — final required CSS */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.theme-switch input:checked + .slider { background-color: #2196F3; }
+.theme-switch input:checked + .slider:before { transform: translateX(26px); }
+
+/* Page content (exclude header) slides up */
+.form > * { transition: transform .8s ease, opacity .8s ease; }
+body.boot .form > *:not([name="OBB_header"]) { opacity: 0; transform: translateY(50px); }
+body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1; transform: none; }
+
+/* Header: start above the viewport, then drop in */
+/* Desktop: aligns to your final 15rem lane during the drop */
+@media (min-width: 992px) {
+  html:not(.designer) .sidebarVisible [name="OBB_header"] {
+    left: 15rem;
+    width: calc(100vw - 15rem);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem;
+    height: 6rem;
+    transition: transform .8s ease, opacity .8s ease;
+  }
+
+  /* Boot state puts it fixed & above, already aligned at left:15rem */
+  body.boot .sidebarVisible [name="OBB_header"] {
+    position: fixed;
+    top: 0;
+    left: 15rem;
+    width: calc(100vw - 15rem);
+    transform: translateY(-120%);
+    opacity: 0;
+    z-index: 999;
+  }
+  body.boot.s2 .sidebarVisible [name="OBB_header"] {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile header (full width) */
+@media (max-width: 991.98px) {
+  [name="OBB_header"] { transition: transform .8s ease, opacity .8s ease; }
+  body.boot [name="OBB_header"] {
+    position: fixed;
+    top: 0; left: 0; width: 100vw;
+    transform: translateY(-120%);
+    opacity: 0; z-index: 999;
+  }
+  body.boot.s2 [name="OBB_header"] { transform: translateY(0); opacity: 1; }
+}
+
+/* (Keep your existing .sidebarVisible / .sidebar-close CSS as-is) */
