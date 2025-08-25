@@ -1,32 +1,32 @@
 .sidebar.hidden {
     padding-right: 0.5rem !important;
     transform: translateX(calc(-100% + 3rem));
-     transition: transform 0.3s ease, width 0.3s ease;
+     transition: transform 0.8s ease, width 0.8s ease;
 }
 
 .sidebar {
-    transition: transform 0.3s ease, width 0.3s ease;
+    transition: transform 0.8s ease, width 0.8s ease;
 }
 
 html:not(.designer) body.sidebarVisible.sidebar-close {
     margin-left: 3rem !important; 
     width: calc(100% - 3rem) !important;
     padding: 0 1rem;
-    transition: margin-left 0.3s ease, width 0.3s ease;
+    transition: margin-left 0.8s ease, width 0.8s ease;
 }
 
 html:not(.designer) body.sidebarVisible {
-    transition: margin-left 0.3s ease, width 0.3s ease;
+    transition: margin-left 0.8s ease, width 0.8s ease;
 }
 
 html:not(.designer) .sidebarVisible.sidebar-close [name="OBB_header"] {
     left: 3rem !important;
     width: calc(100% - 3rem) !important;
-    transition: left 0.3s ease, width 0.3s ease;
+    transition: left 0.8s ease, width 0.8s ease;
 }
 
 html:not(.designer) .sidebarVisible [name="OBB_header"] {
-       transition: left 0.3s ease, width 0.3s ease;
+       transition: left 0.8s ease, width 0.8s ease;
 }
 
 html:not(.designer) .sidebarVisible.sidebar-close .sidebar.hidden .navbarBrand {
