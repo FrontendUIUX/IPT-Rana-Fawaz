@@ -1,26 +1,25 @@
-
 /* --- Initial boot state --- */
 body.boot { overflow: hidden; }
 
 /* Sidebar */
-.sidebar { transition: transform .8s ease; }
-body.boot .sidebar { transform: translateX(-100%); }
-body.boot.s1 .sidebar { transform: translateX(0); }
+.sidebar { transition: transform 0.8s ease; }
+body.boot .sidebar { transform: translateX(-100%) !important; }
+body.boot.s1 .sidebar { transform: translateX(0) !important; }
 
 /* Logo */
-.navbarBrand img { transition: opacity .8s ease; }
-body.boot .navbarBrand img { opacity: 0; }
-body.boot.s1 .navbarBrand img { opacity: 1; }
+.navbarBrand img { transition: opacity 0.8s ease; }
+body.boot .navbarBrand img { opacity: 0 !important; }
+body.boot.s1 .navbarBrand img { opacity: 1 !important; }
 
 /* Slider */
-.slider { transition: transform .8s ease, opacity .8s ease; }
-body.boot .slider { opacity: 0; transform: translateY(50px); }
-body.boot.s3 .slider { opacity: 1; transform: translateY(0); }
+.slider { transition: transform 0.8s ease, opacity 0.8s ease; }
+body.boot .slider { opacity: 0 !important; transform: translateY(50px) !important; }
+body.boot.s3 .slider { opacity: 1 !important; transform: translateY(0) !important; }
 
-/* Page children */
-.form > *:not([name="OBB_header"]) { transition: transform .8s ease, opacity .8s ease; }
-body.boot .form > *:not([name="OBB_header"]) { opacity: 0; transform: translateY(50px); }
-body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1; transform: translateY(0); }
+/* Page children except header */
+.form > *:not([name="OBB_header"]) { transition: transform 0.8s ease, opacity 0.8s ease; }
+body.boot .form > *:not([name="OBB_header"]) { opacity: 0 !important; transform: translateY(50px) !important; }
+body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1 !important; transform: translateY(0) !important; }
 
 /* Header animation (independent from page children) */
 @media (min-width: 992px) {
@@ -30,32 +29,37 @@ body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1; transform: transla
     padding-top: 1rem !important;
     padding-bottom: 1rem;
     height: 6rem;
-    transition: transform .8s ease, opacity .8s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease;
   }
 
-  body.boot .sidebarVisible [name="OBB_header"] {
-    position: fixed;
-    top: 0;
-    left: 15rem;
-    width: calc(100vw - 15rem);
-    transform: translateY(-120%);
-    opacity: 0;
-    z-index: 999;
+  /* Boot state: header starts above viewport */
+  body.boot.sidebarVisible [name="OBB_header"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 15rem !important;
+    width: calc(100vw - 15rem) !important;
+    transform: translateY(-120%) !important;
+    opacity: 0 !important;
+    z-index: 999 !important;
   }
 
-  body.boot.s2 .sidebarVisible [name="OBB_header"] {
-    transform: translateY(0);
-    opacity: 1;
+  /* Header final state */
+  body.boot.s2.sidebarVisible [name="OBB_header"] {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
   }
 }
 
 @media (max-width: 991.98px) {
-  [name="OBB_header"] { transition: transform .8s ease, opacity .8s ease; }
+  [name="OBB_header"] { transition: transform 0.8s ease, opacity 0.8s ease; }
   body.boot [name="OBB_header"] {
-    position: fixed;
-    top: 0; left: 0; width: 100vw;
-    transform: translateY(-120%);
-    opacity: 0; z-index: 999;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    transform: translateY(-120%) !important;
+    opacity: 0 !important;
+    z-index: 999 !important;
   }
-  body.boot.s2 [name="OBB_header"] { transform: translateY(0); opacity: 1; }
+  body.boot.s2 [name="OBB_header"] { transform: translateY(0) !important; opacity: 1 !important; }
 }
