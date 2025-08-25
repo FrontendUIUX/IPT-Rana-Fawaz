@@ -32,7 +32,7 @@ body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1 !important; transfo
   }
 
   /* Boot state: header starts above viewport */
-  body.boot.sidebarVisible [name="OBB_header"] {
+body.boot.sidebarVisible [name="OBB_header"] > div {
     position: fixed !important;
     top: 0 !important;
     left: 15rem !important;
@@ -40,13 +40,13 @@ body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1 !important; transfo
     transform: translateY(-120%) !important;
     opacity: 0 !important;
     z-index: 999 !important;
+    transition: transform 0.8s ease, opacity 0.8s ease;
   }
 
-  /* Header final state */
-  body.boot.s2.sidebarVisible [name="OBB_header"] {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-  }
+body.boot.s2.sidebarVisible [name="OBB_header"] > div {
+  transform: translateY(0);
+  opacity: 1;
+}
 }
 
 @media (max-width: 991.98px) {
