@@ -1,0 +1,68 @@
+/* --- Initial boot state --- */
+body.boot { 
+  overflow: hidden; 
+}
+
+/* Sidebar */
+.sidebar { 
+  transition: transform 0.8s ease; 
+}
+body.boot .sidebar { 
+  transform: translateX(-100%) !important; 
+}
+body.boot.s1 .sidebar { 
+  transform: translateX(0) !important; 
+}
+
+/* Logo */
+.navbarBrand img { 
+  transition: opacity 0.8s ease; 
+}
+body.boot .navbarBrand img { 
+  opacity: 0 !important; 
+}
+body.boot.s1 .navbarBrand img { 
+  opacity: 1 !important; 
+}
+
+/* Slider */
+.slider { 
+  transition: transform 0.8s ease, opacity 0.8s ease; 
+}
+body.boot .slider { 
+  opacity: 0 !important; 
+  transform: translateY(50px) !important; 
+}
+body.boot.s3 .slider { 
+  opacity: 1 !important; 
+  transform: translateY(0) !important; 
+}
+
+/* Page children except header */
+.form > *:not([name="OBB_header"]) { 
+  transition: transform 0.8s ease, opacity 0.8s ease; 
+}
+body.boot .form > *:not([name="OBB_header"]) { 
+  opacity: 0 !important; 
+  transform: translateY(50px) !important; 
+}
+body.boot.s3 .form > *:not([name="OBB_header"]) { 
+  opacity: 1 !important; 
+  transform: translateY(0) !important; 
+}
+
+/* Header fade-out first */
+[name="OBB_header"] {
+  transition: opacity 0.6s ease;
+}
+
+/* Step 0 → fade header out immediately */
+body.boot [name="OBB_header"] {
+  opacity: 0 !important;
+}
+
+/* Step 3 → fade header back in after form */
+body.boot.s3 [name="OBB_header"] {
+  opacity: 1 !important;
+  transition-delay: 0.6s; /* wait until form settles */
+}
