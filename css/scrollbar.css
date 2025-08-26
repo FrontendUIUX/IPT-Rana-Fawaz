@@ -20,8 +20,8 @@ html:not(.designer) [name*="s_header"] {
     background-color: #FFFFFF;
     position: fixed;
     top: 0;
-    left: 13rem;
-    width: calc(100% - 13rem);
+    left: 15rem;
+    width: calc(100% - 15rem);
     z-index: 2;
     /* height: 6rem; */
     padding: 0 1rem !important;
