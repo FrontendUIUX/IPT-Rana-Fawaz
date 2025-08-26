@@ -1,25 +1,55 @@
 /* --- Initial boot state --- */
-body.boot { overflow: hidden; }
+body.boot { 
+  overflow: hidden; 
+}
 
 /* Sidebar */
-.sidebar { transition: transform 0.8s ease; }
-body.boot .sidebar { transform: translateX(-100%); }
-body.boot.s1 .sidebar { transform: translateX(0); }
+.sidebar { 
+  transition: transform 0.8s ease; 
+}
+body.boot .sidebar { 
+  transform: translateX(-100%); 
+}
+body.boot.s1 .sidebar { 
+  transform: translateX(0); 
+}
 
 /* Logo */
-.navbarBrand img { transition: opacity 0.8s ease; }
-body.boot .navbarBrand img { opacity: 0; }
-body.boot.s1 .navbarBrand img { opacity: 1; }
+.navbarBrand img { 
+  transition: opacity 0.8s ease; 
+}
+body.boot .navbarBrand img { 
+  opacity: 0; 
+}
+body.boot.s1 .navbarBrand img { 
+  opacity: 1; 
+}
 
 /* Slider */
-.slider { transition: transform 0.8s ease, opacity 0.8s ease; }
-body.boot .slider { opacity: 0; transform: translateY(50px); }
-body.boot.s3 .slider { opacity: 1; transform: translateY(0); }
+.slider { 
+  transition: transform 0.8s ease, opacity 0.8s ease; 
+}
+body.boot .slider { 
+  opacity: 0; 
+  transform: translateY(50px); 
+}
+body.boot.s3 .slider { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 
 /* Page children except header */
-.form > *:not([name="OBB_header"]) { transition: transform 0.8s ease, opacity 0.8s ease; }
-body.boot .form > *:not([name="OBB_header"]) { opacity: 0; transform: translateY(50px); }
-body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1; transform: translateY(0); }
+.form > *:not([name="OBB_header"]) { 
+  transition: transform 0.8s ease, opacity 0.8s ease; 
+}
+body.boot .form > *:not([name="OBB_header"]) { 
+  opacity: 0; 
+  transform: translateY(50px); 
+}
+body.boot.s3 .form > *:not([name="OBB_header"]) { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 
 /* Header: start hidden, fade in later */
 [name="OBB_header"] {
@@ -27,6 +57,12 @@ body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1; transform: transla
   transition: opacity 1s ease;
 }
 
-body.boot.s4 [name="OBB_header"] {
+/* Fade-in during animation */
+body.boot.s2 [name="OBB_header"] {
+  opacity: 1;
+}
+
+/* Persistent visible state after animation ends */
+body.header-visible [name="OBB_header"] {
   opacity: 1;
 }
