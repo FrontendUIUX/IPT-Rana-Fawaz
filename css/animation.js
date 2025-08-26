@@ -2,33 +2,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start with boot class
   document.body.classList.add("boot");
 
-  // Wait for all important elements before running animation
   waitForElements(
     [".navbarBrand img", ".sidebar", ".form", ".theme-entry", ".slider", "[name='OBB_header']"],
     (logo, sidebar, form, theme, slider, header) => {
-      
-      // Step 0: force header hidden at start
-      if (header) header.classList.add("hidden-at-start");
 
       // Step 1 → sidebar + logo
       setTimeout(() => {
         document.body.classList.add("s1");
       }, 200);
 
-      // Step 2 → header fades in
-      setTimeout(() => {
-        document.body.classList.add("s2");
-        if (header) header.classList.remove("hidden-at-start");
-      }, 1400);
-
-      // Step 3 → page children + slider
+      // Step 2 → form + slider animation
       setTimeout(() => {
         document.body.classList.add("s3");
+      }, 1400);
+
+      // Step 3 → header fade-in after everything else
+      setTimeout(() => {
+        document.body.classList.add("s4"); // new step for header only
       }, 2600);
 
       // Step 4 → cleanup classes
       setTimeout(() => {
-        document.body.classList.remove("boot", "s1", "s2");
+        document.body.classList.remove("boot", "s1", "s3");
         document.body.style.overflow = "";
       }, 4000);
 
@@ -45,4 +40,3 @@ function waitForElements(selectors, callback) {
     requestAnimationFrame(() => waitForElements(selectors, callback));
   }
 }
-
