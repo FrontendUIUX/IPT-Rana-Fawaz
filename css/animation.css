@@ -22,11 +22,12 @@ body.boot .form > *:not([name="OBB_header"]) { opacity: 0 !important; transform:
 body.boot.s3 .form > *:not([name="OBB_header"]) { opacity: 1 !important; transform: translateY(0) !important; }
 
 /* Header fade-in */
-[name="OBB_header"] {
+body.boot [name="OBB_header"] {
+  opacity: 0 !important;
   transition: opacity 1s ease;
-  opacity: 0;
 }
 
+/* At the final step: show it again */
 body.boot.s3 [name="OBB_header"] {
-  opacity: 1;
+  opacity: 1 !important;
 }
