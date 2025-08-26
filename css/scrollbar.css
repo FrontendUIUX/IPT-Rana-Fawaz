@@ -3,7 +3,7 @@
 }
 
 .theme-entry div .grid-body {
-  overflow-x: auto; 
+  overflow-x: auto !important; 
 }
 
 .theme-entry div .grid-body table {
@@ -13,4 +13,5 @@
 
 .theme-entry div .grid-body colgroup col {
   width: auto !important;
+  align-items: center !important;
 }
