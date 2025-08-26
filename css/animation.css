@@ -1,68 +1,35 @@
-/* --- Initial boot state --- */
-body.boot { 
-  overflow: hidden; 
+/* ---------------- RESET & BASE ---------------- */
+body.boot, body.boot * {
+  transition: none !important;
 }
 
-/* Sidebar */
-.sidebar { 
-  transition: transform 0.8s ease; 
-}
-body.boot .sidebar { 
-  transform: translateX(-100%) !important; 
-}
-body.boot.s1 .sidebar { 
-  transform: translateX(0) !important; 
+/* Form wrapper default */
+[name="OBB_Form"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Logo */
-.navbarBrand img { 
-  transition: opacity 0.8s ease; 
-}
-body.boot .navbarBrand img { 
-  opacity: 0 !important; 
-}
-body.boot.s1 .navbarBrand img { 
-  opacity: 1 !important; 
-}
-
-/* Slider */
-.slider { 
-  transition: transform 0.8s ease, opacity 0.8s ease; 
-}
-body.boot .slider { 
-  opacity: 0 !important; 
-  transform: translateY(50px) !important; 
-}
-body.boot.s3 .slider { 
-  opacity: 1 !important; 
-  transform: translateY(0) !important; 
-}
-
-/* Page children except header */
-.form > *:not([name="OBB_header"]) { 
-  transition: transform 0.8s ease, opacity 0.8s ease; 
-}
-body.boot .form > *:not([name="OBB_header"]) { 
-  opacity: 0 !important; 
-  transform: translateY(50px) !important; 
-}
-body.boot.s3 .form > *:not([name="OBB_header"]) { 
-  opacity: 1 !important; 
-  transform: translateY(0) !important; 
-}
-
-/* Header fade-out first */
-[name="OBB_header"] {
+/* Header default hidden */
+[name="OBB_header"].hidden-at-start {
+  opacity: 0 !important;
   transition: opacity 0.6s ease;
 }
 
-/* Step 0 → fade header out immediately */
-body.boot [name="OBB_header"] {
-  opacity: 0 !important;
+/* Step 1: fade in background */
+body.s1 {
+  background: #f8f9fa; /* adjust if needed */
+  transition: background 1s ease;
 }
 
-/* Step 3 → fade header back in after form */
-body.boot.s3 [name="OBB_header"] {
+/* Step 2: show form */
+body.s2 [name="OBB_Form"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Step 3: fade header in */
+body.s3 [name="OBB_header"].hidden-at-start {
   opacity: 1 !important;
-  transition-delay: 0.6s; /* wait until form settles */
+  transition-delay: 0.6s; /* wait for form */
 }
