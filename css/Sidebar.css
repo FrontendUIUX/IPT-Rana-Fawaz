@@ -103,7 +103,7 @@ html:not(.designer) textarea:focus::placeholder {
     overflow-x: hidden !important;
 }
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body {
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table {
