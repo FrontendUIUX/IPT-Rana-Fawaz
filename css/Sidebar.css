@@ -140,3 +140,13 @@ html:not(.designer) textarea:focus::placeholder {
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body colgroup col {
   width: auto !important;
 }
+
+.theme-entry .grid .grid-column-header-cell-content {
+    display: block !important;              /* let text expand naturally */
+    min-height: 20px;
+    vertical-align: middle;
+    width: auto !important;      /* allow full word */
+    white-space: nowrap;         /* don’t wrap, expand instead */
+    overflow: visible;           /* prevent clipping */
+    text-overflow: unset;        /* disable ellipsis */
+}
