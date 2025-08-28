@@ -62,7 +62,7 @@ body.boot.s2 [name="OBB_header"] {
   opacity: 1;
 }
 
-/* Persistent visible state after animation ends */
 body.header-visible [name="OBB_header"] {
-  opacity: 1;
+  opacity: 1 !important;
+  transition: opacity 0.5s ease;
 }
