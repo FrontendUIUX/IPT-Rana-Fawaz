@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("s1");
       }, 200);
 
-      // Step 2 → (skip header here)
-      setTimeout(() => {
-        document.body.classList.add("s2"); // optional marker if needed
-      }, 1400);
+//      // Step 2 → (skip header here)
+//      setTimeout(() => {
+//        document.body.classList.add("s2"); // optional marker if needed
+//      }, 1400);
 
       // Step 3 → page children + slider
       setTimeout(() => {

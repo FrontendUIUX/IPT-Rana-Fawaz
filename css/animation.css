@@ -51,10 +51,17 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   transform: translateY(0); 
 }
 
-/* Header: start hidden, fade in later */
+/* Header starts fully hidden & fixed in place */
 [name="OBB_header"] {
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.8s ease;
+  transform: none !important;  /* prevent any slide-in movement */
+  position: relative;          /* ensures it holds its place in layout */
+}
+
+/* Do NOT let boot animation affect the header */
+body.boot [name="OBB_header"] {
+  opacity: 0 !important;
 }
 
 /* Fade-in during animation */
