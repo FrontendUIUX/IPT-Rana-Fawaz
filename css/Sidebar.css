@@ -114,6 +114,8 @@ html:not(.designer) textarea:focus::placeholder {
 }
 
 /* Ensure cells don’t get truncated or forced narrow */
+.theme-entry .grid .grid-column-headers div, 
+.theme-entry .grid .grid-column-headers span,
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table th,
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table td {
   white-space: nowrap !important;      /* keep words on one line so width = content width */
@@ -124,6 +126,8 @@ html:not(.designer) textarea:focus::placeholder {
 }
 
 /* If the theme injects wrappers/spans with max-width + ellipsis, neutralize them too */
+.theme-entry .grid .grid-column-headers div, 
+.theme-entry .grid .grid-column-headers span,
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table th > *,
 .theme-entry div[name='Area Item OBB_Collapse'] .grid-body table td > * {
   max-width: none !important;
