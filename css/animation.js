@@ -2,11 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start with boot class
   document.body.classList.add("boot");
 
-  // Wait for all important elements before running animation
   waitForElements(
     [".navbarBrand img", ".sidebar", ".form", ".theme-entry", ".slider", "[name='OBB_header']"],
     (logo, sidebar, form, theme, slider, header) => {
-
+      
       // Step 0: header hidden at start
       if (header) header.style.opacity = 0;
 
@@ -15,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("s1");
       }, 200);
 
-      // Step 2 → header fades in
+      // Step 2 → (skip header here)
       setTimeout(() => {
-        document.body.classList.add("s2");
+        document.body.classList.add("s2"); // optional marker if needed
       }, 1400);
 
       // Step 3 → page children + slider
@@ -25,22 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("s3");
       }, 2600);
 
-// Step 4 → cleanup classes, then fade in header last
-setTimeout(() => {
-  document.body.classList.remove("boot", "s1", "s3"); 
-  document.body.classList.add("header-visible"); // persist visible state
-  document.body.style.overflow = "";
+      // Step 4 → cleanup after full animation
+      setTimeout(() => {
+        document.body.classList.remove("boot", "s1", "s3");
+        document.body.classList.add("boot-done"); // marker for finished boot
+        document.body.style.overflow = "";
 
-  // trigger header fade LAST
-  document.body.classList.add("s2"); 
-}, 4000);
-
+        // ---- Trigger separate header animation AFTER boot ----
+        setTimeout(() => {
+          document.body.classList.add("header-fadein");
+        }, 300); // delay after boot is done
+      }, 4000);
 
     }
   );
 });
 
-// Utility: wait for all selectors to exist before callback
+// Utility
 function waitForElements(selectors, callback) {
   const elements = selectors.map(sel => document.querySelector(sel));
   if (elements.every(el => el)) {

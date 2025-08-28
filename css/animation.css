@@ -61,8 +61,8 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
 body.boot.s2 [name="OBB_header"] {
   opacity: 1;
 }
-
-body.header-visible [name="OBB_header"] {
+body.header-fadein [name="OBB_header"] {
   opacity: 1 !important;
   transition: opacity 0.5s ease;
 }
+
