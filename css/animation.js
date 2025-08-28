@@ -25,12 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("s3");
       }, 2600);
 
-      // Step 4 → cleanup classes, persist header
-      setTimeout(() => {
-        document.body.classList.remove("boot", "s1", "s2", "s3");
-        document.body.classList.add("header-visible"); // make header stay visible
-        document.body.style.overflow = "";
-      }, 4000);
+// Step 4 → cleanup classes, then fade in header last
+setTimeout(() => {
+  document.body.classList.remove("boot", "s1", "s3"); 
+  document.body.classList.add("header-visible"); // persist visible state
+  document.body.style.overflow = "";
+
+  // trigger header fade LAST
+  document.body.classList.add("s2"); 
+}, 4000);
+
 
     }
   );
