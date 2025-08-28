@@ -111,7 +111,7 @@ html:not(.designer) textarea:focus::placeholder {
   overflow-x: hidden;
 }
 
-.theme-entry div[name='Area Item OBB_Collapse'] .grid-body table td {
+.theme-entry .grid .grid-column-headers div, .theme-entry .grid .grid-column-headers span{
   white-space: normal !important;
   text-overflow: unset !important;
 }
