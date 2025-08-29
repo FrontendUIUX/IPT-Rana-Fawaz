@@ -51,25 +51,15 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   transform: translateY(0); 
 }
 
-/* Header starts fully hidden & fixed in place */
+/* Header stays OUT of layout until boot ends */
 [name="OBB_header"] {
+  display: none;              /* don't let it affect layout */
   opacity: 0;
   transition: opacity 0.8s ease;
-  transform: none !important;  /* prevent any slide-in movement */
-  position: relative;          /* ensures it holds its place in layout */
 }
 
-/* Do NOT let boot animation affect the header */
-body.boot [name="OBB_header"] {
-  opacity: 0 !important;
-}
-
-/* Fade-in during animation */
-body.boot.s2 [name="OBB_header"] {
+/* After boot is done, put header back */
+body.header-fadein [name="OBB_header"] {
+  display: block;             /* re-insert into layout */
   opacity: 1;
 }
-body.header-fadein [name="OBB_header"] {
-  opacity: 1 !important;
-  transition: opacity 0.5s ease;
-}
-
