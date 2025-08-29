@@ -51,15 +51,15 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   transform: translateY(0); 
 }
 
-/* Header stays OUT of layout until boot ends */
+/* Header is invisible but still holds its place */
 [name="OBB_header"] {
-  display: none;              /* don't let it affect layout */
   opacity: 0;
+  visibility: hidden;          /* prevent interaction but keep layout */
   transition: opacity 0.8s ease;
 }
 
-/* After boot is done, put header back */
+/* When fade-in is triggered */
 body.header-fadein [name="OBB_header"] {
-  display: block;             /* re-insert into layout */
   opacity: 1;
+  visibility: visible;
 }

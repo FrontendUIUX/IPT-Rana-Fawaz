@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   waitForElements(
     [".navbarBrand img", ".sidebar", ".form", ".theme-entry", ".slider", "[name='OBB_header']"],
-    (logo, sidebar, form, theme, slider, header) => {
-      
+    () => {
       // Step 1 → sidebar + logo
       setTimeout(() => {
         document.body.classList.add("s1");
@@ -21,10 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
 
-        // ---- Trigger header fade-in AFTER boot is fully done ----
+        // Header fade-in AFTER everything
         setTimeout(() => {
           document.body.classList.add("header-fadein");
-        }, 200); // small buffer
+        }, 300); 
       }, 4000);
     }
   );
