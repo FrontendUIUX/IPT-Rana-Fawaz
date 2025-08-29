@@ -62,8 +62,4 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
 body.header-fadein [name="OBB_header"] {
   opacity: 1;
   visibility: visible;
-  position:fixed;
-  top:0;
-  left: 16vw;
-  width: calc(100vw - 16vw);
 }
