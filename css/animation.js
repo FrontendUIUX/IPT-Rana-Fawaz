@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
 
-        // Header fade-in AFTER everything
+        
         setTimeout(() => {
           document.body.classList.add("header-fadein");
         }, 300); 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
-// Utility: wait for DOM nodes
+
 function waitForElements(selectors, callback) {
   const elements = selectors.map(sel => document.querySelector(sel));
   if (elements.every(el => el)) {
