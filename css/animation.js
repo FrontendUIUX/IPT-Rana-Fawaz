@@ -3,9 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   waitForElements(
     [".navbarBrand img", ".sidebar", ".form", ".theme-entry", ".slider", "[name='OBB_header']"],
-    (logo, sidebar, form, theme, slider, header) => {
-      if (!header) return;
-
+    () => {
       // Step 1 → sidebar + logo
       setTimeout(() => {
         document.body.classList.add("s1");
@@ -22,22 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
 
-        // ===== Listen for the last animated element to finish =====
-        const lastElement = form.querySelector(":last-child");
-        if (lastElement) {
-          lastElement.addEventListener("transitionend", () => {
-            document.body.classList.add("header-fadein");
-          }, { once: true }); // trigger only once
-        } else {
-          // fallback
+        // Ensure next paint before fadein
+        requestAnimationFrame(() => {
           document.body.classList.add("header-fadein");
-        }
+        });
       }, 4000);
     }
   );
 });
 
-// Utility: wait for DOM nodes
 function waitForElements(selectors, callback) {
   const elements = selectors.map(sel => document.querySelector(sel));
   if (elements.every(el => el)) {
@@ -46,4 +37,3 @@ function waitForElements(selectors, callback) {
     requestAnimationFrame(() => waitForElements(selectors, callback));
   }
 }
-
