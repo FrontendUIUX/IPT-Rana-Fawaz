@@ -65,7 +65,6 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   left: 16vw !important;
   width: calc(100vw - 16vw) !important;
   height: 6vw !important;
-  box-sizing: border-box !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;

@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Insert placeholder and move header inside it
       const placeholder = document.createElement("div");
       placeholder.className = "obb-header-placeholder";
-      placeholder.style.height = headerHeight + "px";
       placeholder.style.position = "relative";
       placeholder.style.width = "100%";
 
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         left: "16vw",
         width: "calc(100vw - 16vw)",
         height: "6vw",
-        boxSizing: "border-box",
         opacity: "0",
         visibility: "hidden",
         pointerEvents: "none",
