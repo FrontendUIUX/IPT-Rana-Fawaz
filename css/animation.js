@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         top: "0",
         left: "16vw",
         width: "calc(100vw - 16vw)",
-        height: "6vw";
+        height: "6vw",
         boxSizing: "border-box",
         opacity: "0",
         visibility: "hidden",
