@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("boot", "s1", "s3");
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
-
-        // Header fade-in AFTER everything
-        setTimeout(() => {
-          document.body.classList.add("header-fadein");
-        }, 300); 
       }, 4000);
     }
   );
+});
+
+// Fade in header only after *all assets* (images, CSS, fonts, etc.) are loaded
+window.addEventListener("load", () => {
+  document.body.classList.add("header-fadein");
 });
 
 // Utility: wait for DOM nodes
