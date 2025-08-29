@@ -20,14 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
 
-        // Ensure next paint before fadein
-        requestAnimationFrame(() => {
-          document.body.classList.add("header-fadein");
+        // 🔑 Wait for boot-done transition to finish
+        document.body.addEventListener("transitionend", function handler(e) {
+          if (e.target === document.body) {
+            document.body.classList.add("header-fadein");
+            document.body.removeEventListener("transitionend", handler);
+          }
         });
       }, 4000);
     }
   );
 });
+
 
 function waitForElements(selectors, callback) {
   const elements = selectors.map(sel => document.querySelector(sel));
