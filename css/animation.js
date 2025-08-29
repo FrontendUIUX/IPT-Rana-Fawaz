@@ -19,15 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("boot", "s1", "s3");
         document.body.classList.add("boot-done");
         document.body.style.overflow = "";
-
-        // 🔑 Wait for boot-done transition to finish
-        document.body.addEventListener("transitionend", function handler(e) {
-          if (e.target === document.body) {
-            document.body.classList.add("header-fadein");
-            document.body.removeEventListener("transitionend", handler);
-          }
-        });
       }, 4000);
+
+      // Step 4 → separate trigger for header fadein AFTER boot-done
+      setTimeout(() => {
+        if (document.body.classList.contains("boot-done")) {
+          document.body.classList.add("header-fadein");
+        }
+      }, 5000); // 300ms AFTER boot-done
     }
   );
 });
