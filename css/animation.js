@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.body.classList.contains("boot-done")) {
           document.body.classList.add("header-fadein");
         }
-      }, 5000); // 300ms AFTER boot-done
+      }, 5500); // 300ms AFTER boot-done
     }
   );
 });

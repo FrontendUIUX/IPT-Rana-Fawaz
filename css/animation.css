@@ -67,7 +67,7 @@ body.header-fadein [name="OBB_header"] {
   top: 0;
   left: 16vw;
   width: calc(100vw - 16vw);
-  transition: opacity 0.8s ease;
+  transition: opacity 2s ease;
 }
 
 @media only screen and (max-width:991px) {
