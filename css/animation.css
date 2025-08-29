@@ -51,15 +51,20 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   transform: translateY(0); 
 }
 
-/* Header is invisible but still holds its place */
+/* Header starts invisible but keeps layout */
 [name="OBB_header"] {
   opacity: 0;
-  visibility: hidden;          /* prevent interaction but keep layout */
+  visibility: hidden;
   transition: opacity 0.8s ease;
+  position: relative;
 }
 
-/* When fade-in is triggered */
+/* Fade-in after everything else finishes */
 body.header-fadein [name="OBB_header"] {
   opacity: 1;
   visibility: visible;
+  position: fixed;
+  top: 0;
+  left: 16vw;
+  width: calc(100vw - 16vw);
 }
