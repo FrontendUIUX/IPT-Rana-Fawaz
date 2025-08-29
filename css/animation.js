@@ -33,9 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
       Object.assign(hdr.style, {
         position: "fixed",
         top: "0",
-        left: "16vw",
-        width: "calc(100vw - 16vw)",
-        boxSizing: "border-box",
+        left: "0",
+        width: "100%",
+         height:"100%",        
+         boxSizing: "border-box",
         opacity: "0",
         visibility: "hidden",
         pointerEvents: "none",
