@@ -51,19 +51,30 @@ body.boot.s3 .form > *:not([name="OBB_header"]) {
   transform: translateY(0); 
 }
 
-/* Header is invisible but still holds its place */
-[name="OBB_header"] {
-  opacity: 0;
-  visibility: hidden;          /* prevent interaction but keep layout */
-  transition: opacity 0.8s ease;
+/* ===== Header placeholder (reserves space so no jumps) ===== */
+.obb-header-placeholder {
+  display: block;
+  width: 100%;
+  position: relative; /* contains absolute header */
 }
 
-/* When fade-in is triggered */
+/* Header itself is absolute inside placeholder; hidden by default */
+[name="OBB_header"] {
+  position: absolute !important;
+  top: 0 !important;
+  left: 16vw !important;
+  width: calc(100vw - 16vw) !important;
+  box-sizing: border-box !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: none !important;
+  transition: opacity 0.6s ease !important;
+}
+
+/* Reveal header after boot (no layout shift) */
 body.header-fadein [name="OBB_header"] {
-  opacity: 1;
-  visibility: visible;
-  position:fixed;
-  top:0;
-  left: 16vw;
-  width: calc(100vw - 16vw);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
