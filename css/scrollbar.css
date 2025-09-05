@@ -20,7 +20,7 @@
 }
 
 .theme-entry .grid .grid-column-headers div, 
-.theme-entry .grid .grid-column-headers span,
+.theme-entry .grid .grid-column-headers,
 .theme-entry div .grid-body table th,
 .theme-entry div .grid-body table td {
   white-space: nowrap !important;     
