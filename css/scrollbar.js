@@ -1,7 +1,6 @@
 (function () {
   const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
-  const HORIZONTAL_PADDING = 16; // 8px left + 8px right
 
   function debounce(fn, ms) {
     let t;
@@ -72,8 +71,8 @@
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
 
-          // Measure width needed to fit header content + padding
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth) + HORIZONTAL_PADDING);
+          // Measure width needed to fit header content in one line
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
 
@@ -81,7 +80,7 @@
       for (let i = 0; i < colCount; i++) {
         if (!maxWidths[i] || maxWidths[i] < 10) {
           const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) + HORIZONTAL_PADDING : 30;
+          const fallback = hb ? ceil(hb.scrollWidth) : 30;
           maxWidths[i] = Math.max(30, fallback);
         }
       }
@@ -117,8 +116,6 @@
           setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
           setImportant(inner, "vertical-align", "middle");
-          setImportant(inner, "padding-left", HORIZONTAL_PADDING / 2 + "px");
-          setImportant(inner, "padding-right", HORIZONTAL_PADDING / 2 + "px");
           if (isHeader) {
             setImportant(inner, "display", "block");
             setImportant(inner, "min-height", "20px");
