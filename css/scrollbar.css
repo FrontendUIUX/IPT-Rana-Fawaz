@@ -19,37 +19,7 @@
   align-items: center !important;
 }
 
-.theme-entry .grid .grid-column-headers div, 
-.theme-entry .grid .grid-column-headers span,
-.theme-entry div .grid-body table th,
-.theme-entry div .grid-body table td {
-  white-space: nowrap !important;     
-  overflow: visible !important;        
-  text-overflow: clip !important;     
-  max-width: none !important;          
-  width: auto !important;              
-}
 
-.theme-entry .grid .grid-column-headers div, 
-.theme-entry .grid .grid-column-headers span,
-.theme-entry div .grid-body table th > *,
-.theme-entry div.grid-body table td > * {
-  max-width: none !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  white-space: inherit !important;
-}
-
-
-.theme-entry .grid .grid-column-header-cell-content {
-    display: block !important;              
-    min-height: 20px;
-    vertical-align: middle;
-    width: auto !important;     
-    white-space: nowrap;        
-    overflow: visible;           
-    text-overflow: unset;        
-}
 
 .theme-entry .grid .grid-body-content div, 
 .theme-entry .grid .grid-body-content span,
