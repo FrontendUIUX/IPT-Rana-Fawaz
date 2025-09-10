@@ -7,41 +7,26 @@ function syncHeaderWidths() {
   if (!table || !headerCells.length) return;
 
   const bodyRows = table.querySelectorAll("tr");
-  if (!bodyRows.length) return;
+  if (!bodyRows.length) return; // don't run until body has rows
 
-  // Determine the max width for each column
   headerCells.forEach((th, i) => {
-    let maxWidth = th.getBoundingClientRect().width;
+    let headerWidth = th.getBoundingClientRect().width;
+    let bodyWidth = 0;
 
     bodyRows.forEach((row) => {
       const cell = row.querySelectorAll("td")[i];
       if (cell) {
-        const cellWidth = cell.getBoundingClientRect().width;
-        if (cellWidth > maxWidth) maxWidth = cellWidth;
+        const w = cell.getBoundingClientRect().width;
+        if (w > bodyWidth) bodyWidth = w;
       }
     });
 
-    // Apply width to header and all body cells in this column
-    th.style.width = `${maxWidth}px`;
+    const finalWidth = Math.max(headerWidth, bodyWidth);
+    th.style.width = `${finalWidth}px`;
+
     bodyRows.forEach((row) => {
       const cell = row.querySelectorAll("td")[i];
-      if (cell) cell.style.width = `${maxWidth}px`;
+      if (cell) cell.style.width = `${finalWidth}px`;
     });
   });
-}
-
-// Observe the entire table for dynamic changes
-const tableContainer = document.querySelector(".theme-entry .grid");
-if (tableContainer) {
-  const observer = new MutationObserver(() => {
-    syncHeaderWidths();
-  });
-
-  observer.observe(tableContainer, { childList: true, subtree: true });
-
-  // Initial sync
-  syncHeaderWidths();
-
-  // Resize support
-  window.addEventListener("resize", syncHeaderWidths);
 }
