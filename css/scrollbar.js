@@ -1,44 +1,47 @@
 function syncHeaderWidths() {
+  const table = document.querySelector(".theme-entry .grid .grid-body table");
   const headerCells = document.querySelectorAll(
     ".theme-entry .grid .grid-column-headers th"
   );
-  const bodyRows = document.querySelectorAll(
-    ".theme-entry .grid .grid-body tr"
-  );
 
-  if (!headerCells.length || !bodyRows.length) return;
+  if (!table || !headerCells.length) return;
 
-  const firstRowCells = bodyRows[0].querySelectorAll("td");
+  const bodyRows = table.querySelectorAll("tr");
+  if (!bodyRows.length) return;
 
+  // Determine the max width for each column
   headerCells.forEach((th, i) => {
-    if (firstRowCells[i]) {
-      // Measure both header and body cell widths
-      const headerWidth = th.getBoundingClientRect().width;
-      const bodyWidth = firstRowCells[i].getBoundingClientRect().width;
+    let maxWidth = th.getBoundingClientRect().width;
 
-      // Take the maximum width
-      const finalWidth = Math.max(headerWidth, bodyWidth);
+    bodyRows.forEach((row) => {
+      const cell = row.querySelectorAll("td")[i];
+      if (cell) {
+        const cellWidth = cell.getBoundingClientRect().width;
+        if (cellWidth > maxWidth) maxWidth = cellWidth;
+      }
+    });
 
-      // Apply width to both header and body cell
-      th.style.width = `${finalWidth}px`;
-      firstRowCells[i].style.width = `${finalWidth}px`;
-    }
+    // Apply width to header and all body cells in this column
+    th.style.width = `${maxWidth}px`;
+    bodyRows.forEach((row) => {
+      const cell = row.querySelectorAll("td")[i];
+      if (cell) cell.style.width = `${maxWidth}px`;
+    });
   });
 }
 
-// Observe changes in the table body
-const tableBody = document.querySelector(".theme-entry .grid .grid-body");
-
-if (tableBody) {
+// Observe the entire table for dynamic changes
+const tableContainer = document.querySelector(".theme-entry .grid");
+if (tableContainer) {
   const observer = new MutationObserver(() => {
     syncHeaderWidths();
   });
 
-  observer.observe(tableBody, { childList: true, subtree: true });
+  observer.observe(tableContainer, { childList: true, subtree: true });
 
   // Initial sync
   syncHeaderWidths();
 
-  // Also run on window resize
+  // Resize support
   window.addEventListener("resize", syncHeaderWidths);
 }

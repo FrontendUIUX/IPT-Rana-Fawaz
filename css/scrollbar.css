@@ -1,65 +1,35 @@
-/* Scroll wrapper */
+/* Table layout and scroll */
 .theme-entry .scroll-wrapper {
   overflow-x: hidden !important;
 }
 
-/* Table body scrolling */
 .theme-entry div .grid-body {
   overflow-x: scroll !important;
   overflow-y: hidden;
 }
 
-/* Table layout */
 .theme-entry div .grid-body table {
   table-layout: auto !important;
-/*  width: max-content !important;  */
+  width: max-content !important;  
   min-width: 100% !important;    
 }
 
-/* Column groups */
 .theme-entry div .grid-body colgroup col {
   width: auto; /* allow JS to set widths */
-  align-items: center !important;
 }
 
-/* Body content cells */
-.theme-entry .grid .grid-body-content div,
-.theme-entry .grid .grid-body-content span,
+/* Header & body cells */
+.theme-entry div .grid-column-headers th,
+.theme-entry div .grid-body td,
+.theme-entry .grid .grid-column-header-cell-content,
+.theme-entry .grid .grid-content-cell,
+.theme-entry .grid .grid-column-headers div,
+.theme-entry .grid .grid-column-headers span,
 .theme-entry div .grid-body table th > *,
 .theme-entry div .grid-body table td > * {
   white-space: nowrap !important;
   overflow: visible !important;
   text-overflow: clip !important;
   max-width: none !important;
-}
-
-/* Grid content cells */
-.theme-entry .grid .grid-content-cell,
-.theme-entry .grid .grid-column-header-cell-content {
-  display: block !important;
-  min-height: 20px;
-  vertical-align: middle;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
-  width: auto; /* allow JS to dynamically set width */
-}
-
-/* Header & body cells */
-.theme-entry div .grid-column-headers th,
-.theme-entry div .grid-body td {
-  white-space: nowrap !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  max-width: none !important;
-  width: auto; /* allow JS to dynamically set width */
-}
-
-/* Header inner content */
-.theme-entry .grid .grid-column-headers div,
-.theme-entry .grid .grid-column-headers span {
-  max-width: none !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  white-space: inherit !important;
+  width: auto; /* allow JS to control widths */
 }
