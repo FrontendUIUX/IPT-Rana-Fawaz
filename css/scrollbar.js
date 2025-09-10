@@ -123,6 +123,9 @@
         setImportant(cell, 'min-width', w + 'px');
         setImportant(cell, 'width', w + 'px');
         setImportant(cell, 'max-width', w + 'px');
+        setImportant(cell, 'white-space', 'nowrap');
+        setImportant(cell, 'text-align', 'center');
+        setImportant(cell, 'vertical-align', 'middle');
       }
 
       // apply to body row inner wrappers
@@ -137,6 +140,9 @@
           setImportant(inner, 'min-width', w + 'px');
           setImportant(inner, 'width', w + 'px');
           setImportant(inner, 'max-width', w + 'px');
+          setImportant(inner, 'white-space', 'nowrap');
+          setImportant(inner, 'text-align', 'center');
+          setImportant(inner, 'vertical-align', 'middle');
         }
       });
 
@@ -153,14 +159,12 @@
 
     // Observe this container for inserted rows / table replacements
     function attachInstanceObserver() {
-      // detach if any
       if (instance.observer) try { instance.observer.disconnect(); } catch (e) {}
       const obsTarget = container || document.body;
       instance.observer = new MutationObserver(debouncedSync);
       instance.observer.observe(obsTarget, { childList: true, subtree: true });
       window.addEventListener('resize', debouncedSync, { passive: true });
 
-      // sync scroll continuously
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.scrollWrapper.addEventListener('scroll', () => {
           if (instance.headerWrapper) instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
@@ -168,23 +172,19 @@
       }
     }
 
-    // initial attempt + attach observer so we catch later body load
     debouncedSync();
     attachInstanceObserver();
     instances.set(container, instance);
     return instance;
   } // end createInstance
 
-  // find all header tables and register their nearest container
   function scanForGrids() {
-    // prefer explicit containers: .grid-body, .grid, .grid-edit-templates
     const headerTables = Array.from(document.querySelectorAll('.grid-column-header-table'));
     headerTables.forEach(ht => {
       const container = ht.closest('.grid-body') || ht.closest('.grid') || ht.closest('.grid-edit-templates') || document.body;
       createInstance(container);
     });
 
-    // also try to find simple pairs by body table existence (in case header class differs)
     const bodyTables = Array.from(document.querySelectorAll('.grid-content-table'));
     bodyTables.forEach(bt => {
       const container = bt.closest('.grid-body') || bt.closest('.grid') || bt.closest('.grid-edit-templates') || document.body;
@@ -192,26 +192,19 @@
     });
   }
 
-  // Global observer to detect grids that appear later
   const globalObserver = new MutationObserver(debounce(scanForGrids, 150));
   globalObserver.observe(document.body, { childList: true, subtree: true });
 
-  // initial scan
   scanForGrids();
 
-  // expose manual sync for debugging
   window.__syncAllGridHeaders = function () {
     scanForGrids();
     instances.forEach(inst => {
       try { if (inst) (inst.headerTable || inst.bodyTable) && measureAndApplyForInstance(inst); } catch(e) {}
     });
 
-    // helper to run measure on instance (used by manual sync)
     function measureAndApplyForInstance(inst) {
-      // temporarily activate the same measure code using local references
-      // this duplicates logic but keeps the public function simple
       if (!inst) return;
-      // run the already-debounced instance measure
       try { createInstance(inst.container); } catch(e) {}
     }
   };
