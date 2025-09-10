@@ -16,21 +16,29 @@ function syncHeaderWidths() {
       const headerWidth = th.getBoundingClientRect().width;
       const bodyWidth = firstRowCells[i].getBoundingClientRect().width;
 
-      // Take the max width so content fits in one line
+      // Take the maximum width
       const finalWidth = Math.max(headerWidth, bodyWidth);
 
-      // Apply to both header and body cell
+      // Apply width to both header and body cell
       th.style.width = `${finalWidth}px`;
       firstRowCells[i].style.width = `${finalWidth}px`;
     }
   });
 }
 
-// Run on load
-window.addEventListener("load", syncHeaderWidths);
+// Observe changes in the table body
+const tableBody = document.querySelector(".theme-entry .grid .grid-body");
 
-// Run on resize
-window.addEventListener("resize", syncHeaderWidths);
+if (tableBody) {
+  const observer = new MutationObserver(() => {
+    syncHeaderWidths();
+  });
 
-// Optional: run after dynamic data loads
-setTimeout(syncHeaderWidths, 500);
+  observer.observe(tableBody, { childList: true, subtree: true });
+
+  // Initial sync
+  syncHeaderWidths();
+
+  // Also run on window resize
+  window.addEventListener("resize", syncHeaderWidths);
+}

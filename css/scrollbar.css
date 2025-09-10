@@ -31,7 +31,6 @@
   overflow: visible !important;
   text-overflow: clip !important;
   max-width: none !important;
-  /* Remove width: auto !important so JS can set width */
 }
 
 /* Grid content cells */
