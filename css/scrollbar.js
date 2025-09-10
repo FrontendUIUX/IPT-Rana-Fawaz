@@ -48,30 +48,19 @@
       const headerTable = instance.headerTable;
       const bodyTable = instance.bodyTable;
 
-      const bodyRowsNodeList = bodyTable.querySelectorAll("tbody tr");
-      const bodyRows = Array.from(bodyRowsNodeList).slice(0, MAX_SAMPLE_ROWS);
-
-      if (bodyRows.length === 0) {
-        instance.synced = false;
-        return false;
-      }
-
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
       const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
-      const firstBodyRow = bodyTable.querySelector("tbody tr");
-      const firstBodyCells = firstBodyRow ? firstBodyRow.querySelectorAll("td") : [];
 
       const colCount =
         headerCols.length ||
         bodyCols.length ||
-        headerCellsRaw.length ||
-        firstBodyCells.length;
+        headerCellsRaw.length;
       if (!colCount) return false;
 
       const maxWidths = new Array(colCount).fill(0);
 
-      // Measure headers
+      // Measure only headers to determine width
       headerTable.querySelectorAll("tr").forEach((tr) => {
         const tds = tr.querySelectorAll("td, th");
         for (let i = 0; i < colCount; i++) {
@@ -81,18 +70,8 @@
             cell.querySelector(
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
-        }
-      });
 
-      // Measure body
-      bodyRows.forEach((row) => {
-        const tds = row.querySelectorAll("td");
-        for (let i = 0; i < colCount; i++) {
-          const td = tds[i];
-          if (!td) continue;
-          const inner =
-            td.querySelector(".grid-content-cell-wrapper, .runtime-list-item-wrap, span, div") || td;
+          // Measure width needed to fit header content in one line
           maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
@@ -101,12 +80,8 @@
       for (let i = 0; i < colCount; i++) {
         if (!maxWidths[i] || maxWidths[i] < 10) {
           const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const bb = firstBodyCells[i];
-          const fallback =
-            (hb && hb.scrollWidth) ||
-            (bb && bb.scrollWidth) ||
-            30;
-          maxWidths[i] = Math.max(30, ceil(fallback));
+          const fallback = hb ? ceil(hb.scrollWidth) : 30;
+          maxWidths[i] = Math.max(30, fallback);
         }
       }
 
@@ -126,44 +101,33 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers
-      const headerWrappers = headerTable.querySelectorAll(
-        ".grid-column-header-cell, .grid-column-header-cell-wrapper, td, th"
-      );
-      for (let i = 0; i < Math.min(headerWrappers.length, colCount); i++) {
-        const cell = headerWrappers[i];
-        if (!cell) continue;
-        const w = maxWidths[i];
-        setImportant(cell, "box-sizing", "border-box");
-        setImportant(cell, "width", w + "px");
-        setImportant(cell, "min-width", w + "px");
-        setImportant(cell, "max-width", w + "px");
-        setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "clip");
-        setImportant(cell, "text-align", "center");
-        setImportant(cell, "vertical-align", "middle");
-      }
+      // Style headers and body to match the CSS you provided
+      function styleCells(cells, isHeader = false) {
+        for (let i = 0; i < Math.min(cells.length, colCount); i++) {
+          const cell = cells[i];
+          if (!cell) continue;
+          const inner = cell.querySelector("div, span, *") || cell;
 
-      // Style body
-      bodyRows.forEach((row) => {
-        const tds = row.querySelectorAll("td");
-        for (let i = 0; i < colCount; i++) {
-          const td = tds[i];
-          if (!td) continue;
-          const inner =
-            td.querySelector(".grid-content-cell-wrapper, .runtime-list-item-wrap, div, span") || td;
-          const w = maxWidths[i];
-          setImportant(inner, "box-sizing", "border-box");
-          setImportant(inner, "width", w + "px");
-          setImportant(inner, "min-width", w + "px");
-          setImportant(inner, "max-width", w + "px");
           setImportant(inner, "white-space", "nowrap");
           setImportant(inner, "overflow", "visible");
           setImportant(inner, "text-overflow", "clip");
+          setImportant(inner, "max-width", "none");
+          setImportant(inner, "width", "auto");
+          setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
           setImportant(inner, "vertical-align", "middle");
+          if (isHeader) {
+            setImportant(inner, "display", "block");
+            setImportant(inner, "min-height", "20px");
+          }
         }
+      }
+
+      styleCells(headerTable.querySelectorAll("th, td, .grid-column-header-cell"), true);
+
+      const bodyRows = bodyTable.querySelectorAll("tbody tr");
+      bodyRows.forEach((row) => {
+        styleCells(row.querySelectorAll("td"));
       });
 
       if (instance.scrollWrapper && instance.headerWrapper) {
@@ -241,3 +205,4 @@
     "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
   );
 })();
+
