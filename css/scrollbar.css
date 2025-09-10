@@ -12,7 +12,7 @@
 /* Table layout */
 .theme-entry div .grid-body table {
   table-layout: auto !important;
-  width: max-content !important;  
+/*  width: max-content !important;  */
   min-width: 100% !important;    
 }
 
