@@ -9,6 +9,7 @@
       t = setTimeout(() => fn(...args), ms);
     };
   }
+
   const ceil = (v) => Math.ceil(v || 0);
 
   function setImportant(el, prop, value) {
@@ -34,12 +35,9 @@
     };
 
     function findTables() {
-      instance.headerTable =
-        container.querySelector(".grid-column-header-table");
+      instance.headerTable = container.querySelector(".grid-column-header-table");
       instance.bodyTable = container.querySelector(".grid-content-table");
-      instance.headerWrapper = container.querySelector(
-        ".grid-column-headers-wrapper"
-      );
+      instance.headerWrapper = container.querySelector(".grid-column-headers-wrapper");
       instance.scrollWrapper = container.querySelector(".scroll-wrapper");
       return !!instance.headerTable && !!instance.bodyTable;
     }
@@ -60,13 +58,9 @@
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCellsRaw = headerTable.querySelectorAll(
-        ".grid-column-header-cell, td, th"
-      );
+      const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
       const firstBodyRow = bodyTable.querySelector("tbody tr");
-      const firstBodyCells = firstBodyRow
-        ? firstBodyRow.querySelectorAll("td")
-        : [];
+      const firstBodyCells = firstBodyRow ? firstBodyRow.querySelectorAll("td") : [];
 
       const colCount =
         headerCols.length ||
@@ -77,7 +71,7 @@
 
       const maxWidths = new Array(colCount).fill(0);
 
-      // measure headers
+      // Measure headers
       headerTable.querySelectorAll("tr").forEach((tr) => {
         const tds = tr.querySelectorAll("td, th");
         for (let i = 0; i < colCount; i++) {
@@ -87,44 +81,36 @@
             cell.querySelector(
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
-          maxWidths[i] = Math.max(
-            maxWidths[i],
-            ceil(inner.getBoundingClientRect().width)
-          );
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
 
-      // measure body
+      // Measure body
       bodyRows.forEach((row) => {
         const tds = row.querySelectorAll("td");
         for (let i = 0; i < colCount; i++) {
           const td = tds[i];
           if (!td) continue;
           const inner =
-            td.querySelector(
-              ".grid-content-cell-wrapper, .runtime-list-item-wrap, span, div"
-            ) || td;
-          maxWidths[i] = Math.max(
-            maxWidths[i],
-            ceil(inner.getBoundingClientRect().width)
-          );
+            td.querySelector(".grid-content-cell-wrapper, .runtime-list-item-wrap, span, div") || td;
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
 
-      // fallback widths
+      // Fallback widths
       for (let i = 0; i < colCount; i++) {
         if (!maxWidths[i] || maxWidths[i] < 10) {
           const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
           const bb = firstBodyCells[i];
           const fallback =
-            (hb && hb.getBoundingClientRect().width) ||
-            (bb && bb.getBoundingClientRect().width) ||
+            (hb && hb.scrollWidth) ||
+            (bb && bb.scrollWidth) ||
             30;
           maxWidths[i] = Math.max(30, ceil(fallback));
         }
       }
 
-      // apply to <col>
+      // Apply to <col>
       function applyCols(cols) {
         if (!cols || !cols.length) return;
         for (let i = 0; i < colCount; i++) {
@@ -140,41 +126,41 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // style headers
+      // Style headers
       const headerWrappers = headerTable.querySelectorAll(
         ".grid-column-header-cell, .grid-column-header-cell-wrapper, td, th"
       );
       for (let i = 0; i < Math.min(headerWrappers.length, colCount); i++) {
         const cell = headerWrappers[i];
-        const w = maxWidths[i];
         if (!cell) continue;
+        const w = maxWidths[i];
         setImportant(cell, "box-sizing", "border-box");
         setImportant(cell, "width", w + "px");
         setImportant(cell, "min-width", w + "px");
         setImportant(cell, "max-width", w + "px");
         setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "hidden");
+        setImportant(cell, "overflow", "visible");
+        setImportant(cell, "text-overflow", "clip");
         setImportant(cell, "text-align", "center");
         setImportant(cell, "vertical-align", "middle");
       }
 
-      // style body
+      // Style body
       bodyRows.forEach((row) => {
         const tds = row.querySelectorAll("td");
         for (let i = 0; i < colCount; i++) {
           const td = tds[i];
           if (!td) continue;
           const inner =
-            td.querySelector(
-              ".grid-content-cell-wrapper, .runtime-list-item-wrap, div, span"
-            ) || td;
+            td.querySelector(".grid-content-cell-wrapper, .runtime-list-item-wrap, div, span") || td;
           const w = maxWidths[i];
           setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "width", w + "px");
           setImportant(inner, "min-width", w + "px");
           setImportant(inner, "max-width", w + "px");
           setImportant(inner, "white-space", "nowrap");
-          setImportant(inner, "overflow", "hidden");
+          setImportant(inner, "overflow", "visible");
+          setImportant(inner, "text-overflow", "clip");
           setImportant(inner, "text-align", "center");
           setImportant(inner, "vertical-align", "middle");
         }
@@ -191,10 +177,7 @@
     const debouncedSync = debounce(measureAndApply, DEBOUNCE_MS);
 
     function attachInstanceObserver() {
-      if (instance.observer)
-        try {
-          instance.observer.disconnect();
-        } catch (e) {}
+      if (instance.observer) try { instance.observer.disconnect(); } catch (e) {}
       const obsTarget = container || document.body;
       instance.observer = new MutationObserver(debouncedSync);
       instance.observer.observe(obsTarget, { childList: true, subtree: true });
@@ -205,8 +188,7 @@
           "scroll",
           () => {
             if (instance.headerWrapper)
-              instance.headerWrapper.scrollLeft =
-                instance.scrollWrapper.scrollLeft;
+              instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
           },
           { passive: true }
         );
@@ -220,9 +202,7 @@
   }
 
   function scanForGrids() {
-    const headerTables = Array.from(
-      document.querySelectorAll(".grid-column-header-table")
-    );
+    const headerTables = Array.from(document.querySelectorAll(".grid-column-header-table"));
     headerTables.forEach((ht) => {
       const container =
         ht.closest(".grid-body") ||
@@ -232,9 +212,7 @@
       createInstance(container);
     });
 
-    const bodyTables = Array.from(
-      document.querySelectorAll(".grid-content-table")
-    );
+    const bodyTables = Array.from(document.querySelectorAll(".grid-content-table"));
     bodyTables.forEach((bt) => {
       const container =
         bt.closest(".grid-body") ||
@@ -254,9 +232,7 @@
     scanForGrids();
     instances.forEach((inst) => {
       try {
-        if (inst)
-          (inst.headerTable || inst.bodyTable) &&
-            createInstance(inst.container);
+        if (inst) (inst.headerTable || inst.bodyTable) && createInstance(inst.container);
       } catch (e) {}
     });
   };
