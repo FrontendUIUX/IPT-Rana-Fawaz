@@ -1,35 +1,27 @@
 function syncHeaderWidths() {
-  const table = document.querySelector(".theme-entry .grid .grid-body table");
-  const headerCells = document.querySelectorAll(".theme-entry .grid .grid-column-headers th");
+  const headerTable = document.querySelector('.grid-column-header-table');
+  const bodyTable = document.querySelector('.grid-content-table');
 
-  if (!table || !headerCells.length) return;
+  if (!headerTable || !bodyTable) return;
 
-  const bodyRows = table.querySelectorAll("tr");
-  if (!bodyRows.length) return;
+  const headerCols = headerTable.querySelectorAll('col');
+  const bodyCols = bodyTable.querySelectorAll('col');
 
-  headerCells.forEach((th, i) => {
-    let maxWidth = th.offsetWidth; // simpler and more reliable than getBoundingClientRect
+  if (headerCols.length !== bodyCols.length) return;
 
-    bodyRows.forEach((row) => {
-      const cell = row.querySelectorAll("td")[i];
-      if (cell) {
-        maxWidth = Math.max(maxWidth, cell.offsetWidth);
-      }
-    });
-
-    // Apply final width to header and body cells
-    th.style.width = `${maxWidth}px`;
-    bodyRows.forEach((row) => {
-      const cell = row.querySelectorAll("td")[i];
-      if (cell) cell.style.width = `${maxWidth}px`;
-    });
-  });
+  for (let i = 0; i < headerCols.length; i++) {
+    const width = bodyCols[i].getBoundingClientRect().width;
+    headerCols[i].style.width = `${width}px`;
+  }
 }
 
-// Run initially
+// Call once and on window resize
 syncHeaderWidths();
+window.addEventListener('resize', syncHeaderWidths);
 
-// Optional: re-run on window resize
-window.addEventListener("resize", () => {
-  syncHeaderWidths();
+// Optional: keep header in sync while scrolling horizontally
+const scrollWrapper = document.querySelector('.scroll-wrapper');
+scrollWrapper.addEventListener('scroll', () => {
+  const headerWrapper = document.querySelector('.grid-column-headers-wrapper');
+  headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
 });
