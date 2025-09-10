@@ -1,7 +1,7 @@
 (function () {
   const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
-  const HORIZONTAL_PADDING = 16; // total padding (8px left + 8px right)
+  const HORIZONTAL_PADDING = 16; // 8px left + 8px right
 
   function debounce(fn, ms) {
     let t;
@@ -51,76 +51,88 @@
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCells = headerTable.querySelectorAll(".grid-column-header-cell, th, td");
+      const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
 
-      const colCount = headerCols.length || headerCells.length;
+      const colCount =
+        headerCols.length ||
+        bodyCols.length ||
+        headerCellsRaw.length;
       if (!colCount) return false;
 
-      const widths = new Array(colCount).fill(0);
+      const maxWidths = new Array(colCount).fill(0);
 
-      // Measure header widths only
-      headerCells.forEach((cell, i) => {
-        if (!cell) return;
-        const inner = cell.querySelector("div, span, *") || cell;
-        widths[i] = Math.max(widths[i], ceil(inner.scrollWidth + HORIZONTAL_PADDING));
+      // Measure only headers to determine width
+      headerTable.querySelectorAll("tr").forEach((tr) => {
+        const tds = tr.querySelectorAll("td, th");
+        for (let i = 0; i < colCount; i++) {
+          const cell = tds[i];
+          if (!cell) continue;
+          const inner =
+            cell.querySelector(
+              ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
+            ) || cell;
+
+          // Measure width needed to fit header content + padding
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth) + HORIZONTAL_PADDING);
+        }
       });
 
-      // Fallback in case width is too small
+      // Fallback widths
       for (let i = 0; i < colCount; i++) {
-        if (!widths[i] || widths[i] < 30) widths[i] = 30;
+        if (!maxWidths[i] || maxWidths[i] < 10) {
+          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
+          const fallback = hb ? ceil(hb.scrollWidth) + HORIZONTAL_PADDING : 30;
+          maxWidths[i] = Math.max(30, fallback);
+        }
       }
 
-      // Apply widths to <col> elements
-      function applyWidths(cols) {
-        if (!cols) return;
-        cols.forEach((col, i) => {
-          if (!col) return;
-          setImportant(col, "width", widths[i] + "px");
-          setImportant(col, "min-width", widths[i] + "px");
-        });
+      // Apply to <col>
+      function applyCols(cols) {
+        if (!cols || !cols.length) return;
+        for (let i = 0; i < colCount; i++) {
+          if (!cols[i]) continue;
+          setImportant(cols[i], "width", maxWidths[i] + "px");
+          setImportant(cols[i], "min-width", maxWidths[i] + "px");
+        }
       }
+      applyCols(headerCols);
+      applyCols(bodyCols);
 
-      applyWidths(headerCols);
-      applyWidths(bodyCols);
-
-      const total = widths.reduce((a, b) => a + b, 0);
+      const total = maxWidths.reduce((a, b) => a + b, 0);
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers: flex centering and padding
-      headerCells.forEach((cell) => {
-        if (!cell) return;
-        setImportant(cell, "display", "flex");
-        setImportant(cell, "justify-content", "center");
-        setImportant(cell, "align-items", "center");
-        setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "clip");
-        setImportant(cell, "max-width", "none");
-        setImportant(cell, "width", "auto");
-        setImportant(cell, "box-sizing", "border-box");
-        setImportant(cell, "padding-left", HORIZONTAL_PADDING / 2 + "px");
-        setImportant(cell, "padding-right", HORIZONTAL_PADDING / 2 + "px");
-        setImportant(cell, "vertical-align", "middle");
-        setImportant(cell, "min-height", "20px");
-      });
+      // Style headers and body to match the CSS you provided
+      function styleCells(cells, isHeader = false) {
+        for (let i = 0; i < Math.min(cells.length, colCount); i++) {
+          const cell = cells[i];
+          if (!cell) continue;
+          const inner = cell.querySelector("div, span, *") || cell;
 
-      // Style body rows
-      const bodyRows = bodyTable.querySelectorAll("tbody tr");
-      bodyRows.forEach((row) => {
-        const tds = row.querySelectorAll("td");
-        tds.forEach((td, i) => {
-          const inner = td.querySelector("div, span, *") || td;
-          setImportant(inner, "width", widths[i] + "px");
-          setImportant(inner, "min-width", widths[i] + "px");
           setImportant(inner, "white-space", "nowrap");
+          setImportant(inner, "overflow", "visible");
+          setImportant(inner, "text-overflow", "clip");
+          setImportant(inner, "max-width", "none");
+          setImportant(inner, "width", "auto");
+          setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
+          setImportant(inner, "vertical-align", "middle");
           setImportant(inner, "padding-left", HORIZONTAL_PADDING / 2 + "px");
           setImportant(inner, "padding-right", HORIZONTAL_PADDING / 2 + "px");
-        });
+          if (isHeader) {
+            setImportant(inner, "display", "block");
+            setImportant(inner, "min-height", "20px");
+          }
+        }
+      }
+
+      styleCells(headerTable.querySelectorAll("th, td, .grid-column-header-cell"), true);
+
+      const bodyRows = bodyTable.querySelectorAll("tbody tr");
+      bodyRows.forEach((row) => {
+        styleCells(row.querySelectorAll("td"));
       });
 
-      // Sync scroll position
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
       }
