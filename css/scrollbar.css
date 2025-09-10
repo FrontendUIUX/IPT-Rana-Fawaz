@@ -4,7 +4,7 @@
 }
 
 .theme-entry div .grid-body {
-  overflow-x: auto !important; /* allow horizontal scroll */
+  overflow-x: scroll !important; /* allow horizontal scroll */
   overflow-y: hidden;
   width: max-content; /* grow with the table */
 }
