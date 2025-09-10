@@ -1,7 +1,7 @@
 (function () {
   const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
-  const HORIZONTAL_PADDING = 16; // total padding (8px left + 8px right)
+  const HORIZONTAL_PADDING = 16;
 
   function debounce(fn, ms) {
     let t;
@@ -19,6 +19,14 @@
     } catch (e) {
       el.style[prop] = value;
     }
+  }
+
+  function forceStyleRecursive(el, styles) {
+    if (!el) return;
+    for (const prop in styles) {
+      setImportant(el, prop, styles[prop]);
+    }
+    Array.from(el.children).forEach((child) => forceStyleRecursive(child, styles));
   }
 
   const instances = new Map();
@@ -51,26 +59,22 @@
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCells = headerTable.querySelectorAll(".grid-column-header-cell, th, td");
+      const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
 
       const colCount = headerCols.length || headerCells.length;
       if (!colCount) return false;
 
       const widths = new Array(colCount).fill(0);
 
-      // Measure header widths only
       headerCells.forEach((cell, i) => {
         if (!cell) return;
-        const inner = cell.querySelector("div, span, *") || cell;
-        widths[i] = Math.max(widths[i], ceil(inner.scrollWidth + HORIZONTAL_PADDING));
+        widths[i] = Math.max(widths[i], ceil(cell.scrollWidth + HORIZONTAL_PADDING));
       });
 
-      // Fallback in case width is too small
       for (let i = 0; i < colCount; i++) {
         if (!widths[i] || widths[i] < 30) widths[i] = 30;
       }
 
-      // Apply widths to <col> elements
       function applyWidths(cols) {
         if (!cols) return;
         cols.forEach((col, i) => {
@@ -87,40 +91,41 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers: flex centering and padding
+      // Force styles recursively for headers
       headerCells.forEach((cell) => {
-        if (!cell) return;
-        setImportant(cell, "display", "flex");
-        setImportant(cell, "justify-content", "center");
-        setImportant(cell, "align-items", "center");
-        setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "clip");
-        setImportant(cell, "max-width", "none");
-        setImportant(cell, "width", "auto");
-        setImportant(cell, "box-sizing", "border-box");
-        setImportant(cell, "padding-left", HORIZONTAL_PADDING / 2 + "px");
-        setImportant(cell, "padding-right", HORIZONTAL_PADDING / 2 + "px");
-        setImportant(cell, "vertical-align", "middle");
-        setImportant(cell, "min-height", "20px");
+        forceStyleRecursive(cell, {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          whiteSpace: "nowrap",
+          overflow: "visible",
+          textOverflow: "clip",
+          maxWidth: "none",
+          width: "auto",
+          boxSizing: "border-box",
+          paddingLeft: HORIZONTAL_PADDING / 2 + "px",
+          paddingRight: HORIZONTAL_PADDING / 2 + "px",
+          verticalAlign: "middle",
+          minHeight: "20px",
+        });
       });
 
-      // Style body rows
+      // Force styles recursively for body rows
       const bodyRows = bodyTable.querySelectorAll("tbody tr");
       bodyRows.forEach((row) => {
         const tds = row.querySelectorAll("td");
         tds.forEach((td, i) => {
-          const inner = td.querySelector("div, span, *") || td;
-          setImportant(inner, "width", widths[i] + "px");
-          setImportant(inner, "min-width", widths[i] + "px");
-          setImportant(inner, "white-space", "nowrap");
-          setImportant(inner, "text-align", "center");
-          setImportant(inner, "padding-left", HORIZONTAL_PADDING / 2 + "px");
-          setImportant(inner, "padding-right", HORIZONTAL_PADDING / 2 + "px");
+          forceStyleRecursive(td, {
+            width: widths[i] + "px",
+            minWidth: widths[i] + "px",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            paddingLeft: HORIZONTAL_PADDING / 2 + "px",
+            paddingRight: HORIZONTAL_PADDING / 2 + "px",
+          });
         });
       });
 
-      // Sync scroll position
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
       }
@@ -193,6 +198,6 @@
   };
 
   console.info(
-    "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
+    "Grid header sync script initialized (forced styles applied). Use window.__syncAllGridHeaders() to force-run."
   );
 })();
