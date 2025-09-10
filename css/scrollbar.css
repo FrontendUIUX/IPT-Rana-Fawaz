@@ -1,17 +1,17 @@
+/* Table layout and scroll */
 .theme-entry .scroll-wrapper {
-  overflow-x: auto !important;
-  width: 100%; /* full width of container */
+  overflow-x: hidden !important;
 }
 
 .theme-entry div .grid-body {
-  overflow-x: scroll !important; /* allow horizontal scroll */
+  overflow-x: scroll !important;
   overflow-y: hidden;
 }
 
 .theme-entry div .grid-body table {
   table-layout: auto !important;
-  width: max-content !important; /* table grows as wide as needed */
-  min-width: unset !important;
+  width: max-content !important;  
+  min-width: 100% !important;    
 }
 
 .theme-entry div .grid-body colgroup col {
