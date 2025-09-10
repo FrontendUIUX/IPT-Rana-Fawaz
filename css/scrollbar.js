@@ -1,7 +1,6 @@
 (function () {
   const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
-  const MAX_COLUMN_WIDTH = 1000; // Prevent columns from being absurdly wide
 
   function debounce(fn, ms) {
     let t;
@@ -82,8 +81,7 @@
             cell.querySelector(
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
-          const w = ceil(inner.getBoundingClientRect().width);
-          if (w < MAX_COLUMN_WIDTH) maxWidths[i] = Math.max(maxWidths[i], w);
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
 
@@ -95,8 +93,7 @@
           if (!td) continue;
           const inner =
             td.querySelector(".grid-content-cell-wrapper, .runtime-list-item-wrap, span, div") || td;
-          const w = ceil(inner.getBoundingClientRect().width);
-          if (w < MAX_COLUMN_WIDTH) maxWidths[i] = Math.max(maxWidths[i], w);
+          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
 
@@ -106,10 +103,10 @@
           const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
           const bb = firstBodyCells[i];
           const fallback =
-            (hb && ceil(hb.getBoundingClientRect().width)) ||
-            (bb && ceil(bb.getBoundingClientRect().width)) ||
+            (hb && hb.scrollWidth) ||
+            (bb && bb.scrollWidth) ||
             30;
-          maxWidths[i] = Math.max(30, fallback);
+          maxWidths[i] = Math.max(30, ceil(fallback));
         }
       }
 
@@ -244,4 +241,3 @@
     "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
   );
 })();
-
