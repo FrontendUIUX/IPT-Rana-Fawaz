@@ -1,23 +1,28 @@
+/* Scroll wrapper */
 .theme-entry .scroll-wrapper {
   overflow-x: hidden !important;
 }
 
-.theme-entry .grid-body {
+/* Table body scrolling */
+.theme-entry div .grid-body {
   overflow-x: scroll !important;
   overflow-y: hidden;
 }
 
-.theme-entry .grid-body table {
+/* Table layout */
+.theme-entry div .grid-body table {
   table-layout: auto !important;
-  width: max-content !important;
-  min-width: 100% !important;
+  width: max-content !important;  
+  min-width: 100% !important;    
 }
 
-.theme-entry .grid-body colgroup col {
-  width: auto; /* remove !important */
+/* Column groups */
+.theme-entry div .grid-body colgroup col {
+  width: auto; /* allow JS to set widths */
   align-items: center !important;
 }
 
+/* Body content cells */
 .theme-entry .grid .grid-body-content div,
 .theme-entry .grid .grid-body-content span,
 .theme-entry div .grid-body table th > *,
@@ -26,9 +31,10 @@
   overflow: visible !important;
   text-overflow: clip !important;
   max-width: none !important;
-  /* removed width: auto !important */
+  /* Remove width: auto !important so JS can set width */
 }
 
+/* Grid content cells */
 .theme-entry .grid .grid-content-cell,
 .theme-entry .grid .grid-column-header-cell-content {
   display: block !important;
@@ -37,14 +43,24 @@
   white-space: nowrap;
   overflow: visible;
   text-overflow: unset;
-  /* width will now be set by JS */
+  width: auto; /* allow JS to dynamically set width */
 }
 
+/* Header & body cells */
 .theme-entry div .grid-column-headers th,
 .theme-entry div .grid-body td {
-  /* remove width: auto !important to allow JS to work */
   white-space: nowrap !important;
   overflow: visible !important;
   text-overflow: clip !important;
   max-width: none !important;
+  width: auto; /* allow JS to dynamically set width */
+}
+
+/* Header inner content */
+.theme-entry .grid .grid-column-headers div,
+.theme-entry .grid .grid-column-headers span {
+  max-width: none !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: inherit !important;
 }
