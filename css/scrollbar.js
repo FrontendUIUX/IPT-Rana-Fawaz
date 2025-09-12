@@ -119,6 +119,7 @@
             setImportant(inner, "vertical-align", "middle");
             setImportant(inner, "min-height", "20px");
             setImportant(inner, "width", "max-content");
+            setImportant(inner, "padding", "0 10px");
 
             if (inner.classList.contains("grid-column-header-cell-content")) {
               setImportant(inner, "display", "block");
