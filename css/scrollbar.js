@@ -21,14 +21,7 @@
 
   function createInstance(container) {
     if (!container || instances.has(container)) return;
-    const instance = {
-      container,
-      headerTable: null,
-      bodyTable: null,
-      headerWrapper: null,
-      scrollWrapper: null,
-      observer: null,
-    };
+    const instance = { container, headerTable:null, bodyTable:null, headerWrapper:null, scrollWrapper:null, observer:null };
 
     function findTables() {
       instance.headerTable = container.querySelector(".grid-column-header-table");
@@ -38,24 +31,23 @@
       return !!instance.headerTable && !!instance.bodyTable;
     }
 
-    function styleHeadersAndBody() {
+    function styleAndSync() {
       if (!findTables()) return;
 
       const { headerTable, bodyTable } = instance;
 
-      // ===== Style headers =====
+      // Style header cells (but do NOT set display:block)
       headerTable.querySelectorAll("th, td, .grid-column-header-cell").forEach(cell => {
-        setImportant(cell, "display", "block");
         setImportant(cell, "white-space", "nowrap");
         setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "unset");
+        setImportant(cell, "text-overflow", "clip");
         setImportant(cell, "width", "auto");
         setImportant(cell, "min-height", "20px");
         setImportant(cell, "vertical-align", "middle");
         setImportant(cell, "box-sizing", "border-box");
       });
 
-      // ===== Style body =====
+      // Style body cells
       bodyTable.querySelectorAll("td, th").forEach(cell => {
         setImportant(cell, "white-space", "nowrap");
         setImportant(cell, "overflow", "visible");
@@ -65,7 +57,7 @@
         setImportant(cell, "vertical-align", "middle");
       });
 
-      // ===== Sync columns using <col> widths =====
+      // Sync <col> widths
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
 
@@ -79,7 +71,7 @@
         });
       }
 
-      // Sync total table width
+      // Sync total width
       const totalWidth = headerTable.getBoundingClientRect().width;
       setImportant(headerTable, "width", totalWidth + "px");
       setImportant(bodyTable, "width", totalWidth + "px");
@@ -90,53 +82,49 @@
       }
     }
 
-    const debouncedSync = debounce(styleHeadersAndBody, DEBOUNCE_MS);
+    const debounced = debounce(styleAndSync, DEBOUNCE_MS);
 
     function attachObserver() {
       if (instance.observer) try { instance.observer.disconnect(); } catch(e) {}
-      instance.observer = new MutationObserver(debouncedSync);
-      instance.observer.observe(container || document.body, { childList: true, subtree: true });
-
-      window.addEventListener("resize", debouncedSync, { passive: true });
+      instance.observer = new MutationObserver(debounced);
+      instance.observer.observe(container || document.body, { childList:true, subtree:true });
+      window.addEventListener("resize", debounced, { passive:true });
 
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.scrollWrapper.addEventListener("scroll", () => {
           instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-        }, { passive: true });
+        }, { passive:true });
       }
     }
 
-    debouncedSync();
+    debounced();
     attachObserver();
     instances.set(container, instance);
     return instance;
   }
 
   function scanForGrids() {
-    const headerTables = Array.from(document.querySelectorAll(".grid-column-header-table"));
-    headerTables.forEach(ht => {
+    document.querySelectorAll(".grid-column-header-table").forEach(ht => {
       const container = ht.closest(".grid-body") || ht.closest(".grid") || ht.closest(".grid-edit-templates") || document.body;
       createInstance(container);
     });
-
-    const bodyTables = Array.from(document.querySelectorAll(".grid-content-table"));
-    bodyTables.forEach(bt => {
+    document.querySelectorAll(".grid-content-table").forEach(bt => {
       const container = bt.closest(".grid-body") || bt.closest(".grid") || bt.closest(".grid-edit-templates") || document.body;
       createInstance(container);
     });
   }
 
   const globalObserver = new MutationObserver(debounce(scanForGrids, 150));
-  globalObserver.observe(document.body, { childList: true, subtree: true });
+  globalObserver.observe(document.body, { childList:true, subtree:true });
 
   scanForGrids();
 
-  window.__syncAllGridHeaders = function () {
+  window.__syncAllGridHeaders = function() {
     scanForGrids();
     instances.forEach(inst => {
       try { if(inst && (inst.headerTable || inst.bodyTable)) createInstance(inst.container); } catch(e) {}
     });
   };
 
-  console.info("✅ Grid header/body styled and synced entirely via JS.");
+  console.info("✅ Grid header/body styled and synced via JS without breaking column layout.");
 })();
