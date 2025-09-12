@@ -101,7 +101,6 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers and body to match the CSS you provided
       function styleCells(cells, isHeader = false) {
         for (let i = 0; i < Math.min(cells.length, colCount); i++) {
           const cell = cells[i];
