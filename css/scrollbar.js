@@ -71,16 +71,7 @@
         }
       });
 
-      // Fallback widths
-      for (let i = 0; i < colCount; i++) {
-        if (!maxWidths[i] || maxWidths[i] < 10) {
-          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) : 30;
-          maxWidths[i] = Math.max(30, fallback);
-        }
-      }
 
-      // Apply widths
       function applyCols(cols) {
         if (!cols || !cols.length) return;
         for (let i = 0; i < colCount; i++) {
