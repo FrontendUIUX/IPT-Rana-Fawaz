@@ -112,6 +112,7 @@
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
+          setImportant(inner, "padding", "0 10px");
 
           if (isHeader) {
             setImportant(inner, "text-align", "center");
