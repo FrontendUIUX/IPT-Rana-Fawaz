@@ -30,7 +30,6 @@
       headerWrapper: null,
       scrollWrapper: null,
       observer: null,
-      synced: false,
     };
 
     function findTables() {
@@ -44,8 +43,7 @@
     function measureAndApply() {
       if (!findTables()) return false;
 
-      const headerTable = instance.headerTable;
-      const bodyTable = instance.bodyTable;
+      const { headerTable, bodyTable } = instance;
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
@@ -56,7 +54,7 @@
 
       const maxWidths = new Array(colCount).fill(0);
 
-      // Measure only headers
+      // Measure headers only
       headerTable.querySelectorAll("tr").forEach((tr) => {
         const tds = tr.querySelectorAll("td, th");
         for (let i = 0; i < colCount; i++) {
@@ -67,16 +65,18 @@
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
 
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
+          // Add padding (left+right = 20px)
+          const width = ceil(inner.scrollWidth + 20);
+          maxWidths[i] = Math.max(maxWidths[i], width);
         }
       });
 
       // Fallback widths
       for (let i = 0; i < colCount; i++) {
-        if (!maxWidths[i] || maxWidths[i] < 10) {
+        if (!maxWidths[i] || maxWidths[i] < 30) {
           const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) : 30;
-          maxWidths[i] = Math.max(30, fallback);
+          const fallback = hb ? ceil(hb.scrollWidth + 20) : 50;
+          maxWidths[i] = Math.max(50, fallback);
         }
       }
 
@@ -96,7 +96,7 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      
+      // Apply styles to header cells
       const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
       headerCells.forEach((cell) => {
         if (!cell) return;
@@ -106,20 +106,21 @@
         setImportant(inner, "overflow", "visible");
         setImportant(inner, "text-overflow", "clip");
         setImportant(inner, "max-width", "none");
-        setImportant(inner, "width", "auto");
         setImportant(inner, "box-sizing", "border-box");
         setImportant(inner, "text-align", "center");
         setImportant(inner, "vertical-align", "middle");
         setImportant(inner, "display", "flex");
         setImportant(inner, "justify-content", "center");
+        setImportant(inner, "align-items", "center");
+        setImportant(inner, "padding", "0 10px"); 
         setImportant(inner, "min-height", "20px");
       });
 
+      // Sync scroll
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
       }
 
-      instance.synced = true;
       return true;
     }
 
@@ -186,7 +187,5 @@
     });
   };
 
-  console.info(
-    "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
-  );
+  console.info("✅ Grid header sync script initialized with nowrap headers and resize fix.");
 })();
