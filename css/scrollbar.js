@@ -79,7 +79,6 @@
           setImportant(inner, "box-sizing", "border-box");
           if (isHeader) {
             setImportant(inner, "display", "flex");
-            setImportant(inner, "align-items", "center");
             setImportant(inner, "min-height", "20px");
           }
         }
@@ -96,17 +95,11 @@
           headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
         }, { passive: true });
       }
-
-      // Disconnect observer after first sync to improve performance
-      if (instance.observer) {
-        instance.observer.disconnect();
-        instance.observer = null;
-      }
     }
 
     const debounced = debounce(measureAndApply, DEBOUNCE_MS);
 
-    // Observe only for dynamic content in this container
+    // Observe this container for dynamically added content
     instance.observer = new MutationObserver(debounced);
     instance.observer.observe(container, { childList: true, subtree: true });
 
@@ -135,44 +128,5 @@
   // Initial scan
   scanForNewTables();
 
-  // Resize handling for already synced tables
-  window.addEventListener("resize", debounce(() => {
-    instances.forEach(instance => {
-      if (instance) {
-        const { headerTable } = instance;
-        if (headerTable) measureAndApplyInstance(instance);
-      }
-    });
-
-    function measureAndApplyInstance(instance) {
-      const debounced = debounce(() => {
-        // Just remeasure widths but do NOT re-observe
-        const { headerTable, bodyTable } = instance;
-        const headerCells = headerTable.querySelectorAll("th");
-        if (!headerCells.length) return;
-
-        const widths = Array.from(headerCells).map(th => th.scrollWidth);
-
-        function applyCols(table) {
-          let colgroup = table.querySelector("colgroup");
-          if (!colgroup) return;
-          colgroup.querySelectorAll("col").forEach((col, i) => {
-            setImportant(col, "width", widths[i] + "px");
-            setImportant(col, "min-width", widths[i] + "px");
-          });
-        }
-
-        applyCols(headerTable);
-        applyCols(bodyTable);
-
-        const totalWidth = widths.reduce((a, b) => a + b, 0);
-        setImportant(headerTable, "width", totalWidth + "px");
-        setImportant(bodyTable, "width", totalWidth + "px");
-      }, DEBOUNCE_MS);
-
-      debounced();
-    }
-  }, DEBOUNCE_MS));
-
-  console.info("✅ Grid headers synced. Window resize now works properly.");
+  console.info("✅ Grid headers synced dynamically. Window resize not handled, MutationObserver active for new tables.");
 })();
