@@ -1,5 +1,4 @@
 (function () {
-  const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
 
   function debounce(fn, ms) {
@@ -52,15 +51,12 @@
       const bodyCols = bodyTable.querySelectorAll("col");
       const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
 
-      const colCount =
-        headerCols.length ||
-        bodyCols.length ||
-        headerCellsRaw.length;
+      const colCount = headerCols.length || bodyCols.length || headerCellsRaw.length;
       if (!colCount) return false;
 
       const maxWidths = new Array(colCount).fill(0);
 
-      // Measure only headers to determine width
+      // Measure only headers
       headerTable.querySelectorAll("tr").forEach((tr) => {
         const tds = tr.querySelectorAll("td, th");
         for (let i = 0; i < colCount; i++) {
@@ -71,7 +67,6 @@
               ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
             ) || cell;
 
-          // Measure width needed to fit header content in one line
           maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
         }
       });
@@ -85,7 +80,7 @@
         }
       }
 
-      // Apply to <col>
+      // Apply widths
       function applyCols(cols) {
         if (!cols || !cols.length) return;
         for (let i = 0; i < colCount; i++) {
@@ -101,33 +96,22 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers and body to match the CSS you provided
-      function styleCells(cells, isHeader = false) {
-        for (let i = 0; i < Math.min(cells.length, colCount); i++) {
-          const cell = cells[i];
-          if (!cell) continue;
-          const inner = cell.querySelector("div, span, *") || cell;
+      // Apply your header-specific CSS rules
+      const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
+      headerCells.forEach((cell) => {
+        if (!cell) return;
+        const inner = cell.querySelector("div, span, *") || cell;
 
-          setImportant(inner, "white-space", "nowrap");
-          setImportant(inner, "overflow", "visible");
-          setImportant(inner, "text-overflow", "clip");
-          setImportant(inner, "max-width", "none");
-          setImportant(inner, "width", "auto");
-          setImportant(inner, "box-sizing", "border-box");
-          setImportant(inner, "text-align", "center");
-          setImportant(inner, "vertical-align", "middle");
-          if (isHeader) {
-            setImportant(inner, "display", "block");
-            setImportant(inner, "min-height", "20px");
-          }
-        }
-      }
-
-      styleCells(headerTable.querySelectorAll("th, td, .grid-column-header-cell"), true);
-
-      const bodyRows = bodyTable.querySelectorAll("tbody tr");
-      bodyRows.forEach((row) => {
-        styleCells(row.querySelectorAll("td"));
+        setImportant(inner, "white-space", "nowrap");
+        setImportant(inner, "overflow", "visible");
+        setImportant(inner, "text-overflow", "clip");
+        setImportant(inner, "max-width", "none");
+        setImportant(inner, "width", "auto");
+        setImportant(inner, "box-sizing", "border-box");
+        setImportant(inner, "text-align", "center");
+        setImportant(inner, "vertical-align", "middle");
+        setImportant(inner, "display", "block");
+        setImportant(inner, "min-height", "20px");
       });
 
       if (instance.scrollWrapper && instance.headerWrapper) {
