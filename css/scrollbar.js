@@ -110,7 +110,8 @@
         setImportant(inner, "box-sizing", "border-box");
         setImportant(inner, "text-align", "center");
         setImportant(inner, "vertical-align", "middle");
-        setImportant(inner, "display", "block");
+        setImportant(inner, "display", "flex");
+        setImportant(inner, "justify-content", "center");
         setImportant(inner, "min-height", "20px");
       });
 
