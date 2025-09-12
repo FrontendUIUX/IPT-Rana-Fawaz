@@ -114,7 +114,6 @@
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
-          setImportant(inner, "vertical-align", "middle");
           if (isHeader) {
             setImportant(inner, "display", "flex");
             setImportant(inner, "align-items", "center");
@@ -136,32 +135,29 @@
       }
 
       instance.synced = true;
+
+      // ✅ Disconnect observer and remove resize listener after first sync
+      if (instance.observer) {
+        instance.observer.disconnect();
+        instance.observer = null;
+      }
+      window.removeEventListener("resize", debouncedSync);
+
       return true;
     }
 
     const debouncedSync = debounce(measureAndApply, DEBOUNCE_MS);
 
-    function attachInstanceObserver() {
-      if (instance.observer) try { instance.observer.disconnect(); } catch (e) {}
-      const obsTarget = container || document.body;
-      instance.observer = new MutationObserver(debouncedSync);
-      instance.observer.observe(obsTarget, { childList: true, subtree: true });
-      window.addEventListener("resize", debouncedSync, { passive: true });
+    // Initial sync
+    debouncedSync();
 
-      if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.scrollWrapper.addEventListener(
-          "scroll",
-          () => {
-            if (instance.headerWrapper)
-              instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-          },
-          { passive: true }
-        );
-      }
+    // Attach observer for first time only
+    if (container) {
+      instance.observer = new MutationObserver(debouncedSync);
+      instance.observer.observe(container, { childList: true, subtree: true });
+      window.addEventListener("resize", debouncedSync, { passive: true });
     }
 
-    debouncedSync();
-    attachInstanceObserver();
     instances.set(container, instance);
     return instance;
   }
@@ -188,21 +184,9 @@
     });
   }
 
-  const globalObserver = new MutationObserver(debounce(scanForGrids, 150));
-  globalObserver.observe(document.body, { childList: true, subtree: true });
-
   scanForGrids();
 
-  window.__syncAllGridHeaders = function () {
-    scanForGrids();
-    instances.forEach((inst) => {
-      try {
-        if (inst) (inst.headerTable || inst.bodyTable) && createInstance(inst.container);
-      } catch (e) {}
-    });
-  };
-
   console.info(
-    "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
+    "✅ Grid header sync script applied once and observer removed after initial sync."
   );
 })();
