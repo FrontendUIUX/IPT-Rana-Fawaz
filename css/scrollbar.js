@@ -9,8 +9,6 @@
     };
   }
 
-  const ceil = (v) => Math.ceil(v || 0);
-
   function setImportant(el, prop, value) {
     try {
       el.style.setProperty(prop, value, "important");
@@ -30,7 +28,6 @@
       headerWrapper: null,
       scrollWrapper: null,
       observer: null,
-      synced: false,
     };
 
     function findTables() {
@@ -41,80 +38,38 @@
       return !!instance.headerTable && !!instance.bodyTable;
     }
 
-    function measureAndApply() {
+    function syncWidths() {
       if (!findTables()) return false;
 
-      const headerTable = instance.headerTable;
-      const bodyTable = instance.bodyTable;
+      const { headerTable, bodyTable } = instance;
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
 
-      const colCount = headerCols.length || bodyCols.length || headerCellsRaw.length;
-      if (!colCount) return false;
-
-      const maxWidths = new Array(colCount).fill(0);
-
-      // Measure only headers
-      headerTable.querySelectorAll("tr").forEach((tr) => {
-        const tds = tr.querySelectorAll("td, th");
-        for (let i = 0; i < colCount; i++) {
-          const cell = tds[i];
-          if (!cell) continue;
-          const inner =
-            cell.querySelector(
-              ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
-            ) || cell;
-
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
-        }
-      });
-
-
-      function applyCols(cols) {
-        if (!cols || !cols.length) return;
-        for (let i = 0; i < colCount; i++) {
-          if (!cols[i]) continue;
-          setImportant(cols[i], "width", maxWidths[i] + "px");
-          setImportant(cols[i], "min-width", maxWidths[i] + "px");
-        }
+      // Make body cols equal header cols
+      if (headerCols.length && bodyCols.length) {
+        headerCols.forEach((hCol, i) => {
+          const width = hCol.offsetWidth || hCol.style.width;
+          if (bodyCols[i]) {
+            setImportant(bodyCols[i], "width", width + "px");
+            setImportant(bodyCols[i], "min-width", width + "px");
+          }
+        });
       }
-      applyCols(headerCols);
-      applyCols(bodyCols);
 
-      const total = maxWidths.reduce((a, b) => a + b, 0);
-      setImportant(headerTable, "width", total + "px");
-      setImportant(bodyTable, "width", total + "px");
+      // Sync table width
+      const totalWidth = headerTable.offsetWidth;
+      setImportant(bodyTable, "width", totalWidth + "px");
 
-      
-      const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
-      headerCells.forEach((cell) => {
-        if (!cell) return;
-        const inner = cell.querySelector("div, span, *") || cell;
-
-        setImportant(inner, "white-space", "nowrap");
-        setImportant(inner, "overflow", "visible");
-        setImportant(inner, "text-overflow", "clip");
-        setImportant(inner, "max-width", "none");
-        setImportant(inner, "width", "auto");
-        setImportant(inner, "box-sizing", "border-box");
-        setImportant(inner, "text-align", "center");
-        setImportant(inner, "vertical-align", "middle");
-        setImportant(inner, "display", "flex");
-        setImportant(inner, "justify-content", "center");
-        setImportant(inner, "min-height", "20px");
-      });
-
+      // Keep scrolls aligned
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
       }
 
-      instance.synced = true;
       return true;
     }
 
-    const debouncedSync = debounce(measureAndApply, DEBOUNCE_MS);
+    const debouncedSync = debounce(syncWidths, DEBOUNCE_MS);
 
     function attachInstanceObserver() {
       if (instance.observer) try { instance.observer.disconnect(); } catch (e) {}
@@ -177,7 +132,5 @@
     });
   };
 
-  console.info(
-    "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
-  );
+  console.info("✅ Grid body/header alignment script initialized (headers fully CSS controlled).");
 })();
