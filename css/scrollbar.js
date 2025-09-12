@@ -116,7 +116,9 @@
           setImportant(inner, "text-align", "center");
           setImportant(inner, "vertical-align", "middle");
           if (isHeader) {
-            setImportant(inner, "display", "block");
+            setImportant(inner, "display", "flex");
+            setImportant(inner, "align-items", "center");
+            setImportant(inner, "white-space", "nowrap");
             setImportant(inner, "min-height", "20px");
           }
         }
