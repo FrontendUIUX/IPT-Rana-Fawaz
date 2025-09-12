@@ -111,11 +111,25 @@
           setImportant(inner, "max-width", "none");
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
+
           if (isHeader) {
-            setImportant(inner, "display", "table-cell");
+            // Removed display: table-cell
             setImportant(inner, "vertical-align", "middle");
             setImportant(inner, "min-height", "20px");
             setImportant(inner, "width", "max-content");
+
+            // Explicitly override for .grid-column-header-cell-content
+            if (inner.classList.contains("grid-column-header-cell-content")) {
+              setImportant(inner, "white-space", "nowrap");
+              setImportant(inner, "overflow", "visible");
+              setImportant(inner, "text-overflow", "clip");
+            }
+            const textEl = inner.querySelector(".grid-column-header-text");
+            if (textEl) {
+              setImportant(textEl, "white-space", "nowrap");
+              setImportant(textEl, "overflow", "visible");
+              setImportant(textEl, "text-overflow", "clip");
+            }
           }
         }
       }
@@ -204,3 +218,4 @@
     "✅ Grid header sync script initialized. Ignores window resize. Use window.__syncAllGridHeaders() to force-run."
   );
 })();
+
