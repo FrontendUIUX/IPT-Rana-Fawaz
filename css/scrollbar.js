@@ -26,7 +26,7 @@
       bodyTable: null,
       headerWrapper: null,
       scrollWrapper: null,
-      observer: null,
+      synced: false,
     };
 
     function findTables() {
@@ -38,13 +38,14 @@
     }
 
     function measureAndApply() {
-      if (!findTables()) return false;
+      if (instance.synced) return; // Only sync once per table
+      if (!findTables()) return;
 
       const { headerTable, bodyTable, scrollWrapper, headerWrapper } = instance;
 
       const headerCells = headerTable.querySelectorAll("th");
       const colCount = headerCells.length;
-      if (!colCount) return false;
+      if (!colCount) return;
 
       // Measure widths
       const widths = Array.from(headerCells).map(th => th.scrollWidth);
@@ -84,7 +85,6 @@
           setImportant(inner, "box-sizing", "border-box");
           if (isHeader) {
             setImportant(inner, "display", "flex");
-            setImportant(inner, "align-items", "center");
             setImportant(inner, "min-height", "20px");
           }
         }
@@ -98,24 +98,22 @@
       // Sync scroll
       if (scrollWrapper && headerWrapper) {
         headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
+        scrollWrapper.addEventListener("scroll", () => {
+          headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
+        }, { passive: true });
       }
 
-      // Stop observing this container — synced once
-      if (instance.observer) {
-        instance.observer.disconnect();
-        instance.observer = null;
-      }
-
-      return true;
+      instance.synced = true; // Mark as synced
     }
 
-    // Debounced measure
     const debounced = debounce(measureAndApply, DEBOUNCE_MS);
-    debounced();
 
-    // Observe only for new children in this container, then stop after first sync
+    // Only observe for **new content in this container**, not resize
     instance.observer = new MutationObserver(debounced);
     instance.observer.observe(container, { childList: true, subtree: true });
+
+    // Run once immediately
+    debounced();
 
     instances.set(container, instance);
     return instance;
@@ -132,7 +130,7 @@
     });
   }
 
-  // Observe the whole body for dynamically added tables
+  // Observe the body for dynamically added tables
   const globalObserver = new MutationObserver(debounce(scanForNewTables, 150));
   globalObserver.observe(document.body, { childList: true, subtree: true });
 
