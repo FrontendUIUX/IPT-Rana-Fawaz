@@ -1,36 +1,43 @@
+/* Scroll wrapper */
 .theme-entry .scroll-wrapper {
   overflow-x: hidden !important;
 }
 
+/* Grid body scroll */
 .theme-entry div .grid-body {
   overflow-x: scroll !important;
   overflow-y: hidden;
 }
 
+/* Tables inside grid body */
 .theme-entry div .grid-body table {
-  table-layout: auto !important;
-  width: max-content !important;  
-  min-width: 100% !important;    
-
+  table-layout: auto !important;     /* Let table size based on content */
+  width: 100% !important;            /* Match header & body table width */
+  min-width: 100% !important;
 }
 
+/* Columns */
 .theme-entry div .grid-body colgroup col {
   width: auto !important;
   align-items: center !important;
 }
 
-.theme-entry .grid .grid-column-headers div, 
+/* Headers & body cells */
+.theme-entry .grid .grid-column-headers div,
 .theme-entry .grid .grid-column-headers span,
 .theme-entry div .grid-body table th,
 .theme-entry div .grid-body table td {
-  white-space: nowrap !important;     
-  overflow: visible !important;        
-  text-overflow: clip !important;     
-  max-width: none !important;          
-  width: auto !important;              
+  display: table-cell !important;    /* Force header cells to behave like table cells */
+  box-sizing: border-box !important; /* Include padding/borders in width calculation */
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  max-width: none !important;
+  width: auto !important;
 }
 
-.theme-entry .grid .grid-column-headers div, 
+/* Nested elements inside headers and body */
+.theme-entry .grid .grid-column-headers div,
 .theme-entry .grid .grid-column-headers span,
 .theme-entry div .grid-body table th > *,
 .theme-entry div.grid-body table td > * {
@@ -40,13 +47,14 @@
   white-space: inherit !important;
 }
 
-
+/* Header content */
 .theme-entry .grid .grid-column-header-cell-content {
-    display: block !important;              
-    min-height: 20px;
-    vertical-align: middle;
-    width: auto !important;     
-    white-space: nowrap;        
-    overflow: visible;           
-    text-overflow: unset;        
+  display: inline-block !important;   /* Fill header cell without forcing block width */
+  width: 100% !important;             /* Match <th> exactly */
+  min-height: 20px;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  box-sizing: border-box !important;
 }
