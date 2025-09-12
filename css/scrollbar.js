@@ -39,34 +39,34 @@
     }
 
     function syncWidths() {
-      if (!findTables()) return false;
+      requestAnimationFrame(() => {
+        if (!findTables()) return false;
 
-      const { headerTable, bodyTable } = instance;
+        const { headerTable, bodyTable } = instance;
+        const headerCols = headerTable.querySelectorAll("col");
+        const bodyCols = bodyTable.querySelectorAll("col");
 
-      const headerCols = headerTable.querySelectorAll("col");
-      const bodyCols = bodyTable.querySelectorAll("col");
+        if (headerCols.length && bodyCols.length) {
+          headerCols.forEach((hCol, i) => {
+            const width = hCol.getBoundingClientRect().width;
+            if (bodyCols[i]) {
+              setImportant(bodyCols[i], "width", width + "px");
+              setImportant(bodyCols[i], "min-width", width + "px");
+            }
+          });
+        }
 
-      // Make body cols equal header cols
-      if (headerCols.length && bodyCols.length) {
-        headerCols.forEach((hCol, i) => {
-          const width = hCol.offsetWidth || hCol.style.width;
-          if (bodyCols[i]) {
-            setImportant(bodyCols[i], "width", width + "px");
-            setImportant(bodyCols[i], "min-width", width + "px");
-          }
-        });
-      }
+        // Sync total table width
+        const totalWidth = headerTable.getBoundingClientRect().width;
+        setImportant(bodyTable, "width", totalWidth + "px");
 
-      // Sync table width
-      const totalWidth = headerTable.offsetWidth;
-      setImportant(bodyTable, "width", totalWidth + "px");
+        // Keep scroll in sync
+        if (instance.scrollWrapper && instance.headerWrapper) {
+          instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
+        }
 
-      // Keep scrolls aligned
-      if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-      }
-
-      return true;
+        return true;
+      });
     }
 
     const debouncedSync = debounce(syncWidths, DEBOUNCE_MS);
@@ -76,6 +76,7 @@
       const obsTarget = container || document.body;
       instance.observer = new MutationObserver(debouncedSync);
       instance.observer.observe(obsTarget, { childList: true, subtree: true });
+
       window.addEventListener("resize", debouncedSync, { passive: true });
 
       if (instance.scrollWrapper && instance.headerWrapper) {
@@ -132,5 +133,5 @@
     });
   };
 
-  console.info("✅ Grid body/header alignment script initialized (headers fully CSS controlled).");
+  console.info("✅ Grid body/header alignment script initialized (table-layout: auto supported).");
 })();
