@@ -157,8 +157,6 @@
       instance.observer = new MutationObserver(debouncedSync);
       instance.observer.observe(obsTarget, { childList: true, subtree: true });
 
-      // ❌ Removed window resize sync to forbid resizing on page resize
-      // window.addEventListener("resize", debouncedSync, { passive: true });
 
       if (instance.scrollWrapper && instance.headerWrapper) {
         instance.scrollWrapper.addEventListener(
