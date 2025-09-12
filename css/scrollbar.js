@@ -98,7 +98,6 @@
       applyCols(bodyCols);
 
       const total = maxWidths.reduce((a, b) => a + b, 0);
-      setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
 
@@ -115,8 +114,9 @@
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
           if (isHeader) {
-            setImportant(inner, "display", "block");
+            setImportant(inner, "display", "flex");
             setImportant(inner, "min-height", "20px");
+            setImportant(inner, "width", "max-content");
           }
         }
       }
