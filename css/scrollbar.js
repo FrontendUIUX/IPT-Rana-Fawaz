@@ -1,6 +1,6 @@
 (function () {
-  const MAX_SAMPLE_ROWS = 200;
   const DEBOUNCE_MS = 70;
+  const instances = new Map();
 
   function debounce(fn, ms) {
     let t;
@@ -10,8 +10,6 @@
     };
   }
 
-  const ceil = (v) => Math.ceil(v || 0);
-
   function setImportant(el, prop, value) {
     try {
       el.style.setProperty(prop, value, "important");
@@ -19,8 +17,6 @@
       el.style[prop] = value;
     }
   }
-
-  const instances = new Map();
 
   function createInstance(container) {
     if (!container || instances.has(container)) return;
@@ -31,7 +27,6 @@
       headerWrapper: null,
       scrollWrapper: null,
       observer: null,
-      synced: false,
     };
 
     function findTables() {
@@ -45,148 +40,105 @@
     function measureAndApply() {
       if (!findTables()) return false;
 
-      const headerTable = instance.headerTable;
-      const bodyTable = instance.bodyTable;
+      const { headerTable, bodyTable, scrollWrapper, headerWrapper } = instance;
 
-      const headerCols = headerTable.querySelectorAll("col");
-      const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
-
-      const colCount =
-        headerCols.length ||
-        bodyCols.length ||
-        headerCellsRaw.length;
+      const headerCells = headerTable.querySelectorAll("th");
+      const colCount = headerCells.length;
       if (!colCount) return false;
 
-      const maxWidths = new Array(colCount).fill(0);
+      // Measure widths
+      const widths = Array.from(headerCells).map(th => th.scrollWidth);
 
-      // Measure only headers to determine width
-      headerTable.querySelectorAll("tr").forEach((tr) => {
-        const tds = tr.querySelectorAll("td, th");
-        for (let i = 0; i < colCount; i++) {
-          const cell = tds[i];
-          if (!cell) continue;
-          const inner =
-            cell.querySelector(
-              ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
-            ) || cell;
-
-          // Measure width needed to fit header content in one line
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
+      // Apply <col> widths
+      function applyCols(table) {
+        let colgroup = table.querySelector("colgroup");
+        if (!colgroup) {
+          colgroup = document.createElement("colgroup");
+          widths.forEach(() => colgroup.appendChild(document.createElement("col")));
+          table.insertBefore(colgroup, table.firstChild);
         }
-      });
-
-      // Fallback widths
-      for (let i = 0; i < colCount; i++) {
-        if (!maxWidths[i] || maxWidths[i] < 10) {
-          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) : 30;
-          maxWidths[i] = Math.max(30, fallback);
-        }
+        colgroup.querySelectorAll("col").forEach((col, i) => {
+          setImportant(col, "width", widths[i] + "px");
+          setImportant(col, "min-width", widths[i] + "px");
+        });
       }
 
-      // Apply to <col>
-      function applyCols(cols) {
-        if (!cols || !cols.length) return;
-        for (let i = 0; i < colCount; i++) {
-          if (!cols[i]) continue;
-          setImportant(cols[i], "width", maxWidths[i] + "px");
-          setImportant(cols[i], "min-width", maxWidths[i] + "px");
-        }
-      }
-      applyCols(headerCols);
-      applyCols(bodyCols);
+      applyCols(headerTable);
+      applyCols(bodyTable);
 
-      const total = maxWidths.reduce((a, b) => a + b, 0);
-      setImportant(headerTable, "width", total + "px");
-      setImportant(bodyTable, "width", total + "px");
+      // Set total table widths
+      const totalWidth = widths.reduce((a, b) => a + b, 0);
+      setImportant(headerTable, "width", totalWidth + "px");
+      setImportant(bodyTable, "width", totalWidth + "px");
 
+      // Style cells
       function styleCells(cells, isHeader = false) {
-        for (let i = 0; i < Math.min(cells.length, colCount); i++) {
+        for (let i = 0; i < cells.length; i++) {
           const cell = cells[i];
           if (!cell) continue;
           const inner = cell.querySelector("div, span, *") || cell;
-
           setImportant(inner, "white-space", "nowrap");
           setImportant(inner, "overflow", "visible");
           setImportant(inner, "text-overflow", "clip");
-          setImportant(inner, "max-width", "none");
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
           setImportant(inner, "text-align", "center");
           if (isHeader) {
             setImportant(inner, "display", "flex");
             setImportant(inner, "align-items", "center");
-            setImportant(inner, "white-space", "nowrap");
             setImportant(inner, "min-height", "20px");
           }
         }
       }
 
       styleCells(headerTable.querySelectorAll("th, td, .grid-column-header-cell"), true);
-
-      const bodyRows = bodyTable.querySelectorAll("tbody tr");
-      bodyRows.forEach((row) => {
+      bodyTable.querySelectorAll("tbody tr").forEach(row => {
         styleCells(row.querySelectorAll("td"));
       });
 
-      if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
+      // Sync scroll
+      if (scrollWrapper && headerWrapper) {
+        headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
       }
 
-      instance.synced = true;
-
-      // ✅ Disconnect observer and remove resize listener after first sync
+      // Stop observing this container — synced once
       if (instance.observer) {
         instance.observer.disconnect();
         instance.observer = null;
       }
-      window.removeEventListener("resize", debouncedSync);
 
       return true;
     }
 
-    const debouncedSync = debounce(measureAndApply, DEBOUNCE_MS);
+    // Debounced measure
+    const debounced = debounce(measureAndApply, DEBOUNCE_MS);
+    debounced();
 
-    // Initial sync
-    debouncedSync();
-
-    // Attach observer for first time only
-    if (container) {
-      instance.observer = new MutationObserver(debouncedSync);
-      instance.observer.observe(container, { childList: true, subtree: true });
-      window.addEventListener("resize", debouncedSync, { passive: true });
-    }
+    // Observe only for new children in this container, then stop after first sync
+    instance.observer = new MutationObserver(debounced);
+    instance.observer.observe(container, { childList: true, subtree: true });
 
     instances.set(container, instance);
     return instance;
   }
 
-  function scanForGrids() {
-    const headerTables = Array.from(document.querySelectorAll(".grid-column-header-table"));
-    headerTables.forEach((ht) => {
-      const container =
-        ht.closest(".grid-body") ||
-        ht.closest(".grid") ||
-        ht.closest(".grid-edit-templates") ||
-        document.body;
+  function scanForNewTables() {
+    document.querySelectorAll(".grid-column-header-table").forEach(ht => {
+      const container = ht.closest(".grid-body") || ht.closest(".grid") || ht.closest(".grid-edit-templates") || document.body;
       createInstance(container);
     });
-
-    const bodyTables = Array.from(document.querySelectorAll(".grid-content-table"));
-    bodyTables.forEach((bt) => {
-      const container =
-        bt.closest(".grid-body") ||
-        bt.closest(".grid") ||
-        bt.closest(".grid-edit-templates") ||
-        document.body;
+    document.querySelectorAll(".grid-content-table").forEach(bt => {
+      const container = bt.closest(".grid-body") || bt.closest(".grid") || bt.closest(".grid-edit-templates") || document.body;
       createInstance(container);
     });
   }
 
-  scanForGrids();
+  // Observe the whole body for dynamically added tables
+  const globalObserver = new MutationObserver(debounce(scanForNewTables, 150));
+  globalObserver.observe(document.body, { childList: true, subtree: true });
 
-  console.info(
-    "✅ Grid header sync script applied once and observer removed after initial sync."
-  );
+  // Initial scan
+  scanForNewTables();
+
+  console.info("✅ Grid headers synced once per table. Window resize does NOT resize tables.");
 })();
