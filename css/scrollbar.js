@@ -103,8 +103,7 @@
         for (let i = 0; i < Math.min(cells.length, colCount); i++) {
           const cell = cells[i];
           if (!cell) continue;
-          setImportant(cell, "padding", "0 10px");
-          setImportant(cell, "text-align", "center");
+
           const inner = cell.querySelector("div, span, *") || cell;
 
           setImportant(inner, "white-space", "nowrap");
@@ -113,26 +112,29 @@
           setImportant(inner, "max-width", "none");
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
+          setImportant(inner, "text-align", "center");
+          setImportant(inner, "padding", "0 10px");
 
           if (isHeader) {
             setImportant(inner, "text-align", "center");
             setImportant(inner, "vertical-align", "middle");
             setImportant(inner, "min-height", "20px");
             setImportant(inner, "width", "max-content");
-  
+            setImportant(inner, "padding", "0 10px");
 
             if (inner.classList.contains("grid-column-header-cell-content")) {
               setImportant(inner, "display", "block");
               setImportant(inner, "white-space", "nowrap");
               setImportant(inner, "overflow", "visible");
               setImportant(inner, "text-overflow", "clip");
+              setImportant(inner, "text-align", "center");
             }
             const textEl = inner.querySelector(".grid-column-header-text");
             if (textEl) {
               setImportant(textEl, "white-space", "nowrap");
               setImportant(textEl, "overflow", "visible");
               setImportant(textEl, "text-overflow", "clip");
-
+             setImportant(inner, "text-align", "center");
             }
           }
         }
