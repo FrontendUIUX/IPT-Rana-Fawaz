@@ -60,7 +60,7 @@
 
       const maxWidths = new Array(colCount).fill(0);
 
-      // Measure only headers to determine width
+ 
       headerTable.querySelectorAll("tr").forEach((tr) => {
         const tds = tr.querySelectorAll("td, th");
         for (let i = 0; i < colCount; i++) {
@@ -75,16 +75,16 @@
         }
       });
 
-      // Fallback widths
-      for (let i = 0; i < colCount; i++) {
-        if (!maxWidths[i] || maxWidths[i] < 10) {
-          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) : 30;
-          maxWidths[i] = Math.max(30, fallback);
-        }
-      }
+//      // Fallback widths
+//      for (let i = 0; i < colCount; i++) {
+//        if (!maxWidths[i] || maxWidths[i] < 10) {
+//          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
+//          const fallback = hb ? ceil(hb.scrollWidth) : 30;
+//          maxWidths[i] = Math.max(30, fallback);
+//        }
+//      }
 
-      // Apply to <col>
+
       function applyCols(cols) {
         if (!cols || !cols.length) return;
         for (let i = 0; i < colCount; i++) {
@@ -218,8 +218,5 @@
     });
   };
 
-  console.info(
-    "✅ Grid header sync script initialized. Ignores window resize. Use window.__syncAllGridHeaders() to force-run."
-  );
 })();
 
