@@ -1,6 +1,7 @@
 (function () {
-  const MAX_SAMPLE_ROWS = 200;
-  const DEBOUNCE_MS = 70;
+  const DEBOUNCE_MS = 80;
+  const MIN_WIDTH = 40;   // never smaller than this
+  const CELL_PADDING = 16; // total padding (left + right)
 
   function debounce(fn, ms) {
     let t;
@@ -13,6 +14,7 @@
   const ceil = (v) => Math.ceil(v || 0);
 
   function setImportant(el, prop, value) {
+    if (!el) return;
     try {
       el.style.setProperty(prop, value, "important");
     } catch (e) {
@@ -24,6 +26,7 @@
 
   function createInstance(container) {
     if (!container || instances.has(container)) return;
+
     const instance = {
       container,
       headerTable: null,
@@ -50,88 +53,79 @@
 
       const headerCols = headerTable.querySelectorAll("col");
       const bodyCols = bodyTable.querySelectorAll("col");
-      const headerCellsRaw = headerTable.querySelectorAll(".grid-column-header-cell, td, th");
+      const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
+      const bodyRows = bodyTable.querySelectorAll("tbody tr");
 
-      const colCount =
-        headerCols.length ||
-        bodyCols.length ||
-        headerCellsRaw.length;
+      const colCount = headerCols.length || headerCells.length;
       if (!colCount) return false;
 
-      const maxWidths = new Array(colCount).fill(0);
+      const widths = new Array(colCount).fill(0);
 
-      // Measure only headers to determine width
-      headerTable.querySelectorAll("tr").forEach((tr) => {
-        const tds = tr.querySelectorAll("td, th");
-        for (let i = 0; i < colCount; i++) {
-          const cell = tds[i];
-          if (!cell) continue;
-          const inner =
-            cell.querySelector(
-              ".grid-column-header-cell, .grid-column-header-cell-wrapper, .grid-column-header-cell-content, .grid-column-header-text"
-            ) || cell;
-
-          // Measure width needed to fit header content in one line
-          maxWidths[i] = Math.max(maxWidths[i], ceil(inner.scrollWidth));
-        }
+      // --- Step 1: measure header cells ---
+      headerCells.forEach((cell, i) => {
+        if (!cell) return;
+        const inner = cell.querySelector("*") || cell;
+        const w = ceil(inner.scrollWidth + CELL_PADDING);
+        widths[i] = Math.max(widths[i], w);
       });
 
-      // Fallback widths
+      // --- Step 2: measure body cells too ---
+      bodyRows.forEach((row) => {
+        const tds = row.querySelectorAll("td");
+        tds.forEach((td, i) => {
+          const inner = td.querySelector("*") || td;
+          const w = ceil(inner.scrollWidth + CELL_PADDING);
+          widths[i] = Math.max(widths[i], w);
+        });
+      });
+
+      // --- Step 3: apply min width fallback ---
       for (let i = 0; i < colCount; i++) {
-        if (!maxWidths[i] || maxWidths[i] < 10) {
-          const hb = headerCellsRaw[i] || headerTable.querySelectorAll("td,th")[i];
-          const fallback = hb ? ceil(hb.scrollWidth) : 30;
-          maxWidths[i] = Math.max(30, fallback);
-        }
+        if (!widths[i] || widths[i] < MIN_WIDTH) widths[i] = MIN_WIDTH;
       }
 
-      // Apply to <col>
+      // --- Step 4: apply to col elements ---
       function applyCols(cols) {
-        if (!cols || !cols.length) return;
-        for (let i = 0; i < colCount; i++) {
-          if (!cols[i]) continue;
-          setImportant(cols[i], "width", maxWidths[i] + "px");
-          setImportant(cols[i], "min-width", maxWidths[i] + "px");
-        }
+        if (!cols) return;
+        cols.forEach((col, i) => {
+          if (!col) return;
+          setImportant(col, "width", widths[i] + "px");
+          setImportant(col, "min-width", widths[i] + "px");
+        });
       }
       applyCols(headerCols);
       applyCols(bodyCols);
 
-      const total = maxWidths.reduce((a, b) => a + b, 0);
+      const total = widths.reduce((a, b) => a + b, 0);
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Style headers and body to match the CSS you provided
-      function styleCells(cells, isHeader = false) {
-        for (let i = 0; i < Math.min(cells.length, colCount); i++) {
-          const cell = cells[i];
-          if (!cell) continue;
-          const inner = cell.querySelector("div, span, *") || cell;
-
-          setImportant(inner, "white-space", "nowrap");
-          setImportant(inner, "overflow", "visible");
-          setImportant(inner, "text-overflow", "clip");
-          setImportant(inner, "max-width", "none");
-          setImportant(inner, "width", "auto");
-          setImportant(inner, "box-sizing", "border-box");
-          setImportant(inner, "text-align", "center");
-          setImportant(inner, "vertical-align", "middle");
-          if (isHeader) {
-            setImportant(inner, "display", "block");
-            setImportant(inner, "min-height", "20px");
-          }
-        }
+      // --- Step 5: style all header + body cells consistently ---
+      function styleCell(el) {
+        if (!el) return;
+        setImportant(el, "white-space", "nowrap");
+        setImportant(el, "overflow", "visible");
+        setImportant(el, "text-overflow", "clip");
+        setImportant(el, "text-align", "center");
+        setImportant(el, "vertical-align", "middle");
+        setImportant(el, "padding-left", CELL_PADDING / 2 + "px");
+        setImportant(el, "padding-right", CELL_PADDING / 2 + "px");
+        setImportant(el, "box-sizing", "border-box");
+        setImportant(el, "display", "flex");
+        setImportant(el, "justify-content", "center");
+        setImportant(el, "align-items", "center");
       }
 
-      styleCells(headerTable.querySelectorAll("th, td, .grid-column-header-cell"), true);
+      headerCells.forEach(styleCell);
+      bodyRows.forEach((row) => row.querySelectorAll("td").forEach(styleCell));
 
-      const bodyRows = bodyTable.querySelectorAll("tbody tr");
-      bodyRows.forEach((row) => {
-        styleCells(row.querySelectorAll("td"));
-      });
-
+      // --- Step 6: keep header + body scroll in sync ---
       if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
+        instance.scrollWrapper.addEventListener(
+          "scroll",
+          () => (instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft),
+          { passive: true }
+        );
       }
 
       instance.synced = true;
@@ -140,49 +134,23 @@
 
     const debouncedSync = debounce(measureAndApply, DEBOUNCE_MS);
 
-    function attachInstanceObserver() {
-      if (instance.observer) try { instance.observer.disconnect(); } catch (e) {}
-      const obsTarget = container || document.body;
-      instance.observer = new MutationObserver(debouncedSync);
-      instance.observer.observe(obsTarget, { childList: true, subtree: true });
-      window.addEventListener("resize", debouncedSync, { passive: true });
-
-      if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.scrollWrapper.addEventListener(
-          "scroll",
-          () => {
-            if (instance.headerWrapper)
-              instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-          },
-          { passive: true }
-        );
-      }
-    }
+    const obsTarget = container || document.body;
+    instance.observer = new MutationObserver(debouncedSync);
+    instance.observer.observe(obsTarget, { childList: true, subtree: true });
+    window.addEventListener("resize", debouncedSync, { passive: true });
 
     debouncedSync();
-    attachInstanceObserver();
     instances.set(container, instance);
     return instance;
   }
 
   function scanForGrids() {
-    const headerTables = Array.from(document.querySelectorAll(".grid-column-header-table"));
-    headerTables.forEach((ht) => {
+    const tables = document.querySelectorAll(
+      ".grid-column-header-table, .grid-content-table"
+    );
+    tables.forEach((t) => {
       const container =
-        ht.closest(".grid-body") ||
-        ht.closest(".grid") ||
-        ht.closest(".grid-edit-templates") ||
-        document.body;
-      createInstance(container);
-    });
-
-    const bodyTables = Array.from(document.querySelectorAll(".grid-content-table"));
-    bodyTables.forEach((bt) => {
-      const container =
-        bt.closest(".grid-body") ||
-        bt.closest(".grid") ||
-        bt.closest(".grid-edit-templates") ||
-        document.body;
+        t.closest(".grid-body") || t.closest(".grid") || document.body;
       createInstance(container);
     });
   }
@@ -192,16 +160,14 @@
 
   scanForGrids();
 
-  window.__syncAllGridHeaders = function () {
+  window.__syncAllGridHeaders = () => {
     scanForGrids();
     instances.forEach((inst) => {
       try {
-        if (inst) (inst.headerTable || inst.bodyTable) && createInstance(inst.container);
+        if (inst) inst.synced || createInstance(inst.container);
       } catch (e) {}
     });
   };
 
-  console.info(
-    "Grid header sync script initialized. Use window.__syncAllGridHeaders() to force-run."
-  );
+  console.info("Grid header sync script loaded.");
 })();
