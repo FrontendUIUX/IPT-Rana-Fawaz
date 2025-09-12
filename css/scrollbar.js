@@ -82,7 +82,6 @@
           setImportant(inner, "text-overflow", "clip");
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
-          setImportant(inner, "text-align", "center");
           if (isHeader) {
             setImportant(inner, "display", "flex");
             setImportant(inner, "align-items", "center");
