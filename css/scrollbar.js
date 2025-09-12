@@ -1,5 +1,5 @@
 (function() {
-  const DEBOUNCE_MS = 70;
+  const DEBOUNCE_MS = 100;
 
   // ===== Inject CSS =====
   const css = `
@@ -45,92 +45,96 @@
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
 
-  // ===== JS for syncing headers and body =====
+  // ===== Debounce helper =====
   function debounce(fn, ms) {
     let t;
     return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
   }
 
-  function setImportant(el, prop, value) {
-    try { el.style.setProperty(prop, value, "important"); } 
-    catch(e) { el.style[prop] = value; }
+  // ===== Sync one K2 grid container =====
+  function syncK2Grid(container) {
+    const headerTable = container.querySelector(".grid-column-header-table");
+    const bodyTable = container.querySelector(".grid-content-table");
+    if (!headerTable || !bodyTable) return;
+
+    const headerCells = Array.from(headerTable.querySelectorAll("th"));
+    const bodyRows = Array.from(bodyTable.querySelectorAll("tr"));
+
+    // Measure header widths
+    const widths = headerCells.map(th => th.getBoundingClientRect().width);
+
+    // Apply widths to body cells
+    bodyRows.forEach(row => {
+      row.querySelectorAll("td").forEach((td, i) => {
+        if (widths[i] != null) {
+          td.style.width = widths[i] + "px";
+          td.style.minWidth = widths[i] + "px";
+        }
+      });
+    });
+
+    // Apply widths to header cells
+    headerCells.forEach((th, i) => {
+      th.style.width = widths[i] + "px";
+      th.style.minWidth = widths[i] + "px";
+    });
+
+    // Sync scroll
+    const scrollWrapper = container.querySelector(".scroll-wrapper");
+    const headerWrapper = container.querySelector(".grid-column-headers-wrapper");
+    if (scrollWrapper && headerWrapper) {
+      headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
+      scrollWrapper.addEventListener("scroll", () => {
+        headerWrapper.scrollLeft = scrollWrapper.scrollLeft;
+      }, { passive: true });
+    }
   }
 
+  // ===== Create instance per container =====
   const instances = new Map();
 
   function createInstance(container) {
     if (!container || instances.has(container)) return;
-    const instance = { container, headerTable:null, bodyTable:null, headerWrapper:null, scrollWrapper:null, observer:null };
+    const instance = { container, observer: null };
 
-    function findTables() {
-      instance.headerTable = container.querySelector(".grid-column-header-table");
-      instance.bodyTable = container.querySelector(".grid-content-table");
-      instance.headerWrapper = container.querySelector(".grid-column-headers-wrapper");
-      instance.scrollWrapper = container.querySelector(".scroll-wrapper");
-      return !!instance.headerTable && !!instance.bodyTable;
-    }
+    const debouncedSync = debounce(() => syncK2Grid(container), DEBOUNCE_MS);
 
-    function syncWidths() {
-      requestAnimationFrame(() => {
-        if (!findTables()) return false;
-        const { headerTable, bodyTable } = instance;
-        const headerCols = headerTable.querySelectorAll("col");
-        const bodyCols = bodyTable.querySelectorAll("col");
-
-        if (headerCols.length && bodyCols.length) {
-          headerCols.forEach((hCol, i) => {
-            const width = hCol.getBoundingClientRect().width;
-            if (bodyCols[i]) {
-              setImportant(bodyCols[i], "width", width + "px");
-              setImportant(bodyCols[i], "min-width", width + "px");
-            }
-          });
-        }
-
-        setImportant(bodyTable, "width", headerTable.getBoundingClientRect().width + "px");
-
-        if (instance.scrollWrapper && instance.headerWrapper) {
-          instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-        }
-      });
-    }
-
-    const debouncedSync = debounce(syncWidths, DEBOUNCE_MS);
-
-    function attachInstanceObserver() {
+    function attachObserver() {
       if (instance.observer) try { instance.observer.disconnect(); } catch(e){}
       instance.observer = new MutationObserver(debouncedSync);
-      instance.observer.observe(container || document.body, { childList:true, subtree:true });
-      window.addEventListener("resize", debouncedSync, { passive:true });
+      instance.observer.observe(container || document.body, { childList: true, subtree: true });
 
-      if (instance.scrollWrapper && instance.headerWrapper) {
-        instance.scrollWrapper.addEventListener("scroll", () => {
-          if(instance.headerWrapper) instance.headerWrapper.scrollLeft = instance.scrollWrapper.scrollLeft;
-        }, { passive:true });
-      }
+      window.addEventListener("resize", debouncedSync, { passive:true });
     }
 
     debouncedSync();
-    attachInstanceObserver();
+    attachObserver();
     instances.set(container, instance);
     return instance;
   }
 
+  // ===== Scan all K2 grids =====
   function scanForGrids() {
     const headerTables = Array.from(document.querySelectorAll(".grid-column-header-table"));
-    headerTables.forEach(ht => createInstance(ht.closest(".grid-body") || ht.closest(".grid") || ht.closest(".grid-edit-templates") || document.body));
+    headerTables.forEach(ht => {
+      const container = ht.closest(".grid-body") || ht.closest(".grid") || ht.closest(".grid-edit-templates") || document.body;
+      createInstance(container);
+    });
     const bodyTables = Array.from(document.querySelectorAll(".grid-content-table"));
-    bodyTables.forEach(bt => createInstance(bt.closest(".grid-body") || bt.closest(".grid") || bt.closest(".grid-edit-templates") || document.body));
+    bodyTables.forEach(bt => {
+      const container = bt.closest(".grid-body") || bt.closest(".grid") || bt.closest(".grid-edit-templates") || document.body;
+      createInstance(container);
+    });
   }
 
-  const globalObserver = new MutationObserver(debounce(scanForGrids, 150));
+  const globalObserver = new MutationObserver(debounce(scanForGrids, 200));
   globalObserver.observe(document.body, { childList:true, subtree:true });
 
   scanForGrids();
   window.__syncAllGridHeaders = function() {
     scanForGrids();
-    instances.forEach(inst => { try{ if(inst && (inst.headerTable || inst.bodyTable)) createInstance(inst.container); }catch(e){} });
+    instances.forEach(inst => { try { if(inst) createInstance(inst.container); } catch(e){} });
   };
 
-  console.info("✅ Grid header/body alignment with CSS injected and JS synced (Nintex/K2 ready).");
+  console.info("✅ K2 Grid header/body alignment script initialized (CSS + JS integrated).");
 })();
