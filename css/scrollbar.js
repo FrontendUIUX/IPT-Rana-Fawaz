@@ -96,7 +96,7 @@
       setImportant(headerTable, "width", total + "px");
       setImportant(bodyTable, "width", total + "px");
 
-      // Apply your header-specific CSS rules
+      
       const headerCells = headerTable.querySelectorAll("th, td, .grid-column-header-cell");
       headerCells.forEach((cell) => {
         if (!cell) return;
