@@ -10,11 +10,21 @@
   }
 
   function setImportant(el, prop, value) {
-    try {
-      el.style.setProperty(prop, value, "important");
-    } catch (e) {
-      el.style[prop] = value;
-    }
+    try { el.style.setProperty(prop, value, "important"); }
+    catch(e) { el.style[prop] = value; }
+  }
+
+  function styleRecursive(el) {
+    if (!el) return;
+    setImportant(el, "white-space", "nowrap"); // no wrapping
+    setImportant(el, "width", "auto");
+    setImportant(el, "min-height", "20px");
+    setImportant(el, "vertical-align", "middle");
+    setImportant(el, "box-sizing", "border-box");
+
+    el.childNodes.forEach(child => {
+      if (child.nodeType === 1) styleRecursive(child);
+    });
   }
 
   const instances = new Map();
@@ -36,43 +46,43 @@
 
       const { headerTable, bodyTable } = instance;
 
-      // Style header cells (but do NOT set display:block)
-      headerTable.querySelectorAll("th, td, .grid-column-header-cell").forEach(cell => {
-        setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "clip");
-        setImportant(cell, "width", "auto");
-        setImportant(cell, "min-height", "20px");
-        setImportant(cell, "vertical-align", "middle");
-        setImportant(cell, "box-sizing", "border-box");
-      });
-
-      // Style body cells
-      bodyTable.querySelectorAll("td, th").forEach(cell => {
-        setImportant(cell, "white-space", "nowrap");
-        setImportant(cell, "overflow", "visible");
-        setImportant(cell, "text-overflow", "clip");
-        setImportant(cell, "width", "auto");
-        setImportant(cell, "box-sizing", "border-box");
-        setImportant(cell, "vertical-align", "middle");
-      });
+      // Style header and body cells recursively
+      headerTable.querySelectorAll("th, td, .grid-column-header-cell").forEach(cell => styleRecursive(cell));
+      bodyTable.querySelectorAll("td, th").forEach(cell => styleRecursive(cell));
 
       // Sync <col> widths
-      const headerCols = headerTable.querySelectorAll("col");
-      const bodyCols = bodyTable.querySelectorAll("col");
+      let headerCols = headerTable.querySelectorAll("col");
+      let bodyCols = bodyTable.querySelectorAll("col");
 
-      if (headerCols.length && bodyCols.length) {
-        headerCols.forEach((hCol, i) => {
-          const width = hCol.getBoundingClientRect().width;
-          if (bodyCols[i]) {
-            setImportant(bodyCols[i], "width", width + "px");
-            setImportant(bodyCols[i], "min-width", width + "px");
-          }
-        });
+      const headerCells = headerTable.querySelectorAll("th");
+      const widths = Array.from(headerCells).map(th => th.scrollWidth);
+
+      if (!headerCols.length) {
+        const colgroup = document.createElement("colgroup");
+        widths.forEach(() => colgroup.appendChild(document.createElement("col")));
+        headerTable.insertBefore(colgroup, headerTable.firstChild);
+        headerCols = colgroup.querySelectorAll("col");
       }
 
-      // Sync total width
-      const totalWidth = headerTable.getBoundingClientRect().width;
+      if (!bodyCols.length) {
+        const colgroup = document.createElement("colgroup");
+        widths.forEach(() => colgroup.appendChild(document.createElement("col")));
+        bodyTable.insertBefore(colgroup, bodyTable.firstChild);
+        bodyCols = colgroup.querySelectorAll("col");
+      }
+
+      headerCols.forEach((col, i) => {
+        setImportant(col, "width", widths[i] + "px");
+        setImportant(col, "min-width", widths[i] + "px");
+      });
+
+      bodyCols.forEach((col, i) => {
+        setImportant(col, "width", widths[i] + "px");
+        setImportant(col, "min-width", widths[i] + "px");
+      });
+
+      // Set total table widths
+      const totalWidth = widths.reduce((a,b)=>a+b,0);
       setImportant(headerTable, "width", totalWidth + "px");
       setImportant(bodyTable, "width", totalWidth + "px");
 
@@ -85,7 +95,7 @@
     const debounced = debounce(styleAndSync, DEBOUNCE_MS);
 
     function attachObserver() {
-      if (instance.observer) try { instance.observer.disconnect(); } catch(e) {}
+      if (instance.observer) try { instance.observer.disconnect(); } catch(e){}
       instance.observer = new MutationObserver(debounced);
       instance.observer.observe(container || document.body, { childList:true, subtree:true });
       window.addEventListener("resize", debounced, { passive:true });
@@ -126,5 +136,5 @@
     });
   };
 
-  console.info("✅ Grid header/body styled and synced via JS without breaking column layout.");
+  console.info("✅ Grid header/body styled and synced with nowrap via JS only (scrollable headers).");
 })();
