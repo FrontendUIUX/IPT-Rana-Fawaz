@@ -106,14 +106,12 @@
         setImportant(el, "white-space", "nowrap");
         setImportant(el, "overflow", "visible");
         setImportant(el, "text-overflow", "clip");
-        setImportant(el, "text-align", "center");
-        setImportant(el, "vertical-align", "middle");
+        setImportant(el, "text-align", "center");   // horizontal centering
+        setImportant(el, "vertical-align", "middle"); // vertical centering
         setImportant(el, "padding-left", CELL_PADDING / 2 + "px");
         setImportant(el, "padding-right", CELL_PADDING / 2 + "px");
         setImportant(el, "box-sizing", "border-box");
-        setImportant(el, "display", "flex");
-        setImportant(el, "justify-content", "center");
-        setImportant(el, "align-items", "center");
+        // ✅ KEEP table-cell display (don’t override to flex!)
       }
 
       headerCells.forEach(styleCell);
