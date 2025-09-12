@@ -111,15 +111,17 @@
           setImportant(inner, "max-width", "none");
           setImportant(inner, "width", "auto");
           setImportant(inner, "box-sizing", "border-box");
+          setImportant(inner, "display", "flex");
 
           if (isHeader) {
-            // Removed display: table-cell
+            setImportant(inner, "display", "flex");
+            setImportant(inner, "justify-content", "center");
             setImportant(inner, "vertical-align", "middle");
             setImportant(inner, "min-height", "20px");
             setImportant(inner, "width", "max-content");
 
-            // Explicitly override for .grid-column-header-cell-content
             if (inner.classList.contains("grid-column-header-cell-content")) {
+              setImportant(inner, "display", "flex");
               setImportant(inner, "white-space", "nowrap");
               setImportant(inner, "overflow", "visible");
               setImportant(inner, "text-overflow", "clip");
